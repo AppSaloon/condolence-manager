@@ -9,6 +9,8 @@
  * Author URI: http://www.appsaloon.be
  * License: GPLv2 or later
  */
+define( 'CM_BASE_FILE', __FILE__ );
+define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
 define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
@@ -37,3 +39,7 @@ function cm_autoload( $class ) {
 new cm\includes\register\Custom_Post_Type();
 // REGISTER TRANSLATIONS
 new cm\includes\register\Translation();
+// SETTINGS
+new cm\includes\settings\Select_Fields_To_Show();
+// TEMPLATE
+new cm\includes\controller\Templates();

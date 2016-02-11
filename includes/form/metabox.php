@@ -447,7 +447,6 @@ class Metabox{
      * @param $post_id
      */
     public function send_mail_to_family($post_id) {
-        var_dump( get_post_meta( $post_id ) );
         wp_mail('aytac@appsaloon.be', 'test', 'test');
     }
 
