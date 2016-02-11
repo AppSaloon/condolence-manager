@@ -11,23 +11,7 @@ class Metabox{
         add_action( 'add_meta_boxes', array($this, 'add_metaboxes') );
         add_action( 'save_post', array($this, 'save_condolence_person'), 1, 2 );
         add_action( 'admin_enqueue_scripts', array($this, 'metabox_css_jquery') );
-        add_action('publish_post', 'authorNotification');
-    }
-
-    /**
-     * Load css and jquery for metabox
-     */
-    public function metabox_css_jquery(){
-        global $post;
-        if ( $post->post_type == Custom_Post_Type::POST_TYPE ) {
-            wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, '1.0.0'  );
-            wp_enqueue_style( 'metabox_css' );
-
-            wp_register_script( 'metabox_js', CM_URL . 'js/metabox.js', array(), false, true );
-            wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php') );
-            wp_enqueue_script( 'metabox_js' );
-            wp_enqueue_media();
-        }
+        add_action( 'publish_'.Custom_Post_Type::POST_TYPE, array($this, 'send_mail_to_family') );
     }
 
     /**
@@ -35,11 +19,11 @@ class Metabox{
      */
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about departed soul'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'advanced', 'default');
-        add_meta_box('wpt_condolence_person_location_side', __('E-mail + password'), array($this, 'password_callback'), Custom_Post_Type::POST_TYPE, 'side', 'default');
+        add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::POST_TYPE, 'side', 'default');
     }
 
     /**
-     * Define fields in metabox
+     * Define fields in metabox Information about departed soul
      */
     public function deceased_callback(){
         global $post;
@@ -362,6 +346,9 @@ class Metabox{
         <?php
     }
 
+    /**
+     * Define fields in metabox View comments
+     */
     public function password_callback(){
         global $post;
 
@@ -370,24 +357,22 @@ class Metabox{
         <input type="text" name="email" value="<?php echo $this->get_field_value('email', $post->ID); ?>">
         <label><?php _e('Password'); ?> <a id="generate" href=""><?php _e('Create token'); ?></a></label>
         <input id="password" type="text" name="password" value="<?php echo $this->get_field_value('password', $post->ID); ?>">
+
+        <label><?php _e('View comments'); ?></label>
         <?php
-    }
+            $permalink = get_post_permalink( $post->ID );
 
-    /**
-     * Checks meta value
-     *
-     * @param $field_name meta key
-     * @param $post_id post id
-     * @return mixed|string returns field value or empty string
-     */
-    public function get_field_value($field_name, $post_id){
-        $meta_value = get_post_meta( $post_id, $field_name, false);
+            if( substr($permalink, -1) == '/' ){
+                $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
+            }
 
-        if( $meta_value ){
-            return current($meta_value);
-        }
-
-        return '';
+            if( $this->get_field_value('password', $post->ID) ){
+                $permalink .= '?password='.$this->get_field_value('password', $post->ID);
+            }
+        ?>
+        <input type="text" readonly value="<?php echo $permalink; ?>">
+        <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments'); ?></a>
+        <?php
     }
 
     /**
@@ -461,18 +446,41 @@ class Metabox{
      * Send email after creating post
      * @param $post_id
      */
-    public function authorNotification($post_id) {
-        $post = get_post($post_id);
-        $author = get_userdata($post->post_author);
-        $metadata = get_post_meta($post_id);
+    public function send_mail_to_family($post_id) {
+        var_dump( get_post_meta( $post_id ) );
+        wp_mail('aytac@appsaloon.be', 'test', 'test');
+    }
 
-        echo '<pre>';
-        var_dump( $metadata );
-        echo '</pre>';
+    /**
+     * Load css and jquery for metabox
+     */
+    public function metabox_css_jquery(){
+        global $post;
+        if ( $post->post_type == Custom_Post_Type::POST_TYPE ) {
+            wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, '1.0.0'  );
+            wp_enqueue_style( 'metabox_css' );
 
-        $message = "Hi ".$author->display_name.",
-                    Your post, ".$post->post_title." has just been published at ".get_permalink( $post_id ).". Well done!";
-        wp_mail('aytac@appsaloon.be', "Your article is online", $message);
-        die();
+            wp_register_script( 'metabox_js', CM_URL . 'js/metabox.js', array(), false, true );
+            wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php') );
+            wp_enqueue_script( 'metabox_js' );
+            wp_enqueue_media();
+        }
+    }
+
+    /**
+     * Checks meta value
+     *
+     * @param $field_name meta key
+     * @param $post_id post id
+     * @return mixed|string returns field value or empty string
+     */
+    public function get_field_value($field_name, $post_id){
+        $meta_value = get_post_meta( $post_id, $field_name, false);
+
+        if( $meta_value ){
+            return current($meta_value);
+        }
+
+        return '';
     }
 }

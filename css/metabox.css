@@ -27,6 +27,7 @@ span.dashicons-dismiss, .add_more{
 #wpt_condolence_person_location_side label, #wpt_condolence_person_location_side input{
     display: inline-block;
     width: 100%;
+    word-break: break-all;
 }
 
 #wpt_condolence_person_location_side label{
