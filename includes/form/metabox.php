@@ -76,12 +76,12 @@ class Metabox{
             </tr>
             <tr>
                 <td><?php _e('Residence'); ?></td>
-                <td class="form-field"><textarea rows="3" name="greetinginformation"><?php echo $this->get_field_value('greetinginformation', $post->ID); ?></textarea></td>
+                <td class="form-field"><textarea rows="3" name="residence"><?php echo $this->get_field_value('residence', $post->ID); ?></textarea></td>
             </tr>
             <tr>
                 <td><?php _e('Mass card'); ?></td>
                 <td class="form-field">
-                    <input id="upload_media" type="text" name="mass_card" value="<?php echo $this->get_field_value('mass_card', $post->ID); ?>">
+                    <input id="upload_media" type="text" name="masscard" value="<?php echo $this->get_field_value('masscard', $post->ID); ?>">
                     <input id="upload_media_button" class="button" type="button" value="<?php _e('Choose mass card'); ?>" />
                 </td>
             </tr>
@@ -399,8 +399,9 @@ class Metabox{
             if ( !current_user_can( 'edit_page', $post_id ) || !current_user_can( 'edit_post', $post_id ))
                 return $post_id;
         }
-
-
+echo '<pre>';
+var_dump($_POST);
+        echo '</pre>';
         // save meta fields
         $postfields = array(
             'name',
@@ -411,8 +412,9 @@ class Metabox{
             'funeralinformation',
             'prayervigilinformation',
             'greetinginformation',
+            'residence',
             'gender',
-            'mass_card',
+            'masscard',
             'password',
             'email'
         );

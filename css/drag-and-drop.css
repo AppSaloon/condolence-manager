@@ -1,0 +1,45 @@
+span#delete {
+    float: right;
+    padding-right: 10px;
+    color: red;
+    cursor: pointer;
+}
+
+span#add{
+    float: right;
+    padding-right: 10px;
+    color: green;
+    cursor: pointer;
+}
+
+div.field_wrap{
+     border: 1px solid #d3d3d3;
+    margin-top: 15px;
+ }
+
+div.field_wrap ul{
+    margin: 10px;
+}
+
+li.ui-state-default.ui-sortable-handle{
+    padding-left: 10px;
+    cursor:move;
+}
+
+div.field_wrap input.button {
+    margin: 10px !important;
+}
+
+p#info{
+    margin: 0;
+}
+
+ul.hide.border{
+    border: 1px solid green;
+}
+
+ul.hide li{
+    width: 210px;
+    display: inline-block;
+    margin: 10px;
+}

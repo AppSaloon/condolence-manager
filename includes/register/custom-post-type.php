@@ -35,7 +35,7 @@ class Custom_Post_Type{
             'label'               => _x( 'Condolences', 'Post Type Label Name', 'cm_translate'),
             'description'         => _x( 'Condolences', 'Post Type Description', 'cm_translate' ),
             'labels'              => $labels,
-            'supports'            => array( 'title' ),
+            'supports'            => array( 'title', 'thumbnail' ),
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
