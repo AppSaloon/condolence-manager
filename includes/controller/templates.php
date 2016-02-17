@@ -7,6 +7,7 @@ class Templates{
     public function __construct()
     {
         add_filter( 'template_include', array($this, 'cm_template_chooser') );
+
     }
 
     public function cm_template_chooser( $template ) {
@@ -38,9 +39,17 @@ class Templates{
         }
         else {
             $file = CM_BASE_DIR . '/includes/templates/' . $template;
+            add_action('wp_enqueue_scripts', array($this, 'hook_css'));
         }
 
         return $file;
+    }
+
+    public function hook_css() {
+        wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
+        wp_enqueue_script('jquery');
+        wp_enqueue_style('template-single', CM_URL . 'css/template-single.css');
+        wp_enqueue_script('template-single', CM_URL . 'js/template-single.js');
     }
 
 }

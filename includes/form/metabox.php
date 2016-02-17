@@ -63,6 +63,10 @@ class Metabox{
                 <td class="form-field"><input type="text" name="placeofdeath" value="<?php echo $this->get_field_value('placeofdeath', $post->ID); ?>"></td>
             </tr>
             <tr>
+                <td><?php _e('Date of death'); ?></td>
+                <td class="form-field"><input type="date" name="dateofdeath" value="<?php echo $this->get_field_value('dateofdeath', $post->ID); ?>"></td>
+            </tr>
+            <tr>
                 <td><?php _e('Funeral information'); ?></td>
                 <td class="form-field"><input type="text" name="funeralinformation" value="<?php echo $this->get_field_value('funeralinformation', $post->ID); ?>"></td>
             </tr>
@@ -399,9 +403,7 @@ class Metabox{
             if ( !current_user_can( 'edit_page', $post_id ) || !current_user_can( 'edit_post', $post_id ))
                 return $post_id;
         }
-echo '<pre>';
-var_dump($_POST);
-        echo '</pre>';
+
         // save meta fields
         $postfields = array(
             'name',
@@ -409,6 +411,7 @@ var_dump($_POST);
             'birthdate',
             'birthplace',
             'placeofdeath',
+            'dateofdeath',
             'funeralinformation',
             'prayervigilinformation',
             'greetinginformation',
@@ -449,7 +452,10 @@ var_dump($_POST);
      * @param $post_id
      */
     public function send_mail_to_family($post_id) {
-        wp_mail('aytac@appsaloon.be', 'test', 'test');
+        $mail = get_post_meta($post_id, 'email', true);
+        $url = get_the_permalink($post_id);
+        $password = get_post_meta($post_id, 'password', true);
+        wp_mail($mail, __('Condolences','cm_translate'), $url.$password);
     }
 
     /**
@@ -484,4 +490,6 @@ var_dump($_POST);
 
         return '';
     }
+
+
 }

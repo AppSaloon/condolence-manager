@@ -35,14 +35,23 @@ class Select_Fields_To_Show{
     public function my_plugin_function(){
         ?>
         <?php
-        $fields = array('Gender', 'Name', 'Family name', 'Birthplace', 'Birthdate', 'Place of death', 'funeral information', 'Prayer Vigil information', 'Greeting information', 'Residence', 'Mass card', 'Relations' );
+        $tableArray = get_option('cm_fields');
+        $basicArray = array('Gender', 'Name', 'Family name', 'Birthplace', 'Birthdate', 'Place of death', 'Date of death', 'Funeral information', 'Prayer Vigil information', 'Greeting information', 'Residence', 'Mass card', 'Relations' );
+        $fields = isset($tableArray) ? $tableArray : $basicArray;
         ?>
 
         <h2><?php _e('Condolence manager'); ?></h2>
         <p id="info"><?php _e('Change the layout of the condolence post by reordering the items listed below.'); ?></p>
         <p id="info"><?php _e('Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.'); ?></p>
         <div class="field_wrap">
-                <ul class="ui-sortable hide">
+                <ul class="ui-sortable hide <?php if( isset($tableArray)){echo 'border'; } ?>">
+                    <?php
+                    $result = isset($tableArray) ? array_diff($basicArray, $tableArray) : '';
+        foreach ($result as $value) { ?>
+            <li class="ui-state-default ui-sortable-handle"><?php echo $value; ?><span id="add">+</span></li>
+        <?php }
+        ?>
+
                 </ul>
 
         <ul id="sortable" class="ui-sortable show">
