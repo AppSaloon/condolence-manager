@@ -4,6 +4,8 @@ namespace cm\includes\settings;
 
 class Select_Fields_To_Show{
 
+    public static $defaultFields = array('Gender', 'Name', 'Family name', 'Birthplace', 'Birthdate', 'Place of death', 'Date of death', 'Funeral information', 'Prayer Vigil information', 'Greeting information', 'Residence', 'Mass card', 'Relations' );
+
     public function __construct()
     {
         add_action( 'admin_menu', array($this, 'add_admin_page') );
@@ -36,36 +38,34 @@ class Select_Fields_To_Show{
         ?>
         <?php
         $tableArray = get_option('cm_fields');
-        $basicArray = array('Gender', 'Name', 'Family name', 'Birthplace', 'Birthdate', 'Place of death', 'Date of death', 'Funeral information', 'Prayer Vigil information', 'Greeting information', 'Residence', 'Mass card', 'Relations' );
-        $fields = isset($tableArray) ? $tableArray : $basicArray;
+        $fields = ($tableArray) ? $tableArray : self::$defaultFields;
         ?>
 
         <h2><?php _e('Condolence manager'); ?></h2>
         <p id="info"><?php _e('Change the layout of the condolence post by reordering the items listed below.'); ?></p>
         <p id="info"><?php _e('Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.'); ?></p>
         <div class="field_wrap">
-                <ul class="ui-sortable hide <?php if( isset($tableArray)){echo 'border'; } ?>">
-                    <?php
-                    $result = isset($tableArray) ? array_diff($basicArray, $tableArray) : '';
-        foreach ($result as $value) { ?>
-            <li class="ui-state-default ui-sortable-handle"><?php echo $value; ?><span id="add">+</span></li>
-        <?php }
-        ?>
+            <ul class="ui-sortable hide <?php if( $tableArray ){echo 'border'; } ?>">
+                <?php
+                $result = ($tableArray) ? array_diff(self::$defaultFields, $tableArray) : '';
+                if( $result ){
+                    foreach ($result as $value) {
+                        ?> <li class="ui-state-default ui-sortable-handle"><?php echo $value; ?><span id="add">+</span></li> <?php
+                    }
+                }
+                ?>
 
-                </ul>
+            </ul>
 
-        <ul id="sortable" class="ui-sortable show">
-                    <?php
+            <ul id="sortable" class="ui-sortable show">
+            <?php
+            foreach ($fields as $value) {
+                ?> <li class="ui-state-default ui-sortable-handle"><?php echo $value; ?><span id="delete">X</span></li> <?php
+            }
+            ?>
+            </ul>
 
-        foreach ($fields as $value) { ?>
-            <li class="ui-state-default ui-sortable-handle"><?php echo $value; ?><span id="delete">X</span></li>
-        <?php }
-        ?>
-
-
-        </ul>
-
-        <input class="button btn-set-fields" type="submit" value="Submit changes">
+            <input class="button btn-set-fields" type="submit" value="Submit changes">
         </div>
         <?php
 

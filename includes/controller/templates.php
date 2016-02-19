@@ -7,7 +7,6 @@ class Templates{
     public function __construct()
     {
         add_filter( 'template_include', array($this, 'cm_template_chooser') );
-
     }
 
     public function cm_template_chooser( $template ) {
@@ -51,5 +50,4 @@ class Templates{
         wp_enqueue_style('template-single', CM_URL . 'css/template-single.css');
         wp_enqueue_script('template-single', CM_URL . 'js/template-single.js');
     }
-
 }

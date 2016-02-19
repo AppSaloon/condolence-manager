@@ -2,6 +2,7 @@
 
 namespace cm\includes\register;
 
+use cm\includes\comments\Inline_Comment_Error;
 use cm\includes\form\Metabox;
 
 class Custom_Post_Type{
@@ -53,5 +54,7 @@ class Custom_Post_Type{
         register_post_type( static::POST_TYPE, $args );
 
         $add_meta_boxes = new Metabox();
+
+        $comments_error_inline = new Inline_Comment_Error();
     }
 }

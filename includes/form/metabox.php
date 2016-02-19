@@ -357,12 +357,12 @@ class Metabox{
         global $post;
 
         ?>
-        <label><?php _e('E-mail'); ?></label>
+        <label><?php _e('E-mail', 'cm_translate'); ?></label>
         <input type="text" name="email" value="<?php echo $this->get_field_value('email', $post->ID); ?>">
-        <label><?php _e('Password'); ?> <a id="generate" href=""><?php _e('Create token'); ?></a></label>
+        <label><?php _e('Password', 'cm_translate'); ?> <a id="generate" href=""><?php _e('Create token', 'cm_translate'); ?></a></label>
         <input id="password" type="text" name="password" value="<?php echo $this->get_field_value('password', $post->ID); ?>">
 
-        <label><?php _e('View comments'); ?></label>
+        <label><?php _e('View comments', 'cm_translate'); ?></label>
         <?php
             $permalink = get_post_permalink( $post->ID );
 
@@ -375,7 +375,7 @@ class Metabox{
             }
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
-        <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments'); ?></a>
+        <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments', 'cm_translate'); ?></a>
         <?php
     }
 
@@ -455,7 +455,7 @@ class Metabox{
         $mail = get_post_meta($post_id, 'email', true);
         $url = get_the_permalink($post_id);
         $password = get_post_meta($post_id, 'password', true);
-        wp_mail($mail, __('Condolences','cm_translate'), $url.$password);
+        wp_mail($mail, __('Condolences', 'cm_translate'), $url.$password);
     }
 
     /**

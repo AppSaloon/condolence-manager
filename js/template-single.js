@@ -6,7 +6,6 @@
 (function($) {
 $(document).ready(function(){
     $("#toggle_comment").click(function(e){
-        console.log('teslt');
         e.preventDefault();
         $("div.comments").toggle();
     });
