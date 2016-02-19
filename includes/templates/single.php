@@ -154,7 +154,7 @@ if( !empty($password) && $password == $check_password){ ?>
 
 
 
-<div class="comments-list">
+<div class="comments-list family_page">
     <h3><?php _e('Condolences for the family', 'cm_translation'); ?></h3>
     <ol class="commentlist">
         <?php comment_form( array( 'title_reply' => __('Reply to this condolence', 'cm_translation'), 'title_reply_after'    => '</h3><p id="info_text">'. __('This message will be send by mail to the author of the condolence.', 'cm_translation'). '</p>', 'label_submit' => __('Reply', 'cm_translation') ) ); ?>
@@ -181,8 +181,12 @@ if( !empty($password) && $password == $check_password){ ?>
         <?php
         $errors = apply_filters('wpice_get_comment_form_errors_as_list',''); // call template tag to print the error list
         if( $errors ){
-            echo "<h1 class=\"secondarypage\">"._e('Comment Error', 'cm_translate')."</h1>"; // print the page title
+            echo '<div class="error_box">';
+            echo '<h3 class="secondarypage">';
+            _e("Comment Error", "cm_translate");
+            echo '</h3>';
             echo $errors;
+            echo '</div>';
         }
         ?>
         <?php comment_form( array( 'title_reply' => __('Leave your condolences for the family', 'cm_translation'), 'title_reply_after'    => '</h3><p id="info_text">'. __('This message is only visible for the family', 'cm_translation'). '</p>', 'label_submit' => __('Condolence', 'cm_translation') ) ); ?>

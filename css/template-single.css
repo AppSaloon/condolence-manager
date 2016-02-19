@@ -125,3 +125,16 @@ ol.commentlist div.comment-respond{
 ol.commentlist li div.comment-respond{
     display: block;
 }
+h3.secondarypage{
+    color: #990000;
+    margin-top: 0;
+}
+div.error_box{
+    background: #EACCCC;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 26px;
+}
+.ajax-error{
+    color: #990000;
+}
