@@ -49,9 +49,12 @@ class Custom_Post_Type{
             'exclude_from_search' => false,
             'publicly_queryable'  => true,
             'capability_type'     => 'post',
+            'rewrite' => array('slug'=>'','with_front'=>false),
         );
 
         register_post_type( static::POST_TYPE, $args );
+
+        flush_rewrite_rules();
 
         $add_meta_boxes = new Metabox();
 

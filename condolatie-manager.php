@@ -30,11 +30,6 @@ function cm_autoload( $class ) {
     }
 }
 
-// CREATE LOG TABLE
-//register_activation_hook(__FILE__, array('cm\Install', 'run') );
-// REMOVE LOG TABLE
-//register_deactivation_hook(__FILE__, array('cm\Deinstall', 'run') );
-
 // REGISTER CUSTOM POST TYPE
 new cm\includes\register\Custom_Post_Type();
 // REGISTER TRANSLATIONS
@@ -43,3 +38,8 @@ new cm\includes\register\Translation();
 new cm\includes\settings\Select_Fields_To_Show();
 // TEMPLATE
 new cm\includes\controller\Templates();
+
+// CREATE LOG TABLE
+//register_activation_hook(__FILE__, array('cm\Install', 'run') );
+// REMOVE LOG TABLE
+//register_deactivation_hook(__FILE__, array('cm\Deinstall', 'run') );
