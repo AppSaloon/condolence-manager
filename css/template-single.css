@@ -1,10 +1,18 @@
+body.single-condolences{
+    background-color: white;
+}
 table{
     width: 100%;
+    padding: 54px;
 }
 table tbody tr td{
     vertical-align: top;
+    border: 0;
 }
 
+table tbody tr td.img{
+    width: 160px;
+}
 table tbody tr td img{
     padding-right: 30px;
     width: 160px;
@@ -66,6 +74,10 @@ table tbody tr td.text .btn {
     border: 1px solid transparent;
     border-radius: 4px;
     margin-right: 10px;
+}
+
+div.comments, div.comments-list.family_page{
+    padding: 0 54px;
 }
 
 ol.commentlist{
