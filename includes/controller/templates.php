@@ -50,6 +50,17 @@ class Templates{
         wp_enqueue_script('jquery');
         wp_enqueue_style('template-single', CM_URL . 'css/template-single.css');
         wp_enqueue_script('template-single', CM_URL . 'js/template-single.js');
+        // Add some parameters for the JS.
+        wp_localize_script(
+            'template-single',
+            'cm',
+            array(
+                'blank_fields' => __( 'You might have left one of the fields blank, or be posting too quickly', 'cm_translate'),
+                'thanks' => __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'),
+                'wait' => __( 'Please wait a while before posting your next comment.', 'cm_translate'),
+                'not_send' => __( 'Your message is not send. You might have left one of the fields blank.', 'cm_translate')
+            )
+        );
     }
 
     public function send_comment_email_notification( $comment_ID, $commentdata ) {

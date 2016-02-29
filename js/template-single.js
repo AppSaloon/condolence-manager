@@ -5,6 +5,13 @@
 
 (function($) {
 $(document).ready(function(){
+
+    var blank_fields = cm.blank_fields;
+    var thanks = cm.thanks;
+    var wait = cm.wait;
+    var not_send = cm.not_send;
+
+
     $("#toggle_comment").click(function(e){
         e.preventDefault();
         $("div.comments").toggle();
@@ -24,7 +31,6 @@ $(document).ready(function(){
 
     commentform.submit(function(){
         if($('textarea#comment').val().length > 0){
-            console.log('sjfiewhfow');
             var formdata=commentform.serialize();
             statusdiv.html('<p>Processing...</p>');
             var formurl=commentform.attr('action');
@@ -34,14 +40,14 @@ $(document).ready(function(){
                 data: formdata,
                 error: function(XMLHttpRequest, textStatus, errorThrown)
                 {
-                    statusdiv.html('<p class="ajax-error" >You might have left one of the fields blank, or be posting too quickly</p>');
+                    statusdiv.html('<p class="ajax-error" >'+blank_fields+'</p>');
                 },
                 success: function(data, textStatus){
                     if(data == "success" || textStatus == "success"){
                        if($('.comments-list').hasClass('family_page')){
                            location.reload();
                        }else{
-                           statusdiv.html('<p class="ajax-success" >Thanks for your comment. We appreciate your response.</p>');
+                           statusdiv.html('<p class="ajax-success" >'+thanks+'</p>');
                            $('.comment-form-comment').hide();
                            $('.error_box').hide();
                        }
@@ -59,7 +65,7 @@ $(document).ready(function(){
                             $('ol.commentlist').html(data);
                         }
                     }else{
-                        statusdiv.html('<p class="ajax-error" >Please wait a while before posting your next comment</p>');
+                        statusdiv.html('<p class="ajax-error" >'+ wait +'</p>');
                         commentform.find('textarea[name=comment]').val('');
                     }
                 }
@@ -73,14 +79,14 @@ $(document).ready(function(){
                 data: formdata,
                 error: function(XMLHttpRequest, textStatus, errorThrown)
                 {
-                    statusdiv.html('<p class="ajax-error" >You might have left one of the fields blank, or be posting too quickly</p>');
+                    statusdiv.html('<p class="ajax-error" >'+blank_fields+'</p>');
                 },
                 success: function(data, textStatus){
                     if(data == "success" || textStatus == "success"){
-                            statusdiv.html('<p class="ajax-error" >Your message is not send. You might have left one of the fields blank.</p>');
+                            statusdiv.html('<p class="ajax-error" >'+not_send+'</p>');
 
                     }else{
-                        statusdiv.html('<p class="ajax-error" >Please wait a while before posting your next comment</p>');
+                        statusdiv.html('<p class="ajax-error" >'+wait+'</p>');
                         commentform.find('textarea[name=comment]').val('');
                     }
                 }
