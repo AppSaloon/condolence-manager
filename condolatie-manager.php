@@ -56,6 +56,8 @@ new cm\includes\register\Translation();
 new cm\includes\settings\Select_Fields_To_Show();
 // TEMPLATE
 new cm\includes\controller\Templates();
+// COMMENT EMAIL
+new cm\includes\controller\Comment_Email();
 
 // CREATE LOG TABLE
 //register_activation_hook(__FILE__, array('cm\Install', 'run') );
