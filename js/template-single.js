@@ -60,7 +60,6 @@ $(document).ready(function(){
                                 $('ol.commentlist').append(data);
                             }
                         } else{
-                            console.log(data);
                             $("#commentsbox").find('div.post-info').prepend('<ol class="commentlist"> </ol>');
                             $('ol.commentlist').html(data);
                         }
