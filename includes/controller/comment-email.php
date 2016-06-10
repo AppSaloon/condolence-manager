@@ -6,13 +6,12 @@ class Comment_Email{
 
     public function __construct()
     {
-        add_action( 'comment_post', array($this, 'send_comment_email_notification'), 11, 2 );
+        add_action( 'comment_post', array($this, 'send_comment_email_notification'), 1, 2 );
     }
 
     public function send_comment_email_notification( $comment_ID, $commentdata ) {
         $comment = get_comment( $comment_ID );
         $postid = $comment->comment_post_ID;
-        $master_email = get_post_meta( $postid, 'email', true);
 
         // mail to family
 //        if( isset( $master_email ) && is_email( $master_email ) && $comment->parent == 0) {
@@ -24,14 +23,14 @@ class Comment_Email{
 //        }
 
         // mail to person
-        if( isset( $master_email ) && is_email( $master_email ) && $comment->parent != 0) {
+        if(  $comment->comment_parent != 0) {
             $this->set_comment_status($comment_ID);
-            $parent_comment = get_comment( $comment->parent );
-            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . get_permalink( $postid ) . '">reply</a>&nbsp;';
-            $message .= 'on your condolence from '.$comment->comment_author.':</p>';
+            $parent_comment = get_comment( $comment->comment_parent );
+            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">'. __("New") .' <a href="' . get_permalink( $postid ) . '">reply</a>&nbsp;';
+            $message .= sprintf(__('on your condolence from %s:'), $comment->comment_author).'</p>';
             $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
             add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
-            wp_mail( $parent_comment->comment_author_email, 'New Comment', $message );
+            wp_mail( $parent_comment->comment_author_email, __('New Comment'), $message );
         }
     }
 
@@ -40,6 +39,7 @@ class Comment_Email{
 
         $query = "UPDATE ".$wpdb->prefix."comments SET comment_approved='1' WHERE comment_ID=".$comment_ID;
         $wpdb->query($query);
+
         clean_comment_cache($comment_ID);
     }
 }

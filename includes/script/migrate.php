@@ -30,8 +30,6 @@ Class Migrate{
     }
 
     public function migrate_post(){
-        $offset = $_POST['processed_posts'];
-
         $args = array(
             'post_type' => 'cm_obi',
             'post_status' => 'publish',
