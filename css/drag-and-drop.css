@@ -30,7 +30,7 @@ div.field_wrap input.button {
     margin: 10px !important;
 }
 
-p#info{
+p.info{
     margin: 0;
 }
 
@@ -42,4 +42,12 @@ ul.hide li{
     width: 210px;
     display: inline-block;
     margin: 10px;
+}
+
+div.migrating{
+    margin-top: 20px;
+}
+
+div.migrating p{
+    margin-bottom: 10px;
 }

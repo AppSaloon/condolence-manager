@@ -35,15 +35,13 @@ class Select_Fields_To_Show{
     }
 
     public function my_plugin_function(){
-        ?>
-        <?php
         $tableArray = get_option('cm_fields');
         $fields = ($tableArray) ? $tableArray : self::$defaultFields;
         ?>
 
         <h2><?php _e('Condolence manager'); ?></h2>
-        <p id="info"><?php _e('Change the layout of the condolence post by reordering the items listed below.'); ?></p>
-        <p id="info"><?php _e('Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.'); ?></p>
+        <p class="info"><?php _e('Change the layout of the condolence post by reordering the items listed below.'); ?></p>
+        <p class="info"><?php _e('Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.'); ?></p>
         <div class="field_wrap">
             <ul class="ui-sortable hide <?php if( $tableArray ){echo 'border'; } ?>">
                 <?php
@@ -67,10 +65,22 @@ class Select_Fields_To_Show{
 
             <input class="button btn-set-fields" type="submit" value="Submit changes">
         </div>
+
         <?php
+        // show migrate script only if there are old posts
+        $old_posts = wp_count_posts('cm_obi');
 
+        if( $old_posts->publish !== NULL ){
+            ?>
+            <div class="migrating">
+                <form method="post">
+                    <p class="info"><?php _e('Migrate data from old condolence manager to current one.')?></p>
+                    <input type="hidden" id="max_posts" value="<?php echo ($old_posts->publish !== NULL) ? $old_posts->publish : 0; ?>" />
+                    <input id="btn-migrating" class="button" type="submit" value="Start migrating">
+                </form>
+            </div>
+            <?php
 
-
-
+        }
     }
 }

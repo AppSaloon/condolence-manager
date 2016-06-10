@@ -53,12 +53,44 @@
                     },
                     success: function (result) {
                     }
-                });
+                }
+            );
         });
 
+        $('#btn-migrating').on('click', function(e){
+            e.preventDefault();
+            var max_posts = $('#max_posts').val();
 
-
+            if( max_posts != 0 ){
+                // function migrate post
+                migrate_post(max_posts);
+            }
+        });
 
     });
+
+    function migrate_post(max_posts, processed_posts){
+        if(processed_posts === undefined) { processed_posts = 0; }
+
+        if( max_posts != processed_posts ){
+            migrate_post_ajax(max_posts, processed_posts);
+        }
+    }
+
+    function migrate_post_ajax(max_posts, processed_posts){
+        $.ajax(
+            {
+                url: dragAndDrop.ajaxUrl,
+                type: "POST",
+                data: {
+                    action: 'migrate_post'
+                },
+                success: function (result) {
+                    console.log( processed_posts );
+                    migrate_post(max_posts, processed_posts + 1);
+                }
+            }
+        );
+    }
 
 })(jQuery);

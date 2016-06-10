@@ -58,6 +58,8 @@ new cm\includes\settings\Select_Fields_To_Show();
 new cm\includes\controller\Templates();
 // COMMENT EMAIL
 new cm\includes\controller\Comment_Email();
+// MIGRATE POST
+new cm\includes\script\Migrate();
 
 // CREATE LOG TABLE
 //register_activation_hook(__FILE__, array('cm\Install', 'run') );

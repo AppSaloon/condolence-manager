@@ -11,14 +11,14 @@ class Metabox{
         add_action( 'add_meta_boxes', array($this, 'add_metaboxes') );
         add_action( 'save_post', array($this, 'save_condolence_person'), 1, 2 );
         add_action( 'admin_enqueue_scripts', array($this, 'metabox_css_jquery') );
-        add_action( 'publish_'.Custom_Post_Type::POST_TYPE, array($this, 'send_mail_to_family') );
+        //add_action( 'publish_'.Custom_Post_Type::POST_TYPE, array($this, 'send_mail_to_family') );
     }
 
     /**
      * Add metabox information about departed soul and metabox about information for the family
      */
     public function add_metaboxes(){
-        add_meta_box('wpt_condolence_person_location', __('Information about departed soul'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'advanced', 'default');
+        add_meta_box('wpt_condolence_person_location', __('Information about departed soul'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::POST_TYPE, 'side', 'default');
     }
 
@@ -448,14 +448,19 @@ class Metabox{
     }
 
     /**
-     * Send email after creating post
+     * TODO automatisch versturen? voorlopig is action gehide
+     * Send email after creating/updating post
      * @param $post_id
      */
     public function send_mail_to_family($post_id) {
         $mail = get_post_meta($post_id, 'email', true);
         $url = get_the_permalink($post_id);
         $password = get_post_meta($post_id, 'password', true);
-        wp_mail($mail, __('Condolences', 'cm_translate'), $url.$password);
+
+        if( !empty( $mail ) ){
+            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?password='.$password);
+        }
+
     }
 
     /**

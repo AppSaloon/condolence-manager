@@ -15,13 +15,13 @@ class Comment_Email{
         $master_email = get_post_meta( $postid, 'email', true);
 
         // mail to family
-        if( isset( $master_email ) && is_email( $master_email ) && $comment->parent == 0) {
-            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . get_permalink( $postid ) . '/?password='.get_post_meta($postid, 'password', true).'">condolence</a>&nbsp;';
-            $message .= 'from '.$comment->comment_author. ':</p>';
-            $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
-            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
-            wp_mail( $master_email, 'New Condolence', $message );
-        }
+//        if( isset( $master_email ) && is_email( $master_email ) && $comment->parent == 0) {
+//            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . get_permalink( $postid ) . '/?password='.get_post_meta($postid, 'password', true).'">condolence</a>&nbsp;';
+//            $message .= 'from '.$comment->comment_author. ':</p>';
+//            $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
+//            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+//            wp_mail( $master_email, 'New Condolence', $message );
+//        }
 
         // mail to person
         if( isset( $master_email ) && is_email( $master_email ) && $comment->parent != 0) {
@@ -36,6 +36,10 @@ class Comment_Email{
     }
 
     private function set_comment_status($comment_ID){
+        global $wpdb;
+
+        $query = "UPDATE ".$wpdb->prefix."comments SET comment_approved='1' WHERE comment_ID=".$comment_ID;
+        $wpdb->query($query);
         clean_comment_cache($comment_ID);
     }
 }
