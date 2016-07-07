@@ -188,8 +188,29 @@ if( !empty($password) && $password == $check_password){ ?>
             echo $errors;
             echo '</div>';
         }
+
+        $fields =  array(
+            'author' =>
+                '<p class="comment-form-author"><label for="author">' . __( 'Naam', 'cm_translation' ) . ' ' .
+                '<span class="required">*</span></label>' .
+                '<input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"/></p>',
+
+            'email' =>
+                '<p class="comment-form-email"><label for="email">' . __( 'Email', 'cm_translation' ) . ' ' .
+                '<span class="required">*</span></label>'.
+                '<input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-required="true" aria-describedby="email-notes" required="required"/></p>',
+
+        );
+
+        comment_form(
+            array(
+                'title_reply' => __('Leave your condolences for the family', 'cm_translation'),
+                'title_reply_after'    => '</h3><p id="info_text">'. __('This message is only visible for the family', 'cm_translation'). '</p>',
+                'label_submit' => __('Condolence', 'cm_translation'),
+                'fields' => apply_filters('comment_form_default_fields', $fields)
+            )
+        );
         ?>
-        <?php comment_form( array( 'title_reply' => __('Leave your condolences for the family', 'cm_translation'), 'title_reply_after'    => '</h3><p id="info_text">'. __('This message is only visible for the family', 'cm_translation'). '</p>', 'label_submit' => __('Condolence', 'cm_translation') ) ); ?>
     </div>
 
 <?php } ?>
