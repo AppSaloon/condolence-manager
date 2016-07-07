@@ -18,7 +18,7 @@ class Metabox{
      * Add metabox information about departed soul and metabox about information for the family
      */
     public function add_metaboxes(){
-        add_meta_box('wpt_condolence_person_location', __('Information about departed soul'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'normal', 'high');
+        add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::POST_TYPE, 'side', 'default');
     }
 
