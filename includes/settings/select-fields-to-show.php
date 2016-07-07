@@ -72,6 +72,9 @@ class Select_Fields_To_Show{
 
         if( $old_posts->publish !== NULL ){
             ?>
+            <br><br>
+            <hr>
+
             <div class="migrating">
                 <form method="post">
                     <p class="info"><?php _e('Migrate data from old condolence manager to current one.')?></p>
