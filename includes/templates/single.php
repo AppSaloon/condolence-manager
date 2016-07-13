@@ -34,7 +34,7 @@
                         switch( $required_str ){
                             case 'masscard':
                                 echo '<a class="btn" target="_blank" href="'.current($fields[$required_str]).'" >';
-                                echo $required;
+                                echo __($required);
                                 echo '</a>';
                                 break;
                             case 'name':
