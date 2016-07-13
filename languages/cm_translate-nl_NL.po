@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2016-07-07 12:07+0200\n"
-"PO-Revision-Date: 2016-07-07 15:37+0200\n"
+"POT-Creation-Date: 2016-07-13 09:41+0200\n"
+"PO-Revision-Date: 2016-07-13 09:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -23,11 +23,11 @@ msgstr ""
 #: includes/comments/inline-comment-error.php:464
 #, php-format
 msgid "%1$sPlease correct the following problems:%2$s"
-msgstr "%1$sCorrigeer de volgende problemen:%2$s"
+msgstr "%1$sGelieve de volgende problemen te corrigeren:%2$s"
 
 #: includes/controller/comment-email.php:29
 msgid "New"
-msgstr "Nieuw"
+msgstr "Nieuwe"
 
 #: includes/controller/comment-email.php:30
 #, php-format
@@ -36,27 +36,30 @@ msgstr "op jou condolatie van %s:"
 
 #: includes/controller/comment-email.php:33
 msgid "New Comment"
-msgstr "Nieuwe reatie"
+msgstr "Nieuwe reactie"
 
-#: includes/controller/templates.php:60
+#: includes/controller/templates.php:61
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr "Je hebt mogelijk een veld leeg gelaten of te snel gepost"
 
-#: includes/controller/templates.php:61
+#: includes/controller/templates.php:62
 msgid "Thanks for your comment. We appreciate your response."
 msgstr "Bedankt voor je bericht. Wij waarderen je reactie."
 
-#: includes/controller/templates.php:62
-msgid "Please wait a while before posting your next comment."
-msgstr "Wacht even voor je nieuw bericht te posten."
-
 #: includes/controller/templates.php:63
+msgid "Please wait a while before posting your next comment."
+msgstr ""
+"Gelieve een tijdje te wachten voor het versturen van uw volgende reactie."
+
+#: includes/controller/templates.php:64
 msgid "Your message is not send. You might have left one of the fields blank."
-msgstr "Je bericht is niet verzonden. Je hebt mogelijk een veld leeg gelaten."
+msgstr ""
+"Je bericht is niet verzonden. Controleer of alle velden correct zijn "
+"ingevuld."
 
 #: includes/form/metabox.php:21
-msgid "Information about departed soul"
-msgstr "Informatie over de overledenen"
+msgid "Information about deseaded"
+msgstr "Informatie over de overledene"
 
 #: includes/form/metabox.php:22 includes/form/metabox.php:365
 msgid "View comments"
@@ -116,7 +119,7 @@ msgstr "Begroeting informatie"
 
 #: includes/form/metabox.php:82
 msgid "Residence"
-msgstr "Residentie"
+msgstr "Woonplaats"
 
 #: includes/form/metabox.php:86
 msgid "Mass card"
@@ -195,7 +198,7 @@ msgstr "Paswoord"
 
 #: includes/form/metabox.php:362
 msgid "Create token"
-msgstr "Creëer een token"
+msgstr "Genereer een token"
 
 #: includes/form/metabox.php:378
 msgid "Link to view comments"
@@ -203,49 +206,49 @@ msgstr "Link om connotaties te bekijken"
 
 #: includes/form/metabox.php:461 includes/register/custom-post-type.php:21
 msgid "Condolences"
-msgstr "Condolaties"
+msgstr "Overlijdens"
 
 #: includes/register/custom-post-type.php:19
 msgctxt "Post Type General Name"
 msgid "Condolences"
-msgstr "Condolaties"
+msgstr "Overlijdens"
 
 #: includes/register/custom-post-type.php:20
 msgctxt "Post Type Singular Name"
 msgid "Condolence"
-msgstr "Condolatie"
+msgstr "Overlijden"
 
 #: includes/register/custom-post-type.php:22
 msgid "Parent Condolence"
-msgstr "Parent Condolatie"
+msgstr "Hoofd overlijden"
 
 #: includes/register/custom-post-type.php:23
 msgid "All Condolences"
-msgstr "Alle condolaties"
+msgstr "Alle overlijdens"
 
 #: includes/register/custom-post-type.php:24
 msgid "View Condolence"
-msgstr "Bekijk condolatie"
+msgstr "Bekijk overlijden"
 
 #: includes/register/custom-post-type.php:25
 msgid "Add New Condolence"
-msgstr "Voeg nieuwe condolatie toe"
+msgstr "Voeg nieuwe overlijden toe"
 
 #: includes/register/custom-post-type.php:26
 msgid "Add New"
-msgstr "Voeg toe"
+msgstr "Voeg nieuw toe"
 
 #: includes/register/custom-post-type.php:27
 msgid "Edit Condolence"
-msgstr "Bewerk condolatie"
+msgstr "Bewerk overlijden"
 
 #: includes/register/custom-post-type.php:28
 msgid "Update Condolence"
-msgstr "Update condolatie"
+msgstr "Update overlijden"
 
 #: includes/register/custom-post-type.php:29
 msgid "Search Condolence"
-msgstr "Zoek condolatie"
+msgstr "Zoek overlijden"
 
 #: includes/register/custom-post-type.php:30
 msgid "Not Found"
@@ -253,17 +256,17 @@ msgstr "Niet gevonden"
 
 #: includes/register/custom-post-type.php:31
 msgid "Not found in Trash"
-msgstr "Niet gevonden in prullenbak"
+msgstr "Niet gevonden in de Prullenbak"
 
 #: includes/register/custom-post-type.php:36
 msgctxt "Post Type Label Name"
 msgid "Condolences"
-msgstr "Condolaties"
+msgstr "Overlijdens"
 
 #: includes/register/custom-post-type.php:37
 msgctxt "Post Type Description"
 msgid "Condolences"
-msgstr "Condolaties"
+msgstr "Overlijdens"
 
 #: includes/settings/select-fields-to-show.php:22
 #: includes/settings/select-fields-to-show.php:42
@@ -275,65 +278,99 @@ msgid ""
 "Change the layout of the condolence post by reordering the items listed "
 "below."
 msgstr ""
-"Verander de layout van de condolatie post door de items eronder te "
-"herordenen."
+"Verander de layout van de overlijdens door de volgorde van de items "
+"hieronder te wisselen."
 
 #: includes/settings/select-fields-to-show.php:44
 msgid ""
 "Drag and drop the items to your desired order or delete and add items to the "
 "list. If the order is as you wish submit the changes."
 msgstr ""
-"Sleep de items naar jou gewenste volgorde, verwijder of voeg items toe aan "
-"de lijst. Als de lijst is zoals je wenst klik op opslaan om je wijziging te "
+"Sleep de items in de gewenste volgorde, verwijderen of voeg items toe aan de "
+"lijst. Als de lijst is zoals je wenst klik op opslaan om je wijziging te "
 "bevestigen."
 
 #: includes/settings/select-fields-to-show.php:80
 msgid "Migrate data from old condolence manager to current one."
 msgstr "Migreer gegevens uit de oude condolatie manager."
 
-#: includes/templates/single.php:142
+#: includes/templates/single.php:85
+msgid "Beloved husband of "
+msgstr "Echtgenoot van"
+
+#: includes/templates/single.php:90
+msgid "Beloved wife of "
+msgstr "Echtgenote van"
+
+#: includes/templates/single.php:95
+msgid "Beloved husband of the late "
+msgstr "Echtgenoot van de overledenen"
+
+#: includes/templates/single.php:100
+msgid "Beloved wife of the late "
+msgstr "Echtgenote van de overledenen"
+
+#: includes/templates/single.php:106
+msgid " his "
+msgstr "zijn"
+
+#: includes/templates/single.php:112
+msgid " her "
+msgstr "haar"
+
+#: includes/templates/single.php:118
+msgid " his late "
+msgstr "zijn overleden"
+
+#: includes/templates/single.php:124
+msgid " her late "
+msgstr "haar overleden"
+
+#: includes/templates/single.php:146
 msgid "Condole"
-msgstr "Condoleer"
+msgstr "Rouwbetuiging"
 
-#: includes/templates/single.php:158
+#: includes/templates/single.php:162
 msgid "Condolences for the family"
-msgstr "Condolaties voor de familie"
+msgstr "Rouwbetuigingen voor de familie"
 
-#: includes/templates/single.php:160
+#: includes/templates/single.php:164
 msgid "Reply to this condolence"
-msgstr "Beantwoord deze condolatie"
+msgstr "Reageer op deze rouwbetuiging"
 
-#: includes/templates/single.php:160
+#: includes/templates/single.php:164
 msgid "This message will be send by mail to the author of the condolence."
-msgstr "Dit bericht zal verzonden worden naar de auteur van de condolatie."
+msgstr ""
+"Dit bericht zal verzonden worden per mail naar de schrijver van deze "
+"rouwbetuiging."
 
-#: includes/templates/single.php:160
+#: includes/templates/single.php:164
 msgid "Reply"
 msgstr "Beantwoord"
 
-#: includes/templates/single.php:186
+#: includes/templates/single.php:190
 msgid "Comment Error"
-msgstr "Bericht fout"
+msgstr "Er is een fout opgetreden"
 
-#: includes/templates/single.php:194
+#: includes/templates/single.php:198
 msgid "Naam"
 msgstr "Naam"
 
-#: includes/templates/single.php:199
+#: includes/templates/single.php:203
 msgid "Email"
 msgstr "Email"
 
-#: includes/templates/single.php:207
+#: includes/templates/single.php:211
 msgid "Leave your condolences for the family"
 msgstr "Laat een rouwbetuiging na voor de familie"
 
-#: includes/templates/single.php:208
+#: includes/templates/single.php:212
 msgid "This message is only visible for the family"
 msgstr "Dit bericht is enkel zichtbaar voor de familie"
 
-#: includes/templates/single.php:209
+#: includes/templates/single.php:213
 msgid "Condolence"
-msgstr "condolatie"
+msgstr "Rouwbetuiging"
 
 #. Plugin Name of the plugin/theme
 msgid "Condolence Manager"
@@ -346,7 +383,8 @@ msgstr "http://www.appsaloon.be"
 
 #. Description of the plugin/theme
 msgid "This plugin allows visitors to condole the family of the deceased."
-msgstr "Deze plugin laat bezoekers toe om de familie van overledenen te condoleren."
+msgstr ""
+"Deze plugin laat bezoekers toe om de familie van overledenen te condoleren."
 
 #. Author of the plugin/theme
 msgid "AppSaloon"

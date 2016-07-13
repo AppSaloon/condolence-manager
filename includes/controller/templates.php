@@ -26,6 +26,11 @@ class Templates{
             return $this->cm_get_template_hierarchy( 'single' );
         }
 
+        if (is_archive()){
+            return $template;
+        }
+
+
     }
 
     public function cm_get_template_hierarchy( $template ) {
@@ -33,10 +38,12 @@ class Templates{
         // Get the template slug
         $template_slug = rtrim( $template, '.php' );
         $template = $template_slug . '.php';
+        $templates = CM_BASE_DIR . '/includes/templates/' . $template;
 
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
-        if ( $theme_file = locate_template( array( 'condolence_manager/' . $template ) ) ) {
+        if ( $theme_file = locate_template( array( 'condolatie-manager-plugin/' . $template , $templates ), false )) {
             $file = $theme_file;
+            add_action('wp_enqueue_scripts', array($this, 'hook_css'));
         }
         else {
             $file = CM_BASE_DIR . '/includes/templates/' . $template;

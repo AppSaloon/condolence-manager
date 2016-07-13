@@ -82,43 +82,47 @@
 
                                     if($arr[1] == 'Married' && $arr[9] == '1' && $gender == 'Male'){
                                         echo '<p class="'. $arr[8] . '">';
-                                        echo 'Beloved husband of ';
+                                        _e('Beloved husband of ', 'cm_translate');
                                         echo  $arr[5] . ' ' . $arr[6];
                                         echo '</p>';
                                     }elseif($arr[1] == 'Married' && $arr[9] == '1' && $gender == 'Female'){
                                         echo '<p class="'. $arr[8] . '">';
-                                        echo 'Beloved wife of ';
+                                        _e('Beloved wife of ', 'cm_translate');
                                         echo  $arr[5] . ' ' . $arr[6];
                                         echo '</p>';
                                     }elseif($arr[1] == 'Married' && $arr[9] == '0' && $gender == 'Male'){
                                         echo '<p class="'. $arr[8] . '">';
-                                        echo 'Beloved husband of the late ';
+                                        _e('Beloved husband of the late ', 'cm_translate');
                                         echo  $arr[5] . ' ' . $arr[6];
                                         echo '</p>';
                                     } elseif($arr[1] == 'Married' && $arr[9] == '0' && $gender == 'Female'){
                                         echo '<p class="'. $arr[8] . '">';
-                                        echo 'Beloved wife of the late ';
+                                        _e('Beloved wife of the late ', 'cm_translate');
                                         echo  $arr[5] . ' ' . $arr[6];
                                         echo '</p>';
                                     } elseif($arr[1] == 'Other' && $arr[9] == '1' && $gender == 'Male'){
                                         echo '<p class="'. $arr[8] . '">';
                                         echo  $arr[5] . ' ' . $arr[6];
-                                        echo ' his ' . $arr[1];
+                                        _e(' his ', 'cm_translate');
+                                        echo $arr[1];
                                         echo '</p>';
                                     } elseif($arr[1] == 'Other' && $arr[9] == '1' && $gender == 'Female'){
                                         echo '<p class="'. $arr[8] . '">';
                                         echo  $arr[5] . ' ' . $arr[6];
-                                        echo ' her ' . $arr[3];
+                                        _e(' her ', 'cm_translate');
+                                        echo $arr[3];
                                         echo '</p>';
                                     }elseif($arr[1] == 'Other' && $arr[9] == '0' && $gender == 'Male'){
                                         echo '<p class="'. $arr[8] . '">';
                                         echo  $arr[5] . ' ' . $arr[6];
-                                        echo ' his late ' . $arr[1];
+                                        _e(' his late ', 'cm_translate');
+                                        echo $arr[1];
                                         echo '</p>';
                                     } elseif($arr[1] == 'Other' && $arr[9] == '0' && $gender == 'Female'){
                                         echo '<p class="'. $arr[8] . '">';
                                         echo  $arr[5] . ' ' . $arr[6];
-                                        echo ' her late ' . $arr[3];
+                                        _e(' her late ', 'cm_translate');
+                                        echo $arr[3];
                                         echo '</p>';
                                     }
 
@@ -155,9 +159,9 @@ if( !empty($password) && $password == $check_password){ ?>
 
 
 <div class="comments-list family_page">
-    <h3><?php _e('Condolences for the family', 'cm_translation'); ?></h3>
+    <h3><?php _e('Condolences for the family', 'cm_translate'); ?></h3>
     <ol class="commentlist">
-        <?php comment_form( array( 'title_reply' => __('Reply to this condolence', 'cm_translation'), 'title_reply_after'    => '</h3><p id="info_text">'. __('This message will be send by mail to the author of the condolence.', 'cm_translation'). '</p>', 'label_submit' => __('Reply', 'cm_translation') ) ); ?>
+        <?php comment_form( array( 'title_reply' => __('Reply to this condolence', 'cm_translate'), 'title_reply_after'    => '</h3><p id="info_text">'. __('This message will be send by mail to the author of the condolence.', 'cm_translate'). '</p>', 'label_submit' => __('Reply', 'cm_translate') ) ); ?>
 
         <?php
         //Gather comments for a specific page/post
@@ -191,12 +195,12 @@ if( !empty($password) && $password == $check_password){ ?>
 
         $fields =  array(
             'author' =>
-                '<p class="comment-form-author"><label for="author">' . __( 'Naam', 'cm_translation' ) . ' ' .
+                '<p class="comment-form-author"><label for="author">' . __( 'Naam', 'cm_translate' ) . ' ' .
                 '<span class="required">*</span></label>' .
                 '<input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"/></p>',
 
             'email' =>
-                '<p class="comment-form-email"><label for="email">' . __( 'Email', 'cm_translation' ) . ' ' .
+                '<p class="comment-form-email"><label for="email">' . __( 'Email', 'cm_translate' ) . ' ' .
                 '<span class="required">*</span></label>'.
                 '<input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-required="true" aria-describedby="email-notes" required="required"/></p>',
 
@@ -204,9 +208,9 @@ if( !empty($password) && $password == $check_password){ ?>
 
         comment_form(
             array(
-                'title_reply' => __('Leave your condolences for the family', 'cm_translation'),
-                'title_reply_after'    => '</h3><p id="info_text">'. __('This message is only visible for the family', 'cm_translation'). '</p>',
-                'label_submit' => __('Condolence', 'cm_translation'),
+                'title_reply' => __('Leave your condolences for the family', 'cm_translate'),
+                'title_reply_after'    => '</h3><p id="info_text">'. __('This message is only visible for the family', 'cm_translate'). '</p>',
+                'label_submit' => __('Condolence', 'cm_translate'),
                 'fields' => apply_filters('comment_form_default_fields', $fields)
             )
         );
