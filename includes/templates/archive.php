@@ -41,68 +41,57 @@ get_header(); ?>
                                 <div class="deceased-subtitle"><?php echo $values["residence"][0]; ?></div>
                                 <div class="deceased-partner">
                                     <?php
-                                    $pieces = explode("a:6:", $values["relations"][0]);
-                                    $count = explode(':', $pieces[0])[1];
-                                    $gender = $values["gender"][0];
-                                    for($i=1; $i<=$count; $i++){
-                                        $string = $pieces[$i];
-                                        $d = explode(';', $string);
-                                        $arr = array();
-                                        foreach($d as $index=>$item){
-                                            list($key,$value) = explode('"', $item);
-                                            $arr[$index] = $value;
+                                    $relations = unserialize( current($values["relations"]) );
+
+                                    if( !empty( $relations ) ){
+                                        foreach( $relations as $relation){
+                                            if($relation['type'] == 'Married' && $relation['alive'] == '1' && $relation['gender'] == 'Male'){
+                                                echo '<p class="alive">';
+                                                _e('Beloved husband of ', 'cm_translate');
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                echo '</p>';
+                                            }elseif($relation['type'] == 'Married' && $relation['alive'] == '1' && $relation['gender'] == 'Female'){
+                                                echo '<p class="alive">';
+                                                _e('Beloved wife of ', 'cm_translate');
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                echo '</p>';
+                                            }elseif($relation['type'] == 'Married' && $relation['alive'] == '0' && $relation['gender'] == 'Male'){
+                                                echo '<p class="alive">';
+                                                _e('Beloved husband of the late ', 'cm_translate');
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                echo '</p>';
+                                            } elseif($relation['type'] == 'Married' && $relation['alive'] == '0' && $relation['gender'] == 'Female'){
+                                                echo '<p class="alive">';
+                                                _e('Beloved wife of the late ', 'cm_translate');
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                echo '</p>';
+                                            } elseif($relation['type'] == 'Other' && $relation['alive'] == '1' && $relation['gender'] == 'Male'){
+                                                echo '<p class="alive">';
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                _e(' his ', 'cm_translate');
+                                                echo $relation['other'];
+                                                echo '</p>';
+                                            } elseif($relation['type'] == 'Other' && $relation['alive'] == '1' && $relation['gender'] == 'Female'){
+                                                echo '<p class="alive">';
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                _e(' her ', 'cm_translate');
+                                                echo $relation['other'];
+                                                echo '</p>';
+                                            }elseif($relation['type'] == 'Other' && $relation['alive'] == '0' && $relation['gender'] == 'Male'){
+                                                echo '<p class="alive">';
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                _e(' his late ', 'cm_translate');
+                                                echo $relation['other'];
+                                                echo '</p>';
+                                            } elseif($relation['type'] == 'Other' && $relation['alive'] == '0' && $relation['gender'] == 'Female'){
+                                                echo '<p class="alive">';
+                                                echo  $relation['name'] . ' ' . $relation['familyname'];
+                                                _e(' her late ', 'cm_translate');
+                                                echo $relation['other'];
+                                                echo '</p>';
+                                            }
                                         }
-
-
-                                        if($arr[1] == 'Married' && $arr[9] == '1' && $gender == 'Male'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            _e('Echtgenoot van ', 'cm_translate');
-                                            echo  $arr[5] . ' ' . $arr[7];
-                                            echo '</p>';
-                                        }elseif($arr[1] == 'Married' && $arr[9] == '1' && $gender == 'Female'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            _e('Echtgenote van ', 'cm_translate');
-                                            echo  $arr[5] . ' ' . $arr[7];
-                                            echo '</p>';
-                                        }elseif($arr[1] == 'Married' && $arr[9] == '0' && $gender == 'Male'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            _e('Echtgenoot van ', 'cm_translate');
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            echo '</p>';
-                                        } elseif($arr[1] == 'Married' && $arr[9] == '0' && $gender == 'Female'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            _e('Echtgenote van ', 'cm_translate');
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            echo '</p>';
-                                        } elseif($arr[1] == 'Other' && $arr[9] == '1' && $gender == 'Male'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            _e(' zijn ', 'cm_translate');
-                                            echo $arr[1];
-                                            echo '</p>';
-                                        } elseif($arr[1] == 'Other' && $arr[9] == '1' && $gender == 'Female'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            _e(' haar ', 'cm_translate');
-                                            echo $arr[3];
-                                            echo '</p>';
-                                        }elseif($arr[1] == 'Other' && $arr[9] == '0' && $gender == 'Male'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            _e(' zijn overlede ', 'cm_translate');
-                                            echo $arr[1];
-                                            echo '</p>';
-                                        } elseif($arr[1] == 'Other' && $arr[9] == '0' && $gender == 'Female'){
-                                            echo '<p class="'. $arr[8] . '">';
-                                            echo  $arr[5] . ' ' . $arr[6];
-                                            _e(' haar overlede ', 'cm_translate');
-                                            echo $arr[3];
-                                            echo '</p>';
-                                        }
-
-
                                     }
-
                                     ?></div>
                                 <div class="deceased-partner">Geboren te <?php echo $values["birthplace"][0]; ?> op <?php
                                     $date = $values["birthdate"][0];

@@ -33,7 +33,6 @@ class Templates{
     }
 
     public function cm_get_template_hierarchy( $template ) {
-
         // Get the template slug
         $template_slug = rtrim( $template, '.php' );
         $template = $template_slug . '.php';
