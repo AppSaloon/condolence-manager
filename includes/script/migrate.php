@@ -92,12 +92,17 @@ Class Migrate{
             }
 
             if( $this->meta_keys[$meta_key] == 'birthdate' || $this->meta_keys[$meta_key] == 'dateofdeath'){
-                $meta_value = date('Y-m-d', strtotime($meta_value) );
+                $meta_value = date('Y-m-d', $this->myStrtotime( ($meta_value) ));
             }
 
             update_post_meta($this->post->ID, $this->meta_keys[$meta_key], $meta_value);
         }
     }
+
+    function myStrtotime($date_string) {
+        return strtotime(strtr(strtolower($date_string), array('januari'=>'jan','februari'=>'feb','maart'=>'march','april'=>'apr','mei'=>'may','juni'=>'jun','juli'=>'jul','augustus'=>'aug','september'=>'sep','oktober'=>'oct','november'=>'nov','december'=>'dec')));
+    }
+
 
     /**
      * Make an array from previous meta fields
