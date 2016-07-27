@@ -82,7 +82,9 @@ class Select_Fields_To_Show{
                     <input id="btn-posttype" type="submit" class="button" value="<?php _e('Change post type'); ?>">
                     <?php
                     if( $posts->publish !== 0 ){
-                        ?><progress id="progress_posttype" max="<?php echo $posts->publish; ?>" value="0"></progress><?php
+                        ?>
+                        <progress id="progress_posttype" max="<?php echo $posts->publish; ?>" value="0"></progress>
+                        <?php
                     }
                     ?>
                 </form>

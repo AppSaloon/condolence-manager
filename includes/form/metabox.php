@@ -101,7 +101,7 @@ class Metabox{
             <?php
             $relations = get_post_meta( $post->ID, 'relations', false );
 
-            if( !$relations ) {
+            if( !$relations || ( is_array($relations) && empty( $relations[0] ) ) ) {
                 ?>
                 <tr>
                     <td valign="top"><?php _e('Relation 1'); ?></td>

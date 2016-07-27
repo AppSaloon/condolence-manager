@@ -26,6 +26,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace cm;
+
+
+use cm\includes\controller\Comment_Email;
+use cm\includes\controller\Templates;
+use cm\includes\register\Custom_Post_Type;
+use cm\includes\register\Translation;
+use cm\includes\script\Migrate;
+use cm\includes\script\Post_Type;
+use cm\includes\settings\Permalinks;
+use cm\includes\settings\Select_Fields_To_Show;
 
 define( 'CM_BASE_FILE', __FILE__ );
 define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
@@ -33,54 +44,76 @@ define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
 
-spl_autoload_register( 'cm_autoload' );
-function cm_autoload( $class ) {
-    if( strpos( $class, 'cm\\' ) === 0 ) {
-        $path = substr( $class, strlen( 'cm\\' ) );
-        $path = strtolower( $path );
-        $path = str_replace( '_', '-', $path );
-        $path = str_replace( '\\', DIRECTORY_SEPARATOR, $path ) . '.php';
-        $path = __DIR__ . DIRECTORY_SEPARATOR . $path;
+Class Condolatie_Manager{
 
-        if ( file_exists( $path ) ) {
-            include $path;
+    public function __construct()
+    {
+        $this->autoloader();
+        $this->run();
+    }
+
+    public function autoloader(){
+        spl_autoload_register( array($this, 'cm_autoload') );
+    }
+
+    public function cm_autoload( $class ) {
+        if( strpos( $class, 'cm\\' ) === 0 ) {
+            $path = substr( $class, strlen( 'cm\\' ) );
+            $path = strtolower( $path );
+            $path = str_replace( '_', '-', $path );
+            $path = str_replace( '\\', DIRECTORY_SEPARATOR, $path ) . '.php';
+            $path = __DIR__ . DIRECTORY_SEPARATOR . $path;
+
+            if ( file_exists( $path ) ) {
+                include $path;
+            }
         }
+    }
+
+    /**
+     * Run the plugin
+     */
+    public function run(){
+        $this->register();
+        $this->settings();
+        $this->scripts();
+
+        new Templates();
+        new Comment_Email();
+    }
+
+    /**
+     * Register:
+     * - Custom post type
+     * - translation
+     */
+    public function register(){
+        new Custom_Post_Type();
+        new Translation();
+    }
+
+    /**
+     * Settings page
+     */
+    public function settings(){
+        new Select_Fields_To_Show();
+        new Permalinks();
+    }
+
+    /**
+     * scripts:
+     * - Migrate from old version to new one
+     * - Translate custom post type slug and move the posts
+     */
+    public function scripts(){
+        new Migrate();
+        new Post_Type();
     }
 }
 
-// REGISTER CUSTOM POST TYPE
-new cm\includes\register\Custom_Post_Type();
-// REGISTER TRANSLATIONS
-new cm\includes\register\Translation();
-// SETTINGS
-new cm\includes\settings\Select_Fields_To_Show();
-new cm\includes\settings\Permalinks();
-// TEMPLATE
-new cm\includes\controller\Templates();
-// COMMENT EMAIL
-new cm\includes\controller\Comment_Email();
-// MIGRATE POST
-new cm\includes\script\Migrate();
-new cm\includes\script\Post_Type();
+new Condolatie_Manager();
 
 // CREATE LOG TABLE
 //register_activation_hook(__FILE__, array('cm\Install', 'run') );
 // REMOVE LOG TABLE
 //register_deactivation_hook(__FILE__, array('cm\Deinstall', 'run') );
-
-//add_action('init', 'test');
-//
-//function test(){
-//    ?>
-<!--    <div class="wrap">-->
-<!--        <h2>Rewrite Page</h2>-->
-<!--        --><?php
-//        global $wp_rewrite;
-//        echo '<pre>';
-//        var_dump($wp_rewrite);
-//        echo '</pre>';
-//        ?>
-<!--    </div>-->
-<!--    --><?php
-//    die;
-//}

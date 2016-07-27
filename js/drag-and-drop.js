@@ -70,7 +70,6 @@
         $('#btn-posttype').on('click', function(e){
             e.preventDefault();
             var max_posts = $('#progress_posttype').prop('max');
-            console.log( max_posts );
 
             if( max_posts !== undefined ){
                 migrate_posttype(max_posts, 0);
@@ -85,8 +84,6 @@
 
         if( max_posts != processed_posts ){
             migrate_post_ajax(max_posts, processed_posts);
-        }else{
-            location.reload();
         }
     }
 
@@ -110,7 +107,7 @@
         if( max_posts != processed_posts ){
             migrate_posttype_ajax(max_posts, processed_posts);
         }else{
-            location.reload();
+            change_posttype();
         }
     }
 
