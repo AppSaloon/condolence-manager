@@ -371,7 +371,7 @@ class Metabox{
             }
 
             if( $this->get_field_value('password', $post->ID) ){
-                $permalink .= '?password='.$this->get_field_value('password', $post->ID);
+                $permalink .= '?code='.$this->get_field_value('password', $post->ID);
             }
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
@@ -470,7 +470,7 @@ class Metabox{
         $password = get_post_meta($post_id, 'password', true);
 
         if( !empty( $mail ) ){
-            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?password='.$password);
+            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?code='.$password);
         }
 
     }

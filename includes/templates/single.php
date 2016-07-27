@@ -1,5 +1,5 @@
 <?php
-        $password = isset($_GET['password']) ? $_GET['password'] : '';
+        $password = isset($_GET['code']) ? $_GET['code'] : '';
 ?>
 <?php get_header(); ?>
   <?php if ( is_single() ){ ?>
