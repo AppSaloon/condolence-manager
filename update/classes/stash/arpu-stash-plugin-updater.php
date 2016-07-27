@@ -1,4 +1,8 @@
 <?php
+namespace cm\update\classes\stash;
+
+use cm\update\classes\parsedown\Parsedown;
+
 class Arpu_Stash_Plugin_Updater {
 
     private $slug; // plugin slug
@@ -154,7 +158,7 @@ class Arpu_Stash_Plugin_Updater {
 
             //$this->download_package($package);
 
-            $obj = new stdClass();
+            $obj = new \stdClass();
             $obj->plugin = $this->slug;
             $obj->slug = $this->real_slug;
             $obj->new_version = $this->version;

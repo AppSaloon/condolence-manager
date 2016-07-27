@@ -37,6 +37,7 @@ use cm\includes\script\Migrate;
 use cm\includes\script\Post_Type;
 use cm\includes\settings\Permalinks;
 use cm\includes\settings\Select_Fields_To_Show;
+use cm\update\Auto_Update;
 
 define( 'CM_BASE_FILE', __FILE__ );
 define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
@@ -80,6 +81,7 @@ Class Condolatie_Manager{
 
         new Templates();
         new Comment_Email();
+        new Auto_Update();
     }
 
     /**
