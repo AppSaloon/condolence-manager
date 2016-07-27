@@ -8,6 +8,8 @@ Class Migrate{
 
     protected $post;
 
+    protected $old_permalink;
+
     protected $meta_keys = array(
         'deceased-first-name-text' => 'name',
         'deceased-last-name-text' => 'familyname',
@@ -41,12 +43,29 @@ Class Migrate{
         if( sizeof( $post ) != 0 ){
             $this->post = current($post);
 
+            $this->hold_old_permalink();
             $this->change_post_type();
             $this->array_meta_fields();
             $this->single_meta_fields();
             $this->update_post_name();
+            $this->add_rewrite_permalink();
         }
 
+    }
+
+    public function hold_old_permalink(){
+        $this->old_permalink = get_post_permalink($this->post->ID);
+    }
+
+    public function add_rewrite_permalink(){
+        if( class_exists('quick_page_post_reds') ){
+            $data = array();
+            $data['request'][0] = $this->old_permalink;
+            $data['destination'][0] = get_post_permalink($this->post->ID);
+
+            $redirect_plugin = new \quick_page_post_reds();
+            $redirect_plugin->save_redirects($data);
+        }
     }
 
     public function update_post_name(){
@@ -148,7 +167,7 @@ Class Migrate{
      * Change post type to condolences
      */
     public function change_post_type(){
-        set_post_type($this->post->ID, Custom_Post_Type::POST_TYPE);
+        set_post_type($this->post->ID, Custom_Post_Type::post_type());
     }
 
     public function set_first_letter_to_uppercase($gender){

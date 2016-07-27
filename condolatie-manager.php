@@ -54,14 +54,33 @@ new cm\includes\register\Custom_Post_Type();
 new cm\includes\register\Translation();
 // SETTINGS
 new cm\includes\settings\Select_Fields_To_Show();
+new cm\includes\settings\Permalinks();
 // TEMPLATE
 new cm\includes\controller\Templates();
 // COMMENT EMAIL
 new cm\includes\controller\Comment_Email();
 // MIGRATE POST
 new cm\includes\script\Migrate();
+new cm\includes\script\Post_Type();
 
 // CREATE LOG TABLE
 //register_activation_hook(__FILE__, array('cm\Install', 'run') );
 // REMOVE LOG TABLE
 //register_deactivation_hook(__FILE__, array('cm\Deinstall', 'run') );
+
+//add_action('init', 'test');
+//
+//function test(){
+//    ?>
+<!--    <div class="wrap">-->
+<!--        <h2>Rewrite Page</h2>-->
+<!--        --><?php
+//        global $wp_rewrite;
+//        echo '<pre>';
+//        var_dump($wp_rewrite);
+//        echo '</pre>';
+//        ?>
+<!--    </div>-->
+<!--    --><?php
+//    die;
+//}

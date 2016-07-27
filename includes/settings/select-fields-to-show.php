@@ -66,21 +66,52 @@ class Select_Fields_To_Show{
             <input class="button btn-set-fields" type="submit" value="Submit changes">
         </div>
 
+        <br><br>
+        <hr>
+
+        <div class="change_post_type">
+            <?php
+            $post_type = get_option( 'condolence_cpt_base' );
+            $posts = wp_count_posts($post_type);
+                ?>
+                <form>
+                    <p class="info"><?php _e('You can change the <b>custom post type slug</b>.')?></p>
+                    <label for="post_type"><?php _e('Slug name'); ?></label>
+                    <input type="hidden" name="old_post_type" id="old_post_type" value="<?php echo $post_type; ?>">
+                    <input id="post_type" type='text' name='post_type' value="<?php echo $post_type; ?>">
+                    <input id="btn-posttype" type="submit" class="button" value="<?php _e('Change post type'); ?>">
+                    <?php
+                    if( $posts->publish !== 0 ){
+                        ?><progress id="progress_posttype" max="<?php echo $posts->publish; ?>" value="0"></progress><?php
+                    }
+                    ?>
+                </form>
+        </div>
+
         <?php
         // show migrate script only if there are old posts
         $old_posts = wp_count_posts('cm_obi');
 
-        if( $old_posts->publish !== NULL ){
+        if( $old_posts->publish !== NULL && $old_posts->publish !== 0 ){
             ?>
             <br><br>
             <hr>
 
             <div class="migrating">
-                <form method="post">
-                    <p class="info"><?php _e('Migrate data from old condolence manager to current one.')?></p>
-                    <input type="hidden" id="max_posts" value="<?php echo ($old_posts->publish !== NULL) ? $old_posts->publish : 0; ?>" />
-                    <input id="btn-migrating" class="button" type="submit" value="Start migrating">
-                </form>
+                <?php
+                if( !class_exists('quick_page_post_reds') ){
+                    _e('Please install Quick Page/Post Redirect Plugin to be able to link old permalink to new one.');
+                }else{
+                  ?>
+                    <form method="post">
+                        <p class="info"><?php _e('Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.')?></p>
+                        <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>" />
+                        <input id="btn-migrating" class="button" type="submit" value="Start migrating">
+                        <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
+                    </form>
+                <?php
+                }
+                ?>
             </div>
             <?php
 

@@ -6,11 +6,25 @@ use cm\includes\comments\Inline_Comment_Error;
 use cm\includes\form\Metabox;
 
 class Custom_Post_Type{
-    const POST_TYPE = 'condolences';
+    public $post_type;
 
     public function __construct()
     {
+        $this->default_value();
         add_action( 'init', array($this, 'register_post_type') );
+    }
+
+    public function default_value(){
+        $value = get_option( 'condolence_cpt_base' );
+
+        if( empty( $value ) ){
+            update_option('condolence_cpt_base', 'condolences');
+        }
+    }
+
+    public static function post_type(){
+        $value = get_option( 'condolence_cpt_base' );
+        return $value;
     }
 
     public function register_post_type(){
@@ -52,12 +66,12 @@ class Custom_Post_Type{
             'rewrite' => array('slug'=>'','with_front'=>false),
         );
 
-        register_post_type( static::POST_TYPE, $args );
+        register_post_type( static::post_type(), $args );
 
         flush_rewrite_rules();
 
-        $add_meta_boxes = new Metabox();
+        new Metabox();
 
-        $comments_error_inline = new Inline_Comment_Error();
+        new Inline_Comment_Error();
     }
 }

@@ -67,6 +67,17 @@
             }
         });
 
+        $('#btn-posttype').on('click', function(e){
+            e.preventDefault();
+            var max_posts = $('#progress_posttype').prop('max');
+            console.log( max_posts );
+
+            if( max_posts !== undefined ){
+                migrate_posttype(max_posts, 0);
+            }else{
+                change_posttype();
+            }
+        });
     });
 
     function migrate_post(max_posts, processed_posts){
@@ -74,6 +85,8 @@
 
         if( max_posts != processed_posts ){
             migrate_post_ajax(max_posts, processed_posts);
+        }else{
+            location.reload();
         }
     }
 
@@ -83,11 +96,58 @@
                 url: dragAndDrop.ajaxUrl,
                 type: "POST",
                 data: {
-                    action: 'migrate_post'
+                    action: 'migrate_post',
                 },
                 success: function (result) {
-                    console.log( processed_posts );
+                    $('#progress_migrating').val(processed_posts);
                     migrate_post(max_posts, processed_posts + 1);
+                }
+            }
+        );
+    }
+
+    function migrate_posttype(max_posts, processed_posts){
+        if( max_posts != processed_posts ){
+            migrate_posttype_ajax(max_posts, processed_posts);
+        }else{
+            location.reload();
+        }
+    }
+
+    function migrate_posttype_ajax(max_posts, processed_posts){
+        var old_post_type = $('#old_post_type').val();
+        var post_type = $('#post_type').val();
+
+        $.ajax(
+            {
+                url: dragAndDrop.ajaxUrl,
+                type: "POST",
+                data: {
+                    action: 'migrate_posttype',
+                    old_post_type: old_post_type,
+                    post_type: post_type
+                },
+                success: function (result) {
+                    $('#progress_posttype').val(processed_posts);
+                    migrate_posttype(max_posts, processed_posts + 1);
+                }
+            }
+        );
+    }
+
+    function change_posttype(){
+        var post_type = $('#post_type').val();
+
+        $.ajax(
+            {
+                url: dragAndDrop.ajaxUrl,
+                type: "POST",
+                data: {
+                    action: 'change_posttype',
+                    post_type: post_type
+                },
+                success: function (result) {
+                    location.reload();
                 }
             }
         );

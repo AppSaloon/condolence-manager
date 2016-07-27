@@ -18,8 +18,8 @@ class Metabox{
      * Add metabox information about departed soul and metabox about information for the family
      */
     public function add_metaboxes(){
-        add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::POST_TYPE, 'normal', 'high');
-        add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::POST_TYPE, 'side', 'default');
+        add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
+        add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -399,7 +399,7 @@ class Metabox{
 
 
         // Check permissions to edit pages and/or posts
-        if ( Custom_Post_Type::POST_TYPE == $_POST['post_type']) {
+        if ( Custom_Post_Type::post_type() == $_POST['post_type']) {
             if ( !current_user_can( 'edit_page', $post_id ) || !current_user_can( 'edit_post', $post_id ))
                 return $post_id;
         }
@@ -468,7 +468,7 @@ class Metabox{
      */
     public function metabox_css_jquery(){
         global $post;
-        if ( $post->post_type == Custom_Post_Type::POST_TYPE ) {
+        if ( $post->post_type == Custom_Post_Type::post_type() ) {
             wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, '1.0.0'  );
             wp_enqueue_style( 'metabox_css' );
 

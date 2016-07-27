@@ -211,7 +211,7 @@ class Inline_Comment_Error {
      * @return   object    $commentdata    pass comment form field data back to filter, or call wp_die() with no return value
      */
     public function validate_comment_formfields( $commentdata ) {
-        if( get_post_type( $commentdata ) != Custom_Post_Type::POST_TYPE){
+        if( get_post_type( $commentdata ) != Custom_Post_Type::post_type()){
             $this->check_post_type = false;
             return $commentdata;
         }

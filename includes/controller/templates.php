@@ -17,7 +17,7 @@ class Templates{
         $post_id = get_the_ID();
 
         // For all other CPT
-        if ( get_post_type( $post_id ) != 'condolences' ) {
+        if ( get_post_type( $post_id ) != Custom_Post_Type::post_type() ) {
             return $template;
         }
 
@@ -27,9 +27,8 @@ class Templates{
         }
 
         if (is_archive()){
-            return $template;
+            return $this->cm_get_template_hierarchy( 'archive' );
         }
-
 
     }
 
@@ -54,14 +53,14 @@ class Templates{
     }
 
     public function hook_css() {
-        if( is_singular(Custom_Post_Type::POST_TYPE) ){
+        if( is_singular(Custom_Post_Type::post_type()) ){
             wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
             wp_enqueue_script('jquery');
-            wp_enqueue_style('template-single', CM_URL . 'css/template-single.css');
-            wp_enqueue_script('template-single', CM_URL . 'js/template-single.js');
+            wp_enqueue_style('condolence-single', CM_URL . 'css/template-single.css');
+            wp_enqueue_script('condolence-single', CM_URL . 'js/template-single.js');
             // Add some parameters for the JS.
             wp_localize_script(
-                'template-single',
+                'condolence-single',
                 'cm',
                 array(
                     'blank_fields' => __( 'You might have left one of the fields blank, or be posting too quickly', 'cm_translate'),
@@ -70,6 +69,10 @@ class Templates{
                     'not_send' => __( 'Your message is not send. You might have left one of the fields blank.', 'cm_translate')
                 )
             );
+        }
+
+        if( is_archive() ){
+            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css');
         }
 
     }
