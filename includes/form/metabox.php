@@ -386,6 +386,8 @@ class Metabox{
      * @param $post
      */
     public function save_condolence_person($post_id, $post){
+        global $wpdb;
+
         // Verify this came from the our screen and with proper authorization,
         // because save_post can be triggered at other times
         if ( !wp_verify_nonce( $_POST['deceased_noncename'], plugin_basename(__FILE__) )) {
@@ -445,6 +447,16 @@ class Metabox{
         if( !empty( $relations) ){
             update_post_meta( $post_id, 'relations', $relations );
         }
+
+        $post_title = $_POST['dateofdeath'] .' - '. $_POST['name'] .' '. $_POST['familyname'];
+
+        $post_title_sanitize = sanitize_title($post_title);
+
+        $query = "UPDATE ".$wpdb->posts." SET post_title='".$post_title."', post_name='".$post_title_sanitize."' WHERE ID=".$post_id;
+
+        $wpdb->query($query);
+
+        clean_post_cache( $post_id );
     }
 
     /**
