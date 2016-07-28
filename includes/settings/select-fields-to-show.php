@@ -101,19 +101,13 @@ class Select_Fields_To_Show{
 
             <div class="migrating">
                 <?php
-                if( !class_exists('quick_page_post_reds') ){
-                    _e('Please install Quick Page/Post Redirect Plugin to be able to link old permalink to new one.');
-                }else{
                   ?>
-                    <form method="post">
-                        <p class="info"><?php _e('Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.')?></p>
-                        <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>" />
-                        <input id="btn-migrating" class="button" type="submit" value="Start migrating">
-                        <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
-                    </form>
-                <?php
-                }
-                ?>
+                <form method="post">
+                    <p class="info"><?php _e('Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.')?></p>
+                    <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>" />
+                    <input id="btn-migrating" class="button" type="submit" value="Start migrating">
+                    <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
+                </form>
             </div>
             <?php
 
