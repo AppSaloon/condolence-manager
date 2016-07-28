@@ -99,7 +99,6 @@ Class Condolatie_Manager{
      */
     public function settings(){
         new Select_Fields_To_Show();
-        new Permalinks();
     }
 
     /**
