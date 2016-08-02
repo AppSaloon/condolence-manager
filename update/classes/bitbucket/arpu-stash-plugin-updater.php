@@ -1,59 +1,54 @@
 <?php
-namespace cm\update\classes\stash;
+namespace cm\update\classes\bb;
 
 use cm\update\classes\parsedown\Parsedown;
 
-class Arpu_Stash_Plugin_Updater {
+class Arpu_Bitbucket_Plugin_Updater {
 
     private $slug; // plugin slug
     private $real_slug; // plugin real slug
     private $plugin_data; // plugin data
     private $host;
-    private $username; // Stash username
+    private $download_host;
+    private $username; // Bitbucket username
     private $password;
-    private $repo; // Stash repo name
-    private $project_name; // Stash project name
+    private $repo; // Bitbucket repo name
+    private $project_name; // Bitbucket project name
     private $plugin_file; // __FILE__ of our plugin
-    private $stash_api_result; // holds data from Stash
+    private $bb_api_result; // holds data from Bitbucket
     private $version;
     private $commit;
+    private $commit_message;
+    private $commit_date;
     private $plugin_activated;
     private $download_link;
-    private $download_path;
-    private $author;
-    private $author_timestamp;
-    private $author_message;
 
     /**
      * Add filters to check plugin version
      *
-     * Arpu_Stash_Plugin_Updater constructor.
-     * @param $stash_plugin
+     * Arpu_Bitbucket_Plugin_Updater constructor.
+     * @param $bb_plugin
      */
-    function __construct( $stash_plugin ) {
-        $this->plugin_file = $stash_plugin['plugin_file'];
-        $this->host = $stash_plugin['stash_host'];
-        $this->username = $stash_plugin['stash_owner'];
-        $this->password = $stash_plugin['stash_password'];
-        $this->project_name = $stash_plugin['stash_project_name'];
-        $this->repo = $stash_plugin['stash_repo_name'];
+    function __construct( $bb_plugin ) {
+        $this->plugin_file = $bb_plugin['plugin_file'];
+        $this->host = $bb_plugin['bb_host'];
+        $this->download_host = $bb_plugin['bb_download_host'];
+        $this->username = $bb_plugin['bb_owner'];
+        $this->password = $bb_plugin['bb_password'];
+        $this->project_name = $bb_plugin['bb_project_name'];
+        $this->repo = $bb_plugin['bb_repo_name'];
         $this->init_plugin_data();
 
-        add_filter( "pre_set_site_transient_update_plugins", array( $this, "stash_set_transient" ) );
-        add_filter( "plugins_api", array( $this, "stash_set_plugin_info" ), 10, 3 );
-        add_filter( "upgrader_post_install", array( $this, "stash_post_install" ), 10, 3 );
-        add_filter( "upgrader_pre_install", array( $this, "stash_pre_install" ), 10, 3 );
-        add_filter( "http_request_args", array($this, "stash_request_args"), 10, 2);
+        add_filter( "pre_set_site_transient_update_plugins", array( $this, "bb_set_transient" ) );
+        add_filter( "plugins_api", array( $this, "bb_set_plugin_info" ), 10, 3 );
+        add_filter( "upgrader_post_install", array( $this, "bb_post_install" ), 10, 3 );
+        add_filter( "upgrader_pre_install", array( $this, "bb_pre_install" ), 10, 3 );
+        add_filter( "http_request_args", array($this, "bb_request_args"), 10, 2);
     }
 
-    public function stash_request_args($r, $url){
-        $hasAt = strpos($url, 'at=');
+    public function bb_request_args($r, $url){
 
-        if( $hasAt !== false ){
-            $url = substr($url, 0, $hasAt + 3);
-        }
-
-        if( $url == $this->get_download_url() ){
+        if( strpos($url, $this->check_download_url()) !== false){
             $r['headers'] = array( 'Authorization' => 'Basic ' . base64_encode( "$this->username:$this->password" ) );
         }
 
@@ -84,53 +79,50 @@ class Arpu_Stash_Plugin_Updater {
      * @param $true
      * @param $args
      */
-    public function stash_pre_install( $true, $args ) {
+    public function bb_pre_install( $true, $args ) {
         $this->plugin_activated = is_plugin_active( $this->slug );
     }
 
     /**
-     * Get information regarding our plugin from Stash
+     * Get information regarding our plugin from Bitbucket
      */
     private function get_repo_release_info() {
         // Only do this once
-        if ( ! empty( $this->stash_api_result ) ) {
+        if ( ! empty( $this->bb_api_result ) ) {
             return;
         }
 
-        // Query the Stash API
+        // Query the Bitbucket API
         $url = $this->get_tag_url();
 
-        $result = $this->get_stash_data($url);
+        $result = $this->get_bb_data($url);
 
         if( $result['response']['code'] == 200 ){
-            $this->stash_api_result = @json_decode($result['body']);
+            $decoded_result = json_decode($result['body']);
+            $this->bb_api_result = $decoded_result;
 
-            $this->stash_api_result = $this->stash_api_result->values[0];
-            $this->version = $this->stash_api_result->displayId;
-            $this->commit = $this->stash_api_result->latestCommit;
+            // check if there are more pages
+            $page = ceil($decoded_result->size / $decoded_result->pagelen);
+
+            // get latest page
+            if( $page > 1 ) {
+                $result = $this->get_bb_data($url."?page=".$page);
+                if(  $result['response']['code'] == 200 ){
+                    $decoded_result = json_decode($result['body']);
+                    $this->bb_api_result = $decoded_result;
+                }
+            }
+
+            $latest_tag = end($decoded_result->values);
+
+            $this->version = $latest_tag->name;
+            $this->commit = $latest_tag->target->parents[0]->hash;
+            $this->commit_message = $latest_tag->target->message;
+            $this->commit_date = date('Y-m-d', strtotime($latest_tag->target->date));
         }
     }
 
-    /**
-     * Get information regarding commit from Stash
-     */
-    private function get_commit_info() {
-        // Only do this once
-        if ( empty( $this->stash_api_result ) ) {
-            return;
-        }
-        $url = "http://{$this->host}/rest/api/1.0/projects/{$this->project_name}/repos/{$this->repo}/commits/{$this->commit}";
-        $result = $this->get_stash_data($url);
-
-        if( $result['response']['code'] == 200 ){
-            $this->author = @json_decode($result['body']);
-
-            $this->author_timestamp = substr($this->author->authorTimestamp, 0, -3);
-            $this->author_message = $this->author->message;
-        }
-    }
-
-    private function get_stash_data($url){
+    private function get_bb_data($url){
         $headers = array( 'Authorization' => 'Basic ' . base64_encode( "$this->username:$this->password" ) );
         $result = wp_remote_get( $url, array( 'headers' => $headers ) );
         return $result;
@@ -139,13 +131,13 @@ class Arpu_Stash_Plugin_Updater {
     /**
      * Push in plugin version information to get the update notification
      */
-    public function stash_set_transient( $transient ) {
+    public function bb_set_transient( $transient ) {
         // If we have checked the plugin data before, don't re-check
         if ( empty( $transient->checked ) ) {
             return $transient;
         }
 
-        // Get plugin & Stash release information
+        // Get plugin & Bitbucket release information
         $this->get_repo_release_info();
 
         // Check the versions if we need to do an update
@@ -156,13 +148,11 @@ class Arpu_Stash_Plugin_Updater {
             $package = $this->get_download_url();
             $this->download_link = $package;
 
-            //$this->download_package($package);
-
             $obj = new \stdClass();
             $obj->plugin = $this->slug;
             $obj->slug = $this->real_slug;
             $obj->new_version = $this->version;
-            $obj->url = $this->plugin_data["PluginURI"];
+            $obj->url = "http://modernretail.com/pos-integrations/woocommerce/";
             $obj->package = $this->download_link;
             $transient->response[$this->slug] = $obj;
         }
@@ -174,44 +164,37 @@ class Arpu_Stash_Plugin_Updater {
      * Push in plugin version information to display in the details lightbox
      * + pass update plugin data to wordpress
      */
-    public function stash_set_plugin_info( $false, $action, $response ) {
-        // Get plugin & Stash release information
-
+    public function bb_set_plugin_info( $false, $action, $response ) {
+        // Get plugin & Bitbucket release information
         $this->init_plugin_data();
         $this->get_repo_release_info();
-        $this->get_commit_info();
 
         // If nothing is found, do nothing
         if ( empty( $response->slug ) || $response->slug != $this->real_slug ) {
-            return false;
+            return $false;
         }
 
         // Add our plugin information
-        $response->last_updated = date('Y-m-d', $this->author_timestamp);
+        $response->last_updated = $this->commit_date;
         $response->slug = $this->real_slug;
         $response->plugin_name  = $this->plugin_data["Name"];
         $response->version = $this->version;
         $response->author = $this->plugin_data["AuthorName"];
-        $response->homepage = $this->plugin_data["PluginURI"];
+        $response->homepage = "http://modernretail.com/pos-integrations/woocommerce/";
         $response->name = $this->plugin_data['Name'];
 
         // This is our release download zip file
-        $response->download_link = $this->download_link;
-
-        // We're going to parse the GitHub markdown release notes, include the parser
-        require_once( ARPU_DIR . 'classes/parsedown/parsedown.php' );
+        $response->download_link = $this->get_download_url();
 
         // Create tabs in the lightbox
         $response->sections = array(
             'description' => $this->plugin_data["Description"],
-            'changelog' => class_exists( "Parsedown" )
-                ? Parsedown::instance()->parse( $this->author_message )
-                : $this->author_message
+            'changelog' => Parsedown::instance()->parse( $this->commit_message )
         );
 
         // Gets the required version of WP if available
         $matches = null;
-        preg_match( "/requires:\s([\d\.]+)/i", $this->stash_api_result->message, $matches );
+        preg_match( "/requires:\s([\d\.]+)/i", $this->commit_message, $matches );
         if ( ! empty( $matches ) ) {
             if ( is_array( $matches ) ) {
                 if ( count( $matches ) > 1 ) {
@@ -222,7 +205,7 @@ class Arpu_Stash_Plugin_Updater {
 
         // Gets the tested version of WP if available
         $matches = null;
-        preg_match( "/tested:\s([\d\.]+)/i", $this->stash_api_result->message, $matches );
+        preg_match( "/tested:\s([\d\.]+)/i", $this->commit_message, $matches );
         if ( ! empty( $matches ) ) {
             if ( is_array( $matches ) ) {
                 if ( count( $matches ) > 1 ) {
@@ -237,8 +220,8 @@ class Arpu_Stash_Plugin_Updater {
     /**
      * Perform additional actions to successfully install our plugin
      */
-    public function stash_post_install( $true, $hook_extra, $result ) {
-        // Since we are hosted in Stash, our plugin folder would have a dirname of
+    public function bb_post_install( $true, $hook_extra, $result ) {
+        // Since we are hosted in Bitbucket, our plugin folder would have a dirname of
         // reponame-tagname change it to our original one:
 
         global $wp_filesystem;
@@ -269,10 +252,14 @@ class Arpu_Stash_Plugin_Updater {
     }
 
     public function get_download_url(){
-        return "http://{$this->host}/plugins/servlet/archive/projects/{$this->project_name}/repos/{$this->repo}?at={$this->version}";
+        return "{$this->download_host}/{$this->project_name}/{$this->repo}/get/{$this->version}.zip";
+    }
+
+    public function check_download_url(){
+        return "{$this->download_host}/{$this->project_name}/{$this->repo}/get/";
     }
 
     public function get_tag_url(){
-        return "http://{$this->host}/rest/api/1.0/projects/{$this->project_name}/repos/{$this->repo}/tags?limit=1";
+        return "{$this->host}/2.0/repositories/{$this->project_name}/{$this->repo}/refs/tags";
     }
 }
