@@ -2,6 +2,9 @@
 
 namespace cm\includes\settings;
 
+use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
+use cm\includes\koffie_tafel\Koffie_Tafel_Model;
+
 class Select_Fields_To_Show{
 
     public static $defaultFields = array('Gender', 'Name', 'Family name', 'Birthplace', 'Birthdate', 'Place of death', 'Date of death', 'Funeral information', 'Prayer Vigil information', 'Greeting information', 'Residence', 'Mass card', 'Relations' );
@@ -35,6 +38,15 @@ class Select_Fields_To_Show{
     }
 
     public function my_plugin_function(){
+	    $obj =new Koffie_Tafel_Controller();
+
+	    $tmp_array = $obj->all_participants_by_id(7);
+
+	    $obj2 = new Koffie_Tafel_Model();
+	    $obj2->set_properties_from_metavalue($tmp_array[0]);
+
+
+
         $tableArray = get_option('cm_fields');
         $fields = ($tableArray) ? $tableArray : self::$defaultFields;
         ?>
