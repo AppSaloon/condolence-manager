@@ -15,7 +15,6 @@
         </td>
         <td class="text">
             <?php
-
                 $required_fields = get_option('cm_fields');
                 $fields = get_post_meta(get_the_ID());
 
@@ -215,7 +214,13 @@ if( !empty($password) && $password == $check_password){ ?>
     </div>
 
 <?php } ?>
-
+<?php
+if( isset($_REQUEST['post_id']) && ! empty( $_REQUEST['post_id'] )  )
+{
+    $_post_id =  sanitize_text_field($_REQUEST['post_id']);
+	gravity_form( 1, false, false, false, array('post_id' => $_post_id), false );
+}
+?>
 
 
 
