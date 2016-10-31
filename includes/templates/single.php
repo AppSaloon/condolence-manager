@@ -135,7 +135,13 @@
             ?>
             <?php if($password == ''){ ?>
             <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
-            <?php } ?>
+            <?php
+            if( $fields['koffie_tafel'][0] == 'ja' ){
+            ?>
+                <a href="#" class="btn" id="toggle_koffie_tafel"><?php _e('Coffie tafel', 'cm_translate'); ?></a>
+            <?php
+            }
+            } ?>
         </td>
     </tr>
 </table>

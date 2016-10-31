@@ -114,9 +114,15 @@ get_header(); ?>
                             </div>
                             <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
                             <input type="button" onclick="location.href='/bloemen'" value="Bloemen">
-                            <input type="button" onclick="" value="Koffie Tafel">
+
 
                             <?php
+                            if($values['koffie_tafel'][0] == 'ja'){
+	                           ?>
+                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Koffie Tafel">
+                            <?php
+                            }
+
                             if($values["masscard"][0]) {
                                 $string = $values["masscard"][0];
                                 echo '<a class="btn-masscard" target="_blank" href="' . $string . '" >';
