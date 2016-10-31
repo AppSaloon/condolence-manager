@@ -114,6 +114,7 @@ get_header(); ?>
                             </div>
                             <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
                             <input type="button" onclick="location.href='/bloemen'" value="Bloemen">
+                            <input type="button" onclick="" value="Koffie Tafel">
 
                             <?php
                             if($values["masscard"][0]) {

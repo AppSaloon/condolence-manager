@@ -90,6 +90,14 @@ class Metabox{
                 </td>
             </tr>
             <tr>
+                <td>Koffie tafel?</td>
+                <td><select  name="koffie_tafel">
+                        <option value="ja">Ja</option>
+                        <option value="nee">Nee</option>
+                    </select>
+                        </td>
+            </tr>
+            <tr>
                 <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
@@ -421,7 +429,8 @@ class Metabox{
             'gender',
             'masscard',
             'password',
-            'email'
+            'email',
+            'koffie_tafel'
         );
 
         foreach( $postfields as $field ){
