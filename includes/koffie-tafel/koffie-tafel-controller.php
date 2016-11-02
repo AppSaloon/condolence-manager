@@ -81,4 +81,28 @@ class Koffie_Tafel_Controller
 	    return $participants_array;
     }
 
+	/**
+	 * @return array|null|object
+	 * find all posts with koffie tafel option
+	 */
+    public function all_koffie_posts()
+    {
+	    global $wpdb;
+	    $query = "SELECT post_id as ID FROM " . $wpdb->postmeta . " WHERE meta_key = 'koffie_tafel'  AND meta_value = 'ja'  ";
+	    $result = $wpdb->get_results($query);
+
+	    $tmp_arary = array();
+	    foreach ( $result as $ID ){
+	    	$tmp_arary[] = $ID->ID;
+	    }
+	    $result = $tmp_arary;
+	    unset($tmp_arary);
+
+	    return $result;
+    }
+    public function download_csv()
+    {
+
+    }
+
 }

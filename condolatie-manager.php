@@ -40,7 +40,6 @@ use cm\includes\settings\Select_Fields_To_Show;
 use cm\update\Auto_Update;
 use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
 
-// require 'includes/koffie_tafel/koffie-tafel-controller.php';
 
 define( 'CM_BASE_FILE', __FILE__ );
 define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );

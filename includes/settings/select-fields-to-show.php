@@ -4,6 +4,8 @@ namespace cm\includes\settings;
 
 use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
 use cm\includes\koffie_tafel\Koffie_Tafel_Model;
+use cm\includes\koffie_tafel\Menu_Page_View;
+
 
 class Select_Fields_To_Show{
 
@@ -38,18 +40,9 @@ class Select_Fields_To_Show{
     }
 
     public function my_plugin_function(){
-	    $obj =new Koffie_Tafel_Controller();
-
-	    $tmp_array = $obj->all_participants_by_id(7);
-
-	    $obj2 = new Koffie_Tafel_Model();
-	    $obj2->set_properties_from_metavalue($tmp_array[0]);
-	    $result = $obj->all_participants_by_id(7);
-	    $obj->result_to_array_objects($result, 7);
-
-
-
-        $tableArray = get_option('cm_fields');
+        $obj = new Koffie_Tafel_Controller();
+        $obj->all_koffie_posts();
+	    $tableArray = get_option('cm_fields');
         $fields = ($tableArray) ? $tableArray : self::$defaultFields;
         ?>
 
@@ -126,5 +119,8 @@ class Select_Fields_To_Show{
             <?php
 
         }
+	    $menu_page = new Menu_Page_View();
+	    $menu_page->cm_sub_menu_callback();
     }
+
 }
