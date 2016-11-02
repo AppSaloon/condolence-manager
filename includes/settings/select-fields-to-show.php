@@ -3,7 +3,6 @@
 namespace cm\includes\settings;
 
 use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
-use cm\includes\koffie_tafel\Koffie_Tafel_Model;
 use cm\includes\koffie_tafel\Menu_Page_View;
 
 

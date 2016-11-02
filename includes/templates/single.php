@@ -135,7 +135,9 @@
             <?php if($password == ''){ ?>
             <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
             <?php
+
             if( $fields['koffie_tafel'][0] == 'ja' ){
+                $koffie_gravity_form = true;
             ?>
                 <a href="#" class="btn" id="toggle_koffie_tafel"><?php _e('Coffie tafel', 'cm_translate'); ?></a>
             <?php
@@ -214,15 +216,25 @@ if( !empty($password) && $password == $check_password){ ?>
     </div>
 
 <?php } ?>
-<div class="koffie-tafel-form"></div>
-<?php
 
-if( isset($_REQUEST['post_id']) && ! empty( $_REQUEST['post_id'] )  )
-{
-    $_post_id =  sanitize_text_field($_REQUEST['post_id']);
-	gravity_form( 1, false, false, false, array('post_id' => $_post_id), false );
-}
-?>
+	<?php
+
+    if( isset($koffie_gravity_form) && $koffie_gravity_form )
+    {?>
+<div class="koffie-tafel-form" id="koffie-tafel-form" style="display: none;">
+        <?php
+    gravity_form( 1, false, false, false, array('post_id' => get_the_ID()), false );
+    ?>
+</div>
+        <?php
+    }
+    ?>
+
+
+
+
+
+
 
 
 

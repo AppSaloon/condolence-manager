@@ -20,6 +20,7 @@ class Metabox{
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
+	    add_meta_box('wpt_condolence_person_location_side_down', __('Koffie tafel'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -384,6 +385,20 @@ class Metabox{
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
         <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments', 'cm_translate'); ?></a>
+        <?php
+    }
+
+	/**
+	 * form to download koffie tafel list
+	 */
+    public function csv_calback()
+    {   global $post;
+        ?>
+        <form method="post">
+            <input type="hidden" name="CSV_koffie_tafel" value="csv">
+            <input type="hidden" name="koffie_tafel_id" value="<?php echo $post->ID;  ?>">
+            <input type="submit" value="Download CSV">
+        </form>
         <?php
     }
 

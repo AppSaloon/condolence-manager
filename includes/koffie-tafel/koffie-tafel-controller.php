@@ -18,8 +18,8 @@ class Koffie_Tafel_Controller
 	 */
 	public function download_csv_by_id()
 	{
-		$check = ( isset( $_REQUEST['CSV_koffie_tafel'] ) && ! empty( $_REQUEST['koffie_tafel_id'] )
-		           && $_REQUEST['CSV_koffie_tafel'] == 'csv' ) ? true : false;
+		$check = ( isset( $_POST['CSV_koffie_tafel'] ) && ! empty( $_POST['koffie_tafel_id'] )
+		           && $_POST['CSV_koffie_tafel'] == 'csv' ) ? true : false;
 
 		if ( $check ){
 			$id = sanitize_text_field($_REQUEST['koffie_tafel_id']);

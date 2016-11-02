@@ -57,12 +57,14 @@ class Menu_Page_View
             $result = $this->controller->all_participants_by_id($id);
             $result = $this->controller->result_to_array_objects($result);
             if ( $result ){
-                ?> <table> <?php
+                ?> <table border="1"> <tr><th>Name</th><th>Surname</th><th>GSM</th><th>Email</th></tr> <?php
 	            foreach ( $result as $participant ){
 	                echo "<tr><td>$participant->name</td><td>$participant->surname</td><td>$participant->telefon</td><td>$participant->email</td></tr>";
 
                 }
                     ?></table><?php
+            }else{
+                echo "There is no participants";
             }
         }
 	}

@@ -119,11 +119,7 @@ get_header(); ?>
                             <?php
                             if($values['koffie_tafel'][0] == 'ja'){
 	                           ?>
-                                <form method="" action="location.href='<?php the_permalink(); ?>">
-                                    <input type="submit"  name="coffie_tafel"  value="Coffie Tafel">
-                                    <input type="hidden" name="post_id" value="<?php echo get_the_ID();  ?>">
-                                </form>
-
+                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"  value="Coffie Tafel">
                             <?php
                             }
 

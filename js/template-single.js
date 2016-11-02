@@ -16,6 +16,11 @@ $(document).ready(function(){
         e.preventDefault();
         $("div.comments").toggle();
     });
+    $("#toggle_koffie_tafel").click(function(e){
+        e.preventDefault();
+        $("#koffie-tafel-form").toggle();
+    });
+
     if($(".comment-form-error-box").length > 0){
         $("div.comments").show();
     }
