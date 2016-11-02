@@ -9,6 +9,12 @@ class Koffie_Tafel_Controller
 
     }
 
+	/**
+	 * @param $content
+	 *
+	 * @return mixed
+	 * save data from gravity form as meta value string
+	 */
     public function gf_data_saver($content)
     {
 		if( $content ){
@@ -31,6 +37,13 @@ class Koffie_Tafel_Controller
 
         return $content;
     }
+
+	/**
+	 * @param $id
+	 *
+	 * @return array|null|object
+	 * find all participants of koffie tafel related to post_id
+	 */
     public function all_participants_by_id($id)
     {
     	global $wpdb;
@@ -40,18 +53,32 @@ class Koffie_Tafel_Controller
 
     	return $result;
 
-
     }
-    public function result_to_array_objects($query_result)
+
+	/**
+	 * @param $query_result
+	 * @param null $id
+	 *
+	 * @return array
+	 * proccesing result of query into objects kofie-tafel-model
+	 * and return in array
+	 */
+    public function result_to_array_objects($query_result, $id = null)
     {
-    	$tmp_array = array();
+
+    	$participants_array = array();
 	    foreach ($query_result as $object){
 			$participant = new Koffie_Tafel_Model();
-			$participant->set_properties_from_metavalue($object->participants);
-			$tmp_array[] = $participant;
+			if( $id ){
+				$participant->set_post_id( $id );
+			}
+			$participant->set_properties_from_metavalue($object);
 
-
+		    $participants_array[] = $participant;
+		    unset ( $participant );
 	    }
+
+	    return $participants_array;
     }
 
 }

@@ -44,6 +44,8 @@ class Select_Fields_To_Show{
 
 	    $obj2 = new Koffie_Tafel_Model();
 	    $obj2->set_properties_from_metavalue($tmp_array[0]);
+	    $result = $obj->all_participants_by_id(7);
+	    $obj->result_to_array_objects($result, 7);
 
 
 
