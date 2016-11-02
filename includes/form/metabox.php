@@ -94,7 +94,7 @@ class Metabox{
                 <td>Koffie tafel?</td>
                 <td><select  name="koffie_tafel">
                         <option value="ja">Ja</option>
-                        <option value="nee">Nee</option>
+                        <option value="nee" <?php if( $this->get_field_value('koffie_tafel', $post->ID) == 'nee'){ echo "selected"; }  ?> >Nee</option>
                     </select>
                         </td>
             </tr>
@@ -392,13 +392,9 @@ class Metabox{
 	 * form to download koffie tafel list
 	 */
     public function csv_calback()
-    {   global $post;
+    {
         ?>
-        <form method="post">
-            <input type="hidden" name="CSV_koffie_tafel" value="csv">
-            <input type="hidden" name="koffie_tafel_id" value="<?php echo $post->ID;  ?>">
-            <input type="submit" value="Download CSV">
-        </form>
+            <input type="submit" name="btn_koffie_tafel_csv" value="Download CSV list">
         <?php
     }
 

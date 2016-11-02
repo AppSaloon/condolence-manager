@@ -18,11 +18,10 @@ class Koffie_Tafel_Controller
 	 */
 	public function download_csv_by_id()
 	{
-		$check = ( isset( $_POST['CSV_koffie_tafel'] ) && ! empty( $_POST['koffie_tafel_id'] )
-		           && $_POST['CSV_koffie_tafel'] == 'csv' ) ? true : false;
+		$check = ( isset( $_REQUEST['btn_koffie_tafel_csv'] ) ) ? true : false;
 
 		if ( $check ){
-			$id = sanitize_text_field($_REQUEST['koffie_tafel_id']);
+			$id = $_REQUEST['post_ID'];
 			$this->download_csv($id);
 		}
 	}
@@ -50,6 +49,7 @@ class Koffie_Tafel_Controller
 			$participant->set_telefon($gsm);
 
 			$participant->save_as_metavalue_string();
+			unset($participant);
 
 		}
 
