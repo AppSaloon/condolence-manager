@@ -31,6 +31,7 @@ namespace cm;
 
 use cm\includes\controller\Comment_Email;
 use cm\includes\controller\Templates;
+use cm\includes\koffie_tafel\Menu_Page_View;
 use cm\includes\register\Custom_Post_Type;
 use cm\includes\register\Translation;
 use cm\includes\script\Migrate;
@@ -83,7 +84,10 @@ Class Condolatie_Manager{
 
         new Templates();
         new Comment_Email();
+	    new Koffie_Tafel_Controller();
         new Auto_Update();
+        new Menu_Page_View();
+
 
     }
 
@@ -95,7 +99,6 @@ Class Condolatie_Manager{
     public function register(){
         new Custom_Post_Type();
         new Translation();
-        new Koffie_Tafel_Controller();
     }
 
     /**

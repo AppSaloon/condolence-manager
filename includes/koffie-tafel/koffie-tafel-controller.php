@@ -3,11 +3,29 @@ namespace cm\includes\koffie_tafel;
 
 class Koffie_Tafel_Controller
 {
+	const headers = array('name', 'surname', 'gsm', 'email');
+
     function __construct()
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
+	    add_action('init', array($this, 'download_csv_by_id'));
 
     }
+
+	/**
+	 * if receive request data from menu page
+	 * download csv by id
+	 */
+	public function download_csv_by_id()
+	{
+		$check = ( isset( $_REQUEST['CSV_koffie_tafel'] ) && ! empty( $_REQUEST['koffie_tafel_id'] )
+		           && $_REQUEST['CSV_koffie_tafel'] == 'csv' ) ? true : false;
+
+		if ( $check ){
+			$id = sanitize_text_field($_REQUEST['koffie_tafel_id']);
+			$this->download_csv($id);
+		}
+	}
 
 	/**
 	 * @param $content
@@ -100,9 +118,49 @@ class Koffie_Tafel_Controller
 
 	    return $result;
     }
-    public function download_csv()
+    public function download_csv($id = null)
     {
+    	if ( $id ){
+		    $result = $this->all_participants_by_id($id);
+		    $array = $this->result_to_array_objects($result);
+
+		    $data = array();
+
+		    foreach ( $array as $obj ){
+			    $tmp_array = array();
+
+				$tmp_array[] = $obj->name;
+			    $tmp_array[] = $obj->surname;
+			    $tmp_array[] = $obj->telefon;
+			    $tmp_array[] = $obj->email;
+			    $data[] = $tmp_array;
+
+			    unset($tmp_array);
+		    }
+
+		    $this->export_csv(static::headers, $data);
+	    }
 
     }
+
+	public function export_csv($headers, $data, $filename = 'koffie tafel'){
+		header('Content-Description: File Transfer');
+		header('Content-Encoding: UTF-8');
+		header('Content-Type: text/csv; charset=UTF-8');
+		header('Content-Disposition: attachment; filename='.$filename.'.csv');
+		header('Content-Transfer-Encoding: binary');
+		echo "\xEF\xBB\xBF";
+
+		$output = fopen('php://output', 'w');
+
+		fputcsv($output, $headers);
+
+		foreach( $data as $fields ){
+			fputcsv($output, $fields);
+		}
+
+		fclose($output);
+		die;
+	}
 
 }
