@@ -214,7 +214,9 @@ if( !empty($password) && $password == $check_password){ ?>
     </div>
 
 <?php } ?>
+<div class="koffie-tafel-form"></div>
 <?php
+
 if( isset($_REQUEST['post_id']) && ! empty( $_REQUEST['post_id'] )  )
 {
     $_post_id =  sanitize_text_field($_REQUEST['post_id']);

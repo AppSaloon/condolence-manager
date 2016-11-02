@@ -63,11 +63,7 @@ class Menu_Page_View
 
                 }
                     ?></table><?php
-
             }
-
         }
-
 	}
-
 }
