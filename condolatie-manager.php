@@ -85,8 +85,6 @@ Class Condolatie_Manager{
         new Comment_Email();
 	    new Koffie_Tafel_Controller();
         new Auto_Update();
-
-
     }
 
     /**

@@ -20,6 +20,10 @@ $(document).ready(function(){
         e.preventDefault();
         $("#koffie-tafel-form").toggle();
     });
+     if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
+         $("#koffie-tafel-form").show();
+         $("#toggle_koffie_tafel").hide();
+     }
 
     if($(".comment-form-error-box").length > 0){
         $("div.comments").show();

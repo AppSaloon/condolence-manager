@@ -3,7 +3,7 @@ namespace cm\includes\koffie_tafel;
 
 class Koffie_Tafel_Controller
 {
-	const headers = array('name', 'surname', 'gsm', 'email');
+	const headers = array('name', 'surname', 'telephone number', 'email');
 
     function __construct()
     {
