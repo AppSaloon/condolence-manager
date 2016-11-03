@@ -118,8 +118,6 @@ class Select_Fields_To_Show{
             <?php
 
         }
-	    $menu_page = new Menu_Page_View();
-	    $menu_page->cm_sub_menu_callback();
     }
 
 }

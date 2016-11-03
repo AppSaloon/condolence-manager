@@ -20,9 +20,13 @@ $(document).ready(function(){
         e.preventDefault();
         $("#koffie-tafel-form").toggle();
     });
+    // if exist error message from gform or succes message
+    // than show div with that content and hide koffie_tafel_button
      if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
          $("#koffie-tafel-form").show();
          $("#toggle_koffie_tafel").hide();
+     }else{
+         $("#toggle_koffie_tafel").show();
      }
 
     if($(".comment-form-error-box").length > 0){

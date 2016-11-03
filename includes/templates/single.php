@@ -218,7 +218,11 @@ if( !empty($password) && $password == $check_password){ ?>
 <?php } ?>
 
 	<?php
-
+	/**
+	 * if value koffie-tafel is 'ja' than create gform dynamickly
+     * set hidden field value as post_id to save meta_data corectly
+     * in Coffie_Tafel_Controller while submitting
+	 */
     if( isset($koffie_gravity_form) && $koffie_gravity_form )
     {?>
 <div class="koffie-tafel-form" id="koffie-tafel-form" style="display: none;">
@@ -229,14 +233,6 @@ if( !empty($password) && $password == $check_password){ ?>
         <?php
     }
     ?>
-
-
-
-
-
-
-
-
 
 
 <?php get_footer(); ?>

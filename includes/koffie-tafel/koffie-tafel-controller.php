@@ -3,7 +3,10 @@ namespace cm\includes\koffie_tafel;
 
 class Koffie_Tafel_Controller
 {
-	const headers = array('name', 'surname', 'telephone number', 'email');
+	/**
+	 * headers for csv file 
+	 */
+	const headers = array('Name', 'Surname', 'Telephone number', 'Email');
 
     function __construct()
     {
@@ -46,7 +49,7 @@ class Koffie_Tafel_Controller
 			$participant->set_name($name);
 			$participant->set_surname($surname);
 			$participant->set_email($email);
-			$participant->set_telefon($gsm);
+			$participant->set_telephone($gsm);
 
 			$participant->save_as_metavalue_string();
 			unset($participant);
@@ -118,6 +121,11 @@ class Koffie_Tafel_Controller
 
 	    return $result;
     }
+
+	/**
+	 * @param null $id
+	 * download csv file when receive correct ID
+	 */
     public function download_csv($id = null)
     {
     	if ( $id ){
@@ -138,11 +146,16 @@ class Koffie_Tafel_Controller
 			    unset($tmp_array);
 		    }
 
-		    $this->export_csv(static::headers, $data);
+		    $this->export_csv( static::headers , $data );
 	    }
-
     }
 
+	/**
+	 * @param $headers
+	 * @param $data
+	 * @param string $filename
+	 * necessary function to download csv file
+	 */
 	public function export_csv($headers, $data, $filename = 'koffie tafel'){
 		header('Content-Description: File Transfer');
 		header('Content-Encoding: UTF-8');
