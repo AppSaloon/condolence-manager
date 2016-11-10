@@ -4,15 +4,17 @@ namespace cm\includes\koffie_tafel;
 class Koffie_Tafel_Controller
 {
 	/**
-	 * headers for csv file 
+	 * headers for csv file
 	 */
-	const headers = array('Name', 'Surname', 'Telephone number', 'Email');
+	public $headers;
 
-    function __construct()
+
+
+    function __construct( array $headers = ['Name', 'Surname', 'Telephone number', 'Email'])
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
-
+	    $this->headers = $headers;
     }
 
 	/**
@@ -146,7 +148,7 @@ class Koffie_Tafel_Controller
 			    unset($tmp_array);
 		    }
 
-		    $this->export_csv( static::headers , $data );
+		    $this->export_csv( $this->headers , $data );
 	    }
     }
 

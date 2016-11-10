@@ -115,7 +115,7 @@ Class Condolatie_Manager{
     }
 }
 
-new Condolatie_Manager();
+ new Condolatie_Manager();
 
 // CREATE LOG TABLE
 //register_activation_hook(__FILE__, array('cm\Install', 'run') );
