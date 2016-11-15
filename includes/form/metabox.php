@@ -91,14 +91,6 @@ class Metabox{
                 </td>
             </tr>
             <tr>
-                <td>Koffie tafel?</td>
-                <td><select  name="koffie_tafel">
-                        <option value="ja">Ja</option>
-                        <option value="nee" <?php if( $this->get_field_value('koffie_tafel', $post->ID) == 'nee'){ echo "selected"; }  ?> >Nee</option>
-                    </select>
-                        </td>
-            </tr>
-            <tr>
                 <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
@@ -352,6 +344,15 @@ class Metabox{
                             break;
                     }
                 });
+
+
+                $("#koffie_tafel").change(function () {
+                    if ( $("#koffie_tafel option:selected").val() == 'ja' ){
+                        $("#span_koffie_tafel_email").show();
+                    }else{
+                        $("#span_koffie_tafel_email").hide();
+                    }
+                });
             });
 
         </script>
@@ -391,10 +392,25 @@ class Metabox{
 	/**
 	 * form to download koffie tafel list
 	 */
-    public function csv_calback()
+    public function csv_calback($post)
     {
         ?>
-            <input type="submit" name="btn_koffie_tafel_csv" value="Download CSV list">
+        <ul>
+            <li>Koffie tafel?</li>
+            <li><select id="koffie_tafel"  name="koffie_tafel">
+                    <option value="nee"  >Nee</option>
+                    <option value="ja" <?php if( $this->get_field_value('koffie_tafel', $post->ID) == 'ja'){ echo "selected"; }  ?> >Ja</option>
+                </select></li>
+            <span id="span_koffie_tafel_email"  <?php if( $this->get_field_value('koffie_tafel', $post->ID) != 'ja'  ){ echo "hidden"; }  ?> >
+            <li><label for="koffie_tafel_email">Email address</label></li>
+            <li> <input type="email" name="koffie_tafel_email" id="koffie_tafel_email"
+                    <?php  if(  $this->get_field_value('koffie_tafel_email', $post->ID) ){   echo " value= '". $this->get_field_value('koffie_tafel_email', $post->ID) ."'"; }  ?> ></li>
+            <li><input type="submit" name="btn_koffie_tafel_csv" value="Download CSV list"></li>
+            </span>
+        </ul>
+        </td>
+    </tr>
+
         <?php
     }
 
@@ -441,7 +457,8 @@ class Metabox{
             'masscard',
             'password',
             'email',
-            'koffie_tafel'
+            'koffie_tafel',
+            'koffie_tafel_email'
         );
 
         foreach( $postfields as $field ){

@@ -227,7 +227,7 @@ if( !empty($password) && $password == $check_password){ ?>
     {?>
 <div class="koffie-tafel-form" id="koffie-tafel-form" style="display: none;">
         <?php
-    gravity_form( 1, false, false, false, array('post_id' => get_the_ID()), false );
+    gravity_form( 3, false, false, false, array('post_id' => get_the_ID()), false );
     ?>
 </div>
         <?php

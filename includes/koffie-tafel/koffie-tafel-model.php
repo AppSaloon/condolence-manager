@@ -28,20 +28,28 @@ class Koffie_Tafel_Model
 	 */
     public $email;
 
+    public $address;
+    /**
+     * @var number of people who can come on coffietafel with participant
+     */
+    public  $otherparticipants = 0;
+
 	/**
-	 * @param $meta_value is result of get_meta_data function
-	 * example meta value name-surname-telephonenumber-exapmleemail.com
+	 * @param $meta_value is result of get_meta_data functions
+	 * example meta value name-surname-telephonenumber-exapmleemail.com-address-otherparticipants
 	 */
     public function set_properties_from_metavalue($meta_value)
     {
         $string = $meta_value->participants;
 
-    	$values = explode('-', $string);
+    	$values = explode('#', $string);
 
     	$this->set_name($values[0]);
     	$this->set_surname($values[1]);
-    	$this->set_telephone($values[2]);
-    	$this->set_email($values[3]);
+    	$this->set_email($values[2]);
+    	$this->set_telephone($values[3]);
+    	$this->address = $values[4];
+    	$this->otherparticipants =  $values[5];
 
     }
 
@@ -51,7 +59,7 @@ class Koffie_Tafel_Model
 	 */
 	public function save_as_metavalue_string()
 	{
-		$tmp_string = $this->name . "-" . $this->surname . "-" . $this->email . "-" . $this->telephone;
+		$tmp_string = $this->name . "#" . $this->surname . "#" . $this->email . "#" . $this->telephone. "#" . $this->address. "#" . $this->otherparticipants;
 		$meta_key = '_koffie_tafel_'.time();
 		update_metadata('post', $this->post_id, $meta_key, $tmp_string);
 	}
@@ -76,9 +84,9 @@ class Koffie_Tafel_Model
 		$this->telephone = $telephone;
 	}
 
-	public function set_email( $emil )
+	public function set_email( $email )
 	{
-		$this->email = $emil;
+		$this->email = $email;
 	}
 
 

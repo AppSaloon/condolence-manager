@@ -8,9 +8,7 @@ class Koffie_Tafel_Controller
 	 */
 	public $headers;
 
-
-
-    function __construct( array $headers = ['Name', 'Surname', 'Telephone number', 'Email'])
+    function __construct( array $headers = ['Name', 'Surname', 'Email', 'Telephone number',  'Address', 'How many people?'])
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
@@ -39,12 +37,15 @@ class Koffie_Tafel_Controller
 	 */
     public function gf_data_saver($content)
     {
+
 		if( $content ){
 			$name = trim(sanitize_text_field($content[1]));
 			$surname = trim(sanitize_text_field($content[2]));
-			$email = trim(sanitize_text_field($content[3]));
-			$gsm = trim(sanitize_text_field($content[4]));
+			$email = trim(sanitize_text_field($content[4]));
+			$gsm = trim(sanitize_text_field($content[3]));
 			$post_id = trim(sanitize_text_field($content[5]));
+
+			$address = $content['6.1'] .' '. $content['6.2'] .' '. $content['6.3'] .' '. $content['6.5'] .' '. $content['6.6'];
 
 			$participant = new Koffie_Tafel_Model();
 			$participant->set_post_id($post_id);
@@ -52,6 +53,13 @@ class Koffie_Tafel_Controller
 			$participant->set_surname($surname);
 			$participant->set_email($email);
 			$participant->set_telephone($gsm);
+			$participant->address =  trim($address);
+
+			if( $participant->otherparticipants < $content[7] ){
+                $participant->otherparticipants = $content[7];
+            }
+
+            $this->send_email_with_participant_to_family($participant);
 
 			$participant->save_as_metavalue_string();
 			unset($participant);
@@ -141,8 +149,10 @@ class Koffie_Tafel_Controller
 
 				$tmp_array[] = $obj->name;
 			    $tmp_array[] = $obj->surname;
-			    $tmp_array[] = $obj->telefon;
+			    $tmp_array[] = $obj->telephone;
 			    $tmp_array[] = $obj->email;
+			    $tmp_array[] = $obj->address;
+			    $tmp_array[] = $obj->otherparticipants;
 			    $data[] = $tmp_array;
 
 			    unset($tmp_array);
@@ -177,5 +187,20 @@ class Koffie_Tafel_Controller
 		fclose($output);
 		die;
 	}
+
+	public function send_email_with_participant_to_family(Koffie_Tafel_Model $participant)
+    {
+        $email_address = trim(get_post_meta($participant->post_id,  'koffie_tafel_email', true));
+
+        $subject = 'Koffietafel';
+        $message = 'Name: ' . $participant->name . ' Surname: ' . $participant->surname . ' will participate meeting ';
+
+        if( $participant->otherparticipants > 0 ){
+            $message .= 'with ' . $participant->otherparticipants . ' more people';
+        }
+
+        $result = wp_mail( $email_address, $subject, $message );
+
+    }
 
 }
