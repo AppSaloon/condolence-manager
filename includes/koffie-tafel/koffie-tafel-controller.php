@@ -12,7 +12,8 @@ class Koffie_Tafel_Controller
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
-	    $this->headers = $headers;
+        add_filter( 'gform_pre_send_email', array( $this, 'to_family_email') );
+
     }
 
 	/**
@@ -58,8 +59,6 @@ class Koffie_Tafel_Controller
 			if( $participant->otherparticipants < $content[7] ){
                 $participant->otherparticipants = $content[7];
             }
-
-            $this->send_email_with_participant_to_family($participant);
 
 			$participant->save_as_metavalue_string();
 			unset($participant);
@@ -188,19 +187,15 @@ class Koffie_Tafel_Controller
 		die;
 	}
 
-	public function send_email_with_participant_to_family(Koffie_Tafel_Model $participant)
+	public function to_family_email( $email )
     {
-        $email_address = trim(get_post_meta($participant->post_id,  'koffie_tafel_email', true));
+        $email_address =  get_post_meta(get_the_ID(), 'koffie_tafel_email', true);
 
-        $subject = 'Koffietafel';
-        $message = 'Name: ' . $participant->name . ' Surname: ' . $participant->surname . ' will participate meeting ';
-
-        if( $participant->otherparticipants > 0 ){
-            $message .= 'with ' . $participant->otherparticipants . ' more people';
+        if( $email_address ){
+            $email['to'] = $email_address;
         }
 
-        $result = wp_mail( $email_address, $subject, $message );
-
+        return $email;
     }
 
 }
