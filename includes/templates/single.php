@@ -136,10 +136,10 @@
             <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
             <?php
 
-            if( $fields['koffie_tafel'][0] == 'ja' ){
-                $koffie_gravity_form = true;
+            if( $fields['coffee_table'][0] == 'yes' ){
+                $coffee_gravity_form = true;
             ?>
-                <a href="#" class="btn" id="toggle_koffie_tafel"><?php _e('Coffie tafel', 'cm_translate'); ?></a>
+                <a href="#" class="btn" id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
             <?php
             }
             } ?>
@@ -219,13 +219,13 @@ if( !empty($password) && $password == $check_password){ ?>
 
 	<?php
 	/**
-	 * if value koffie-tafel is 'ja' than create gform dynamickly
+	 * if value coffee-table is 'yes' than create gform dynamickly
      * set hidden field value as post_id to save meta_data corectly
-     * in Coffie_Tafel_Controller while submitting
+     * in Coffee_Table_Controller while submitting
 	 */
-    if( isset($koffie_gravity_form) && $koffie_gravity_form )
+    if( isset($coffee_gravity_form) && $coffee_gravity_form )
     {?>
-<div class="koffie-tafel-form" id="koffie-tafel-form" style="display: none;">
+<div class="coffee-table-form" id="coffee-table-form" style="display: none;">
         <?php
     gravity_form( 3, false, false, false, array('post_id' => get_the_ID()), false );
     ?>

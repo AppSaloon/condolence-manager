@@ -38,7 +38,7 @@ use cm\includes\script\Post_Type;
 use cm\includes\settings\Permalinks;
 use cm\includes\settings\Select_Fields_To_Show;
 use cm\update\Auto_Update;
-use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
+use cm\includes\coffee_table\Coffee_Table_Controller;
 
 
 define( 'CM_BASE_FILE', __FILE__ );
@@ -83,7 +83,7 @@ Class Condolatie_Manager{
 
         new Templates();
         new Comment_Email();
-	    new Koffie_Tafel_Controller();
+	    new Coffee_Table_Controller();
         new Auto_Update();
     }
 

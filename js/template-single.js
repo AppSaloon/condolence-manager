@@ -16,17 +16,17 @@ $(document).ready(function(){
         e.preventDefault();
         $("div.comments").toggle();
     });
-    $("#toggle_koffie_tafel").click(function(e){
+    $("#toggle_coffee_table").click(function(e){
         e.preventDefault();
-        $("#koffie-tafel-form").toggle();
+        $("#coffee-table-form").toggle();
     });
     // if exist error message from gform or succes message
-    // than show div with that content and hide koffie_tafel_button
+    // than show div with that content and hide coffee_table_button
      if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
-         $("#koffie-tafel-form").show();
-         $("#toggle_koffie_tafel").hide();
+         $("##coffee-table-form").show();
+         $("#toggle_coffee_table").hide();
      }else{
-         $("#toggle_koffie_tafel").show();
+         $("#toggle_coffee_table").show();
      }
 
     if($(".comment-form-error-box").length > 0){

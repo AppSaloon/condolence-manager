@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2016-07-13 09:41+0200\n"
-"PO-Revision-Date: 2016-07-13 09:54+0200\n"
+"POT-Creation-Date: 2016-11-23 15:11+0100\n"
+"PO-Revision-Date: 2016-11-23 15:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: condolatie-manager.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -38,20 +38,20 @@ msgstr "op jou condolatie van %s:"
 msgid "New Comment"
 msgstr "Nieuwe reactie"
 
-#: includes/controller/templates.php:61
+#: includes/controller/templates.php:65
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr "Je hebt mogelijk een veld leeg gelaten of te snel gepost"
 
-#: includes/controller/templates.php:62
+#: includes/controller/templates.php:66
 msgid "Thanks for your comment. We appreciate your response."
 msgstr "Bedankt voor je bericht. Wij waarderen je reactie."
 
-#: includes/controller/templates.php:63
+#: includes/controller/templates.php:67
 msgid "Please wait a while before posting your next comment."
 msgstr ""
 "Gelieve een tijdje te wachten voor het versturen van uw volgende reactie."
 
-#: includes/controller/templates.php:64
+#: includes/controller/templates.php:68
 msgid "Your message is not send. You might have left one of the fields blank."
 msgstr ""
 "Je bericht is niet verzonden. Controleer of alle velden correct zijn "
@@ -61,219 +61,231 @@ msgstr ""
 msgid "Information about deseaded"
 msgstr "Informatie over de overledene"
 
-#: includes/form/metabox.php:22 includes/form/metabox.php:365
+#: includes/form/metabox.php:22 includes/form/metabox.php:375
 msgid "View comments"
 msgstr "Bekijk condolaties"
 
-#: includes/form/metabox.php:36
+#: includes/form/metabox.php:23 includes/form/metabox.php:399
+msgid "Coffee table"
+msgstr "Koffietafel"
+
+#: includes/form/metabox.php:37
 msgid "Gender"
 msgstr "Geslacht"
 
-#: includes/form/metabox.php:40 includes/form/metabox.php:124
-#: includes/form/metabox.php:161 includes/form/metabox.php:281
+#: includes/form/metabox.php:41 includes/form/metabox.php:125
+#: includes/form/metabox.php:162 includes/form/metabox.php:282
 msgid "Male"
 msgstr "Man"
 
-#: includes/form/metabox.php:41 includes/form/metabox.php:125
-#: includes/form/metabox.php:162 includes/form/metabox.php:285
+#: includes/form/metabox.php:42 includes/form/metabox.php:126
+#: includes/form/metabox.php:163 includes/form/metabox.php:286
 msgid "Female"
 msgstr "Vrouw"
 
-#: includes/form/metabox.php:46 includes/form/metabox.php:119
-#: includes/form/metabox.php:156 includes/form/metabox.php:256
+#: includes/form/metabox.php:47 includes/form/metabox.php:120
+#: includes/form/metabox.php:157 includes/form/metabox.php:257
 msgid "Name"
 msgstr "Naam"
 
-#: includes/form/metabox.php:50 includes/form/metabox.php:120
-#: includes/form/metabox.php:157 includes/form/metabox.php:263
+#: includes/form/metabox.php:51 includes/form/metabox.php:121
+#: includes/form/metabox.php:158 includes/form/metabox.php:264
 msgid "Family name"
 msgstr "Familienaam"
 
-#: includes/form/metabox.php:54
+#: includes/form/metabox.php:55
 msgid "Birthplace"
 msgstr "Geboorteplaats"
 
-#: includes/form/metabox.php:58
+#: includes/form/metabox.php:59
 msgid "Birthdate"
 msgstr "Geboortedatum"
 
-#: includes/form/metabox.php:62
+#: includes/form/metabox.php:63
 msgid "Place of death"
 msgstr "Plaats van overlijden"
 
-#: includes/form/metabox.php:66
+#: includes/form/metabox.php:67
 msgid "Date of death"
 msgstr "Datum van overlijden"
 
-#: includes/form/metabox.php:70
+#: includes/form/metabox.php:71
 msgid "Funeral information"
 msgstr "Begrafenis informatie"
 
-#: includes/form/metabox.php:74
+#: includes/form/metabox.php:75
 msgid "Prayer Vigil information"
 msgstr "Gebedswake informatie"
 
-#: includes/form/metabox.php:78
+#: includes/form/metabox.php:79
 msgid "Greeting information"
 msgstr "Begroeting informatie"
 
-#: includes/form/metabox.php:82
+#: includes/form/metabox.php:83
 msgid "Residence"
 msgstr "Woonplaats"
 
-#: includes/form/metabox.php:86
+#: includes/form/metabox.php:87 includes/templates/archive.php:129
 msgid "Mass card"
 msgstr "Rouwbrief"
 
-#: includes/form/metabox.php:89 includes/form/metabox.php:183
-#: includes/form/metabox.php:185
+#: includes/form/metabox.php:90 includes/form/metabox.php:184
+#: includes/form/metabox.php:186
 msgid "Choose mass card"
 msgstr "Kies rouwbrief"
 
-#: includes/form/metabox.php:107
+#: includes/form/metabox.php:108
 msgid "Relation 1"
 msgstr "Relatie 1"
 
-#: includes/form/metabox.php:110 includes/form/metabox.php:140
-#: includes/form/metabox.php:222
+#: includes/form/metabox.php:111 includes/form/metabox.php:141
+#: includes/form/metabox.php:223
 msgid "Select relation type"
 msgstr "Selecteer relatie type"
 
-#: includes/form/metabox.php:111 includes/form/metabox.php:141
-#: includes/form/metabox.php:226
+#: includes/form/metabox.php:112 includes/form/metabox.php:142
+#: includes/form/metabox.php:227
 msgid "Single"
 msgstr "Alleenstaand"
 
-#: includes/form/metabox.php:112 includes/form/metabox.php:142
-#: includes/form/metabox.php:230
+#: includes/form/metabox.php:113 includes/form/metabox.php:143
+#: includes/form/metabox.php:231
 msgid "Married"
 msgstr "Getrouwd"
 
-#: includes/form/metabox.php:113 includes/form/metabox.php:143
-#: includes/form/metabox.php:234
+#: includes/form/metabox.php:114 includes/form/metabox.php:144
+#: includes/form/metabox.php:235
 msgid "Other"
 msgstr "Ander"
 
-#: includes/form/metabox.php:115 includes/form/metabox.php:147
+#: includes/form/metabox.php:116 includes/form/metabox.php:148
 msgid "Add more relation"
 msgstr "Voeg meer relaties toe"
 
-#: includes/form/metabox.php:118 includes/form/metabox.php:155
-#: includes/form/metabox.php:249
+#: includes/form/metabox.php:119 includes/form/metabox.php:156
+#: includes/form/metabox.php:250
 msgid "Relation name"
 msgstr "Relatie naam"
 
-#: includes/form/metabox.php:121 includes/form/metabox.php:158
-#: includes/form/metabox.php:266
+#: includes/form/metabox.php:122 includes/form/metabox.php:159
+#: includes/form/metabox.php:267
 msgid "Is alive?"
 msgstr "Leeft nog?"
 
-#: includes/form/metabox.php:137
+#: includes/form/metabox.php:138
 msgid "Relation "
 msgstr "Relatie"
 
-#: includes/form/metabox.php:149 includes/form/metabox.php:239
+#: includes/form/metabox.php:150 includes/form/metabox.php:240
 msgid "Remove relation"
 msgstr "Verwijder relatie"
 
-#: includes/form/metabox.php:211
+#: includes/form/metabox.php:212
 msgid "Relation"
 msgstr "Relatie"
 
-#: includes/form/metabox.php:276
+#: includes/form/metabox.php:277
 msgid "Select a gender"
 msgstr "Selecteer een geslacht"
 
-#: includes/form/metabox.php:295
+#: includes/form/metabox.php:296
 msgid "Are you sure to delete this relation?"
 msgstr "Ben je zeker dat je deze relatie wilt verwijderen?"
 
-#: includes/form/metabox.php:360
+#: includes/form/metabox.php:370
 msgid "E-mail"
 msgstr "E-mail"
 
-#: includes/form/metabox.php:362
+#: includes/form/metabox.php:372
 msgid "Password"
 msgstr "Paswoord"
 
-#: includes/form/metabox.php:362
+#: includes/form/metabox.php:372
 msgid "Create token"
 msgstr "Genereer een token"
 
-#: includes/form/metabox.php:378
+#: includes/form/metabox.php:388
 msgid "Link to view comments"
 msgstr "Link om connotaties te bekijken"
 
-#: includes/form/metabox.php:461 includes/register/custom-post-type.php:21
+#: includes/form/metabox.php:401
+msgid "No"
+msgstr ""
+
+#: includes/form/metabox.php:402
+msgid "Yes"
+msgstr ""
+
+#: includes/form/metabox.php:510 includes/register/custom-post-type.php:35
 msgid "Condolences"
 msgstr "Overlijdens"
 
-#: includes/register/custom-post-type.php:19
+#: includes/register/custom-post-type.php:33
 msgctxt "Post Type General Name"
 msgid "Condolences"
 msgstr "Overlijdens"
 
-#: includes/register/custom-post-type.php:20
+#: includes/register/custom-post-type.php:34
 msgctxt "Post Type Singular Name"
 msgid "Condolence"
 msgstr "Overlijden"
 
-#: includes/register/custom-post-type.php:22
+#: includes/register/custom-post-type.php:36
 msgid "Parent Condolence"
 msgstr "Hoofd overlijden"
 
-#: includes/register/custom-post-type.php:23
+#: includes/register/custom-post-type.php:37
 msgid "All Condolences"
 msgstr "Alle overlijdens"
 
-#: includes/register/custom-post-type.php:24
+#: includes/register/custom-post-type.php:38
 msgid "View Condolence"
 msgstr "Bekijk overlijden"
 
-#: includes/register/custom-post-type.php:25
+#: includes/register/custom-post-type.php:39
 msgid "Add New Condolence"
 msgstr "Voeg nieuwe overlijden toe"
 
-#: includes/register/custom-post-type.php:26
+#: includes/register/custom-post-type.php:40
 msgid "Add New"
 msgstr "Voeg nieuw toe"
 
-#: includes/register/custom-post-type.php:27
+#: includes/register/custom-post-type.php:41
 msgid "Edit Condolence"
 msgstr "Bewerk overlijden"
 
-#: includes/register/custom-post-type.php:28
+#: includes/register/custom-post-type.php:42
 msgid "Update Condolence"
 msgstr "Update overlijden"
 
-#: includes/register/custom-post-type.php:29
+#: includes/register/custom-post-type.php:43
 msgid "Search Condolence"
 msgstr "Zoek overlijden"
 
-#: includes/register/custom-post-type.php:30
+#: includes/register/custom-post-type.php:44
 msgid "Not Found"
 msgstr "Niet gevonden"
 
-#: includes/register/custom-post-type.php:31
+#: includes/register/custom-post-type.php:45
 msgid "Not found in Trash"
 msgstr "Niet gevonden in de Prullenbak"
 
-#: includes/register/custom-post-type.php:36
+#: includes/register/custom-post-type.php:50
 msgctxt "Post Type Label Name"
 msgid "Condolences"
 msgstr "Overlijdens"
 
-#: includes/register/custom-post-type.php:37
+#: includes/register/custom-post-type.php:51
 msgctxt "Post Type Description"
 msgid "Condolences"
 msgstr "Overlijdens"
 
-#: includes/settings/select-fields-to-show.php:22
-#: includes/settings/select-fields-to-show.php:42
+#: includes/settings/select-fields-to-show.php:26
+#: includes/settings/select-fields-to-show.php:48
 msgid "Condolence manager"
 msgstr "Condolatie manager"
 
-#: includes/settings/select-fields-to-show.php:43
+#: includes/settings/select-fields-to-show.php:49
 msgid ""
 "Change the layout of the condolence post by reordering the items listed "
 "below."
@@ -281,7 +293,7 @@ msgstr ""
 "Verander de layout van de overlijdens door de volgorde van de items "
 "hieronder te wisselen."
 
-#: includes/settings/select-fields-to-show.php:44
+#: includes/settings/select-fields-to-show.php:50
 msgid ""
 "Drag and drop the items to your desired order or delete and add items to the "
 "list. If the order is as you wish submit the changes."
@@ -290,85 +302,110 @@ msgstr ""
 "lijst. Als de lijst is zoals je wenst klik op opslaan om je wijziging te "
 "bevestigen."
 
-#: includes/settings/select-fields-to-show.php:80
-msgid "Migrate data from old condolence manager to current one."
-msgstr "Migreer gegevens uit de oude condolatie manager."
+#: includes/settings/select-fields-to-show.php:84
+msgid "You can change the <b>custom post type slug</b>."
+msgstr "Je kan de <b>slug van deze custom post</b> wijzigen."
 
-#: includes/templates/single.php:85
+#: includes/settings/select-fields-to-show.php:85
+msgid "Slug name"
+msgstr "Slug naam"
+
+#: includes/settings/select-fields-to-show.php:88
+msgid "Change post type"
+msgstr "Verander post type"
+
+#: includes/settings/select-fields-to-show.php:112
+msgid ""
+"Before starting to migrate, be sure that <b>custom post type slug</b> is "
+"correct! Because the changes made in this step can't be reversed."
+msgstr ""
+"Alvorens de migratie te starten, zorg ervoor dat de <b>custom post type "
+"slug</b> correct is! Veranderingen in deze stap kunnen niet terug gezet "
+"worden."
+
+#: includes/templates/archive.php:50 includes/templates/single.php:77
 msgid "Beloved husband of "
 msgstr "Echtgenoot van"
 
-#: includes/templates/single.php:90
+#: includes/templates/archive.php:55 includes/templates/single.php:82
 msgid "Beloved wife of "
 msgstr "Echtgenote van"
 
-#: includes/templates/single.php:95
+#: includes/templates/archive.php:60 includes/templates/single.php:87
 msgid "Beloved husband of the late "
 msgstr "Echtgenoot van de overledenen"
 
-#: includes/templates/single.php:100
+#: includes/templates/archive.php:65 includes/templates/single.php:92
 msgid "Beloved wife of the late "
 msgstr "Echtgenote van de overledenen"
 
-#: includes/templates/single.php:106
+#: includes/templates/archive.php:71 includes/templates/single.php:98
 msgid " his "
 msgstr "zijn"
 
-#: includes/templates/single.php:112
+#: includes/templates/archive.php:77 includes/templates/single.php:104
 msgid " her "
 msgstr "haar"
 
-#: includes/templates/single.php:118
+#: includes/templates/archive.php:83 includes/templates/single.php:110
 msgid " his late "
 msgstr "zijn overleden"
 
-#: includes/templates/single.php:124
+#: includes/templates/archive.php:89 includes/templates/single.php:116
 msgid " her late "
 msgstr "haar overleden"
 
-#: includes/templates/single.php:146
+#: includes/templates/archive.php:135
+msgid "Edit"
+msgstr "Aanpassen"
+
+#: includes/templates/single.php:136
 msgid "Condole"
 msgstr "Rouwbetuiging"
 
-#: includes/templates/single.php:162
+#: includes/templates/single.php:142
+msgid "Coffee Table"
+msgstr "Koffietafel"
+
+#: includes/templates/single.php:160
 msgid "Condolences for the family"
 msgstr "Rouwbetuigingen voor de familie"
 
-#: includes/templates/single.php:164
+#: includes/templates/single.php:162
 msgid "Reply to this condolence"
 msgstr "Reageer op deze rouwbetuiging"
 
-#: includes/templates/single.php:164
+#: includes/templates/single.php:162
 msgid "This message will be send by mail to the author of the condolence."
 msgstr ""
 "Dit bericht zal verzonden worden per mail naar de schrijver van deze "
 "rouwbetuiging."
 
-#: includes/templates/single.php:164
+#: includes/templates/single.php:162
 msgid "Reply"
 msgstr "Beantwoord"
 
-#: includes/templates/single.php:190
+#: includes/templates/single.php:188
 msgid "Comment Error"
 msgstr "Er is een fout opgetreden"
 
-#: includes/templates/single.php:198
+#: includes/templates/single.php:196
 msgid "Naam"
 msgstr "Naam"
 
-#: includes/templates/single.php:203
+#: includes/templates/single.php:201
 msgid "Email"
 msgstr "Email"
 
-#: includes/templates/single.php:211
+#: includes/templates/single.php:209
 msgid "Leave your condolences for the family"
 msgstr "Laat een rouwbetuiging na voor de familie"
 
-#: includes/templates/single.php:212
+#: includes/templates/single.php:210
 msgid "This message is only visible for the family"
 msgstr "Dit bericht is enkel zichtbaar voor de familie"
 
-#: includes/templates/single.php:213
+#: includes/templates/single.php:211
 msgid "Condolence"
 msgstr "Rouwbetuiging"
 
@@ -389,3 +426,6 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "AppSaloon"
 msgstr "AppSaloon"
+
+#~ msgid "Migrate data from old condolence manager to current one."
+#~ msgstr "Migreer gegevens uit de oude condolatie manager."

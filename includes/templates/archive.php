@@ -117,9 +117,9 @@ get_header(); ?>
 
 
                             <?php
-                            if($values['koffie_tafel'][0] == 'ja'){
+                            if($values['coffee_table'][0] == 'yes'){
 	                           ?>
-                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"  value="Coffie Tafel">
+                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"  value="Coffee Table">
                             <?php
                             }
 

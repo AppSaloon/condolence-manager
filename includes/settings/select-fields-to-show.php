@@ -2,8 +2,8 @@
 
 namespace cm\includes\settings;
 
-use cm\includes\koffie_tafel\Koffie_Tafel_Controller;
-use cm\includes\koffie_tafel\Menu_Page_View;
+use cm\includes\coffee_table\Coffee_Table_Controller;
+use cm\includes\coffee_table\Menu_Page_View;
 
 
 class Select_Fields_To_Show{
@@ -39,8 +39,8 @@ class Select_Fields_To_Show{
     }
 
     public function my_plugin_function(){
-        $obj = new Koffie_Tafel_Controller();
-        $obj->all_koffie_posts();
+        $obj = new Coffee_Table_Controller();
+        $obj->all_coffee_posts();
 	    $tableArray = get_option('cm_fields');
         $fields = ($tableArray) ? $tableArray : self::$defaultFields;
         ?>

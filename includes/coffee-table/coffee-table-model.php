@@ -1,10 +1,10 @@
 <?php
-namespace cm\includes\koffie_tafel;
+namespace cm\includes\coffee_table;
 
-class Koffie_Tafel_Model
+class Coffee_Table_Model
 {
 	/**
-	 * @var post_id witch is related to koffie-tafel event
+	 * @var post_id witch is related to coffee-table event
 	 */
     public $post_id;
 
@@ -30,7 +30,7 @@ class Koffie_Tafel_Model
 
     public $address;
     /**
-     * @var number of people who can come on coffietafel with participant
+     * @var number of people who can come on coffee table with participant
      */
     public  $otherparticipants = 0;
 
@@ -60,7 +60,7 @@ class Koffie_Tafel_Model
 	public function save_as_metavalue_string()
 	{
 		$tmp_string = $this->name . "#" . $this->surname . "#" . $this->email . "#" . $this->telephone. "#" . $this->address. "#" . $this->otherparticipants;
-		$meta_key = '_koffie_tafel_'.time();
+		$meta_key = '_coffee_table_'.time();
 		update_metadata('post', $this->post_id, $meta_key, $tmp_string);
 	}
 

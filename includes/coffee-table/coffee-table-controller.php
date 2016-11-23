@@ -1,7 +1,7 @@
 <?php
-namespace cm\includes\koffie_tafel;
+namespace cm\includes\coffee_table;
 
-class Koffie_Tafel_Controller
+class Coffee_Table_Controller
 {
 	/**
 	 * headers for csv file
@@ -22,7 +22,7 @@ class Koffie_Tafel_Controller
 	 */
 	public function download_csv_by_id()
 	{
-		$check = ( isset( $_REQUEST['btn_koffie_tafel_csv'] ) ) ? true : false;
+		$check = ( isset( $_REQUEST['btn_coffee_table_csv'] ) ) ? true : false;
 
 		if ( $check ){
 			$id = $_REQUEST['post_ID'];
@@ -48,7 +48,7 @@ class Koffie_Tafel_Controller
 
 			$address = $content['6.1'] .' '. $content['6.2'] .' '. $content['6.3'] .' '. $content['6.5'] .' '. $content['6.6'];
 
-			$participant = new Koffie_Tafel_Model();
+			$participant = new Coffee_Table_Model();
 			$participant->set_post_id($post_id);
 			$participant->set_name($name);
 			$participant->set_surname($surname);
@@ -72,13 +72,13 @@ class Koffie_Tafel_Controller
 	 * @param $id
 	 *
 	 * @return array|null|object
-	 * find all participants of koffie tafel related to post_id
+	 * find all participants of coffee table related to post_id
 	 */
     public function all_participants_by_id($id)
     {
     	global $wpdb;
 
-    	$query = "SELECT meta_value as participants FROM " . $wpdb->postmeta . " WHERE meta_key LIKE '_koffie_tafel%'  AND post_id='" . $id . "'";
+    	$query = "SELECT meta_value as participants FROM " . $wpdb->postmeta . " WHERE meta_key LIKE '_coffee_table%'  AND post_id='" . $id . "'";
     	$result = $wpdb->get_results($query);
 
     	return $result;
@@ -98,7 +98,7 @@ class Koffie_Tafel_Controller
 
     	$participants_array = array();
 	    foreach ($query_result as $object){
-			$participant = new Koffie_Tafel_Model();
+			$participant = new Coffee_Table_Model();
 			if( $id ){
 				$participant->set_post_id( $id );
 			}
@@ -113,12 +113,12 @@ class Koffie_Tafel_Controller
 
 	/**
 	 * @return array|null|object
-	 * find all posts with koffie tafel option
+	 * find all posts with coffee table option
 	 */
-    public function all_koffie_posts()
+    public function all_coffee_posts()
     {
 	    global $wpdb;
-	    $query = "SELECT post_id as ID FROM " . $wpdb->postmeta . " WHERE meta_key = 'koffie_tafel'  AND meta_value = 'ja'  ";
+	    $query = "SELECT post_id as ID FROM " . $wpdb->postmeta . " WHERE meta_key = 'coffee_table'  AND meta_value = 'yes'  ";
 	    $result = $wpdb->get_results($query);
 
 	    $tmp_arary = array();
@@ -167,7 +167,7 @@ class Koffie_Tafel_Controller
 	 * @param string $filename
 	 * necessary function to download csv file
 	 */
-	public function export_csv($headers, $data, $filename = 'koffie tafel'){
+	public function export_csv($headers, $data, $filename = 'coffee table'){
 		header('Content-Description: File Transfer');
 		header('Content-Encoding: UTF-8');
 		header('Content-Type: text/csv; charset=UTF-8');
@@ -189,7 +189,7 @@ class Koffie_Tafel_Controller
 
 	public function to_family_email( $email )
     {
-        $email_address =  get_post_meta(get_the_ID(), 'koffie_tafel_email', true);
+        $email_address =  get_post_meta(get_the_ID(), 'coffee_table_email', true);
 
         if( $email_address ){
             $email['to'] = $email_address;

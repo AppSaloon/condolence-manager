@@ -20,7 +20,7 @@ class Metabox{
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
-	    add_meta_box('wpt_condolence_person_location_side_down', __('Koffie tafel'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
+	    add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -346,11 +346,11 @@ class Metabox{
                 });
 
 
-                $("#koffie_tafel").change(function () {
-                    if ( $("#koffie_tafel option:selected").val() == 'ja' ){
-                        $("#span_koffie_tafel_email").show();
+                $("#coffee_table").change(function () {
+                    if ( $("#coffee_table option:selected").val() == 'ja' ){
+                        $("#span_coffee_table_email").show();
                     }else{
-                        $("#span_koffie_tafel_email").hide();
+                        $("#span_coffee_table_email").hide();
                     }
                 });
             });
@@ -390,22 +390,22 @@ class Metabox{
     }
 
 	/**
-	 * form to download koffie tafel list
+	 * form to download coffee table list
 	 */
     public function csv_calback($post)
     {
         ?>
         <ul>
-            <li>Koffie tafel?</li>
-            <li><select id="koffie_tafel"  name="koffie_tafel">
-                    <option value="nee"  >Nee</option>
-                    <option value="ja" <?php if( $this->get_field_value('koffie_tafel', $post->ID) == 'ja'){ echo "selected"; }  ?> >Ja</option>
+            <li><?php _e('Coffee table', 'cm_translate');?></li>
+            <li><select id="coffee_table"  name="coffee_table">
+                    <option value="no"  ><?php _e('No', 'cm_translate');?></option>
+                    <option value="yes" <?php if( $this->get_field_value('coffee_table', $post->ID) == 'yes'){ echo "selected"; }  ?> ><?php _e('Yes', 'cm_translate');?></option>
                 </select></li>
-            <span id="span_koffie_tafel_email"  <?php if( $this->get_field_value('koffie_tafel', $post->ID) != 'ja'  ){ echo "hidden"; }  ?> >
-            <li><label for="koffie_tafel_email">Email address</label></li>
-            <li> <input type="email" name="koffie_tafel_email" id="koffie_tafel_email"
-                    <?php  if(  $this->get_field_value('koffie_tafel_email', $post->ID) ){   echo " value= '". $this->get_field_value('koffie_tafel_email', $post->ID) ."'"; }  ?> ></li>
-            <li><input type="submit" name="btn_koffie_tafel_csv" value="Download CSV list"></li>
+            <span id="span_coffee_table_email"  <?php if( $this->get_field_value('coffee_table', $post->ID) != 'yes'  ){ echo "hidden"; }  ?> >
+            <li><label for="coffee_table_email">Email address</label></li>
+            <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
+                    <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
+            <li><input type="submit" name="btn_coffee_table_csv" value="Download CSV list"></li>
             </span>
         </ul>
         </td>
@@ -457,8 +457,8 @@ class Metabox{
             'masscard',
             'password',
             'email',
-            'koffie_tafel',
-            'koffie_tafel_email'
+            'coffee_table',
+            'coffee_table_email'
         );
 
         foreach( $postfields as $field ){
