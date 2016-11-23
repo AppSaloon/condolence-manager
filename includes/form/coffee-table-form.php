@@ -68,11 +68,11 @@
                         class="form_required">*</span></label>
                 <div class="form_large radio">
                     <ul class="gfield_radio" id="input_3_9">
-                        <li class="field_yes"><input name="yes_no_radio" type="radio" value="pressent-yes"
+                        <li class="field_yes"><input name="yes_no_radio" type="radio" onclick='jQuery("#form_person").hide()' value="pressent-yes"
                                                      id="field_yes" tabindex="8">
                             <label for="field_yes"
                                    id="field_yes"><?php _e('will be present', 'cm_translate'); ?></label></li>
-                        <li class="field_no"><input name="yes_no_radio" type="radio" value="pressent-no"
+                        <li class="field_no"><input name="yes_no_radio" type="radio" onclick='jQuery("#form_person").show()' value="pressent-no"
                                                     id="field_no" tabindex="9">
                             <label for="field_no"
                                    id="field_no"><?php _e('will not be present', 'cm_translate'); ?></label></li>
