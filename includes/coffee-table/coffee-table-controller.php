@@ -18,19 +18,27 @@ class Coffee_Table_Controller
         $this->headers = $headers;
 
     }
+
+    /**
+     * take data from ajax call and save in database
+     * call function to send email to family about participant
+     */
     public function receive_form_data()
     {
         $name =  sanitize_text_field($_POST['name']);
         $surname =  sanitize_text_field( $_POST['surname']);
         $street =  sanitize_text_field( $_POST['street'] );
+        $str_number = sanitize_text_field( $_POST['number'] );
         $city =  sanitize_text_field( $_POST['city'] );
         $zipcode =  sanitize_text_field( $_POST['zipcode']);
+        $country = sanitize_text_field( $_POST['country'] );
         $email =  sanitize_email($_POST['email']);
         $telephone =  sanitize_text_field( $_POST['gsm'] );
         $post_id =  sanitize_text_field( $_POST['post_id']);
-        $address = $street . ' ' . $zipcode . ' ' . $city;
+
+        $address = $street . ' ' . $str_number . ' ' . $zipcode . ' ' . $city . ' ' . $country ;
         $more_people =   intval( sanitize_text_field($_POST['more_people']));
-        //TODO add full belgian address in form, ajaxcall and here
+
 
         if( $name && $surname && $telephone ){
 
@@ -43,15 +51,18 @@ class Coffee_Table_Controller
             $participant->set_address($address);
             $participant->set_participants($more_people);
             $result = $participant->save_as_metavalue_string();
-
-            if( $result  ){
-                $message = true;
-            }else{
-                $message = false;
-            }
         }
 
-        wp_send_json(['message' => $message]);
+        ob_start();
+        if(  $result  ){
+            include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/success-submission.php' );
+        }else{
+            include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/failure-submission.php' );
+        }
+
+        $response = ob_get_clean();
+
+        wp_send_json($response);
     }
 
 	/**

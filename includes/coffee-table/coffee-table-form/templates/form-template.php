@@ -9,10 +9,14 @@
     <input id="ct_surname" type="text" required>
     <label for="ct_street">Street</label>
     <input id="ct_street"  type="text">
+    <label for="ct_str_number">NR</label>
+    <input id="ct_str_number" type="text">
     <label for="ct_city">City</label>
     <input id="ct_city" type="text">
     <label for="ct_zipcode">Zip Code</label>
     <input id="ct_zipcode" type="number">
+    <label for="ct_country">Country</label>
+    <input id="ct_country" type="text">
     <label for="ct_email">Email</label>
     <input id="ct_email" type="email" required>
     <label for="ct_gsm">Telephone</label>

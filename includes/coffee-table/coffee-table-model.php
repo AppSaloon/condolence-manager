@@ -48,8 +48,8 @@ class Coffee_Table_Model
     	$this->set_surname($values[1]);
     	$this->set_email($values[2]);
     	$this->set_telephone($values[3]);
-    	$this->address = $values[4];
-    	$this->otherparticipants =  $values[5];
+    	$this->set_address($values[4]);
+    	$this->set_participants($values[5]);
 
     }
 
@@ -68,38 +68,48 @@ class Coffee_Table_Model
 
     public function set_post_id( $post_id )
     {
-    	$this->post_id = $post_id;
+    	$this->post_id = $this->check_if_null( $post_id );
     }
 
 	public function set_name( $name )
 	{
-		$this->name = $name;
+		$this->name = $this->check_if_null( $name );
 	}
 
 	public function set_surname( $surname )
 	{
-		$this->surname = $surname;
+		$this->surname = $this->check_if_null( $surname );
 	}
 
 	public function set_telephone( $telephone )
 	{
-		$this->telephone = $telephone;
+		$this->telephone = $this->check_if_null( $telephone );
 	}
 
 	public function set_email( $email )
 	{
-		$this->email = $email;
+		$this->email = $this->check_if_null( $email );
 	}
 
 	public function set_address( $address )
     {
-        $this->address = $address;
+
+        $this->address = $this->check_if_null( $address );
     }
 
     public function set_participants( $participants )
     {
         if( $this->otherparticipants < $participants ){
             $this->otherparticipants = $participants;
+        }
+    }
+
+    public function check_if_null( $check )
+    {
+        if ( ! $check ){
+            return '';
+        }else{
+            return $check;
         }
     }
 

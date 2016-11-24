@@ -15,7 +15,7 @@ class Form_Filter_Controller
     {
        if ( $this->check_page() ){
            global $post;
-           include ( CM_DIR . '/includes/coffee-table/coffee-table-form/form-template.php' );
+           include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/form-template.php' );
        }
     }
 
