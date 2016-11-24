@@ -1,6 +1,7 @@
 <?php
 ?>
 <div style="padding: 30px;">
+    <p id="ct_form_message"></p>
 <form id="ct_form" action="">
     <label for="ct_name">Name</label>
     <input id="ct_name"  type="text" required>
@@ -19,6 +20,6 @@
     <input id="ct_post_id" value="<?php echo $post->ID; ?>" type="hidden">
     <label for="ct_more_people">Someone with You?</label>
     <input id="ct_more_people" type="number" min="1">
-    <input type="submit">
+    <input id="ct_form_btn" type="submit">
 </form>
 </div>

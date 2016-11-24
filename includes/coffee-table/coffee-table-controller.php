@@ -13,8 +13,8 @@ class Coffee_Table_Controller
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
         add_filter( 'gform_pre_send_email', array( $this, 'to_family_email') );
-        add_action( 'wp_ajax_coffe_form_submition',array($this, 'receive_form_data'));
-        add_action( 'wp_ajax_nopriv_coffe_form_submition',array($this, 'receive_form_data'));
+        add_action( 'wp_ajax_coffee_form_submission',array($this, 'receive_form_data'));
+        add_action( 'wp_ajax_nopriv_coffee_form_submission',array($this, 'receive_form_data'));
         $this->headers = $headers;
 
     }
@@ -29,9 +29,11 @@ class Coffee_Table_Controller
         $telephone =  sanitize_text_field( $_POST['gsm'] );
         $post_id =  sanitize_text_field( $_POST['post_id']);
         $address = $street . ' ' . $zipcode . ' ' . $city;
+        $more_people =   intval( sanitize_text_field($_POST['more_people']));
         //TODO add full belgian address in form, ajaxcall and here
 
         if( $name && $surname && $telephone ){
+
             $participant = new Coffee_Table_Model();
             $participant->set_name($name);
             $participant->set_surname($surname);
@@ -39,11 +41,17 @@ class Coffee_Table_Controller
             $participant->set_telephone($telephone);
             $participant->set_email($email);
             $participant->set_address($address);
+            $participant->set_participants($more_people);
             $result = $participant->save_as_metavalue_string();
 
+            if( $result  ){
+                $message = true;
+            }else{
+                $message = false;
+            }
         }
 
-        wp_send_json(['message' => $result]);
+        wp_send_json(['message' => $message]);
     }
 
 	/**
