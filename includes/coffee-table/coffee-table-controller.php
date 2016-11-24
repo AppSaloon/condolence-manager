@@ -13,7 +13,37 @@ class Coffee_Table_Controller
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
         add_filter( 'gform_pre_send_email', array( $this, 'to_family_email') );
+        add_action( 'wp_ajax_coffe_form_submition',array($this, 'receive_form_data'));
+        add_action( 'wp_ajax_nopriv_coffe_form_submition',array($this, 'receive_form_data'));
+        $this->headers = $headers;
 
+    }
+    public function receive_form_data()
+    {
+        $name =  sanitize_text_field($_POST['name']);
+        $surname =  sanitize_text_field( $_POST['surname']);
+        $street =  sanitize_text_field( $_POST['street'] );
+        $city =  sanitize_text_field( $_POST['city'] );
+        $zipcode =  sanitize_text_field( $_POST['zipcode']);
+        $email =  sanitize_email($_POST['email']);
+        $telephone =  sanitize_text_field( $_POST['gsm'] );
+        $post_id =  sanitize_text_field( $_POST['post_id']);
+        $address = $street . ' ' . $zipcode . ' ' . $city;
+        //TODO add full belgian address in form, ajaxcall and here
+
+        if( $name && $surname && $telephone ){
+            $participant = new Coffee_Table_Model();
+            $participant->set_name($name);
+            $participant->set_surname($surname);
+            $participant->set_post_id($post_id);
+            $participant->set_telephone($telephone);
+            $participant->set_email($email);
+            $participant->set_address($address);
+            $result = $participant->save_as_metavalue_string();
+
+        }
+
+        wp_send_json(['message' => $result]);
     }
 
 	/**
@@ -54,11 +84,9 @@ class Coffee_Table_Controller
 			$participant->set_surname($surname);
 			$participant->set_email($email);
 			$participant->set_telephone($gsm);
-			$participant->address =  trim($address);
+			$participant->set_address(trim($address));
+			$participant->set_participants($content[7]);
 
-			if( $participant->otherparticipants < $content[7] ){
-                $participant->otherparticipants = $content[7];
-            }
 
 			$participant->save_as_metavalue_string();
 			unset($participant);
@@ -156,6 +184,9 @@ class Coffee_Table_Controller
 
 			    unset($tmp_array);
 		    }
+		    if( ! $data ){
+		        return;
+            }
 
 		    $this->export_csv( $this->headers , $data );
 	    }

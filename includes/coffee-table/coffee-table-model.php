@@ -61,7 +61,9 @@ class Coffee_Table_Model
 	{
 		$tmp_string = $this->name . "#" . $this->surname . "#" . $this->email . "#" . $this->telephone. "#" . $this->address. "#" . $this->otherparticipants;
 		$meta_key = '_coffee_table_'.time();
-		update_metadata('post', $this->post_id, $meta_key, $tmp_string);
+		$result = update_metadata('post', $this->post_id, $meta_key, $tmp_string);
+
+		return $result;
 	}
 
     public function set_post_id( $post_id )
@@ -88,6 +90,18 @@ class Coffee_Table_Model
 	{
 		$this->email = $email;
 	}
+
+	public function set_address( $address )
+    {
+        $this->address = $address;
+    }
+
+    public function set_participants( $participants )
+    {
+        if( $this->otherparticipants < $participants ){
+            $this->otherparticipants = $participants;
+        }
+    }
 
 
 }

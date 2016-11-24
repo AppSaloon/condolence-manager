@@ -39,6 +39,7 @@ use cm\includes\settings\Permalinks;
 use cm\includes\settings\Select_Fields_To_Show;
 use cm\update\Auto_Update;
 use cm\includes\coffee_table\Coffee_Table_Controller;
+use cm\includes\coffee_table\coffee_table_form\Form_Filter_Controller;
 
 
 define( 'CM_BASE_FILE', __FILE__ );
@@ -46,6 +47,7 @@ define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
 define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
+
 
 Class Condolatie_Manager{
 
@@ -95,6 +97,7 @@ Class Condolatie_Manager{
     public function register(){
         new Custom_Post_Type();
         new Translation();
+        new Form_Filter_Controller();
     }
 
     /**
