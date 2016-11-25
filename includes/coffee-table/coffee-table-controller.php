@@ -52,7 +52,7 @@ class Coffee_Table_Controller
             $participant->set_address($address);
             $participant->set_participants($more_people);
             $result = $participant->save_as_metavalue_string();
-           // $this->send_email_to_familly( $participant );
+            $this->send_email_to_familly( $participant );
         }
 
         ob_start();

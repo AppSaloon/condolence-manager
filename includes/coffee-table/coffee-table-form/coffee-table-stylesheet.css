@@ -1,0 +1,89 @@
+.ct_div {
+    padding: 0 0 30px;
+}
+
+.form-horizontal {
+    width: 100%;
+    box-sizing: border-box
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group:before, .description:before {
+    display: table;
+    content: " ";
+}
+
+.form-group:after, .description:after {
+    display: table;
+    content: " ";
+    clear: both;
+}
+
+.col-sm-2, .col-sm-10, .col-sm-4 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.radio {
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.radio label {
+    min-height: 20px;
+    padding-left: 0;
+    padding-right: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-horizontal label {
+    text-align: right;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    padding: 7px 10px;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@media (min-width: 576px) {
+    .col-sm-2 {
+        float: left;
+        width: 16.666667%;
+    }
+
+    .col-sm-4 {
+        float: left;
+        width: 33.333333%;
+    }
+
+    .col-sm-10 {
+        float: left;
+        width: 83.333333%;
+    }
+
+    .col-sm-offset-2 {
+        margin-left: 16.66666667%;
+    }
+}

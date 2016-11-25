@@ -1,4 +1,4 @@
 <div style="background-color: red">
-<h3>Failure</h3>
-<p>Sorry we can not save your data. Refresh and try one more time</p>
+<h3><?php _e('Failure', 'cm_translate'); ?></h3>
+<p><?php _e('Sorry we couldn\'t save your data. Refresh and try one more time', 'cm_translate'); ?></p>
 </div>
