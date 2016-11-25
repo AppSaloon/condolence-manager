@@ -214,25 +214,7 @@ if( !empty($password) && $password == $check_password){ ?>
         );
         ?>
     </div>
-
 <?php } ?>
-
-	<?php
-	/**
-	 * if value coffee-table is 'yes' than create gform dynamickly
-     * set hidden field value as post_id to save meta_data corectly
-     * in Coffee_Table_Controller while submitting
-	 */
-    if( isset($coffee_gravity_form) && $coffee_gravity_form )
-    {?>
-<div class="coffee-table-form" id="coffee-table-form" style="display: none;">
-        <?php
-    gravity_form( 3, false, false, false, array('post_id' => get_the_ID()), false );
-    ?>
-</div>
-        <?php
-    }
-    ?>
 
 
 <?php get_footer(); ?>

@@ -60,7 +60,7 @@ class Coffee_Table_Model
 	public function save_as_metavalue_string()
 	{
 		$tmp_string = $this->name . "#" . $this->surname . "#" . $this->email . "#" . $this->telephone. "#" . $this->address. "#" . $this->otherparticipants;
-		$meta_key = '_coffee_table_'.time();
+		$meta_key = '_coffee_table_' . time();
 		$result = update_metadata('post', $this->post_id, $meta_key, $tmp_string);
 
 		return $result;

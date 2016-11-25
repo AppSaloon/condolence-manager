@@ -18,6 +18,11 @@ jQuery(function ($) {
     // only for tests
     fill_form_for_tests();
 
+
+    $('#toggle_coffee_table').click(function(){
+        $('#ct_div').toggle();
+    });
+
     $('#ct_form').submit(function(e){
         e.preventDefault();
 

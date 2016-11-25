@@ -1,6 +1,4 @@
-<?php
-?>
-<div style="padding: 30px;">
+<div id="ct_div" hidden style="padding: 30px;">
     <p id="ct_form_message"></p>
 <form id="ct_form" action="">
     <label for="ct_name">Name</label>

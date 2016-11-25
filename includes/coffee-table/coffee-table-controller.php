@@ -12,9 +12,10 @@ class Coffee_Table_Controller
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
-        add_filter( 'gform_pre_send_email', array( $this, 'to_family_email') );
+        add_filter( 'gform_pre_send_email', array( $this, 'to_family_email_by_gravityform') );
         add_action( 'wp_ajax_coffee_form_submission',array($this, 'receive_form_data'));
         add_action( 'wp_ajax_nopriv_coffee_form_submission',array($this, 'receive_form_data'));
+        add_action('send_email_to_family', array( $this, 'send_email_to_family' ));
         $this->headers = $headers;
 
     }
@@ -51,6 +52,7 @@ class Coffee_Table_Controller
             $participant->set_address($address);
             $participant->set_participants($more_people);
             $result = $participant->save_as_metavalue_string();
+           // $this->send_email_to_familly( $participant );
         }
 
         ob_start();
@@ -61,6 +63,8 @@ class Coffee_Table_Controller
         }
 
         $response = ob_get_clean();
+
+        do_action('send_email_to_family', $participant);
 
         wp_send_json($response);
     }
@@ -237,7 +241,13 @@ class Coffee_Table_Controller
 		die;
 	}
 
-	public function to_family_email( $email )
+    /**
+     * @param $email
+     * @return mixed
+     * change email address to send on address from options
+     * redirect gf_email
+     */
+	public function to_family_email_by_gravityform( $email )
     {
         $email_address =  get_post_meta(get_the_ID(), 'coffee_table_email', true);
 
@@ -247,5 +257,22 @@ class Coffee_Table_Controller
 
         return $email;
     }
+
+    public function send_email_to_family( $participant )
+    {
+
+        $to = get_post_meta( $participant->post_id , 'coffee_table_email', true);
+
+        $subject = 'subject';
+
+
+        include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/email.php' );
+        $body = ob_get_clean();
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        wp_mail( $to, $subject, $body, $headers );
+
+    }
+
 
 }
