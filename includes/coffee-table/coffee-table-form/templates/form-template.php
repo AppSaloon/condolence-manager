@@ -1,6 +1,6 @@
 <div id="ct_div" hidden>
-    <p id="ct_form_message"></p>
-    <form class="form-horizontal">
+    <p id="ct_form_message" class="ct_form"></p>
+    <form class="form-horizontal" id="ct_form">
         <div class="form-group">
             <label class="col-sm-2" for="ct_name"><?php _e('Name', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
