@@ -5,7 +5,7 @@
             <label class="col-sm-2" for="ct_name"><?php _e('Name', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="ct_name" placeholder="<?php _e('Name', 'cm_translate'); ?>"
-                       required>
+                       oninvalid="InvalidMsg(this);" required>
             </div>
             <label class="col-sm-2" for="ct_surname"><?php _e('Surname', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
@@ -48,7 +48,7 @@
             <label class="col-sm-2" for="ct_email"><?php _e('Email', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="email" class="form-control" id="ct_email"
-                       placeholder="<?php _e('Email', 'cm_translate'); ?>" required>
+                       placeholder="<?php _e('Email', 'cm_translate'); ?>" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);" required>
             </div>
             <label class="col-sm-2" for="ct_gsm"><?php _e('Phone', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
@@ -58,7 +58,7 @@
         </div>
         <div class="description">
             <div class="col-sm-offset-2 col-sm-10">
-            <h2 class="title"><?php _e('Presence coffee table', 'cm_translate'); ?>?</h2>
+                <h2 class="title"><?php _e('Presence coffee table', 'cm_translate'); ?>?</h2>
             </div>
         </div>
         <div class="form-group">
@@ -83,13 +83,29 @@
                    for="ct_more_people"><?php _e('How many people will attend', 'cm_translate'); ?>?</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" id="ct_more_people"
-                       placeholder="<?php _e('min 1', 'cm_translate'); ?>">
+                       placeholder="<?php _e('min 1', 'cm_translate'); ?>" value="0">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" id="ct_form_btn">Submit</button>
+                <button type="submit" class="btn btn-default" id="ct_form_btn"><?php _e('Submit', 'cm_translate'); ?></button>
             </div>
         </div>
     </form>
 </div>
+
+<script language="JavaScript">
+    function InvalidMsg(textbox) {
+
+        if (textbox.value == '') {
+            textbox.setCustomValidity('<?php _e('Please fill out this field', 'cm_translate'); ?>');
+        }
+        else if(textbox.validity.typeMismatch){
+            textbox.setCustomValidity('<?php _e('This email address is incorrect', 'cm_translate'); ?>');
+        }
+        else {
+            textbox.setCustomValidity('');
+        }
+        return true;
+    }
+</script>

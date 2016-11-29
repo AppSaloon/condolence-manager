@@ -49,7 +49,7 @@
     text-align: right;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], input[type=email], input[type="tel"] {
     width: 100%;
 }
 
@@ -65,6 +65,16 @@ input[type="number"] {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.succes{
+    background-color: #dff0d8;
+    padding:15px;
+}
+
+.error{
+    background-color: #f2dede;
+    padding:15px;
 }
 
 @media (min-width: 576px) {

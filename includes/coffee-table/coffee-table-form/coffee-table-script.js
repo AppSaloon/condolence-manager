@@ -1,24 +1,5 @@
 jQuery(function ($) {
 
-    function fill_form_for_tests()
-    {
-         $('#ct_name').val('krzysztof');
-         $('#ct_surname').val('test');
-         $('#ct_street').val('wlesie');
-         $('#ct_city').val('sosnowiec');
-         $('#ct_zipcode').val(3530);
-         $('#ct_email').val('sejmaks@gmail.com');
-         $('#ct_gsm').val(352564);
-         $('#ct_more_people').val(1);
-         $('#ct_str_number').val(102);
-         $('#ct_country').val('Polska');
-
-
-    }
-    // only for tests
-    fill_form_for_tests();
-
-
     $('#toggle_coffee_table').click(function(){
         $('#ct_div').toggle();
     });
