@@ -68,7 +68,7 @@ class Metabox{
             </tr>
             <tr>
                 <td><?php _e('Funeral information'); ?></td>
-                <td class="form-field"><input type="text" name="funeralinformation" value="<?php echo $this->get_field_value('funeralinformation', $post->ID); ?>"></td>
+                <td class="form-field"><textarea rows="3" name="funeralinformation" "><?php echo $this->get_field_value('funeralinformation', $post->ID); ?></textarea></td>
             </tr>
             <tr>
                 <td><?php _e('Prayer Vigil information'); ?></td>
