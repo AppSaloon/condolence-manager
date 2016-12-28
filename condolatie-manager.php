@@ -35,7 +35,6 @@ use cm\includes\register\Custom_Post_Type;
 use cm\includes\register\Translation;
 use cm\includes\script\Migrate;
 use cm\includes\script\Post_Type;
-use cm\includes\settings\Permalinks;
 use cm\includes\settings\Select_Fields_To_Show;
 use cm\update\Auto_Update;
 use cm\includes\coffee_table\Coffee_Table_Controller;

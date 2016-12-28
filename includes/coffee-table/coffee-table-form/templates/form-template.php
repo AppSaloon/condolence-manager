@@ -26,22 +26,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2" for="ct_city"><?php _e('City', 'cm_translate'); ?>:</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="ct_city" placeholder="<?php _e('City', 'cm_translate'); ?>">
-            </div>
             <label class="col-sm-2" for="ct_zipcode"><?php _e('Zipcode', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="ct_zipcode"
                        placeholder="<?php _e('Zipcode', 'cm_translate'); ?>"
                        pattern="(?i)^[a-z0-9][a-z0-9\- ]{0,10}[a-z0-9]$">
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2" for="ct_country"><?php _e('Country', 'cm_translate'); ?>:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="ct_country"
-                       placeholder="<?php _e('Country', 'cm_translate'); ?>">
+            <label class="col-sm-2" for="ct_city"><?php _e('City', 'cm_translate'); ?>:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="ct_city" placeholder="<?php _e('City', 'cm_translate'); ?>">
             </div>
         </div>
         <div class="form-group">

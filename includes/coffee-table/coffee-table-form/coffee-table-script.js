@@ -18,7 +18,6 @@ jQuery(function ($) {
         var number = $('#ct_str_number').val();
         var city = $('#ct_city').val();
         var zipcode = $('#ct_zipcode').val();
-        var country = $('#ct_country').val();
         var email = $('#ct_email').val();
         var gsm = $('#ct_gsm').val();
         var post_id = $('#ct_post_id').val();
@@ -43,7 +42,6 @@ jQuery(function ($) {
                 'number'      : number,
                 'city'        : city,
                 'zipcode'     : zipcode,
-                'country'     : country,
                 'email'       : email,
                 'gsm'         : gsm,
                 'post_id'     : post_id,

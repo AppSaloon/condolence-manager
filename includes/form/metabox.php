@@ -20,7 +20,7 @@ class Metabox{
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about deseaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
-        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
+        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -52,7 +52,7 @@ class Metabox{
                 <td class="form-field"><input type="text" name="familyname" value="<?php echo $this->get_field_value('familyname', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Ere titel', 'cm_translate'); ?></td>
+                <td><?php _e('Honorary title', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="text" name="ere_title" value="<?php echo $this->get_field_value('ere_title', $post->ID); ?>"></td>
             </tr>
             <tr>
@@ -95,9 +95,9 @@ class Metabox{
                 </td>
             </tr>
             <tr>
-                <td><?php _e('Bloemen', 'cm_translate'); ?></td>
+                <td><?php _e('Flowers', 'cm_translate'); ?></td>
                 <td class="form-field">
-                    <input id="bloemen" type="checkbox" name="bloemen" value="1" <?php echo ($this->get_field_value('bloemen', $post->ID) == '0' )? '': 'checked' ; ?>>
+                    <input id="flowers" type="checkbox" name="flowers" value="1" <?php echo ($this->get_field_value('flowers', $post->ID) == '0' )? '': 'checked' ; ?>>
                 </td>
             </tr>
             <tr>
@@ -148,7 +148,7 @@ class Metabox{
                         <td valign="top"><?php echo __('Relation ', 'cm_translate').$count; ?></td>
                         <td class="form-field">
                             <select name="relation_id<?php echo $count; ?>" id="relation_id<?php echo $count; ?>">
-                                <option><?php _e('Select relation type'); ?></option>
+                                <option><?php _e('Select relation type', 'cm_translate'); ?></option>
                                 <option value="Single" <?php echo ($relation['type'] == 'Single') ? 'selected' : ''; ?>><?php _e('Single', 'cm_translate'); ?></option>
                                 <option value="Married" <?php echo ($relation['type'] == 'Married') ? 'selected' : ''; ?>><?php _e('Married', 'cm_translate'); ?></option>
                                 <option value="Other" <?php echo ($relation['type'] == 'Other') ? 'selected' : ''; ?>><?php _e('Other', 'cm_translate'); ?></option>
@@ -403,10 +403,10 @@ class Metabox{
                     <option value="yes" <?php if( $this->get_field_value('coffee_table', $post->ID) == 'yes'){ echo "selected"; }  ?> ><?php _e('Yes', 'cm_translate');?></option>
                 </select></li>
             <span id="span_coffee_table_email"  <?php if( $this->get_field_value('coffee_table', $post->ID) != 'yes'  ){ echo "hidden"; }  ?> >
-            <li><label for="coffee_table_email">Email address</label></li>
+            <li><label for="coffee_table_email"><?php _e('Email address', 'cm_translate');?></label></li>
             <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
                     <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
-            <li><input type="submit" name="btn_coffee_table_csv" value="Download CSV list"></li>
+            <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
             </span>
         </ul>
         </td>
@@ -467,10 +467,10 @@ class Metabox{
             update_post_meta( $post_id, $field, $_POST[$field] );
         }
 
-        if(isset($_POST['bloemen'])){
-            update_post_meta( $post_id, 'bloemen', $_POST['bloemen'] );
+        if(isset($_POST['flowers'])){
+            update_post_meta( $post_id, 'flowers', $_POST['git flowers'] );
         }else{
-            update_post_meta( $post_id, 'bloemen', 0 );
+            update_post_meta( $post_id, 'flowers', 0 );
         }
 
         $relations = array();

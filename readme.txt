@@ -1,6 +1,6 @@
 === Condolence manager ===
-Contributors: Appsaloon, Aytaç Kokus, Mieke Nijs
-Tags: Condolence, deceased, comment, reply, private
+Contributors: Appsaloon, Aytaç Kokus, Mieke Nijs, Sebastiaan Kurzynowski
+Tags: Condolence, deceased, comment, reply, private, coffee table
 Donate link: http://www.appsaloon.be/
 Requires at least: 3.0.1
 Tested up to: 4.5.3
@@ -8,20 +8,21 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin allows visitors to condole the family of the deceased.
+This plugin allows visitors to write a message of condolence to the family of the deceased and register to attend the coffee table.
 
 == Description ==
 This plugin is made especially for funeral directors.
 It\'s an online tool to give friends and family the opportunity to show their support to relatives of the deceased.
 
-You can create a post with info and image about the  deseaded and add an obituary to this post. You can determine which fields are displayed in the frontend and in what order.
-Webvisotors can offer one\'s condolence on this obituary notice.
+You can create a post with info and image about the  deseaded and add an obituary to this post.
+You can determine which fields are displayed in the frontend and in what order.
+Webvisotors can offer one\'s condolence on this obituary notice and can register to attend the coffee table.
 
-The funeral director needs to approve the condolences before the family can read and comment.
+The funeral director needs to approve the condolences before the family can read and comment. Registers are send by mail to the familie of the deceased.
 The family is informed by mail when a new condolence is approved and comments on this condolence are send to the mailadres of the person who gave his condolence.
 The plugin generates a unique url where only the family can view these condolences.
 
-To overwrite the frontend template just place a copy of single.php in your theme taken into account our template Hierarchy (condolatie-manager-plugin/single.php)
+To overwrite the frontend template just place a copy of single.php and archive.php in your theme taken into account our template Hierarchy (condolatie-manager-plugin/single.php)
 
 == Installation ==
 1. From the dashboard of your site, navigate to Plugins --> Add New.
@@ -35,4 +36,6 @@ To overwrite the frontend template just place a copy of single.php in your theme
 == Screenshots ==
 1. Condolences postfields - overview
 2. Condolences postfields - create private url for the family to view the condolences and reply
-3. Condolence manager -  Determine which fields are displayed and in what order
+3. Condolences postfields - add coffee table registration form to frond-end and add emailaddress to send registrations to
+4. Condolence manager -  Determine which fields are displayed and in what order
+

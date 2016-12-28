@@ -8,11 +8,10 @@ class Coffee_Table_Controller
 	 */
 	public $headers;
 
-    function __construct( array $headers = ['Name', 'Surname', 'Email', 'Telephone number',  'Address', 'How many people?'])
+    function __construct( array $headers = array('Name', 'Surname', 'Email', 'Telephone number',  'Address', 'How many people?'))
     {
 	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
-        add_filter( 'gform_pre_send_email', array( $this, 'to_family_email_by_gravityform') );
         add_action( 'wp_ajax_coffee_form_submission',array($this, 'receive_form_data'));
         add_action( 'wp_ajax_nopriv_coffee_form_submission',array($this, 'receive_form_data'));
         add_action('send_email_to_family', array( $this, 'send_email_to_family' ));
@@ -32,12 +31,11 @@ class Coffee_Table_Controller
         $str_number = sanitize_text_field( $_POST['number'] );
         $city =  sanitize_text_field( $_POST['city'] );
         $zipcode =  sanitize_text_field( $_POST['zipcode']);
-        $country = sanitize_text_field( $_POST['country'] );
         $email =  sanitize_email($_POST['email']);
         $telephone =  sanitize_text_field( $_POST['gsm'] );
         $post_id =  sanitize_text_field( $_POST['post_id']);
 
-        $address = $street . ' ' . $str_number . ' ' . $zipcode . ' ' . $city . ' ' . $country ;
+        $address = $street . ' ' . $str_number . ' ' . $zipcode . ' ' . $city ;
         $more_people =   intval( sanitize_text_field($_POST['more_people']));
 
 
@@ -81,42 +79,6 @@ class Coffee_Table_Controller
 			$this->download_csv($id);
 		}
 	}
-
-	/**
-	 * @param $content
-	 *
-	 * @return mixed
-	 * save data from gravity form as meta value string
-	 */
-    public function gf_data_saver($content)
-    {
-
-		if( $content ){
-			$name = trim(sanitize_text_field($content[1]));
-			$surname = trim(sanitize_text_field($content[2]));
-			$email = trim(sanitize_text_field($content[4]));
-			$gsm = trim(sanitize_text_field($content[3]));
-			$post_id = trim(sanitize_text_field($content[5]));
-
-			$address = $content['6.1'] .' '. $content['6.2'] .' '. $content['6.3'] .' '. $content['6.5'] .' '. $content['6.6'];
-
-			$participant = new Coffee_Table_Model();
-			$participant->set_post_id($post_id);
-			$participant->set_name($name);
-			$participant->set_surname($surname);
-			$participant->set_email($email);
-			$participant->set_telephone($gsm);
-			$participant->set_address(trim($address));
-			$participant->set_participants($content[7]);
-
-
-			$participant->save_as_metavalue_string();
-			unset($participant);
-
-		}
-
-        return $content;
-    }
 
 	/**
 	 * @param $id
@@ -220,41 +182,25 @@ class Coffee_Table_Controller
 	 * @param string $filename
 	 * necessary function to download csv file
 	 */
-	public function export_csv($headers, $data, $filename = 'coffee table'){
-		header('Content-Description: File Transfer');
-		header('Content-Encoding: UTF-8');
-		header('Content-Type: text/csv; charset=UTF-8');
-		header('Content-Disposition: attachment; filename='.$filename.'.csv');
-		header('Content-Transfer-Encoding: binary');
-		echo "\xEF\xBB\xBF";
-
-		$output = fopen('php://output', 'w');
-
-		fputcsv($output, $headers);
-
-		foreach( $data as $fields ){
-			fputcsv($output, $fields);
-		}
-
-		fclose($output);
-		die;
-	}
-
-    /**
-     * @param $email
-     * @return mixed
-     * change email address to send on address from options
-     * redirect gf_email
-     */
-	public function to_family_email_by_gravityform( $email )
+	public function export_csv($headers, $data, $filename = 'coffee table')
     {
-        $email_address =  get_post_meta(get_the_ID(), 'coffee_table_email', true);
+        header('Content-Description: File Transfer');
+        header('Content-Encoding: UTF-8');
+        header('Content-Type: text/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename=' . $filename . '.csv');
+        header('Content-Transfer-Encoding: binary');
+        echo "\xEF\xBB\xBF";
 
-        if( $email_address ){
-            $email['to'] = $email_address;
+        $output = fopen('php://output', 'w');
+
+        fputcsv($output, $headers);
+
+        foreach ($data as $fields) {
+            fputcsv($output, $fields);
         }
 
-        return $email;
+        fclose($output);
+        die;
     }
 
     public function send_email_to_family( $participant )
