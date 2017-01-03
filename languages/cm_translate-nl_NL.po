@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
 "POT-Creation-Date: 2016-12-20 08:36+0100\n"
-"PO-Revision-Date: 2016-12-20 08:37+0100\n"
+"PO-Revision-Date: 2017-01-03 08:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -340,7 +340,7 @@ msgstr "Genereer een token"
 
 #: includes/form/metabox.php:389
 msgid "Link to view comments"
-msgstr "Link om connotaties te bekijken"
+msgstr "Link om condolaties te bekijken"
 
 #: includes/form/metabox.php:402
 msgid "No"
