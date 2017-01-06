@@ -416,6 +416,9 @@ class Metabox{
             echo '<li><p>'.__('Participants: ', 'cm_translate'). $sum_participants .'</p></li>';
             ?>
             </span>
+            <?php echo  is_numeric( $sum_emails ) ? '<li><p>'. __( 'Emails: ', 'cm_translate' ) . $sum_emails .'</p></li>' : false;
+            echo '<li><p>'.__('Participants: ', 'cm_translate'). $sum_participants .'</p></li>';
+            ?>
         </ul>
         </td>
         </tr>
