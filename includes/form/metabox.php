@@ -2,6 +2,7 @@
 
 namespace cm\includes\form;
 
+use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\register\Custom_Post_Type;
 
 class Metabox{
@@ -395,6 +396,9 @@ class Metabox{
      */
     public function csv_calback($post)
     {
+        $controller = new Coffee_Table_Controller();
+        $sum_participants = $controller->get_sum_of_otherparticipants( $post->ID );
+        $sum_emails = $controller->get_sum_of_posts( $post->ID );
         ?>
         <ul>
             <li><?php _e('Coffee table', 'cm_translate');?></li>
@@ -408,6 +412,9 @@ class Metabox{
                     <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
             <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
             </span>
+            <?php echo  is_numeric( $sum_emails ) ? '<li><p>'. __( 'Emails: ', 'cm_translate' ) . $sum_emails .'</p></li>' : false;
+            echo '<li><p>'.__('Participants: ', 'cm_translate'). $sum_participants .'</p></li>';
+            ?>
         </ul>
         </td>
         </tr>
