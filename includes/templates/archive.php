@@ -128,7 +128,7 @@ get_header(); ?>
                                     </div>
                                 <?php } ?>
                             </div>
-                            <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
+                            <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="<?php _e('Condole', 'cm_translate'); ?>">
 
 
                             <?php
@@ -152,11 +152,11 @@ get_header(); ?>
                             }
 
                             if ($values["masscard"][0]) {
-                                $string = $values["masscard"][0];
-                                echo '<a class="btn-masscard" target="_blank" href="' . $string . '" >';
-                                echo __('Mass card', 'cm_translate');
-                                echo '</a>';
-                            }
+                                $string = $values["masscard"][0]; ?>
+                                <input type="button"
+                                           onclick="location.href='<?php echo $string; ?>'"
+                                           value="<?php _e('Mass card', 'cm_translate'); ?>">
+                           <?php }
                             ?>
                         </div>
                         <footer class="entry-meta">
