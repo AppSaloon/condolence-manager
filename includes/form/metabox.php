@@ -2,6 +2,7 @@
 
 namespace cm\includes\form;
 
+use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\register\Custom_Post_Type;
 
 class Metabox{
@@ -20,7 +21,7 @@ class Metabox{
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about deseaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
-        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
+        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'coffee_table_metabox'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -392,9 +393,13 @@ class Metabox{
 
     /**
      * form to download coffee table list
+     * show number of
      */
-    public function csv_calback($post)
+    public function coffee_table_metabox($post)
     {
+        $controller = new Coffee_Table_Controller();
+        $sum_participants = $controller->get_sum_of_otherparticipants( $post->ID );
+        $sum_emails = $controller->get_sum_of_posts( $post->ID );
         ?>
         <ul>
             <li><?php _e('Coffee table', 'cm_translate');?></li>
@@ -407,6 +412,9 @@ class Metabox{
             <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
                     <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
             <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
+            <?php echo  is_numeric( $sum_emails ) ? '<li><p>'. __( 'Emails: ', 'cm_translate' ) . $sum_emails .'</p></li>' : false;
+            echo '<li><p>'.__('Participants: ', 'cm_translate'). $sum_participants .'</p></li>';
+            ?>
             </span>
         </ul>
         </td>

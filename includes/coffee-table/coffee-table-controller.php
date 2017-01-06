@@ -46,7 +46,7 @@ class Coffee_Table_Controller
             $participant->set_telephone($telephone);
             $participant->set_email($email);
             $participant->set_address($address);
-            $participant->set_participants($more_people);
+            $participant->set_participants(intval($more_people));
             $result = $participant->save_as_metavalue_string();
         }
 
@@ -141,15 +141,66 @@ class Coffee_Table_Controller
 	    return $result;
     }
 
-	/**
-	 * @param null $id
+    private function get_all_participants_in_array( $post_id = null )
+    {
+        $result = $this->all_participants_by_id( $post_id );
+        return  $this->result_to_array_objects( $result );
+    }
+
+    /**
+     * @param $post_id
+     * @return int
+     * I use this function to sum all participants from all of
+     * email send to coffee table
+     */
+    public function  get_sum_of_otherparticipants( $post_id )
+    {
+        $participants = $this->get_all_participants_in_array( $post_id );
+
+        $sum = 0;
+
+        foreach ( $participants as $participant ){
+            if( isset( $participant->otherparticipants ) && is_numeric( $participant->otherparticipants ) ){
+                $sum += $participant->otherparticipants;
+            }
+        }
+
+        return $sum;
+    }
+
+    /**
+     * i use this function to check how many
+     * people have already send email for C. T. meeting
+     * and how many people will participate in meeting
+     */
+    public function get_sum_of_posts( $post_id = null )
+    {
+        if ( ! $post_id ){
+            return;
+        }
+
+        global $wpdb;
+
+        $number_of_rows = $wpdb->get_var(
+            "
+            SELECT COUNT(*)
+            FROM ". $wpdb->postmeta ."
+            WHERE post_id = '".$post_id."'
+            AND   meta_key LIKE '_coffee_table_%'      
+            "
+        );
+
+        return $number_of_rows;
+    }
+
+/**
+	 * @param null post_id
 	 * download csv file when receive correct ID
 	 */
-    public function download_csv($id = null)
+    public function download_csv($post_id = null)
     {
-    	if ( $id ){
-		    $result = $this->all_participants_by_id($id);
-		    $array = $this->result_to_array_objects($result);
+    	if ( $post_id ){
+		    $array = $this->get_all_participants_in_array( $post_id );
 
 		    $data = array();
 
