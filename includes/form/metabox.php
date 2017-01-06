@@ -54,7 +54,7 @@ class Metabox{
             </tr>
             <tr>
                 <td><?php _e('Honorary title', 'cm_translate'); ?></td>
-                <td class="form-field"><input type="text" name="ere_title" value="<?php echo $this->get_field_value('ere_title', $post->ID); ?>"></td>
+                <td class="form-field"><input type="text" name="honoraryitle" value="<?php echo $this->get_field_value('honoraryitle', $post->ID); ?>"></td>
             </tr>
             <tr>
                 <td><?php _e('Birthplace', 'cm_translate'); ?></td>
@@ -466,7 +466,7 @@ class Metabox{
             'masscard',
             'password',
             'email',
-            'ere_title',
+            'honoraryitle',
             'coffee_table',
             'coffee_table_email'
         );

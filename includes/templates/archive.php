@@ -92,9 +92,9 @@ get_header(); ?>
                                         }
                                     }
                                     ?></div>
-                                <div class="deceased-partner">Geboren te <?php echo $values["birthplace"][0]; ?>
+                                <div class="deceased-partner"><?php echo __('Born in','cm_translate') . '&nbsp;'. $values["birthplace"][0]; ?>
                                     <?php if(isset($values["birthdate"][0]) && $values["birthdate"][0] != ''){
-                                        echo 'op ';
+                                        echo  __('on','cm_translate'). ' ';
                                     }
                                     $date = $values["birthdate"][0];
                                     $pieces = explode("-", $date);
@@ -103,9 +103,9 @@ get_header(); ?>
                                     echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
                                     ?>
                                 </div>
-                                <div class="deceased-place-died">Overleden te <?php echo $values["placeofdeath"][0]; ?>
+                                <div class="deceased-place-died"><?php echo  __('Passed away in','cm_translate') . '&nbsp;'.$values["placeofdeath"][0]; ?>
                                     <?php if(isset($values["dateofdeath"][0]) && $values["dateofdeath"][0] != ''){
-                                       echo 'op ';
+                                       echo __('on','cm_translate'). ' ';
                                     }
                                     $date = $values["dateofdeath"][0];
                                     $pieces = explode("-", $date);
@@ -128,11 +128,27 @@ get_header(); ?>
                                     </div>
                                 <?php } ?>
                             </div>
+
+                            <?php if ($values["masscard"][0]) {
+                            $string = $values["masscard"][0]; ?>
+                            <input type="button"
+                                   onclick="location.href='<?php echo $string; ?>'"
+                                   value="<?php _e('Mass card', 'cm_translate'); ?>">
+                            <?php }
+                            ?>
                             <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="<?php _e('Condole', 'cm_translate'); ?>">
 
 
                             <?php
-                            if ($values["flowers"][0]) {
+
+                            if ($values['coffee_table'][0] == 'yes') {
+                                ?>
+                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'"
+                                       value="<?php _e('Coffee Table', 'cm_translate'); ?>">
+                                <?php
+                            }
+
+                            if ($values["flowers"][0] !== 0) {
 
                                 $string = $values["flowers"][0];
 
@@ -143,21 +159,9 @@ get_header(); ?>
                                 <?php }
                             }
 
-
-                            if ($values['coffee_table'][0] == 'yes') {
-                                ?>
-                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'"
-                                       value="<?php _e('Coffee Table', 'cm_translate'); ?>">
-                                <?php
-                            }
-
-                            if ($values["masscard"][0]) {
-                                $string = $values["masscard"][0]; ?>
-                                <input type="button"
-                                           onclick="location.href='<?php echo $string; ?>'"
-                                           value="<?php _e('Mass card', 'cm_translate'); ?>">
-                           <?php }
                             ?>
+
+
                         </div>
                         <footer class="entry-meta">
                             <?php edit_post_link(__('Edit', 'cm-translation'), '<span class="edit-link">', '</span>'); ?>
