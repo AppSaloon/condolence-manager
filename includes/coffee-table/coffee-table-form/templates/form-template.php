@@ -1,4 +1,4 @@
-<div id="ct_div" hidden>
+<div id="ct_div" style="display: none;">
     <p id="ct_form_message" class="ct_form"></p>
     <form class="form-horizontal" id="ct_form">
         <div class="form-group">

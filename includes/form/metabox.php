@@ -409,7 +409,7 @@ class Metabox{
                 </select></li>
             <span id="span_coffee_table_email"  <?php if( $this->get_field_value('coffee_table', $post->ID) != 'yes'  ){ echo "hidden"; }  ?> >
             <li><label for="coffee_table_email"><?php _e('Email address', 'cm_translate');?></label></li>
-            <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
+            <li> <input type="text" name="coffee_table_email" id="coffee_table_email"
                     <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
             <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
             <?php echo  is_numeric( $sum_emails ) ? '<li><p>'. __( 'Emails: ', 'cm_translate' ) . $sum_emails .'</p></li>' : false;
