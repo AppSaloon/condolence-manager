@@ -10,13 +10,11 @@ class Coffee_Table_Controller
 
     function __construct( array $headers = array('Name', 'Surname', 'Email', 'Telephone number',  'Address', 'How many people?'))
     {
-	    add_filter('gform_after_submission', array( $this, 'gf_data_saver' ));
 	    add_action('init', array($this, 'download_csv_by_id'));
         add_action( 'wp_ajax_coffee_form_submission',array($this, 'receive_form_data'));
         add_action( 'wp_ajax_nopriv_coffee_form_submission',array($this, 'receive_form_data'));
         add_action('send_email_to_family', array( $this, 'send_email_to_family' ));
         $this->headers = $headers;
-
     }
 
     /**
