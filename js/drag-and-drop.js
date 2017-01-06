@@ -36,13 +36,15 @@
 
 
         $("input.btn-set-fields").on('click', function(e){
-            var table = [];
+            var table = {};
             e.preventDefault();
             $( "ul.show li.ui-sortable-handle" ).each(function( index ) {
-                var text = $( this ).text();
-                table.push( text.substr(0, text.length -1) );
+                var attr = $(this).attr('data-value');
+                var text = $(this).text();
+                text =  text.substr(0, text.length -1);
+                table[attr] = text;
             });
-            var dataSet = JSON.stringify(table);
+
             $.ajax(
                 {
                     url: dragAndDrop.ajaxUrl,

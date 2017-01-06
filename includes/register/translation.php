@@ -10,6 +10,6 @@ Class Translation{
     }
 
     public function myplugin_load_textdomain(){
-        load_plugin_textdomain( 'cm_translate', false, 'condolatie-manager-plugin/languages'  );
+        load_plugin_textdomain( 'cm_translate', false, CM_BASE_NAME.'/languages'  );
     }
 }

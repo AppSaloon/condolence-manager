@@ -18,8 +18,9 @@ class Metabox{
      * Add metabox information about departed soul and metabox about information for the family
      */
     public function add_metaboxes(){
-        add_meta_box('wpt_condolence_person_location', __('Information about deseaded'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
-        add_meta_box('wpt_condolence_person_location_side', __('View comments'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
+        add_meta_box('wpt_condolence_person_location', __('Information about deseaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
+        add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
+        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -33,37 +34,41 @@ class Metabox{
         ?>
         <table class="form-table">
             <tr>
-                <td><?php _e('Gender'); ?></td>
+                <td><?php _e('Gender', 'cm_translate'); ?></td>
                 <td class="form-field">
                     <select name="gender">
-                        <option>Select gender</option>
-                        <option value="Male" <?php echo ($this->get_field_value('gender', $post->ID) == 'Male') ? 'selected' : ''; ?>><?php _e('Male'); ?></option>
-                        <option value="Female" <?php echo ($this->get_field_value('gender', $post->ID) == 'Female') ? 'selected' : ''; ?>><?php _e('Female'); ?></option>
+                        <option><?php _e('Select gender', 'cm_translate');?></option>
+                        <option value="Male" <?php echo ($this->get_field_value('gender', $post->ID) == 'Male') ? 'selected' : ''; ?>><?php _e('Male', 'cm_translate'); ?></option>
+                        <option value="Female" <?php echo ($this->get_field_value('gender', $post->ID) == 'Female') ? 'selected' : ''; ?>><?php _e('Female', 'cm_translate'); ?></option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td><?php _e('Name'); ?></td>
+                <td><?php _e('Name', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="text" name="name" value="<?php echo $this->get_field_value('name', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Family name'); ?></td>
+                <td><?php _e('Family name', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="text" name="familyname" value="<?php echo $this->get_field_value('familyname', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Birthplace'); ?></td>
+                <td><?php _e('Honorary title', 'cm_translate'); ?></td>
+                <td class="form-field"><input type="text" name="ere_title" value="<?php echo $this->get_field_value('ere_title', $post->ID); ?>"></td>
+            </tr>
+            <tr>
+                <td><?php _e('Birthplace', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="text" name="birthplace" value="<?php echo $this->get_field_value('birthplace', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Birthdate'); ?></td>
+                <td><?php _e('Birthdate', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="date" name="birthdate" value="<?php echo $this->get_field_value('birthdate', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Place of death'); ?></td>
+                <td><?php _e('Place of death', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="text" name="placeofdeath" value="<?php echo $this->get_field_value('placeofdeath', $post->ID); ?>"></td>
             </tr>
             <tr>
-                <td><?php _e('Date of death'); ?></td>
+                <td><?php _e('Date of death', 'cm_translate'); ?></td>
                 <td class="form-field"><input type="date" name="dateofdeath" value="<?php echo $this->get_field_value('dateofdeath', $post->ID); ?>"></td>
             </tr>
             <tr>
@@ -71,22 +76,28 @@ class Metabox{
                 <td class="form-field"><textarea rows="3" name="funeralinformation" "><?php echo $this->get_field_value('funeralinformation', $post->ID); ?></textarea></td>
             </tr>
             <tr>
-                <td><?php _e('Prayer Vigil information'); ?></td>
+                <td><?php _e('Prayer Vigil information', 'cm_translate'); ?></td>
                 <td class="form-field"><textarea rows="3" name="prayervigilinformation"><?php echo $this->get_field_value('prayervigilinformation', $post->ID); ?></textarea></td>
             </tr>
             <tr>
-                <td><?php _e('Greeting information'); ?></td>
+                <td><?php _e('Greeting information', 'cm_translate'); ?></td>
                 <td class="form-field"><textarea rows="3" name="greetinginformation"><?php echo $this->get_field_value('greetinginformation', $post->ID); ?></textarea></td>
             </tr>
             <tr>
-                <td><?php _e('Residence'); ?></td>
+                <td><?php _e('Residence', 'cm_translate'); ?></td>
                 <td class="form-field"><textarea rows="3" name="residence"><?php echo $this->get_field_value('residence', $post->ID); ?></textarea></td>
             </tr>
             <tr>
-                <td><?php _e('Mass card'); ?></td>
+                <td><?php _e('Mass card', 'cm_translate'); ?></td>
                 <td class="form-field">
                     <input id="upload_media" type="text" name="masscard" value="<?php echo $this->get_field_value('masscard', $post->ID); ?>">
-                    <input id="upload_media_button" class="button" type="button" value="<?php _e('Choose mass card'); ?>" />
+                    <input id="upload_media_button" class="button" type="button" value="<?php _e('Choose mass card', 'cm_translate'); ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td><?php _e('Flowers', 'cm_translate'); ?></td>
+                <td class="form-field">
+                    <input id="flowers" type="checkbox" name="flowers" value="1" <?php echo ($this->get_field_value('flowers', $post->ID) == '0' )? '': 'checked' ; ?>>
                 </td>
             </tr>
             <tr>
@@ -96,33 +107,33 @@ class Metabox{
                 <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="2"><b>Relations</b><hr></td>
+                <td colspan="2"><b><?php _e('Relations', 'cm_translate'); ?></b><hr></td>
             </tr>
             <?php
             $relations = get_post_meta( $post->ID, 'relations', false );
 
-            if( !$relations || ( is_array($relations) && empty( $relations[0] ) ) ) {
+            if( !$relations ) {
                 ?>
                 <tr>
-                    <td valign="top"><?php _e('Relation 1'); ?></td>
+                    <td valign="top"><?php _e('Relation 1', 'cm_translate'); ?></td>
                     <td class="form-field">
                         <select name="relation_id1" id="relation_id1">
-                            <option><?php _e('Select relation type'); ?></option>
-                            <option value="Single"><?php _e('Single'); ?></option>
-                            <option value="Married"><?php _e('Married'); ?></option>
-                            <option value="Other"><?php _e('Other'); ?></option>
+                            <option><?php _e('Select relation type', 'cm_translate'); ?></option>
+                            <option value="Single"><?php _e('Single', 'cm_translate'); ?></option>
+                            <option value="Married"><?php _e('Married', 'cm_translate'); ?></option>
+                            <option value="Other"><?php _e('Other', 'cm_translate'); ?></option>
                         </select>
-                        <button class="add_more"><span class="dashicons dashicons-plus-alt" title="<?php _e('Add more relation'); ?>"></span></button>
+                        <button class="add_more"><span class="dashicons dashicons-plus-alt" title="<?php _e('Add more relation', 'cm_translate'); ?>"></span></button>
                         <div class="relation1_more_information">
                             <input type="text" class="relation1_other" name="relation1_other"
-                                   placeholder="<?php _e('Relation name'); ?>">
-                            <input type="text" name="relation1_name" placeholder="<?php _e('Name'); ?>">
-                            <input type="text" name="relation1_familyname" placeholder="<?php _e('Family name'); ?>">
-                            <?php _e('Is alive?'); ?> <input type="checkbox" name="relation1_alive">
+                                   placeholder="<?php _e('Relation name', 'cm_translate'); ?>">
+                            <input type="text" name="relation1_name" placeholder="<?php _e('Name', 'cm_translate'); ?>">
+                            <input type="text" name="relation1_familyname" placeholder="<?php _e('Family name', 'cm_translate'); ?>">
+                            <?php _e('Is alive?', 'cm_translate'); ?> <input type="checkbox" name="relation1_alive">
                             <select name="relation1_gender">
                                 <option>Select gender</option>
-                                <option value="Male"><?php _e('Male'); ?></option>
-                                <option value="Female"><?php _e('Female'); ?></option>
+                                <option value="Male"><?php _e('Male', 'cm_translate'); ?></option>
+                                <option value="Female"><?php _e('Female', 'cm_translate'); ?></option>
                             </select>
                         </div>
                     </td>
@@ -134,32 +145,32 @@ class Metabox{
                 foreach( $relations as $relation ){
                     ?>
                     <tr>
-                        <td valign="top"><?php _e('Relation '.$count); ?></td>
+                        <td valign="top"><?php echo __('Relation ', 'cm_translate').$count; ?></td>
                         <td class="form-field">
                             <select name="relation_id<?php echo $count; ?>" id="relation_id<?php echo $count; ?>">
-                                <option><?php _e('Select relation type'); ?></option>
-                                <option value="Single" <?php echo ($relation['type'] == 'Single') ? 'selected' : ''; ?>><?php _e('Single'); ?></option>
-                                <option value="Married" <?php echo ($relation['type'] == 'Married') ? 'selected' : ''; ?>><?php _e('Married'); ?></option>
-                                <option value="Other" <?php echo ($relation['type'] == 'Other') ? 'selected' : ''; ?>><?php _e('Other'); ?></option>
+                                <option><?php _e('Select relation type', 'cm_translate'); ?></option>
+                                <option value="Single" <?php echo ($relation['type'] == 'Single') ? 'selected' : ''; ?>><?php _e('Single', 'cm_translate'); ?></option>
+                                <option value="Married" <?php echo ($relation['type'] == 'Married') ? 'selected' : ''; ?>><?php _e('Married', 'cm_translate'); ?></option>
+                                <option value="Other" <?php echo ($relation['type'] == 'Other') ? 'selected' : ''; ?>><?php _e('Other', 'cm_translate'); ?></option>
                             </select>
                             <?php
                             if( $count == 1 ){
-                                ?> <button class="add_more"><span class="dashicons dashicons-plus-alt" title="<?php _e('Add more relation'); ?>"></span></button> <?php
+                                ?> <button class="add_more"><span class="dashicons dashicons-plus-alt" title="<?php _e('Add more relation', 'cm_translate'); ?>"></span></button> <?php
                             }else{
-                                ?> <span class="dashicons dashicons-dismiss" title="<?php _e('Remove relation'); ?>"></span> <?php
+                                ?> <span class="dashicons dashicons-dismiss" title="<?php _e('Remove relation', 'cm_translate'); ?>"></span> <?php
                             }
                             ?>
 
 
                             <div class="relation<?php echo $count; ?>_more_information" <?php echo ($relation['type'] == 'Single') ? 'style="display:none;"' : ''; ?>>
-                                <input type="text" class="relation<?php echo $count; ?>_other" name="relation<?php echo $count; ?>_other" placeholder="<?php _e('Relation name'); ?>" value="<?php echo $relation['other']; ?>" <?php echo ($relation['type'] == 'Married') ? 'style="display:none;"' : ''; ?>>
-                                <input type="text" name="relation<?php echo $count; ?>_name" placeholder="<?php _e('Name'); ?>" value="<?php echo $relation['name']; ?>">
-                                <input type="text" name="relation<?php echo $count; ?>_familyname" placeholder="<?php _e('Family name'); ?>" value="<?php echo $relation['familyname']; ?>">
-                                <?php _e('Is alive?'); ?> <input type="checkbox" name="relation<?php echo $count; ?>_alive" <?php echo ($relation['alive'] == '1') ? 'checked': ''; ?>>
+                                <input type="text" class="relation<?php echo $count; ?>_other" name="relation<?php echo $count; ?>_other" placeholder="<?php _e('Relation name', 'cm_translate'); ?>" value="<?php echo $relation['other']; ?>" <?php echo ($relation['type'] == 'Married') ? 'style="display:none;"' : ''; ?>>
+                                <input type="text" name="relation<?php echo $count; ?>_name" placeholder="<?php _e('Name', 'cm_translate'); ?>" value="<?php echo $relation['name']; ?>">
+                                <input type="text" name="relation<?php echo $count; ?>_familyname" placeholder="<?php _e('Family name', 'cm_translate'); ?>" value="<?php echo $relation['familyname']; ?>">
+                                <?php _e('Is alive?', 'cm_translate'); ?> <input type="checkbox" name="relation<?php echo $count; ?>_alive" <?php echo ($relation['alive'] == '1') ? 'checked': ''; ?>>
                                 <select name="relation<?php echo $count; ?>_gender">
-                                    <option>Select gender</option>
-                                    <option value="Male" <?php echo ($relation['gender'] == 'Male') ? 'selected' : ''; ?>><?php _e('Male'); ?></option>
-                                    <option value="Female" <?php echo ($relation['gender'] == 'Female') ? 'selected' : ''; ?>><?php _e('Female'); ?></option>
+                                    <option><?php _e('Select gender', 'cm_translate'); ?></option>
+                                    <option value="Male" <?php echo ($relation['gender'] == 'Male') ? 'selected' : ''; ?>><?php _e('Male', 'cm_translate'); ?></option>
+                                    <option value="Female" <?php echo ($relation['gender'] == 'Female') ? 'selected' : ''; ?>><?php _e('Female', 'cm_translate'); ?></option>
                                 </select>
                             </div>
                         </td>
@@ -180,9 +191,9 @@ class Metabox{
 
                     //Extend the wp.media object
                     custom_uploader = wp.media.frames.file_frame = wp.media({
-                        title: '<?php _e('Choose mass card'); ?>',
+                        title: '<?php _e('Choose mass card', 'cm_translate'); ?>',
                         button: {
-                            text: '<?php _e('Choose mass card'); ?>'
+                            text: '<?php _e('Choose mass card', 'cm_translate'); ?>'
                         },
                         multiple: false
                     });
@@ -208,7 +219,7 @@ class Metabox{
                         .append($('<tr>')
                             .append($('<td>')
                                 .append($('<label>')
-                                    .text('<?php _e('Relation'); ?> '+nummer)
+                                    .text('<?php _e('Relation', 'cm_translate'); ?> '+nummer)
                                 )
                             )
                             .append($('<td>')
@@ -219,48 +230,48 @@ class Metabox{
                                     .attr('id', 'relation_id'+nummer)
                                     .append($('<option>')
                                         .attr('value', '')
-                                        .html('<?php _e('Select relation type'); ?>')
+                                        .html('<?php _e('Select relation type', 'cm_translate'); ?>')
                                     )
                                     .append($('<option>')
                                         .attr('value', 'Single')
-                                        .html('<?php _e('Single'); ?>')
+                                        .html('<?php _e('Single', 'cm_translate'); ?>')
                                     )
                                     .append($('<option>')
                                         .attr('value', 'Married')
-                                        .html('<?php _e('Married'); ?>')
+                                        .html('<?php _e('Married', 'cm_translate'); ?>')
                                     )
                                     .append($('<option>')
                                         .attr('value', 'Other')
-                                        .html('<?php _e('Other'); ?>')
+                                        .html('<?php _e('Other', 'cm_translate'); ?>')
                                     )
                                 )
                                 .append($('<span>')
                                     .attr('class', 'dashicons dashicons-dismiss')
-                                    .attr('title', '<?php _e('Remove relation'); ?>' )
+                                    .attr('title', '<?php _e('Remove relation', 'cm_translate'); ?>' )
                                 )
 
                                 .append($('<div>')
                                     .attr('class', 'relation'+nummer+'_more_information')
 
                                     .append($('<input>')
-                                        .attr('type', 'text')
-                                        .attr('class', 'relation'+nummer+'_other')
-                                        .attr('name', 'relation'+nummer+'_other')
-                                        .attr('placeholder', '<?php _e('Relation name'); ?>')
+                                            .attr('type', 'text')
+                                            .attr('class', 'relation'+nummer+'_other')
+                                            .attr('name', 'relation'+nummer+'_other')
+                                            .attr('placeholder', '<?php _e('Relation name', 'cm_translate'); ?>')
                                         //.attr('style', 'display:none')
                                     )
                                     .append($('<input>')
-                                        .attr('type', 'text')
-                                        .attr('class', 'relation'+nummer+'_name')
-                                        .attr('name', 'relation'+nummer+'_name')
-                                        .attr('placeholder', '<?php _e('Name'); ?>')
+                                            .attr('type', 'text')
+                                            .attr('class', 'relation'+nummer+'_name')
+                                            .attr('name', 'relation'+nummer+'_name')
+                                            .attr('placeholder', '<?php _e('Name', 'cm_translate'); ?>')
                                         //.attr('style', 'display:none')
                                     )
                                     .append($('<input>')
-                                        .attr('type', 'text')
-                                        .attr('class', 'relation'+nummer+'_familyname')
-                                        .attr('name', 'relation'+nummer+'_familyname')
-                                        .attr('placeholder', '<?php _e('Family name'); ?>')
+                                            .attr('type', 'text')
+                                            .attr('class', 'relation'+nummer+'_familyname')
+                                            .attr('name', 'relation'+nummer+'_familyname')
+                                            .attr('placeholder', '<?php _e('Family name', 'cm_translate'); ?>')
                                         //.attr('style', 'display:none')
                                     )
                                     .append('<?php _e('Is alive?'); ?> ')
@@ -273,16 +284,16 @@ class Metabox{
                                         .attr('name', 'relation'+nummer+'_gender')
                                         .append($('<option>')
                                             .attr('value', '')
-                                            .html('<?php _e('Select a gender'); ?>')
+                                            .html('<?php _e('Select a gender', 'cm_translate'); ?>')
                                         )
 
                                         .append($('<option>')
                                             .attr('value', 'Male')
-                                            .html('<?php _e('Male'); ?>')
+                                            .html('<?php _e('Male', 'cm_translate'); ?>')
                                         )
                                         .append($('<option>')
                                             .attr('value', 'Female')
-                                            .html('<?php _e('Female'); ?>')
+                                            .html('<?php _e('Female', 'cm_translate'); ?>')
                                         )
                                     )
                                 )
@@ -292,7 +303,7 @@ class Metabox{
 
                 $(document).on('click', '.dashicons-dismiss', function(e){
                     e.preventDefault();
-                    if( confirm('<?php _e('Are you sure to delete this relation?'); ?>') ){
+                    if( confirm('<?php _e('Are you sure to delete this relation?', 'cm_translate'); ?>') ){
                         $(this).parent().parent().remove();
                     }
 
@@ -364,18 +375,43 @@ class Metabox{
 
         <label><?php _e('View comments', 'cm_translate'); ?></label>
         <?php
-            $permalink = get_post_permalink( $post->ID );
+        $permalink = get_post_permalink( $post->ID );
 
-            if( substr($permalink, -1) == '/' ){
-                $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
-            }
+        if( substr($permalink, -1) == '/' ){
+            $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
+        }
 
-            if( $this->get_field_value('password', $post->ID) ){
-                $permalink .= '?code='.$this->get_field_value('password', $post->ID);
-            }
+        if( $this->get_field_value('password', $post->ID) ){
+            $permalink .= '?code='.$this->get_field_value('password', $post->ID);
+        }
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
         <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments', 'cm_translate'); ?></a>
+        <?php
+    }
+
+    /**
+     * form to download coffee table list
+     */
+    public function csv_calback($post)
+    {
+        ?>
+        <ul>
+            <li><?php _e('Coffee table', 'cm_translate');?></li>
+            <li><select id="coffee_table"  name="coffee_table">
+                    <option value="no"  ><?php _e('No', 'cm_translate');?></option>
+                    <option value="yes" <?php if( $this->get_field_value('coffee_table', $post->ID) == 'yes'){ echo "selected"; }  ?> ><?php _e('Yes', 'cm_translate');?></option>
+                </select></li>
+            <span id="span_coffee_table_email"  <?php if( $this->get_field_value('coffee_table', $post->ID) != 'yes'  ){ echo "hidden"; }  ?> >
+            <li><label for="coffee_table_email"><?php _e('Email address', 'cm_translate');?></label></li>
+            <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
+                    <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
+            <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
+            </span>
+        </ul>
+        </td>
+        </tr>
+
         <?php
     }
 
@@ -421,11 +457,20 @@ class Metabox{
             'gender',
             'masscard',
             'password',
-            'email'
+            'email',
+            'ere_title',
+            'coffee_table',
+            'coffee_table_email'
         );
 
         foreach( $postfields as $field ){
             update_post_meta( $post_id, $field, $_POST[$field] );
+        }
+
+        if(isset($_POST['flowers'])){
+            update_post_meta( $post_id, 'flowers', $_POST['git flowers'] );
+        }else{
+            update_post_meta( $post_id, 'flowers', 0 );
         }
 
         $relations = array();
@@ -448,15 +493,35 @@ class Metabox{
             update_post_meta( $post_id, 'relations', $relations );
         }
 
-        $post_title = $_POST['dateofdeath'] .' - '. $_POST['name'] .' '. $_POST['familyname'];
+        if( isset( $_POST['dateofdeath'] ) && isset( $_POST['name']) && isset( $_POST['familyname']) ){
+            $arraymaand = array(
+                "Januari",
+                "Februari",
+                "Maart",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Augustus",
+                "September",
+                "Oktober",
+                "November",
+                "December"
+            );
+            $date = $_POST['dateofdeath'] ;
+            $pieces = explode("-", $date);
+            $num = intval($pieces[1]);
+            $month = $arraymaand[$num - 1];
+            $post_title =  $pieces[2] . ' ' . $month . ' ' . $pieces[0] .' - '. $_POST['name'] .' '. $_POST['familyname'];
 
-        $post_title_sanitize = sanitize_title($post_title);
+            $post_title_sanitize = sanitize_title($post_title);
 
-        $query = "UPDATE ".$wpdb->posts." SET post_title='".$post_title."', post_name='".$post_title_sanitize."' WHERE ID=".$post_id;
+            $query = "UPDATE ".$wpdb->posts." SET post_title='".$post_title."', post_name='".$post_title_sanitize."' WHERE ID=".$post_id;
 
-        $wpdb->query($query);
+            $wpdb->query($query);
 
-        clean_post_cache( $post_id );
+            clean_post_cache( $post_id );
+        }
     }
 
     /**
@@ -470,7 +535,7 @@ class Metabox{
         $password = get_post_meta($post_id, 'password', true);
 
         if( !empty( $mail ) ){
-            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?code='.$password);
+            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?password='.$password);
         }
 
     }
@@ -480,6 +545,7 @@ class Metabox{
      */
     public function metabox_css_jquery(){
         global $post;
+
         if ( $post->post_type == Custom_Post_Type::post_type() ) {
             wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, '1.0.0'  );
             wp_enqueue_style( 'metabox_css' );
@@ -488,6 +554,9 @@ class Metabox{
             wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php') );
             wp_enqueue_script( 'metabox_js' );
             wp_enqueue_media();
+
+            wp_enqueue_script( 'jquery-datepicker', 'http://jquery-ui.googlecode.com/svn/trunk/ui/jquery.ui.datepicker.js', array('jquery', 'jquery-ui-core' ) );
+            wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
         }
     }
 

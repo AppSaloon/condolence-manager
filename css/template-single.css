@@ -40,9 +40,6 @@ table tbody tr td.text p#name:nth-child(2):after{
 table tbody tr td.text p#birth, table tbody tr td.text p#death{
     display: inline;
 }
-table tbody tr td.text  #birth ~ #birth, table tbody tr td.text  #death ~ #death{
-    padding-left: 5px;
-}
 table tbody tr td.text #birth ~ #birth:after, table tbody tr td.text #death ~ #death:after{
     content: "\a";
     white-space: pre;

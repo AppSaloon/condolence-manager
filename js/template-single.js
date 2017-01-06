@@ -16,6 +16,19 @@ $(document).ready(function(){
         e.preventDefault();
         $("div.comments").toggle();
     });
+    $("#toggle_coffee_table").click(function(e){
+        e.preventDefault();
+        $("#coffee-table-form").toggle();
+    });
+    // if exist error message from gform or succes message
+    // than show div with that content and hide coffee_table_button
+     if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
+         $("##coffee-table-form").show();
+         $("#toggle_coffee_table").hide();
+     }else{
+         $("#toggle_coffee_table").show();
+     }
+
     if($(".comment-form-error-box").length > 0){
         $("div.comments").show();
     }
