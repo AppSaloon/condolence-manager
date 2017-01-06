@@ -205,18 +205,75 @@ class Coffee_Table_Controller
 
     public function send_email_to_family( $participant )
     {
+        /**
+         * i get extra information about person who passed away
+         * because i need this in email
+         * email /
+         */
+        $detail_to_email = $this->get_meta_for_email( intval( $participant->post_id ) );
 
-        $to = get_post_meta( $participant->post_id , 'coffee_table_email', true);
+        if (  empty( $detail_to_email ) ){
+            return;
+        }
 
-        $subject = 'subject';
-
+        /**
+         * extract 3 varibles to space of this function
+         * dead_man_name / dead_man_surname / to
+         */
+        extract( $detail_to_email );
 
         include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/email.php' );
         $body = ob_get_clean();
         $headers = array('Content-Type: text/html; charset=UTF-8');
 
         wp_mail( $to, $subject, $body, $headers );
+    }
 
+    public function get_meta_for_email( $post_id = null )
+    {
+        if ( ! $post_id || ! is_numeric( $post_id )  ){
+            error_log('post_id passed as argument to function get_meta_for_email is empty or not numeric');
+            return;
+        }
+
+        global $wpdb;
+
+        $post_meta_for_email = $wpdb->get_results(
+            "
+            SELECT meta_key, meta_value
+            FROM ". $wpdb->postmeta ."
+            WHERE post_id = '".$post_id."'
+            AND ( meta_key = 'familyname' OR meta_key = 'coffee_table_email' OR meta_key = 'name' )     
+            "
+        );
+
+        if ( empty( $post_meta_for_email ) || ! is_array( $post_meta_for_email ) ){
+            return;
+        }
+
+        $to = '';
+        $dead_man_name = '';
+        $dead_man_surname = '';
+
+        foreach ( $post_meta_for_email as $details ){
+            if ( $details->meta_key == 'coffee_table_email' ){
+                $to = $details->meta_value;
+            }
+
+            if ( $details->meta_key == 'familyname' ){
+                $dead_man_surname = $details->meta_value;
+            }
+
+            if( $details->meta_key == 'name' ){
+                $dead_man_name = $details->meta_value;
+            }
+        }
+
+        unset($post_meta_for_email);
+
+        $result = array( 'to' => $to, 'dead_man_name' => $dead_man_name, 'dead_man_surname' => $dead_man_surname );
+
+        return $result;
     }
 
 
