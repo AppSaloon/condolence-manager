@@ -128,6 +128,11 @@ get_header(); ?>
                                     </div>
                                 <?php } ?>
                             </div>
+                            <?php
+                            /**
+                             *  action hook to render extra field
+                             */
+                            do_action('conman_archive_render'); ?>
                             <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
 
 
