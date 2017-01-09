@@ -78,7 +78,11 @@
                 <input type="number" class="form-control" id="ct_more_people"
                        placeholder="<?php _e('min 1', 'cm_translate'); ?>" value="0">
             </div>
-        </div>
+        </div><?php
+        /**
+         * action to add extra field in form
+         */
+        do_action( 'conman_form_field' ); ?>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default" id="ct_form_btn"><?php _e('Submit', 'cm_translate'); ?></button>
