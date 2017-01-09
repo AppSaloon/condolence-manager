@@ -1,6 +1,6 @@
 <?php $subject = __('Coffee table', 'cm_translate');
 $subject .= ' ' . $dead_man_name . ' ' . $dead_man_surname  ?>
-<h3><?php _e('Presence coffee table', 'cm_translate'); ?></h3>
+<h3><?php _e('Presence coffee table', 'cm_translate'); ?>: <small><?php echo $dead_man_name . ' ' . $dead_man_surname; ?></small></h3>
 <ul>
     <li><?php _e('Name', 'cm_translate'); ?>: <?php  echo $participant->name; ?></li>
     <li><?php _e('Surname', 'cm_translate'); ?>: <?php  echo $participant->surname; ?></li>

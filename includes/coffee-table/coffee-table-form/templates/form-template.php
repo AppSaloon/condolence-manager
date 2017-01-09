@@ -10,7 +10,7 @@
             <label class="col-sm-2" for="ct_surname"><?php _e('Surname', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="ct_surname"
-                       placeholder="<?php _e('Surname', 'cm_translate'); ?>">
+                       placeholder="<?php _e('Surname', 'cm_translate'); ?>" required>
             </div>
         </div>
         <div class="form-group">
@@ -46,7 +46,7 @@
             <label class="col-sm-2" for="ct_gsm"><?php _e('Phone', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="tel" class="form-control" id="ct_gsm" placeholder="<?php _e('Phone', 'cm_translate'); ?>"
-                       pattern="(?i)^[a-z0-9][a-z0-9\- ]{0,10}[a-z0-9]$">
+                       pattern="(?i)^[a-z0-9][a-z0-9\- ]{0,10}[a-z0-9]$" required>
             </div>
         </div>
         <div class="description">
