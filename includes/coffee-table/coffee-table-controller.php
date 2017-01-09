@@ -50,6 +50,8 @@ class Coffee_Table_Controller
             $result = $participant->save_as_metavalue_string();
         }
 
+        do_action( 'conman_handle_form', $_POST );
+
         ob_start();
         if(  $result  ){
             include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/success-submission.php' );
