@@ -180,6 +180,10 @@ class Metabox{
                     $count++;
                 }
             }
+            /**
+             *  action hook to render metabox on backend
+             */
+            do_action('conman_render_metabox');
             ?>
 
         </table>
@@ -356,7 +360,11 @@ class Metabox{
                     }
                 });
             });
-
+        <?php
+        /**
+         * action hook to add js
+         */
+        do_action( 'conman_backend_js' ); ?>
         </script>
 
         <?php

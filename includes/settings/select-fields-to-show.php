@@ -64,6 +64,10 @@ class Select_Fields_To_Show{
         $obj->all_coffee_posts();
 	    $tableArray = get_option('cm_fields');
         $fields = ($tableArray) ? $tableArray : self::$defaultFields;
+        /**
+         * filter hook to add eventually fildes on backend site
+         */
+        $fields = apply_filters( 'conman_prerender_admin_page', $fields );
         ?>
 
         <h2><?php _e('Condolence manager', 'cm_translate'); ?></h2>

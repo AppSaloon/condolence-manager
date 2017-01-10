@@ -41,12 +41,12 @@
             <label class="col-sm-2" for="ct_email"><?php _e('Email', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="email" class="form-control" id="ct_email"
-                       placeholder="<?php _e('Email', 'cm_translate'); ?>" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);" required>
+                       placeholder="<?php _e('Email', 'cm_translate'); ?>" oninvalid="InvalidMsg(this);" name="email" oninput="InvalidMsg(this);">
             </div>
             <label class="col-sm-2" for="ct_gsm"><?php _e('Phone', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="tel" class="form-control" id="ct_gsm" placeholder="<?php _e('Phone', 'cm_translate'); ?>"
-                       pattern="(?i)^[a-z0-9][a-z0-9\- ]{0,10}[a-z0-9]$" required>
+                       pattern="(?i)^[a-z0-9][a-z0-9\- ]{0,10}[a-z0-9]$">
             </div>
         </div>
         <div class="description">
@@ -78,7 +78,11 @@
                 <input type="number" class="form-control" id="ct_more_people"
                        placeholder="<?php _e('min 1', 'cm_translate'); ?>" value="0">
             </div>
-        </div>
+        </div><?php
+        /**
+         * action to add extra field in form
+         */
+        do_action( 'conman_form_field' ); ?>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default" id="ct_form_btn"><?php _e('Submit', 'cm_translate'); ?></button>
