@@ -29,15 +29,15 @@ class Coffee_Table_Controller
         $str_number = sanitize_text_field( $_POST['number'] );
         $city =  sanitize_text_field( $_POST['city'] );
         $zipcode =  sanitize_text_field( $_POST['zipcode']);
-        $email =   isset( $_POST['email'] ) ?  sanitize_email($_POST['email']) : '' ;
-        $telephone =  isset( $_POST['gsm'] ) ? sanitize_text_field( $_POST['gsm'] ) : '';
+        $email =   isset( $_POST['email'] ) ?  sanitize_email($_POST['email']) : '----' ;
+        $telephone =  isset( $_POST['gsm'] ) ? sanitize_text_field( $_POST['gsm'] ) : '----';
         $post_id =  sanitize_text_field( $_POST['post_id']);
 
         $address = $street . ' ' . $str_number . ' ' . $zipcode . ' ' . $city ;
         $more_people =   intval( sanitize_text_field($_POST['more_people']));
 
 
-        if( $name && $surname && $telephone ){
+        if( $name && $surname  ){
 
             $participant = new Coffee_Table_Model();
             $participant->set_name($name);
