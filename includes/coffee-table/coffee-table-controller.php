@@ -255,10 +255,10 @@ class Coffee_Table_Controller
     public function send_email_to_family( $participant )
     {
         /**
-         * i get extra information about person who passed away
-         * because i need this in email
-         * email /
-         */
+     * i get extra information about person who passed away
+     * because i need this in email
+     * email /
+     */
         $detail_to_email = $this->get_meta_for_email( intval( $participant->post_id ) );
 
         if (  empty( $detail_to_email ) ){
