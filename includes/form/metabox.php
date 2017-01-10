@@ -21,7 +21,7 @@ class Metabox{
     public function add_metaboxes(){
         add_meta_box('wpt_condolence_person_location', __('Information about deseaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
-        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'csv_calback'), Custom_Post_Type::post_type(), 'side', 'default');
+        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'coffee_table_metabox'), Custom_Post_Type::post_type(), 'side', 'default');
     }
 
     /**
@@ -54,7 +54,7 @@ class Metabox{
             </tr>
             <tr>
                 <td><?php _e('Honorary title', 'cm_translate'); ?></td>
-                <td class="form-field"><input type="text" name="ere_title" value="<?php echo $this->get_field_value('ere_title', $post->ID); ?>"></td>
+                <td class="form-field"><input type="text" name="honoraryitle" value="<?php echo $this->get_field_value('honoraryitle', $post->ID); ?>"></td>
             </tr>
             <tr>
                 <td><?php _e('Birthplace', 'cm_translate'); ?></td>
@@ -401,8 +401,9 @@ class Metabox{
 
     /**
      * form to download coffee table list
+     * show number of
      */
-    public function csv_calback($post)
+    public function coffee_table_metabox($post)
     {
         $controller = new Coffee_Table_Controller();
         $sum_participants = $controller->get_sum_of_otherparticipants( $post->ID );
@@ -416,13 +417,13 @@ class Metabox{
                 </select></li>
             <span id="span_coffee_table_email"  <?php if( $this->get_field_value('coffee_table', $post->ID) != 'yes'  ){ echo "hidden"; }  ?> >
             <li><label for="coffee_table_email"><?php _e('Email address', 'cm_translate');?></label></li>
-            <li> <input type="email" name="coffee_table_email" id="coffee_table_email"
+            <li> <input type="text" name="coffee_table_email" id="coffee_table_email"
                     <?php  if(  $this->get_field_value('coffee_table', $post->ID) ){   echo " value= '". $this->get_field_value('coffee_table_email', $post->ID) ."'"; }  ?> ></li>
             <li><input type="submit" name="btn_coffee_table_csv" value="<?php _e('Download CSV list', 'cm_translate');?>"></li>
-            </span>
             <?php echo  is_numeric( $sum_emails ) ? '<li><p>'. __( 'Emails: ', 'cm_translate' ) . $sum_emails .'</p></li>' : false;
             echo '<li><p>'.__('Participants: ', 'cm_translate'). $sum_participants .'</p></li>';
             ?>
+            </span>
         </ul>
         </td>
         </tr>
@@ -473,7 +474,7 @@ class Metabox{
             'masscard',
             'password',
             'email',
-            'ere_title',
+            'honoraryitle',
             'coffee_table',
             'coffee_table_email'
         );

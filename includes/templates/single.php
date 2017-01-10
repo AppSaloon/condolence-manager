@@ -44,7 +44,6 @@ $deseased = false;
                 $required_str = preg_replace('/\s+/', '', $required_str);
                 $gender = current($fields['gender']);
 
-
                 if ($fields[$required_str]) {
                     switch ($required_str) {
 
@@ -136,21 +135,21 @@ $deseased = false;
                         case 'funeralinformation':
                             if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                 echo '<p class="' . $required_str . '">';
-                                echo '<strong>'. _e("Funeral information", "cm_translate").': </strong>' . current($fields[$required_str]);
+                                echo '<strong>'. __("Funeral information", "cm_translate").': </strong>' . current($fields[$required_str]);
                                 echo '</p>';
                             }
                             break;
                         case 'prayervigilinformation':
                             if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                 echo '<p class="' . $required_str . '">';
-                                echo '<strong>'. _e("Prayer vigil information", "cm_translate").': </strong>' . current($fields[$required_str]);
+                                echo '<strong>'. __("Prayer vigil information", "cm_translate").': </strong>' . current($fields[$required_str]);
                                 echo '</p>';
                             }
                             break;
                         case 'greetinginformation':
                             if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                 echo '<p class="' . $required_str . '">';
-                                echo '<strong>'. _e("Greeting information", "cm_translate").': </strong>' . current($fields[$required_str]);
+                                echo '<strong>'. __("Greeting information", "cm_translate").': </strong>' . current($fields[$required_str]);
                                 echo '</p>';
                             }
                             break;
