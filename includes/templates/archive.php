@@ -136,14 +136,13 @@ get_header(); ?>
                                    value="<?php _e('Mass card', 'cm_translate'); ?>">
                             <?php }
                             ?>
-                            <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="<?php _e('Condole', 'cm_translate'); ?>">
 
                             <?php
                             /**
                              *  action hook to render extra field
                              */
                             do_action('conman_archive_render'); ?>
-                            <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
+                            <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="<?php _e('Condole', 'cm_translate'); ?>">
 
                             <?php
 
