@@ -25,7 +25,7 @@ Class Auto_Update{
             'bb_repo_name' => 'condolatie-manager-plugin'
         );
 
-        if( $this->git_repository_is_live($bb_plugin) ){
+        if( $this->git_repository_is_live($bb_plugin) && $this->licensekey_is_valid()){
             new Arpu_Bitbucket_Plugin_Updater( $bb_plugin );
         }
     }
@@ -37,6 +37,16 @@ Class Auto_Update{
         $request = wp_remote_get($new_url, array( 'headers' => $headers ));
 
         if( !is_wp_error($request) && $request['response']['code'] == 200 ){
+            return true;
+        }
+
+        return false;
+    }
+
+    private function licensekey_is_valid(){
+        $license_key = get_option('license_key_cm', false);
+
+        if( $license_key ){
             return true;
         }
 

@@ -18,13 +18,12 @@ class Select_Fields_To_Show{
         add_action( 'wp_ajax_set_fields', array( $this, 'ajax_set_fields') );
     }
 
-
-
     public function ajax_set_fields(){
         $tableArray = isset($_REQUEST['tableArray']) ? $_REQUEST['tableArray'] : array();
         update_option('cm_fields', $tableArray);
         die();
     }
+
     public function add_admin_page(){
         add_menu_page(__('Condolence manager', 'cm_translate'), __('Condolence manager', 'cm_translate'), 'manage_options', 'condolence-manager', array($this, 'my_plugin_function'));
         wp_register_script('my-jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
@@ -121,6 +120,7 @@ class Select_Fields_To_Show{
                 </form>
         </div>
 
+
         <?php
         // show migrate script only if there are old posts
         $old_posts = wp_count_posts('cm_obi');
@@ -148,6 +148,55 @@ class Select_Fields_To_Show{
 //        foreach ($posts as $post){
 //            update_post_meta($post->ID, 'flowers', true);
 //        }
+
+        ?>
+        <hr>
+
+        <div class="add_license_key">
+            <?php
+            if( isset( $_POST['license_key'] ) ){
+                if( $this->is_license_key_valid($_POST['license_key']) ){
+                    update_option( 'license_key_cm', $_POST['license_key'] );
+                }else{
+                    delete_option( 'license_key_cm' );
+                    echo '<div class="error">License key <b>'.$_POST['license_key'].'</b> is not valid!</div>';
+                }
+            }
+            $license_key = ( $license_key = get_option('license_key_cm', false) ) ? $license_key : '';
+            ?>
+            <form method="post">
+                <label for="license_key"><?php _e('Add your license key', 'cm_translate') ?></label>
+                <input id="license_key" type='text' name='license_key'
+                       value="<?php echo $license_key; ?>">
+                <input id="btn-license_key" type="submit" class="button"
+                       value="<?php _e('Add license key', 'cm_translate'); ?>">
+            </form>
+        </div>
+        <?php
+    }
+
+    private function is_license_key_valid($license_key){
+        $store_url = 'http://condolencemanager.com';
+        $item_name = 'Condolence manager plugin';
+        $license = $license_key;
+        $api_params = array(
+            'edd_action' => 'check_license',
+            'license' => $license,
+            'item_name' => urlencode( $item_name ),
+            'url' => home_url()
+        );
+        $response = wp_remote_post( $store_url, array( 'body' => $api_params, 'timeout' => 15, 'sslverify' => false ) );
+        if ( is_wp_error( $response ) ) {
+            return false;
+        }
+
+        $license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+        if( $license_data->license == 'valid' ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

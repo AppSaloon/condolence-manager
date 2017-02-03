@@ -94,9 +94,9 @@ Class Condolatie_Manager{
      * - translation
      */
     public function register(){
-        new Custom_Post_Type();
-        new Translation();
-        new Form_Filter_Controller();
+            new Custom_Post_Type();
+            new Translation();
+            new Form_Filter_Controller();
     }
 
     /**
