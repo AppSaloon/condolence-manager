@@ -386,12 +386,13 @@ class Metabox{
         <?php
         $permalink = get_post_permalink( $post->ID );
 
-        if( substr($permalink, -1) == '/' ){
-            $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
-        }
+        // keep last slash
+//        if( substr($permalink, -1) == '/' ){
+//            $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
+//        }
 
-        if( $this->get_field_value('password', $post->ID) ){
-            $permalink .= '?code='.$this->get_field_value('password', $post->ID);
+        if( !empty( $password = $this->get_field_value('password', $post->ID) ) ){
+            $permalink = $this->create_passworded_url($permalink, $password);
         }
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
@@ -551,7 +552,7 @@ class Metabox{
         $password = get_post_meta($post_id, 'password', true);
 
         if( !empty( $mail ) ){
-            wp_mail($mail, __('Condolences', 'cm_translate'), $url.'?password='.$password);
+            wp_mail($mail, __('Condolences', 'cm_translate'), $this->create_passworded_url($url, $password));
         }
 
     }
@@ -591,6 +592,17 @@ class Metabox{
         }
 
         return '';
+    }
+
+    /**
+     * Create URL with password to view comments
+     *
+     * @param $permalink
+     * @param $password
+     * @return string
+     */
+    protected function create_passworded_url($permalink, $password){
+        return ( strpos($permalink, '?') !== false ) ? $permalink.'&code='.$password : $permalink.'?code='.$password;
     }
 
 
