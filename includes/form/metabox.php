@@ -33,6 +33,7 @@ class Metabox{
         // Use nonce for verification
         wp_nonce_field( plugin_basename( __FILE__ ), 'deceased_noncename' );
         ?>
+
         <table class="form-table">
             <tr>
                 <td><?php _e('Gender', 'cm_translate'); ?></td>
