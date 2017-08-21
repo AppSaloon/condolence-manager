@@ -17,6 +17,7 @@ Class Auto_Update{
     public function arpu_bb_handle_updates(){
         $bb_plugin = array(
             'plugin_file' => CM_DIR . 'condolatie-manager.php',
+            'plugin_slug' => CM_BASE_NAME,
             'bb_host' => 'https://api.bitbucket.org',
             'bb_download_host' => 'http://bitbucket.org',
             'bb_owner' => 'appsaloonupdater',
