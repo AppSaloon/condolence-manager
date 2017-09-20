@@ -29,7 +29,7 @@ jQuery(function ($) {
 
         // url for ajax
 
-        var url =   '/wp-admin/admin-ajax.php';
+        var url =   ajax_object.url;
 
         // data for ajaxcall
 
