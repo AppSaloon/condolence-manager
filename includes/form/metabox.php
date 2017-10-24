@@ -392,7 +392,8 @@ class Metabox{
 //            $permalink = substr($permalink, 0, strlen( $permalink ) - 1 );
 //        }
 
-        if( !empty( $password = $this->get_field_value('password', $post->ID) ) ){
+        $password = $this->get_field_value('password', $post->ID);
+        if( $password ){
             $permalink = $this->create_passworded_url($permalink, $password);
         }
         ?>
