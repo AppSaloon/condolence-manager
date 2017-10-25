@@ -3,8 +3,8 @@
  */
 
 
-(function($) {
-    $( document ).ready(function() {
+(function ($) {
+    $(document).ready(function () {
         $("#sortable").sortable({
             revert: true
         });
@@ -16,8 +16,8 @@
         $("ul, li").disableSelection();
 
 
-        $("span#delete").on('click', function(){
-            if(!$('ul.hide').hasClass('border')){
+        $("span#delete").on('click', function () {
+            if (!$('ul.hide').hasClass('border')) {
                 $('ul.hide').addClass('border');
             }
             $('ul.hide').append($(this).parent('li'));
@@ -25,23 +25,23 @@
             $(this).remove();
         });
 
-        $('li').on('click','#add', function(){
+        $('li').on('click', '#add', function () {
             $('ul.show').append($(this).parent('li'));
             $(this).parent('li').append('<span id="delete">X</span>');
             $(this).remove();
-            if($('ul.border li').length < 1){
+            if ($('ul.border li').length < 1) {
                 $('ul.hide').removeClass('border');
             }
         });
 
 
-        $("input.btn-set-fields").on('click', function(e){
+        $("input.btn-set-fields").on('click', function (e) {
             var table = {};
             e.preventDefault();
-            $( "ul.show li.ui-sortable-handle" ).each(function( index ) {
+            $("ul.show li.ui-sortable-handle").each(function (index) {
                 var attr = $(this).attr('data-value');
                 var text = $(this).text();
-                text =  text.substr(0, text.length -1);
+                text = text.substr(0, text.length - 1);
                 table[attr] = text;
             });
 
@@ -59,37 +59,39 @@
             );
         });
 
-        $('#btn-migrating').on('click', function(e){
+        $('#btn-migrating').on('click', function (e) {
             e.preventDefault();
             var max_posts = $('#max_posts').val();
 
-            if( max_posts != 0 ){
+            if (max_posts != 0) {
                 // function migrate post
                 migrate_post(max_posts);
             }
         });
 
-        $('#btn-posttype').on('click', function(e){
+        $('#btn-posttype').on('click', function (e) {
             e.preventDefault();
             var max_posts = $('#progress_posttype').prop('max');
 
-            if( max_posts !== undefined ){
+            if (max_posts !== undefined) {
                 migrate_posttype(max_posts, 0);
-            }else{
+            } else {
                 change_posttype();
             }
         });
     });
 
-    function migrate_post(max_posts, processed_posts){
-        if(processed_posts === undefined) { processed_posts = 0; }
+    function migrate_post(max_posts, processed_posts) {
+        if (processed_posts === undefined) {
+            processed_posts = 0;
+        }
 
-        if( max_posts != processed_posts ){
+        if (max_posts != processed_posts) {
             migrate_post_ajax(max_posts, processed_posts);
         }
     }
 
-    function migrate_post_ajax(max_posts, processed_posts){
+    function migrate_post_ajax(max_posts, processed_posts) {
         $.ajax(
             {
                 url: dragAndDrop.ajaxUrl,
@@ -105,15 +107,15 @@
         );
     }
 
-    function migrate_posttype(max_posts, processed_posts){
-        if( max_posts != processed_posts ){
+    function migrate_posttype(max_posts, processed_posts) {
+        if (max_posts != processed_posts) {
             migrate_posttype_ajax(max_posts, processed_posts);
-        }else{
+        } else {
             change_posttype();
         }
     }
 
-    function migrate_posttype_ajax(max_posts, processed_posts){
+    function migrate_posttype_ajax(max_posts, processed_posts) {
         var old_post_type = $('#old_post_type').val();
         var post_type = $('#post_type').val();
 
@@ -134,7 +136,7 @@
         );
     }
 
-    function change_posttype(){
+    function change_posttype() {
         var post_type = $('#post_type').val();
 
         $.ajax(
@@ -151,5 +153,21 @@
             }
         );
     }
+
+    /**
+     * add event for button to add more additional buttons in setting page
+     */
+    $('.cm_add_btn_btn_js').on('click', function (e) {
+        e.preventDefault();
+        var btn_html = '<div class="additional_btn_container">' +
+            '<p><label>Insert custom button link</label><input name="additional_btn_href[]"' +
+            ' placeholder="http://condolencemanager.com/condolences/"' +
+            ' value="" type="url"></p>' +
+            '<p><label>Insert custom button caption</label><input name="additional_btn_caption[]"' +
+            ' value="" placeholder="Click me!" type="text"></p>' +
+            '</div>';
+        console.log(btn_html);
+        $('.btn_pocket').append(btn_html);
+    });
 
 })(jQuery);

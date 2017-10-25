@@ -29,6 +29,7 @@
 namespace cm;
 
 
+use cm\includes\controller\Additional_Buttons_Controller;
 use cm\includes\controller\Comment_Email;
 use cm\includes\controller\Templates;
 use cm\includes\register\Custom_Post_Type;
@@ -86,6 +87,7 @@ Class Condolatie_Manager{
         new Comment_Email();
 	    new Coffee_Table_Controller();
         new Auto_Update();
+        new Additional_Buttons_Controller();
     }
 
     /**

@@ -103,6 +103,12 @@ class Metabox{
                 </td>
             </tr>
             <tr>
+                <td><?php _e('Additional buttons', 'cm_translate'); ?></td>
+                <td class="form-field">
+                    <input id="cm_additional_btn" type="checkbox" name="cm_additional_btn" value="1" <?php echo ($this->get_field_value('cm_additional_btn', $post->ID) == '0' )? '': 'checked' ; ?>>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">&nbsp;</td>
             </tr>
             <tr>
@@ -486,11 +492,22 @@ class Metabox{
             update_post_meta( $post_id, $field, $_POST[$field] );
         }
 
+	    /**
+	     * update flowers button
+	     */
         if(isset($_POST['flowers'])){
-            update_post_meta( $post_id, 'flowers', $_POST['git flowers'] );
+            update_post_meta( $post_id, 'flowers', $_POST['flowers'] );
         }else{
             update_post_meta( $post_id, 'flowers', 0 );
         }
+	    /**
+	     * update additional buttons metabox
+	     */
+	    if(isset($_POST['cm_additional_btn'])){
+		    update_post_meta( $post_id, 'cm_additional_btn', $_POST['cm_additional_btn'] );
+	    }else{
+		    update_post_meta( $post_id, 'cm_additional_btn', 0 );
+	    }
 
         $relations = array();
         // save relations
@@ -542,7 +559,6 @@ class Metabox{
             clean_post_cache( $post_id );
         }
     }
-
     /**
      * TODO automatisch versturen? voorlopig is action gehide
      * Send email after creating/updating post
@@ -606,6 +622,4 @@ class Metabox{
     protected function create_passworded_url($permalink, $password){
         return ( strpos($permalink, '?') !== false ) ? $permalink.'&code='.$password : $permalink.'?code='.$password;
     }
-
-
 }
