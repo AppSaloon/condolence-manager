@@ -49,9 +49,11 @@ $deseased = false;
 
 
                         case 'masscard':
-                            echo '<a class="btn" target="_blank" href="' . current($fields[$required_str]) . '" >';
-                            echo __('Mass card', 'cm_translate');
-                            echo '</a>';
+                            if(!empty(current($fields[$required_str]))) {
+                                echo '<a class="btn" target="_blank" href="' . current($fields[$required_str]) . '" >';
+                                echo __('Mass card', 'cm_translate');
+                                echo '</a>';
+                            }
                             break;
                         case 'name':
                             echo '<p class="' . $required_str . '" id="name">';

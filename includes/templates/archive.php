@@ -174,7 +174,7 @@ get_header(); ?>
 								if ( ! empty( $additional_btn ) ) {
 									foreach ( $additional_btn as $btn ) {
 										?><input type="button"
-                                                 onclick="<?php echo $btn['href']; ?>"
+                                                 onclick="location.href='<?php echo $btn['href']; ?>'"
                                                  value="<?php echo $btn['caption']; ?>">
 									<?php }
 								}
