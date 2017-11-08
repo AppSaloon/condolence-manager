@@ -216,7 +216,7 @@ class Select_Fields_To_Show {
 		$item_name  = 'Condolence manager plugin';
 		$license    = $license_key;
 		$api_params = array(
-			'edd_action' => 'check_license',
+			'edd_action' => 'activate_license',
 			'license'    => $license,
 			'item_name'  => urlencode( $item_name ),
 			'url'        => home_url()
