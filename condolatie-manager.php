@@ -7,6 +7,7 @@
  * Text Domain: cm_translate
  * Author: AppSaloon
  * Author URI: http://www.appsaloon.be
+ * Translators: fr - Jean François Dejonghe
  * License: GPLv2 or later
  */
 

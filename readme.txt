@@ -47,3 +47,6 @@ To overwrite the frontend template just place a copy of single.php and archive.p
 5. conman_single_render - use to show extra content on single page
 6. conman_form_field - use to add extra content/field in coffie table form
 7. conman_handle_form - use to handle submitted data on backend in controller
+
+== Credits ==
+* Thanks to Jean François Dejonghe for the French translation.
