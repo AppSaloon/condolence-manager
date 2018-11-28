@@ -26,9 +26,9 @@ get_header(); ?>
 					__( "December", "cm_translate" ),
 				);
 				?>
-                <div class="rouw entry-content clear">
+                <div class="rouw entry-content cdm_clear">
                     <article>
-                        <div class="embed clear">
+                        <div class="embed cdm_clear">
                             <div class="deceased-img" style="min-height: 230px;">
 								<?php if ( has_post_thumbnail() ) : ?>
                                     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
@@ -37,8 +37,7 @@ get_header(); ?>
 								<?php endif; ?>
                             </div>
                             <div class="deceased-info">
-                                <div
-                                        class="deceased-name"><?php echo $values["name"][0] . '&nbsp;' . $values["familyname"][0]; ?></div>
+                                <div class="deceased-name"><?php echo $values["name"][0] . '&nbsp;' . $values["familyname"][0]; ?></div>
                                 <div class="deceased-subtitle"><?php echo $values["residence"][0]; ?></div>
                                 <div class="deceased-partner">
 									<?php

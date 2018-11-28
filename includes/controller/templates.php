@@ -56,7 +56,7 @@ class Templates{
             wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
             wp_enqueue_script('jquery');
             wp_enqueue_style('condolence-single', CM_URL . 'css/template-single.css');
-            wp_enqueue_script('condolence-single', CM_URL . 'js/template-single.js');
+            wp_enqueue_script('condolence-single', CM_URL . 'js/template-single.js', array('jquery'));
             // Add some parameters for the JS.
             wp_localize_script(
                 'condolence-single',

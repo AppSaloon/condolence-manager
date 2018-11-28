@@ -5,6 +5,7 @@
 #rouw-content input[type=button] {
     margin-left: 0;
     margin-bottom: 10px;
+    margin-left: 20px;
 }
 #rouw-content {
     max-width: 940px;
@@ -14,11 +15,12 @@
     background: #eee;
     border-radius: 3px;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 .deceased-img {
     float: left;
     padding: 2%;
-    padding-bottom: 0;
+    /*padding-bottom: 0;*/
     padding-right: 3%;
     width: 27%;
     overflow: hidden;
@@ -81,4 +83,8 @@ ol.comment {
 .comment h3 {
     font-size: 1rem;
     margin-bottom: 0;
+}
+
+.cdm_clear {
+    clear: both;
 }

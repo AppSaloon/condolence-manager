@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 4.9.6
 
+## Version 1.3.2 2018/11/28
+- CSS FIX FOR ARCHIVE.
+
 ## Version 1.3.2 2017/11/08
 - REWORK FR translations.
 

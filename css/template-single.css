@@ -12,11 +12,11 @@ table tbody tr td{
 }
 
 table tbody tr td.img{
-    width: 160px;
+    width: 200px;
 }
 table tbody tr td img{
     padding-right: 30px;
-    width: 160px;
+    width: 200px;
     height: auto;
 }
 table tbody tr td.text p{
