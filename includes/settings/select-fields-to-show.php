@@ -133,30 +133,27 @@ class Select_Fields_To_Show {
 		<?php
 		// show migrate script only if there are old posts
 		$old_posts = wp_count_posts( 'cm_obi' );
+		$check_old_posts = get_object_vars($old_posts)? TRUE : FALSE;
+        if($check_old_posts){
+            if ($old_posts->publish !== null && $old_posts->publish !== 0) {
+                ?>
+                <br><br>
+                <hr>
 
-		if ( $old_posts->publish !== null && $old_posts->publish !== 0 ) {
-			?>
-            <br><br>
-            <hr>
+                <div class="migrating">
+                    <?php
+                    ?>
+                    <form method="post">
+                        <p class="info"><?php _e('Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.') ?></p>
+                        <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>"/>
+                        <input id="btn-migrating" class="button" type="submit" value="Start migrating">
+                        <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
+                    </form>
+                </div>
+                <?php
 
-            <div class="migrating">
-				<?php
-				?>
-                <form method="post">
-                    <p class="info"><?php _e( 'Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.' ) ?></p>
-                    <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>"/>
-                    <input id="btn-migrating" class="button" type="submit" value="Start migrating">
-                    <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
-                </form>
-            </div>
-			<?php
-
-		}
-
-//        $posts = get_posts(array('post_type' => 'overlijdens', 'posts_per_page' => -1));
-//        foreach ($posts as $post){
-//            update_post_meta($post->ID, 'flowers', true);
-//        }
+            }
+        }
 
 		?>
         <hr>
