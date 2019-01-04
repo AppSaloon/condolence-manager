@@ -189,6 +189,15 @@ get_header(); ?>
 			<?php endwhile; ?>
 
 		<?php endif; ?>
+        <div class="pagination">
+            <?php
+            the_posts_pagination( array(
+                'prev_text'          => __( 'Previous page', 'cm-translation' ),
+                'next_text'          => __( 'Next page', 'cm-translation' ),
+                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'cm-translation' ) . ' </span>',
+            ) );
+            ?>
+        </div>
     </div><!-- #main -->
 </div><!-- #primary -->
 
