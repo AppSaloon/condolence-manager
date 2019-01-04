@@ -12,6 +12,7 @@ class Custom_Post_Type{
     {
         $this->default_value();
         add_action( 'init', array($this, 'register_post_type') );
+        add_shortcode( 'condolence_overview',  array($this,'condolence_shortcode'));
     }
 
     public function default_value(){
@@ -75,4 +76,28 @@ class Custom_Post_Type{
 
         new Inline_Comment_Error();
     }
+
+    public function removeWhitespace($buffer)
+    {
+        return preg_replace('~>\s*\n\s*<~', '><', $buffer);
+    }
+
+    public function condolence_shortcode( $atts ) {
+        $arg = shortcode_atts( array(
+            'posts_per_page' => get_option('posts_per_page'),
+            'pagination' => false,
+        ), $atts );
+
+        $posttype = static::post_type();
+        $posts = query_posts('post_type='.$posttype.'&posts_per_page='.$arg['posts_per_page']);
+        ob_start();
+        include CM_BASE_DIR . '/includes/templates/archive.php';
+        $content = ob_get_clean();
+        wp_reset_query();
+        $result = preg_replace('!\s+!smi', ' ', $content);
+
+        return $result;
+    }
+
+
 }
