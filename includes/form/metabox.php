@@ -452,6 +452,8 @@ class Metabox
         ?>
         <input type="text" readonly value="<?php echo $permalink; ?>">
         <a href="<?php echo $permalink ?>" target="_blank"><?php _e('Link to view comments', 'cm_translate'); ?></a>
+        <br><br>
+        <input type="checkbox" name="check_email" value="check_email" style="width: 15px;" <?php if($this->get_field_value('check_email', $post->ID) === 'check_email'){ echo 'checked';} ?>><?php _e('Send email to family when someone condones', 'cm_translate'); ?>
         <?php
     }
 
@@ -540,7 +542,8 @@ class Metabox
             'email',
             'honoraryitle',
             'coffee_table',
-            'coffee_table_email'
+            'coffee_table_email',
+            'check_email'
         );
 
         foreach ($postfields as $field) {

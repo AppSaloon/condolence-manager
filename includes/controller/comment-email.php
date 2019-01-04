@@ -2,6 +2,8 @@
 
 namespace cm\includes\controller;
 
+use cm\includes\form\Metabox;
+
 class Comment_Email{
 
     public function __construct()
@@ -14,13 +16,18 @@ class Comment_Email{
         $postid = $comment->comment_post_ID;
 
         // mail to family
-//        if( isset( $master_email ) && is_email( $master_email ) && $comment->parent == 0) {
-//            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . get_permalink( $postid ) . '/?password='.get_post_meta($postid, 'password', true).'">condolence</a>&nbsp;';
-//            $message .= 'from '.$comment->comment_author. ':</p>';
-//            $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
-//            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
-//            wp_mail( $master_email, 'New Condolence', $message );
-//        }
+        $master_email_checked = get_post_meta($postid, 'check_email', true);
+        $master_email = get_post_meta($postid, 'email', true);
+        if( $master_email_checked === 'check_email' && isset( $master_email ) && is_email( $master_email ) && $comment->parent == 0) {
+            $permalink = get_the_permalink($postid);
+            $password = get_post_meta($postid, 'password', true);
+            $url = (strpos($permalink, '?') !== false) ? $permalink . '&code=' . $password : $permalink . '?code=' . $password;
+            $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . $url.'">condolence</a>&nbsp;';
+            $message .= 'from '.$comment->comment_author. ':</p>';
+            $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
+            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+            wp_mail( $master_email, 'New Condolence', $message );
+        }
 
         // mail to person
         if(  $comment->comment_parent != 0) {
