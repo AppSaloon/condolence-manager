@@ -83,20 +83,22 @@ class Custom_Post_Type{
     }
 
     public function condolence_shortcode( $atts ) {
-        $arg = shortcode_atts( array(
-            'posts_per_page' => get_option('posts_per_page'),
-            'pagination' => false,
-        ), $atts );
+        if(!is_admin()) {
+            $arg = shortcode_atts(array(
+                'posts_per_page' => get_option('posts_per_page'),
+                'pagination' => false,
+            ), $atts);
 
-        $posttype = static::post_type();
-        $posts = query_posts('post_type='.$posttype.'&posts_per_page='.$arg['posts_per_page']);
-        ob_start();
-        include CM_BASE_DIR . '/includes/templates/archive.php';
-        $content = ob_get_clean();
-        wp_reset_query();
-        $result = preg_replace('!\s+!smi', ' ', $content);
+            $posttype = static::post_type();
+            $posts = query_posts('post_type=' . $posttype . '&posts_per_page=' . $arg['posts_per_page']);
+            ob_start();
+            include CM_BASE_DIR . '/includes/templates/archive.php';
+            $content = ob_get_clean();
+            wp_reset_query();
+            $result = preg_replace('!\s+!smi', ' ', $content);
 
-        return $result;
+            return $result;
+        }
     }
 
 
