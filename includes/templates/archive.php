@@ -168,7 +168,8 @@ get_header(); ?>
             <?php endwhile; ?>
 
         <?php endif; ?>
-        <?php if (!isset($args['pagination']) || (isset($args['pagination']) && $args['pagination'])) { ?>
+        <?php
+        if (!isset($arg['pagination']) || (isset($arg['pagination']) && $arg['pagination'] === 'true')) { ?>
             <div class="pagination">
                 <?php
                 the_posts_pagination(array(
