@@ -25,7 +25,7 @@ class Comment_Email{
             $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">New <a href="' . $url.'">condolence</a>&nbsp;';
             $message .= 'from '.$comment->comment_author. ':</p>';
             $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
-            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+            add_filter( 'wp_mail_content_type', function(){ return "text/html"; } );
             wp_mail( $master_email, 'New Condolence', $message );
         }
 
@@ -36,7 +36,7 @@ class Comment_Email{
             $message = '<p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">'. __("New") .' <a href="' . get_permalink( $postid ) . '">reply</a>&nbsp;';
             $message .= sprintf(__('on your condolence from %s:'), $comment->comment_author).'</p>';
             $message .= '<p style="font-size: 16px; font-weight: normal; margin: 16px 0;">'.nl2br($comment->comment_content).'</p>';
-            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+            add_filter( 'wp_mail_content_type', function(){ return "text/html";} );
             wp_mail( $parent_comment->comment_author_email, __('New Comment'), $message );
         }
     }
