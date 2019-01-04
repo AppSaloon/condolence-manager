@@ -5,10 +5,9 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area">
+<div id="primary" class="content-area cm-content-wrapper">
     <div id="rouw-content" class="site-content" role="main">
         <?php if (have_posts()) : ?>
-
             <?php while (have_posts()) : the_post();
                 $values = get_post_meta(get_the_ID());
                 $arraymonth = array(
@@ -26,9 +25,9 @@ get_header(); ?>
                     __("December", "cm_translate"),
                 );
                 ?>
-                <div class="rouw entry-content clear">
+                <div class="rouw entry-content cm_clear">
                     <article>
-                        <div class="embed clear">
+                        <div class="embed cm_clear">
                             <div class="deceased-img" style="min-height: 230px;">
                                 <?php if (has_post_thumbnail()) : ?><a href="<?php the_permalink(); ?>"
                                                                        title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail(); ?></a>
@@ -124,6 +123,7 @@ get_header(); ?>
                                     </div>
                                 <?php } ?>
                             </div>
+                            <div class="cm_clear"></div>
                             <div class="btns-wrapper"><?php if ($values["masscard"][0]) {
                                     $string = $values["masscard"][0]; ?>
                                     <input type="button" onclick="location.href='<?php echo $string; ?>'"
@@ -169,17 +169,52 @@ get_header(); ?>
 
         <?php endif; ?>
         <?php
-        if (!isset($arg['pagination']) || (isset($arg['pagination']) && $arg['pagination'] === 'true')) { ?>
+
+        if (!isset($arg['pagination'])){ ?>
             <div class="pagination">
                 <?php
+                $big = 99999999;
                 the_posts_pagination(array(
-                    'prev_text' => __('Previous page', 'cm-translation'),
-                    'next_text' => __('Next page', 'cm-translation'),
-                    'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'cm-translation') . ' </span>',
+                    'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                    'format' => '?paged=%#%',
+                    'prev_text' => __('<<', 'cm-translation'),
+                    'next_text' => __('>>', 'cm-translation'),
                 ));
                 ?>
             </div>
-        <?php } ?>
+        <?php }elseif(isset($arg['pagination']) && $arg['pagination'] === 'true'){
+            global $wp_query;
+            $page_nr = intval($paged);
+            $max_pg = $wp_query->max_num_pages;
+            $array_pages = [1, $page_nr-1, $page_nr, $page_nr+1, $max_pg];
+
+            $output = '';
+
+            $output .=  '<div class="pagination"><div class="nav-links">';
+            $dots = false;
+            for ($i=1; $i <= $max_pg; $i++ ) {
+                if($i == $paged){
+                    $output .= '<span aria-current="page" class="page-numbers current">'.$i.'</span>';
+                    $dots = false;
+                }elseif(in_array($i, $array_pages)){
+                    if(strpos($permalink, '?page') !== false){
+                        $permalink = explode('?page',$permalink);
+                        $permalink = $permalink[0].'?page='.$i;
+                    }elseif(strpos($permalink, '?') !== false){
+                        $permalink .= '&page='.$i;
+                    }else{
+                        $permalink = $permalink.'?page='.$i;
+                    }
+                    $output .= '<a class="page-numbers" href="'.$permalink.'">'.$i.'</a>';
+                    $dots = false;
+                }elseif(!$dots){
+                    $output .= '<span class="page-numbers dots">…</span>';
+                    $dots = true;
+                }
+            }
+            $output .= '</div></div>';
+            echo $output;
+        } ?>
     </div><!-- #main -->
 </div><!-- #primary -->
 

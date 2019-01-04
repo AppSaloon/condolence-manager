@@ -84,13 +84,31 @@ class Custom_Post_Type{
 
     public function condolence_shortcode( $atts ) {
         if(!is_admin()) {
+            $permalink = get_permalink();
+            $paged = 1;
+            $page = '';
             $arg = shortcode_atts(array(
                 'posts_per_page' => get_option('posts_per_page'),
                 'pagination' => false,
             ), $atts);
 
+            if($arg['pagination'] === 'true'){
+                $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                if(substr($url, -1) === '/'){
+                    $url = substr($url, 0, -1);
+                }
+
+                $end = explode('/', $url);
+
+                if(is_numeric(end($end)) ){
+                    $paged = end($end);
+                    $page = '&paged='.end($end);
+                }
+
+            }
+
             $posttype = static::post_type();
-            $posts = query_posts('post_type=' . $posttype . '&posts_per_page=' . $arg['posts_per_page']);
+            $posts = query_posts('post_type=' . $posttype . '&posts_per_page=' . $arg['posts_per_page'].$page);
             ob_start();
             include CM_BASE_DIR . '/includes/templates/archive.php';
             $content = ob_get_clean();
