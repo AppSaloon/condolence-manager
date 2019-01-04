@@ -506,16 +506,18 @@ class Metabox
     {
         global $wpdb;
 
-        // Verify this came from the our screen and with proper authorization,
-        // because save_post can be triggered at other times
-        if (!wp_verify_nonce($_POST['deceased_noncename'], plugin_basename(__FILE__))) {
-            return $post_id;
-        }
-
         // Verify if this is an auto save routine. If it is our form has not been submitted, so we dont want
         // to do anything
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-            return $post_id;
+            return;
+
+        if (!isset($_POST['deceased_noncename']))
+            return;
+
+        // Verify this came from the our screen and with proper authorization,
+        // because save_post can be triggered at other times
+        if (!wp_verify_nonce($_POST['deceased_noncename'], plugin_basename(__FILE__)))
+            return;
 
 
         // Check permissions to edit pages and/or posts

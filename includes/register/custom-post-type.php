@@ -63,7 +63,8 @@ class Custom_Post_Type{
             'exclude_from_search' => false,
             'publicly_queryable'  => true,
             'capability_type'     => 'post',
-            'rewrite' => array('slug'=>'','with_front'=>false),
+            'rewrite'             => array('slug'=>'','with_front'=>false),
+            'show_in_rest'        => true
         );
 
         register_post_type( static::post_type(), $args );
