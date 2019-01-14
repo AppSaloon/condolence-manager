@@ -12,6 +12,7 @@ class Custom_Post_Type{
     {
         $this->default_value();
         add_action( 'init', array($this, 'register_post_type') );
+        add_shortcode( 'condolence_overview',  array($this,'condolence_shortcode'));
     }
 
     public function default_value(){
@@ -63,7 +64,8 @@ class Custom_Post_Type{
             'exclude_from_search' => false,
             'publicly_queryable'  => true,
             'capability_type'     => 'post',
-            'rewrite' => array('slug'=>'','with_front'=>false),
+            'rewrite'             => array('slug'=>'','with_front'=>false),
+            'show_in_rest'        => true
         );
 
         register_post_type( static::post_type(), $args );
@@ -74,4 +76,48 @@ class Custom_Post_Type{
 
         new Inline_Comment_Error();
     }
+
+    public function removeWhitespace($buffer)
+    {
+        return preg_replace('~>\s*\n\s*<~', '><', $buffer);
+    }
+
+    public function condolence_shortcode( $atts ) {
+        if(!is_admin()) {
+            $permalink = get_permalink();
+            $paged = 1;
+            $page = '';
+            $arg = shortcode_atts(array(
+                'posts_per_page' => get_option('posts_per_page'),
+                'pagination' => false,
+            ), $atts);
+
+            if($arg['pagination'] === 'true'){
+                $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                if(substr($url, -1) === '/'){
+                    $url = substr($url, 0, -1);
+                }
+
+                $end = explode('/', $url);
+
+                if(is_numeric(end($end)) ){
+                    $paged = end($end);
+                    $page = '&paged='.end($end);
+                }
+
+            }
+
+            $posttype = static::post_type();
+            $posts = query_posts('post_type=' . $posttype . '&posts_per_page=' . $arg['posts_per_page'].$page);
+            ob_start();
+            include CM_BASE_DIR . '/includes/templates/archive.php';
+            $content = ob_get_clean();
+            wp_reset_query();
+            $result = preg_replace('!\s+!smi', ' ', $content);
+
+            return $result;
+        }
+    }
+
+
 }

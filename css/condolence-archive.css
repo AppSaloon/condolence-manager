@@ -1,23 +1,23 @@
-#primary #rouw-content {
+.cm-content-wrapper #rouw-content {
     background-color: white;
     padding: 20px;
 }
-#rouw-content input[type=button] {
+.cm-content-wrapper #rouw-content input[type=button] {
     margin-left: 0;
     margin-bottom: 10px;
     margin-left: 20px;
 }
-#rouw-content {
+.cm-content-wrapper #rouw-content {
     max-width: 940px;
     margin: 0 auto;
 }
-#rouw-content article {
+.cm-content-wrapper #rouw-content article {
     background: #eee;
     border-radius: 3px;
     margin-bottom: 20px;
     overflow: hidden;
 }
-.deceased-img {
+.cm-content-wrapper .deceased-img {
     float: left;
     padding: 2%;
     /*padding-bottom: 0;*/
@@ -26,7 +26,7 @@
     overflow: hidden;
     height: 100%;
 }
-.deceased-img img {
+.cm-content-wrapper .deceased-img img {
     max-width: 100%;
     border: 4px solid white;
     border-radius: 2px;
@@ -34,45 +34,45 @@
     object-fit: cover;
     -o-object-fit: cover;
 }
-.deceased-info {
+.cm-content-wrapper .deceased-info {
     margin-top: 2%;
     padding-right: 5%;
     float: left;
     width: 63%;
     font-size: small;
 }
-.rouw-content div a, .deceased-info {
+.cm-content-wrapper .rouw-content div a, .cm-content-wrapper .deceased-info {
     margin-bottom: 2%;
 }
-.deceased-subtitle {
+.cm-content-wrapper .deceased-subtitle {
     color: #6e0b92 ;
     font-weight: bold;
     font-size: 0.9rem;
 }
-.deceased-name {
+.cm-content-wrapper .deceased-name {
     font-weight: bold;
     font-size: 1.4rem;
     padding-bottom: 5px;
 }
 
-#comments {
+.cm-content-wrapper #comments {
     padding: 2%;
 }
-.deceased-post-title {
+.cm-content-wrapper .deceased-post-title {
     font-weight: bold;
 }
-#reply-title {
+.cm-content-wrapper #reply-title {
     font-weight: bold;
     font-style: normal;
     text-align: center;
 }
-#info_text{
+.cm-content-wrapper #info_text{
     text-align: center;;
 }
-#comments {
+.cm-content-wrapper #comments {
     clear: both;
 }
-ol.comment {
+.cm-content-wrapper ol.comment {
     list-style: none;
     background-color: #f6f6f6 ;
     border-radius: 2px;
@@ -80,11 +80,11 @@ ol.comment {
     padding-left:10px;
     margin-left: 0;
 }
-.comment h3 {
+.cm-content-wrapper .comment h3 {
     font-size: 1rem;
     margin-bottom: 0;
 }
 
-.cdm_clear {
+.cm-content-wrapper .cm_clear{
     clear: both;
 }
