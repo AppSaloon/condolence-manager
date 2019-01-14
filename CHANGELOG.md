@@ -1,9 +1,18 @@
 # CHANGELOG
 
 requires: 4.6
-tested: 4.9.6
+tested: 5.0.3
 
-## Version 1.3.2 2017/11/08
+## Version 1.4.0 2019/01/14
+- New Updater
+- Add shortcode for archive page
+- Update deprecated create_function()
+- Update templates for Enfold theme
+
+## Version 1.3.3 2018/11/28
+- Css for for Archive
+
+## Version 1.3.2 2018/06/28
 - REWORK FR translations.
 
 ## Version 1.3.1 2017/11/08

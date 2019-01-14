@@ -20,12 +20,12 @@ Class Auto_Update{
             'plugin_slug' => CM_BASE_NAME,
             'bb_host' => 'https://api.bitbucket.org',
             'bb_download_host' => 'http://bitbucket.org',
-            'bb_owner' => 'appsaloonupdater',
-            'bb_password' => 'aLdNmRqZwVvL32',
+            'bb_owner' => 'as-bbupdater',
+            'bb_password' => 'ZPpeHXHe9VRYhBttF55Z',
             'bb_project_name' => 'appsaloon',
             'bb_repo_name' => 'condolatie-manager-plugin'
         );
-
+ 
         if( $this->git_repository_is_live($bb_plugin) && $this->licensekey_is_valid()){
             new Arpu_Bitbucket_Plugin_Updater( $bb_plugin );
         }
