@@ -255,7 +255,7 @@ if (!empty($password) && $password == $check_password) { ?>
 
             //Display the list of comments
             wp_list_comments(array(
-                'per_page' => 10, //Allow comment pagination
+                'per_page' => -1, //Allow comment pagination
                 'reverse_top_level' => false //Show the latest comments at the top of the list
             ), $comments);
             ?>

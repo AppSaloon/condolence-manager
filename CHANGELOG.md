@@ -3,6 +3,10 @@
 requires: 4.6
 tested: 5.0.3
 
+## Version 1.4.1 2019/01/29
+- Added smooth scroll to single.php
+- Update number of comments
+
 ## Version 1.4.0 2019/01/14
 - New Updater
 - Add shortcode for archive page

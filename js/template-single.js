@@ -20,6 +20,20 @@ $(document).ready(function(){
         e.preventDefault();
         $("#coffee-table-form").toggle();
     });
+
+    // Smooth scroll to form ( Coffee table )
+    $("#toggle_coffee_table").click(function () {
+        $('html, body').animate({
+            scrollTop: $("#ct_form").offset().top
+        }, 2000);
+    });
+    // Smooth scroll to form ( condolences )
+    $("#toggle_comment").click(function () {
+        $('html, body').animate({
+            scrollTop: $(".comments").offset().top
+        }, 2000);
+    });
+
     // if exist error message from gform or succes message
     // than show div with that content and hide coffee_table_button
      if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
