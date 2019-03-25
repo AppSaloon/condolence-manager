@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
 "POT-Creation-Date: 2017-10-19 09:53+0200\n"
-"PO-Revision-Date: 2017-10-19 09:54+0200\n"
+"PO-Revision-Date: 2019-03-25 14:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: condolatie-manager.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -568,7 +568,7 @@ msgstr "Gebedswake"
 
 #: includes/templates/archive.php:145 includes/templates/single.php:222
 msgid "Condole"
-msgstr "Rouwbetuiging"
+msgstr "Condoleer"
 
 #: includes/templates/archive.php:152 includes/templates/single.php:227
 msgid "Coffee Table"
@@ -592,17 +592,17 @@ msgstr "Overleden"
 
 #: includes/templates/single.php:242
 msgid "Condolences for the family"
-msgstr "Rouwbetuigingen voor de familie"
+msgstr "Condolaties voor de familie"
 
 #: includes/templates/single.php:244
 msgid "Reply to this condolence"
-msgstr "Reageer op deze rouwbetuiging"
+msgstr "Reageer op deze condolatie"
 
 #: includes/templates/single.php:244
 msgid "This message will be send by mail to the author of the condolence."
 msgstr ""
 "Dit bericht zal verzonden worden per mail naar de schrijver van deze "
-"rouwbetuiging."
+"condolatie."
 
 #: includes/templates/single.php:244
 msgid "Reply"
@@ -618,7 +618,7 @@ msgstr "Naam"
 
 #: includes/templates/single.php:291
 msgid "Leave your condolences for the family"
-msgstr "Laat een rouwbetuiging na voor de familie"
+msgstr "Laat een condolatie na voor de familie"
 
 #: includes/templates/single.php:292
 msgid "This message is only visible for the family"
@@ -626,7 +626,7 @@ msgstr "Dit bericht is enkel zichtbaar voor de familie"
 
 #: includes/templates/single.php:293
 msgid "Condolence"
-msgstr "Rouwbetuiging"
+msgstr "Condoleer"
 
 #. Plugin Name of the plugin/theme
 msgid "Condolence Manager"

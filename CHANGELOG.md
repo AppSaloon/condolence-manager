@@ -1,7 +1,10 @@
 # CHANGELOG
 
 requires: 4.6
-tested: 5.0.3
+tested: 5.1.1
+
+## Version 1.4.1 2019/03/25
+- Translation fix ( rouwbetuiging -> condoleer )
 
 ## Version 1.4.1 2019/01/29
 - Added smooth scroll to single.php
