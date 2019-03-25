@@ -154,3 +154,9 @@ div.error_box{
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+.ajax-success {
+    border: solid 2px green;
+    border-radius: 5px;
+    padding: 8px;
+    color: green;
+}
