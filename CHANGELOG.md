@@ -3,7 +3,7 @@
 requires: 4.6
 tested: 5.1.1
 
-## Version 1.4.1 2019/03/25
+## Version 1.4.2 2019/03/25
 - Translation fix ( rouwbetuiging -> condoleer )
 
 ## Version 1.4.1 2019/01/29
