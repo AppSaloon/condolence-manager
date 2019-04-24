@@ -221,16 +221,18 @@ $deseased = false;
             do_action('conman_single_render');
             ?>
 
-            <?php if ($password == '') { ?>
-                <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
-                <?php
+             <?php if ($password == '') { 
+                           if ( comments_open() !== false ){ ?>
+                            <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
+                            <?php }
 
-                if ($fields['coffee_table'][0] == 'yes') {
-                    ?>
-                    <a href="#" class="btn" id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
-                    <?php
-                }
-            } ?>
+                            if ($fields['coffee_table'][0] == 'yes') {
+                                $coffee_gravity_form = true;
+                                ?>
+                                <a href="#" class="btn" id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
+                                <?php
+                            }
+                        } ?>
         </td>
     </tr>
 </table>

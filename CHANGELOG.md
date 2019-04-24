@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.1.1
 
+## Version 1.4.3 2019/04/24
+- Fix display comment button single.php
+
 ## Version 1.4.2 2019/03/25
 - Translation fix ( rouwbetuiging -> condoleer )
 
