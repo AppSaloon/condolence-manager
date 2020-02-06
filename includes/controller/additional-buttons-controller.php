@@ -22,7 +22,7 @@ class Additional_Buttons_Controller {
 	 * settings of additional buttons can be set on condolance manager admin menu page
 	 * save settings in option
 	 * additional_btn_href is array of all href's of additional buttons
-	 * additional_btn_captions is array of all captions that apear as value in submit button on frontend
+	 * additional_btn_captions is array of all captions that appear as value in submit button on frontend
 	 */
 	public function save_additional_btn_settings() {
 		if ( isset( $_REQUEST['additional_btn_href'] ) && isset( $_REQUEST['additional_btn_caption'] ) ) {

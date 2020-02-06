@@ -24,13 +24,15 @@ class Select_Fields_To_Show {
 	}
 
 	public function add_admin_page() {
-		add_menu_page( __( 'Condolence manager', 'cm_translate' ), __( 'Condolence manager', 'cm_translate' ), 'manage_options', 'condolence-manager', array(
-			$this,
-			'my_plugin_function'
-		) );
+		add_menu_page( __( 'Condolence manager', 'cm_translate' ), __( 'Condolence manager', 'cm_translate' ),
+			'manage_options', 'condolence-manager', array(
+				$this,
+				'my_plugin_function',
+			) );
 		wp_register_script( 'my-jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' );
 		wp_enqueue_script( 'my-jquery-ui' );
-		wp_enqueue_style( 'style-my-jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css' );
+		wp_enqueue_style( 'style-my-jquery-ui',
+			'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css' );
 
 		wp_register_script( 'drag-and-drop', CM_URL . '/js/drag-and-drop.js', array(), false, true );
 		wp_localize_script( 'drag-and-drop', 'dragAndDrop', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
@@ -72,139 +74,198 @@ class Select_Fields_To_Show {
 		?>
 
         <h2><?php _e( 'Condolence manager', 'cm_translate' ); ?></h2>
-        <p class="info"><?php _e( 'Change the layout of the condolence post by reordering the items listed below.', 'cm_translate' ); ?></p>
-        <p class="info"><?php _e( 'Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.', 'cm_translate' ); ?></p>
-        <div class="field_wrap">
-            <ul class="ui-sortable hide <?php if ( $tableArray ) {
-				echo 'border';
-			} ?>">
-				<?php
-				$result = ( $tableArray ) ? array_diff( self::$defaultFields, $tableArray ) : '';
-				if ( $result ) {
-					foreach ( $result as $key => $value ) {
+
+        <h3 class="nav-tab-wrapper">
+			<?php
+			$this->generate_tab( __( 'Field Mapping', 'cm_translate' ), 'field_mapping', true );
+			$this->generate_tab( __( 'Locations', 'cm_translate' ), 'locations' );
+			$this->generate_tab( __( 'Rename CPT', 'cm_translate' ), 'rename_cpt' );
+			$this->generate_tab( __( 'Update', 'cm_translate' ), 'update' );
+			?>
+        </h3>
+
+        <div class="wrap">
+		<?php if ( ! isset( $_GET['tab'] ) || ( isset( $_GET['tab'] ) && $_GET['tab'] == 'field_mapping' ) ): ?>
+
+            <p class="info"><?php _e( 'Change the layout of the condolence post by reordering the items listed below.',
+					'cm_translate' ); ?></p>
+            <p class="info"><?php _e( 'Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.',
+					'cm_translate' ); ?></p>
+            <div class="field_wrap">
+                <ul class="ui-sortable hide <?php if ( $tableArray ) {
+					echo 'border';
+				} ?>">
+					<?php
+					$result = ( $tableArray ) ? array_diff( self::$defaultFields, $tableArray ) : '';
+					if ( $result ) {
+						foreach ( $result as $key => $value ) {
+							?>
+                            <li class="ui-state-default ui-sortable-handle"
+                                data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="add">+</span></li> <?php
+						}
+					}
+					?>
+
+                </ul>
+
+                <ul id="sortable" class="ui-sortable show">
+					<?php
+					foreach ( $fields as $key => $value ) {
 						?>
                         <li class="ui-state-default ui-sortable-handle"
-                            data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="add">+</span></li> <?php
+                            data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="delete">X</span></li> <?php
 					}
-				}
-				?>
-
-            </ul>
-
-            <ul id="sortable" class="ui-sortable show">
-				<?php
-				foreach ( $fields as $key => $value ) {
 					?>
-                    <li class="ui-state-default ui-sortable-handle"
-                        data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="delete">X</span></li> <?php
-				}
-				?>
-            </ul>
+                </ul>
 
-            <input class="button btn-set-fields" type="submit" value="<?php _e( 'Submit changes', 'cm_translate' ); ?>">
-        </div>
+                <input class="button btn-set-fields" type="submit"
+                       value="<?php _e( 'Submit changes', 'cm_translate' ); ?>">
+            </div>
 
-        <br><br>
-        <hr>
+		<?php endif; ?>
 
-        <div class="change_post_type">
-			<?php
-			$post_type = get_option( 'condolence_cpt_base' );
-			$posts     = wp_count_posts( $post_type );
-			?>
-            <form>
-                <p class="info"><?php _e( 'You can change the <b>custom post type slug</b>.', 'cm_translate' ) ?></p>
-                <label for="post_type"><?php _e( 'Slug name', 'cm_translate' ); ?></label>
-                <input type="hidden" name="old_post_type" id="old_post_type" value="<?php echo $post_type; ?>">
-                <input id="post_type" type='text' name='post_type' value="<?php echo $post_type; ?>">
-                <input id="btn-posttype" type="submit" class="button"
-                       value="<?php _e( 'Change post type', 'cm_translate' ); ?>">
+        <?php if ( ( isset( $_GET['tab'] ) && $_GET['tab'] == 'locations' ) ): ?>
+        <p class="info"><?php _e('Manage the funeral locations. This information will be visible per person.', 'cm_translate'); ?></p>
+        <form method="post">
+            <table class="form-table">
+            <tr>
+                <th>
+                    <label for="location"><?php _e('Location','cm_translate'); ?></label>
+                </th>
+                <td>
+                    <input type="text" name="location" class="regular-text" id="location" placeholder="<?php _e('Name of the location', 'cm_translate'); ?>">
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input type="button" class="button-primary" value="<?php _e('Submit') ?>" name="btn_location">
+                </td>
+            </tr>
+
+            </table>
+
+        </form>
+        <?php endif; ?>
+
+		<?php if ( ( isset( $_GET['tab'] ) && $_GET['tab'] == 'rename_cpt' ) ): ?>
+            <div class="change_post_type">
 				<?php
-				if ( $posts->publish !== 0 ) {
-					?>
-                    <progress id="progress_posttype" max="<?php echo $posts->publish; ?>" value="0"></progress>
+				$post_type = get_option( 'condolence_cpt_base' );
+				$posts     = wp_count_posts( $post_type );
+				?>
+                <form>
+                    <p class="info"><?php _e( 'You can change the <b>custom post type slug</b>.',
+							'cm_translate' ) ?></p>
+                    <label for="post_type"><?php _e( 'Slug name', 'cm_translate' ); ?></label>
+                    <input type="hidden" name="old_post_type" id="old_post_type" value="<?php echo $post_type; ?>">
+                    <input id="post_type" type='text' name='post_type' value="<?php echo $post_type; ?>">
+                    <input id="btn-posttype" type="submit" class="button"
+                           value="<?php _e( 'Change post type', 'cm_translate' ); ?>">
 					<?php
-				}
-				?>
-            </form>
-        </div>
+					if ( $posts->publish !== 0 ) {
+						?>
+                        <progress id="progress_posttype" max="<?php echo $posts->publish; ?>" value="0"></progress>
+						<?php
+					}
+					?>
+                </form>
+            </div>
 
 
-		<?php
-		// show migrate script only if there are old posts
-		$old_posts = wp_count_posts( 'cm_obi' );
-		$check_old_posts = get_object_vars($old_posts)? TRUE : FALSE;
-        if($check_old_posts){
-            if ($old_posts->publish !== null && $old_posts->publish !== 0) {
-                ?>
-                <br><br>
-                <hr>
-
-                <div class="migrating">
-                    <?php
-                    ?>
-                    <form method="post">
-                        <p class="info"><?php _e('Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.') ?></p>
-                        <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>"/>
-                        <input id="btn-migrating" class="button" type="submit" value="Start migrating">
-                        <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>" value="0"></progress>
-                    </form>
-                </div>
-                <?php
-
-            }
-        }
-
-		?>
-        <hr>
-
-        <div class="add_license_key">
 			<?php
-			if ( isset( $_POST['license_key'] ) ) {
-				if ( $this->is_license_key_valid( $_POST['license_key'] ) ) {
-					update_option( 'license_key_cm', $_POST['license_key'] );
-				} else {
-					delete_option( 'license_key_cm' );
-					echo '<div class="error">License key <b>' . $_POST['license_key'] . '</b> is not valid!</div>';
+			// show migrate script only if there are old posts
+			$old_posts       = wp_count_posts( 'cm_obi' );
+			$check_old_posts = get_object_vars( $old_posts ) ? true : false;
+			if ( $check_old_posts ) {
+				if ( $old_posts->publish !== null && $old_posts->publish !== 0 ) {
+					?>
+                    <br><br>
+                    <hr>
+
+                    <div class="migrating">
+						<?php
+						?>
+                        <form method="post">
+                            <p class="info"><?php _e( 'Before starting to migrate, be sure that <b>custom post type slug</b> is correct! Because the changes made in this step can\'t be reversed.' ) ?></p>
+                            <input type="hidden" id="max_posts" value="<?php echo $old_posts->publish; ?>"/>
+                            <input id="btn-migrating" class="button" type="submit" value="Start migrating">
+                            <progress id="progress_migrating" max="<?php echo $old_posts->publish; ?>"
+                                      value="0"></progress>
+                        </form>
+                    </div>
+					<?php
+
 				}
 			}
-			$license_key = ( $license_key = get_option( 'license_key_cm', false ) ) ? $license_key : '';
+
+		endif;
+
+		if ( ( isset( $_GET['tab'] ) && $_GET['tab'] == 'update' ) ):
 			?>
-            <form method="post">
-                <label for="license_key"><?php _e( 'Add your license key', 'cm_translate' ) ?></label>
-                <input id="license_key" type='text' name='license_key'
-                       value="<?php echo $license_key; ?>">
-                <input id="btn-license_key" type="submit" class="button"
-                       value="<?php _e( 'Add license key', 'cm_translate' ); ?>">
-            </form>
-        </div>
-        <hr>
-        <form method="post" name="cm_additional_btn">
-            <button class="cm_add_btn_btn_js">Add button</button>
-            <div class="btn_pocket">
-				<?php $additional_buttons = get_option( 'cm_additional_btn' );
-				if ( empty( $additional_buttons ) ) {
-					$additional_buttons = array( array( 'href' => '', 'caption' => '' ) );
+            <div class="add_license_key">
+				<?php
+				if ( isset( $_POST['license_key'] ) ) {
+					if ( $this->is_license_key_valid( $_POST['license_key'] ) ) {
+						update_option( 'license_key_cm', $_POST['license_key'] );
+					} else {
+						delete_option( 'license_key_cm' );
+						echo '<div class="error">License key <b>' . $_POST['license_key'] . '</b> is not valid!</div>';
+					}
 				}
-				/**
-				 * create additional buttons inputs on settings page
-				 */
-				foreach ( $additional_buttons as $button ) {
-					?>
-                    <div class="additional_btn_container">
-                    <p><label>Insert custom button link</label><input name="additional_btn_href[]"
-                                                                      placeholder="http://condolencemanager.com/condolences/"
-                                                                      value="<?php echo $button['href']; ?>" type="url">
-                    </p>
-                    <p><label>Insert custom button caption</label><input name="additional_btn_caption[]"
-                                                                         value="<?php echo $button['caption']; ?>"
-                                                                         placeholder="Click me!" type="text"></p>
-                    </div><?php
-				}
+				$license_key = ( $license_key = get_option( 'license_key_cm', false ) ) ? $license_key : '';
 				?>
+                <form method="post">
+                    <label for="license_key"><?php _e( 'Add your license key', 'cm_translate' ) ?></label>
+                    <input id="license_key" type='text' name='license_key'
+                           value="<?php echo $license_key; ?>">
+                    <input id="btn-license_key" type="submit" class="button"
+                           value="<?php _e( 'Add license key', 'cm_translate' ); ?>">
+                </form>
             </div>
-            <p><input name="cm_sbm_add_btn" type="submit" class="button button-primary button-large"></p>
-        </form>
+            <hr>
+            <form method="post" name="cm_additional_btn">
+                <button class="cm_add_btn_btn_js">Add button</button>
+                <div class="btn_pocket">
+					<?php $additional_buttons = get_option( 'cm_additional_btn' );
+					if ( empty( $additional_buttons ) ) {
+						$additional_buttons = array( array( 'href' => '', 'caption' => '' ) );
+					}
+					/**
+					 * create additional buttons inputs on settings page
+					 */
+					foreach ( $additional_buttons as $button ) {
+						?>
+                        <div class="additional_btn_container">
+                        <p><label>Insert custom button link</label><input name="additional_btn_href[]"
+                                                                          placeholder="http://condolencemanager.com/condolences/"
+                                                                          value="<?php echo $button['href']; ?>"
+                                                                          type="url">
+                        </p>
+                        <p><label>Insert custom button caption</label><input name="additional_btn_caption[]"
+                                                                             value="<?php echo $button['caption']; ?>"
+                                                                             placeholder="Click me!" type="text"></p>
+                        </div><?php
+					}
+					?>
+                </div>
+                <p><input name="cm_sbm_add_btn" type="submit" class="button button-primary button-large"></p>
+            </form>
+		<?php
+		endif;
+		echo '</div>';
+	}
+
+	private function generate_tab( $name, $tab_name, $first = false ) {
+		$tab = ( ( isset( $_GET['tab'] ) && $_GET['tab'] == $tab_name ) ) ? 'nav-tab-active' : '';
+
+		if ( $first && ! isset( $_GET['tab'] ) ) {
+			$tab = 'nav-tab-active';
+		}
+
+		?>
+        <a href="admin.php?page=condolence-manager&tab=<?php echo $tab_name; ?>"
+           class="nav-tab <?php echo $tab; ?>"><?php echo $name; ?></a>
 		<?php
 	}
 
@@ -216,12 +277,12 @@ class Select_Fields_To_Show {
 			'edd_action' => 'activate_license',
 			'license'    => $license,
 			'item_name'  => urlencode( $item_name ),
-			'url'        => home_url()
+			'url'        => home_url(),
 		);
 		$response   = wp_remote_post( $store_url, array(
 			'body'      => $api_params,
 			'timeout'   => 15,
-			'sslverify' => false
+			'sslverify' => false,
 		) );
 		if ( is_wp_error( $response ) ) {
 			return false;
