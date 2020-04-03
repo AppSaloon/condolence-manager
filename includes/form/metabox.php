@@ -4,6 +4,7 @@ namespace cm\includes\form;
 
 use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\register\Custom_Post_Type;
+use cm\includes\register\Location;
 
 class Metabox
 {
@@ -19,12 +20,12 @@ class Metabox
     /**
      * Add metabox information about departed soul and metabox about information for the family
      */
-    public function add_metaboxes()
-    {
-        add_meta_box('wpt_condolence_person_location', __('Information about deceaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
-        add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
-        add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'coffee_table_metabox'), Custom_Post_Type::post_type(), 'side', 'default');
-    }
+    public function add_metaboxes() {
+			add_meta_box( 'wpt_condolence_person_location', __( 'Information about deceased', 'cm_translate' ), array( $this, 'deceased_callback' ), Custom_Post_Type::post_type(), 'normal', 'high' );
+			add_meta_box( 'wpt_condolence_person_location_linked_location', __( 'Location', 'cm_translate' ), array( $this, 'location_metabox' ), Custom_Post_Type::post_type(), 'side', 'default' );
+			add_meta_box( 'wpt_condolence_person_location_side', __( 'View comments', 'cm_translate' ), array( $this, 'password_callback' ), Custom_Post_Type::post_type(), 'side', 'default' );
+			add_meta_box( 'wpt_condolence_person_location_side_down', __( 'Coffee table', 'cm_translate' ), array( $this, 'coffee_table_metabox' ), Custom_Post_Type::post_type(), 'side', 'default' );
+		}
 
     /**
      * Define fields in metabox Information about departed soul
@@ -485,26 +486,53 @@ class Metabox
                     } ?> ></li>
             <li><input type="submit" name="btn_coffee_table_csv"
                        value="<?php _e('Download CSV list', 'cm_translate'); ?>"></li>
-                <?php echo is_numeric($sum_emails) ? '<li><p>' . __('Emails: ', 'cm_translate') . $sum_emails . '</p></li>' : false;
-                echo '<li><p>' . __('Participants: ', 'cm_translate') . $sum_participants . '</p></li>';
-                ?>
+                <?php echo is_numeric( $sum_emails ) ? '<li><p>' . __( 'Emails: ', 'cm_translate' ) . $sum_emails . '</p></li>' : false;
+								echo '<li><p>' . __( 'Participants: ', 'cm_translate' ) . $sum_participants . '</p></li>';
+								?>
             </span>
         </ul>
         </td>
         </tr>
 
-        <?php
-    }
+			<?php
+		}
 
-    /**
-     * Saving meta fields
-     *
-     * @param $post_id
-     * @param $post
-     */
-    public function save_condolence_person($post_id, $post)
-    {
-        global $wpdb;
+	/**
+	 * Location metabox
+	 */
+	public function location_metabox( $post ) {
+		$location_query_args = array(
+				'post_type'      => Location::POST_TYPE,
+				'orderby'        => 'post_name',
+				'order'          => 'ASC',
+				'posts_per_page' => - 1,
+		);
+
+		$locations = get_posts($location_query_args);
+		$current_location = get_post_meta($post->ID, Location::META_KEY, true);
+        ?>
+      <div class="form-wrap">
+          <label for="<?=Location::META_KEY?>"><?= __( 'Location', 'cm_translate' ) ?></label>
+          <div class="form-field">
+              <select name="<?=Location::META_KEY?>" id="<?=Location::META_KEY?>" class="postbox">
+                     <option value=""><?= __( 'Choose a location', 'cm_translate' ) ?></option>
+                    <?php foreach($locations as $location):?>
+                        <option value="<?=$location->ID?>" <?= selected($current_location, $location->ID, false) ?>><?= sanitize_post_field('title', $location->post_title, $location->ID)?></option>
+                    <?php endforeach;?>
+              </select>
+          </div>
+      </div>
+    <?php
+	}
+
+	/**
+	 * Saving meta fields
+	 *
+	 * @param $post_id
+	 * @param $post
+	 */
+	public function save_condolence_person( $post_id, $post ) {
+		global $wpdb;
 
         // Verify if this is an auto save routine. If it is our form has not been submitted, so we dont want
         // to do anything
@@ -551,6 +579,11 @@ class Metabox
         foreach ($postfields as $field) {
             update_post_meta($post_id, $field, $_POST[$field]);
         }
+
+        /**
+         * Update meta field
+         */
+        update_post_meta($post_id, Location::META_KEY, (int) $_POST[Location::META_KEY]);
 
         /**
          * update flowers button

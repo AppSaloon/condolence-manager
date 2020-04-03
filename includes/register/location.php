@@ -2,11 +2,9 @@
 
 namespace cm\includes\register;
 
-use cm\includes\comments\Inline_Comment_Error;
-use cm\includes\form\Metabox;
-
 class Location {
 	const POST_TYPE = 'location';
+	const META_KEY = '_cm_linked_location';
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
