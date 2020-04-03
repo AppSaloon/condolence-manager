@@ -11,6 +11,8 @@ class Location {
     public function __construct()
     {
         add_action( 'init', array($this, 'register_post_type') );
+				add_action('add_meta_boxes', array($this, 'add_address_metabox'));
+				add_action('save_post', array($this, 'save_address_metadata'));
     }
 
     public function register_post_type(){
@@ -61,4 +63,77 @@ class Location {
 
         new Inline_Comment_Error();
     }
+
+	public function add_address_metabox() {
+		$screens = array( static::POST_TYPE );
+
+		foreach ( $screens as $screen ) {
+			add_meta_box(
+					'cm_location_address',
+					__( 'Address details', 'cm_translate' ),
+					array( $this, 'address_metabox_content' ),
+					$screen
+			);
+		}
+	}
+
+	public function save_address_metadata($post_id) {
+    	$address_keys = array(
+    			'cm_location_address_line',
+    			'cm_location_address_postal_code',
+    			'cm_location_address_city',
+			);
+
+    	foreach($address_keys as $address_key) {
+    		if(isset($_POST[$address_key])) {
+    			update_post_meta(
+    					$post_id,
+							$address_key,
+							sanitize_text_field( $_POST[$address_key] )
+					);
+				}
+			}
+	}
+
+	public function address_metabox_content(\WP_Post $post) {
+		$cm_location_address_line = get_post_meta($post->ID, 'cm_location_address_line', true);
+		$cm_location_address_postal_code = get_post_meta($post->ID, 'cm_location_address_postal_code', true);
+		$cm_location_address_city = get_post_meta($post->ID, 'cm_location_address_city', true);
+		?>
+		<div class="form-wrap">
+			<label for="cm_location_address_line"><?= __( 'Address line', 'cm_translate' ) ?></label>
+			<div class="form-field">
+				<input type="text"
+							 placeholder="<?= __( 'Street name', 'cm_translate' ) ?>"
+							 name="cm_location_address_line"
+							 id="cm_location_address_line"
+							 value="<?=esc_attr($cm_location_address_line)?>"
+				/>
+			</div>
+		</div>
+		<div class="form-wrap">
+			<label for="cm_location_address_postal_code"><?= __( 'Postal code', 'cm_translate' ) ?></label>
+			<div class="form-field">
+				<input type="text"
+							 placeholder="<?= __( 'Postal code', 'cm_translate' ) ?>"
+							 name="cm_location_address_postal_code"
+							 id="cm_location_address_postal_code"
+							 value="<?=esc_attr($cm_location_address_postal_code)?>"
+				/>
+			</div>
+		</div>
+		<div class="form-wrap">
+			<label for="cm_location_address_city"><?= __( 'City', 'cm_translate' ) ?></label>
+			<div class="form-field">
+				<input type="text"
+							 placeholder="<?= __( 'City', 'cm_translate' ) ?>"
+							 name="cm_location_address_city"
+							 id="cm_location_address_city"
+							 value="<?=esc_attr($cm_location_address_city)?>"
+				/>
+			</div>
+		</div>
+
+		<?php
+	}
 }
