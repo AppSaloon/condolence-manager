@@ -21,7 +21,7 @@ class Metabox
      */
     public function add_metaboxes()
     {
-        add_meta_box('wpt_condolence_person_location', __('Information about deseaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
+        add_meta_box('wpt_condolence_person_location', __('Information about deceaded', 'cm_translate'), array($this, 'deceased_callback'), Custom_Post_Type::post_type(), 'normal', 'high');
         add_meta_box('wpt_condolence_person_location_side', __('View comments', 'cm_translate'), array($this, 'password_callback'), Custom_Post_Type::post_type(), 'side', 'default');
         add_meta_box('wpt_condolence_person_location_side_down', __('Coffee table', 'cm_translate'), array($this, 'coffee_table_metabox'), Custom_Post_Type::post_type(), 'side', 'default');
     }
