@@ -1,8 +1,7 @@
 <?php
-
 namespace cm\includes\register;
 
-class Location {
+class Location_Type {
 	const POST_TYPE = 'location';
 	const META_KEY = '_cm_linked_location';
 
@@ -61,13 +60,16 @@ class Location {
 		$screens = array( static::POST_TYPE );
 
 		foreach ( $screens as $screen ) {
-			add_meta_box(
-					'cm_location_address',
-					__( 'Address details', 'cm_translate' ),
-					array( $this, 'address_metabox_content' ),
-					$screen
-			);
-		}
+					add_meta_box(
+							'cm_location_address',
+							__( 'Address details', 'cm_translate' ),
+							array( $this, 'address_metabox_content' ),
+							$screen,
+							'side',
+							'high'
+
+					);
+				}
 	}
 
 	public function save_address_metadata( $post_id ) {

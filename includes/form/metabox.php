@@ -4,7 +4,7 @@ namespace cm\includes\form;
 
 use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\register\Custom_Post_Type;
-use cm\includes\register\Location;
+use cm\includes\register\Location_Type;
 
 class Metabox {
 
@@ -530,19 +530,19 @@ class Metabox {
 	 */
 	public function location_metabox( $post ) {
 		$location_query_args = array(
-				'post_type'      => Location::POST_TYPE,
+				'post_type'      => Location_Type::POST_TYPE,
 				'orderby'        => 'post_name',
 				'order'          => 'ASC',
 				'posts_per_page' => - 1,
 		);
 
 		$locations        = get_posts( $location_query_args );
-		$current_location = get_post_meta( $post->ID, Location::META_KEY, true );
+		$current_location = get_post_meta( $post->ID, Location_Type::META_KEY, true );
 		?>
       <div class="form-wrap">
-          <label for="<?= Location::META_KEY ?>"><?= __( 'Location', 'cm_translate' ) ?></label>
+          <label for="<?= Location_Type::META_KEY ?>"><?= __( 'Location', 'cm_translate' ) ?></label>
           <div class="form-field">
-              <select name="<?= Location::META_KEY ?>" id="<?= Location::META_KEY ?>" class="postbox">
+              <select name="<?= Location_Type::META_KEY ?>" id="<?= Location_Type::META_KEY ?>" class="postbox">
                   <option value=""><?= __( 'Choose a location', 'cm_translate' ) ?></option>
 								<?php foreach ( $locations as $location ): ?>
                     <option value="<?= $location->ID ?>" <?= selected( $current_location, $location->ID, false ) ?>><?= sanitize_post_field( 'title', $location->post_title, $location->ID ) ?></option>
@@ -609,9 +609,9 @@ class Metabox {
 		}
 
 		/**
-		 * Update meta field
+		 * Update location field
 		 */
-		update_post_meta( $post_id, Location::META_KEY, (int) $_POST[Location::META_KEY] );
+		update_post_meta( $post_id, Location_Type::META_KEY, (int) $_POST[Location_Type::META_KEY] );
 
 		/**
 		 * update flowers button

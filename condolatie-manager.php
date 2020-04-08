@@ -34,7 +34,9 @@ use cm\includes\controller\Additional_Buttons_Controller;
 use cm\includes\controller\Comment_Email;
 use cm\includes\controller\Templates;
 use cm\includes\register\Custom_Post_Type;
-use cm\includes\register\Location;
+use cm\includes\register\Location_Type;
+use cm\includes\register\Order_Type;
+use cm\includes\register\Product_Type;
 use cm\includes\register\Translation;
 use cm\includes\script\Migrate;
 use cm\includes\script\Post_Type;
@@ -99,7 +101,9 @@ Class Condolatie_Manager{
      */
     public function register(){
             new Custom_Post_Type();
-            new Location();
+            new Location_Type();
+            new Order_Type();
+            new Product_Type();
             new Translation();
             new Form_Filter_Controller();
     }
