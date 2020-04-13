@@ -1,0 +1,29 @@
+.cm-form-grid {
+    display: grid;
+    grid-template-columns: var(--cm-grid-template-columns, 1fr);
+    grid-gap: var(--cm-grid-gap, 15px);
+}
+
+.cm-form-field input[type=email],
+.cm-form-field input[type=number],
+.cm-form-field input[type=password],
+.cm-form-field input[type=search],
+.cm-form-field input[type=tel],
+.cm-form-field input[type=text],
+.cm-form-field input[type=url],
+.cm-form-field textarea
+{
+    width: 100%;
+}
+
+.cm-form-wrap.required > label::after {
+    content: '\00a0*';
+    color: #7a0000;
+}
+
+
+@media screen and (min-width: 980px) {
+    .cm-form-grid {
+        --cm-grid-template-columns: 1fr 1fr;
+    }
+}
