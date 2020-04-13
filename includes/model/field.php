@@ -354,6 +354,8 @@ class Field {
 			}, '' );
 		}
 
+		$value = $this->get_value_or_default( $value );
+
 		ob_start();
 		?>
         <div
