@@ -8,6 +8,7 @@ use cm\includes\coffee_table\Menu_Page_View;
 
 class Select_Fields_To_Show {
     const MENU_SLUG = 'condolence-manager';
+    const MENU_OPTIONS_SLUG = 'condolence-manager_options';
 
 	public static $defaultFields;
 
@@ -40,7 +41,7 @@ class Select_Fields_To_Show {
             __( 'Condolence manager options', 'cm_translate' ),
             __( 'Options' ),
             'manage_options',
-            static::MENU_SLUG . '_options',
+            static::MENU_OPTIONS_SLUG,
             array($this, 'my_plugin_function'),
             99
         );
@@ -94,7 +95,7 @@ class Select_Fields_To_Show {
         <h3 class="nav-tab-wrapper">
 			<?php
 			$this->generate_tab( __( 'Field Mapping', 'cm_translate' ), 'field_mapping', true );
-			$this->generate_tab( __( 'Locations', 'cm_translate' ), 'locations' );
+			$this->generate_tab( __( 'Confirmation', 'cm_translate' ), 'confirmation' );
 			$this->generate_tab( __( 'Rename CPT', 'cm_translate' ), 'rename_cpt' );
 			$this->generate_tab( __( 'Update', 'cm_translate' ), 'update' );
 			?>
@@ -140,22 +141,63 @@ class Select_Fields_To_Show {
 
 		<?php endif; ?>
 
-        <?php if ( ( isset( $_GET['tab'] ) && $_GET['tab'] == 'locations' ) ): ?>
-        <p class="info"><?php _e('Manage the funeral locations. This information will be visible per person.', 'cm_translate'); ?></p>
-        <form method="post">
+        <?php if ( ( isset( $_GET['tab'] ) && $_GET['tab'] == 'confirmation' ) ):
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_confirmation'])) {
+            update_option(
+                    'cm_option_confirmation_type',
+                    $_POST['cm_option_confirmation_type'] === 'page' ? 'page' : 'text'
+            );
+            update_option('cm_option_confirmation_text', sanitize_textarea_field($_POST['cm_option_confirmation_text']));
+            update_option('cm_option_confirmation_page', esc_url($_POST['cm_option_confirmation_page']));
+        }
+        ?>
+        <p class="info"><?php _e('Manage the condolence confirmation. This can be a thank you text, or a page to redirect to.', 'cm_translate'); ?></p>
+        <form method="post" action="">
             <table class="form-table">
             <tr>
                 <th>
-                    <label for="location"><?php _e('Location','cm_translate'); ?></label>
+                    <label for="cm_option_confirmation_type"><?php _e('Confirmation type','cm_translate'); ?></label>
                 </th>
                 <td>
-                    <input type="text" name="location" class="regular-text" id="location" placeholder="<?php _e('Name of the location', 'cm_translate'); ?>">
+                    <?php
+                    $confirmation_type = get_option('cm_option_confirmation_type', 'text');
+ ?>
+                    <p><label><input type="radio" name="cm_option_confirmation_type" value="page" <?php checked('page', $confirmation_type);?>><?php _e('Page','cm_translate'); ?></label></p>
+                    <p><label><input type="radio" name="cm_option_confirmation_type" value="text" <?php checked('text', $confirmation_type);?>><?php _e('Text','cm_translate'); ?></label></p>
+                    <p class="description">
+                    <?php _e('Choose what will happen after a user writes a condolence.','cm_translate'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="cm_option_confirmation_page"><?php _e('Confirmation page','cm_translate'); ?></label>
+                </th>
+                <td>
+                   <input type="url" value="<?php echo esc_attr(get_option('cm_option_confirmation_page'))?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="<?php _e('https://www.example.com/thank-you', 'cm_translate'); ?>">
+                    <p class="description">
+                    <?php _e('If you selected "page" as the confirmation type, please enter the URL to the page your users will be redirected to after writing a condolence.','cm_translate'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="cm_option_confirmation_text"><?php _e('Confirmation text','cm_translate'); ?></label>
+                </th>
+                <td>
+                    <textarea name="cm_option_confirmation_text" class="regular-text" id="cm_option_confirmation_text" placeholder="<?php _e('Thank you note', 'cm_translate'); ?>"><?php
+                    echo esc_textarea(get_option('cm_option_confirmation_text', ''));
+                    ?></textarea>
+                    <p class="description">
+                    <?php _e('If you selected "text" as the confirmation type, the text in the field above will be displayed to a user after writing a condolence.','cm_translate'); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <th></th>
                 <td>
-                    <input type="button" class="button-primary" value="<?php _e('Submit') ?>" name="btn_location">
+                    <input type="submit" class="button-primary" value="<?php _e('Submit') ?>" name="btn_confirmation">
                 </td>
             </tr>
 
@@ -280,7 +322,7 @@ class Select_Fields_To_Show {
 		}
 
 		?>
-        <a href="admin.php?page=condolence-manager&tab=<?php echo $tab_name; ?>"
+        <a href="admin.php?page=<?=static::MENU_OPTIONS_SLUG?>&tab=<?php echo $tab_name; ?>"
            class="nav-tab <?php echo $tab; ?>"><?php echo $name; ?></a>
 		<?php
 	}
