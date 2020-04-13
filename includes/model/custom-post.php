@@ -35,14 +35,14 @@ class Custom_Post extends Model {
 	 * @param int  $post_id
 	 * @param bool $load_fields
 	 *
-	 * @return Custom_Post
+	 * @return static
 	 */
 	public static function from_id( $post_id, $load_fields = true ) {
 		if ( isset( static::$_repository[$post_id] ) ) {
 			$instance = static::$_repository[$post_id];
 
 			if ( $load_fields && !$instance->is_loaded() ) {
-				$instance->load();
+				$instance->load_fields();
 			}
 
 			return $instance;
@@ -236,7 +236,16 @@ class Custom_Post extends Model {
 		}
 
 		$value = $field->serialize( $value );
-		update_post_meta( $this->get_id(), $meta_key, $value );
+
+		if ( ! $field->is_single() ) {
+			delete_post_meta( $this->get_id(), $meta_key );
+
+			foreach ( $value as $sub_value ) {
+				add_post_meta( $this->get_id(), $meta_key, $sub_value );
+			}
+		} else {
+			update_post_meta( $this->get_id(), $meta_key, $value );
+		}
 	}
 
 	/**

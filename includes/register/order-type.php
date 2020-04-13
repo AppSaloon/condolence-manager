@@ -7,7 +7,6 @@ use WP_Post;
 
 class Order_Type {
 	const POST_TYPE = 'cm_order';
-	const META_KEY = 'cm_linked_condolence';
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
@@ -132,21 +131,12 @@ class Order_Type {
 	public function products_metabox_content( WP_Post $post ) {
 		$order = Order::from_id( $post->ID );
 
-		echo $order->get_property_html( 'order_lines' );
+		echo $order->render_lines_form();
 	}
 
 	public function details_metabox_content( WP_Post $post ) {
 		$order = Order::from_id( $post->ID );
 
-		echo $order->get_property_html( 'contact_first_name' );
-		echo $order->get_property_html( 'contact_last_name' );
-		echo $order->get_property_html( 'contact_email' );
-		echo $order->get_property_html( 'contact_phone' );
-		echo $order->get_property_html( 'address_line' );
-		echo $order->get_property_html( 'address_postal_code' );
-		echo $order->get_property_html( 'address_city' );
-		echo $order->get_property_html( 'company_name' );
-		echo $order->get_property_html( 'company_vat' );
-		echo $order->get_property_html( 'remarks' );
+		echo $order->render_details_form();
 	}
 }

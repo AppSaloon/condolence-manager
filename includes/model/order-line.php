@@ -6,7 +6,7 @@ use cm\includes\register\Product_Type;
 use JsonSerializable;
 use WP_Post;
 
-class Order_Line extends Model implements JsonSerializable {
+class Order_Line extends Model implements JsonSerializable, Deserializable {
 	/** @var integer|null */
 	private $product_id;
 	/** @var string */
@@ -55,6 +55,7 @@ class Order_Line extends Model implements JsonSerializable {
 				) ),
 				'description' => new Field( 'description', false, array(
 						'label' => __( 'Description', 'cm_translate' ),
+						'hidden'         => true,
 				) ),
 				'qty'         => new Field( 'quantity', true, array(
 						'type'          => 'number',
@@ -65,11 +66,6 @@ class Order_Line extends Model implements JsonSerializable {
 						'type'           => 'object',
 						'hidden'         => true,
 						'class'          => Price::class,
-						'serialize_cb'   => 'json_encode',
-						'deserialize_cb' => static function ( $value ) {
-							$decoded_price = json_decode( $value, true );
-							return new Price( $decoded_price['amount'], $decoded_price['currency'] );
-						},
 						'label'          => __( 'Product price', 'cm_translate' ),
 				) ),
 		);
@@ -79,12 +75,32 @@ class Order_Line extends Model implements JsonSerializable {
 	 * @inheritDoc
 	 */
 	public function jsonSerialize() {
-		return array(
-				'product_id'  => $this->get_product_id(),
-				'qty'         => $this->get_qty(),
-				'description' => $this->get_description(),
-				'price'       => $this->get_price(),
-				'total'       => $this->get_total(),
+		$return = array(
+			'product_id'  => $this->get_product_id(),
+			'qty'         => $this->get_qty(),
+			'description' => $this->get_description(),
+			'price'       => $this->get_price(),
+		);
+
+
+		try {
+			$product = Product::from_id($this->get_product_id());
+			$return['description'] = $product->get_description();
+			$return['price'] = $product->get_price();
+		} catch(\Exception $e) {
+			// Product might have been deleted.
+			var_dump($e);die();
+		}
+
+		return $return;
+	}
+
+	public static function deserialize( $input = array() ) {
+		return new static(
+			$input['product_id'],
+			$input['qty'],
+            $input['price'] instanceof Price ? $input['price'] : Price::deserialize($input['price']),
+			$input['description']
 		);
 	}
 
@@ -163,5 +179,19 @@ class Order_Line extends Model implements JsonSerializable {
 	 */
 	public function get_total() {
 		return new Price( $this->get_price()->get_amount() * $this->get_qty(), $this->get_price()->get_currency() );
+	}
+
+	public function render_form() {
+		ob_start();
+		?>
+		<div class="form-wrap cm-form-wrap--<?= esc_attr( static::get_type() ) ?>">
+			<div class="form-wrap form-wrap--name cm-form-grid">
+				<?= $this->get_property_html( 'contact_first_name' ) ?>
+				<?= $this->get_property_html( 'contact_last_name' ) ?>
+			</div>
+			<?= $this->get_property_html( 'remarks' ) ?>
+		</div>
+		<?php
+		return ob_get_clean();
 	}
 }

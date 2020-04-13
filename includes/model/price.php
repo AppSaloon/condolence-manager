@@ -5,7 +5,7 @@ namespace cm\includes\model;
 use JsonSerializable;
 use RuntimeException;
 
-class Price extends Model implements JsonSerializable {
+class Price extends Model implements JsonSerializable, Deserializable {
 	/** @var string Fallback currency. */
 	const DEFAULT_CURRENCY = 'EUR';
 	/** @var array|null */
@@ -306,8 +306,15 @@ class Price extends Model implements JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		return array(
-				'amount'   => $this->get_amount(),
-				'currency' => $this->get_currency(),
+			'amount'   => $this->get_amount(),
+			'currency' => $this->get_currency(),
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public static function deserialize( $input = array() ) {
+		return new static( $input['amount'], $input['currency'] );
 	}
 }

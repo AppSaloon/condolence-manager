@@ -140,10 +140,22 @@ class Field {
 	 *
 	 * @param $input
 	 *
-	 * @return string
+	 * @return mixed
 	 */
 	public function serialize( $input ) {
-		return $this->do_callback( $input, 'serialize_cb' );
+		if ( ! $this->is_single() && wp_is_numeric_array( $input ) ) {
+			return array_map( array( $this, 'serialize' ), $input );
+		}
+
+		if ( $this->has_callback( 'serialize_cb' ) ) {
+			$this->do_callback( $input, 'serialize_cb' );
+		}
+
+		if ( $this->get_type() === 'object' ) {
+			return json_encode( $input, JSON_OBJECT_AS_ARRAY );
+		}
+
+		return $input;
 	}
 
 	/**
@@ -165,28 +177,31 @@ class Field {
 	 *
 	 * @param $value
 	 *
-	 * @return string
+	 * @return mixed
 	 */
 	public function deserialize( $value ) {
+		if ( ! $this->is_single() ) {
+			if ( wp_is_numeric_array( $value ) ) {
+				return array_map( array( $this, 'deserialize' ), $value );
+			}
+		}
+
 		if ( $this->has_callback( 'deserialize_cb' ) ) {
 			return $this->do_callback( $value, 'deserialize_cb' );
 		}
 
-		// Deserialize sub fields.
-		if ( $this->has_sub_fields() ) {
-			$schema     = $this->get_schema();
-			$properties = array_keys( $schema );
+		if ( $this->get_type() === 'object' ) {
+			// Deserialize object
+			$decoded = @json_decode( $value, true );
 
-			return array_combine(
-					$properties,
-					array_map( static function ( $property ) use ( $schema, $input ) {
-						/** @var Field $field */
-						$field = $schema[$property];
-						$value = $input[$property];
+			if ( is_array( $decoded ) ) {
+				$value = $decoded;
 
-						return $field->denormalize( $value );
-					}, $properties )
-			);
+				if ( ( $class = $this->get_class() ) && Model::is_deserializable( $class ) ) {
+					/** @var $class Deserializable */
+					$value = $class::deserialize( $value );
+				}
+			}
 		}
 
 		return $value;
@@ -209,16 +224,23 @@ class Field {
 	 * @return bool
 	 */
 	public function has_sub_fields() {
-		return !empty( $this->options['class'] ) && is_subclass_of( $this->options['class'], Model::class );
+		return ! empty( $this->options['class'] ) && is_subclass_of( $this->options['class'], Model::class );
 	}
 
 	/**
 	 * @return array
 	 */
 	public function get_schema() {
-		/** @var Model $class */
-		$class = $this->options['class'];
-		return $class::schema();
+		$class = $this->get_class();
+
+		return isset( $class ) ? $class::schema() : null;
+	}
+
+	/**
+	 * @return Model
+	 */
+	public function get_class() {
+		return $this->options['class'];
 	}
 
 	/**
@@ -226,11 +248,16 @@ class Field {
 	 *
 	 * @param $input
 	 *
-	 * @return string
+	 * @return mixed
 	 */
 	public function denormalize( $input ) {
-		// First sanitize the input.
-		$input = $this->sanitize( $input );
+		if ( ! $this->is_single() ) {
+			$input = (array) $input;
+
+			if ( wp_is_numeric_array( $input ) ) {
+				return array_map( array( $this, 'denormalize' ), $input );
+			}
+		}
 
 		if ( $this->has_callback( 'denormalize_cb' ) ) {
 			return $this->do_callback( $input, 'denormalize_cb' );
@@ -241,16 +268,23 @@ class Field {
 			$schema     = $this->get_schema();
 			$properties = array_keys( $schema );
 
-			return array_combine(
-					$properties,
-					array_map( static function ( $property ) use ( $schema, $input ) {
-						/** @var Field $field */
-						$field = $schema[$property];
-						$value = $input[$property];
+			$fields = array_combine(
+				$properties,
+				array_map( static function ( $property ) use ( &$schema, &$input ) {
+					/** @var Field $field */
+					$field = $schema[ $property ];
+					$value = $input[ $property ];
 
-						return $field->denormalize( $value );
-					}, $properties )
+					return $field->denormalize( $value );
+				}, $properties )
 			);
+
+			if ( ( $class = $this->get_class() ) && Model::is_deserializable( $class ) ) {
+				/** @var $class Deserializable */
+				return $class::deserialize( $fields );
+			}
+
+			return $fields;
 		}
 
 		return $input;
@@ -283,50 +317,73 @@ class Field {
 
 	/**
 	 * @param string $prefix
-	 * @param null   $value
+	 * @param null $value
 	 *
 	 * @param string $parent
 	 *
+	 * @param null $field_key
+	 *
 	 * @return false|string
 	 */
-	public function get_control_html( $prefix = '', $value = null, $parent = '' ) {
+	public function get_control_html( $prefix = '', $value = null, $parent = '', $field_key = null ) {
+		wp_enqueue_style( 'cm/forms' );
+
 		$field_name = $prefix . $this->get_name();
 
-		if ( !empty( $parent ) ) {
+		if ( null !== $field_key ) {
+			$field_name .= "[{$field_key}]";
+		}
+
+		if ( ! empty( $parent ) ) {
 			$field_name = sprintf( '%s[%s]', $parent, $field_name );
 		}
 
 		$field_id = str_replace( array( '[', ']' ), array( '_', '_' ), $field_name );
 
+		// Field not singular.
+		if ( ! $this->is_single() && wp_is_numeric_array( $value ) ) {
+			$values = $value;
+			if ( $this->is_required() && count( $values ) === 0 ) {
+				$values = array( null );
+			}
+
+			return array_reduce( array_keys( $values ), function ( $carry, $key ) use ( &$values, $parent, $prefix ) {
+				$carry .= $this->get_control_html( $prefix, $values[ $key ], $parent, $key );
+
+				return $carry;
+			}, '' );
+		}
+
 		ob_start();
 		?>
-      <div class="form-wrap form-wrap--<?= esc_attr( $this->get_name() ) ?>">
-				<?php if ( ($label = $this->get_label()) && !empty( $label ) ): ?>
-            <label for="<?= esc_attr( $field_id ) ?>"><?= esc_html( $label ) ?></label>
-				<?php endif; ?>
-          <div class="form-field form-field--<?= esc_attr( $this->get_name() ) ?>">
-						<?php if ( $this->has_sub_fields() ): ?>
-                <div class="form-sub-fields">
-									<?php
-									/** @var $field Field */
-									foreach ( $this->get_schema() as $property => $field ) {
-										if ( $field->is_hidden() ) {
-											continue;
-										}
+        <div
+                class="form-wrap cm-form-wrap cm-form-wrap--<?= esc_attr( $this->get_name() ) ?><?= $this->is_required() ? ' required' : '' ?>">
+			<?php if ( ( $label = $this->get_label() ) && ! empty( $label ) ): ?>
+                <label for="<?= esc_attr( $field_id ) ?>"><?= esc_html( $label ) ?></label>
+			<?php endif; ?>
+            <div class="form-field cm-form-field cm-form-field--<?= esc_attr( $this->get_name() ) ?>">
+				<?php if ( $this->has_sub_fields() ): ?>
+                    <div class="cm-form-field--sub-fields">
+						<?php
+						/** @var $field Field */
+						foreach ( $this->get_schema() as $property => $field ) {
+							if ( $field->is_hidden() ) {
+								continue;
+							}
 
-										$field_value = isset( $value[$property] ) ? $value[$property] : null;
-										echo $field->get_control_html( null, $field_value, $field_name );
-									}
-									?>
-                </div>
-						<?php else: ?>
-							<?= $this->get_field_control( $field_name, $value ) ?>
-						<?php endif; ?>
-						<?php if ( ($description = $this->get_description()) && !empty( $description ) ): ?>
-                <p class="description"><?= esc_html( $description ) ?></p>
-						<?php endif; ?>
-          </div>
-      </div>
+							$field_value = isset( $value[ $property ] ) ? $value[ $property ] : null;
+							echo $field->get_control_html( null, $field_value, $field_name );
+						}
+						?>
+                    </div>
+				<?php else: ?>
+					<?= $this->get_field_control( $field_name, $value ) ?>
+				<?php endif; ?>
+				<?php if ( ( $description = $this->get_description() ) && ! empty( $description ) ): ?>
+                    <p class="description"><?= esc_html( $description ) ?></p>
+				<?php endif; ?>
+            </div>
+        </div>
 		<?php
 
 		return ob_get_clean();
@@ -438,9 +495,13 @@ class Field {
 	 *
 	 * @param $value
 	 *
-	 * @return string
+	 * @return mixed
 	 */
 	public function normalize( $value ) {
+		if ( ! $this->is_single() && wp_is_numeric_array( $value ) ) {
+			return array_map( array( $this, 'normalize' ), $value );
+		}
+
 		if ( $this->has_callback( 'normalize_cb' ) ) {
 			return $this->do_callback( $value, 'normalize_cb' );
 		}

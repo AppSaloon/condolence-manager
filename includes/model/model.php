@@ -94,4 +94,8 @@ class Model {
 	public function validate() {
 		return true;
 	}
+
+	public static function is_deserializable($class) {
+		return in_array(Deserializable::class, class_implements($class));
+	}
 }

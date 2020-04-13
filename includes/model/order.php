@@ -58,21 +58,6 @@ class Order extends Custom_Post {
 				'order_lines'         => new Field( 'order_lines', true, array(
 						'type'           => 'object',
 						'class'          => Order_Line::class,
-						'serialize_cb'   => 'json_encode',
-						'deserialize_cb' => static function ( $order_lines ) {
-							return array_map( static function ( $order_line ) {
-								$order_line = json_decode( $order_line, true );
-
-								$price = new Price( $order_line['price']['amount'], $order_line['price']['currency'] );
-
-								return new Order_Line(
-										$order_line['product_id'],
-										$order_line['qty'],
-										$price,
-										$order_line['description']
-								);
-							}, $order_lines );
-						},
 						'label'          => __( 'Order lines', 'cm_translate' ),
 				), false ),
 				'deceased_id'         => new Select_Field( 'deceased_id', true, array(
@@ -94,17 +79,17 @@ class Order extends Custom_Post {
 							}, array() );
 						}
 				) ),
-				'contact_email'       => new Field( 'contact_email', false, array(
+				'contact_email'       => new Field( 'contact_email', true, array(
 						'type'  => 'email',
 						'label' => __( 'Email Address', 'cm_translate' ),
 				) ),
 				'contact_phone'       => new Field( 'contact_phone', false, array(
 						'label' => __( 'Phone number', 'cm_translate' ),
 				) ),
-				'contact_first_name'  => new Field( 'contact_first_name', false, array(
+				'contact_first_name'  => new Field( 'contact_first_name', true, array(
 						'label' => __( 'First name', 'cm_translate' ),
 				) ),
-				'contact_last_name'   => new Field( 'contact_last_name', false, array(
+				'contact_last_name'   => new Field( 'contact_last_name', true, array(
 						'label' => __( 'Last name', 'cm_translate' ),
 				) ),
 				'address_line'        => new Field( 'address_line', false, array(
@@ -118,9 +103,11 @@ class Order extends Custom_Post {
 				) ),
 				'company_name'        => new Field( 'company_name', false, array(
 						'label' => __( 'Company name', 'cm_translate' ),
+						'description' => __( 'Enter the company name if applicable.', 'cm_translate' ),
 				) ),
 				'company_vat'         => new Field( 'company_vat', false, array(
 						'label' => __( 'Company Vat', 'cm_translate' ),
+						'description' => __( 'Enter the company vat number if applicable.', 'cm_translate' ),
 				) ),
 				'remarks'             => new Field( 'remarks', false, array(
 						'type'  => 'longtext',
@@ -331,5 +318,45 @@ class Order extends Custom_Post {
 	public function set_remarks( $remarks ) {
 		$this->remarks = $remarks;
 		return $this;
+	}
+
+
+	public function render_lines_form() {
+		ob_start();
+		?>
+	<div class="form-wrap cm-form-wrap--<?= esc_attr( static::get_type() ) ?>">
+		<?= $this->get_property_html( 'order_lines' );?>
+	</div>
+		<?php
+		return ob_get_clean();
+	}
+
+	public function render_details_form() {
+		ob_start();
+?>
+	<div class="form-wrap cm-form-wrap--<?= esc_attr( static::get_type() ) ?>">
+		<div class="form-wrap form-wrap--name cm-form-grid">
+			<?= $this->get_property_html( 'contact_first_name' ) ?>
+			<?= $this->get_property_html( 'contact_last_name' ) ?>
+		</div>
+		<div class="form-wrap form-wrap--contact cm-form-grid">
+			<?= $this->get_property_html( 'contact_email' ) ?>
+			<?= $this->get_property_html( 'contact_phone' ) ?>
+		</div>
+		<div class="form-wrap form-wrap--company cm-form-grid">
+			<?= $this->get_property_html( 'company_name' ) ?>
+			<?= $this->get_property_html( 'company_vat' ) ?>
+		</div>
+		<div class="form-wrap form-wrap--address cm-form-grid">
+			<div class="cm-form-grid">
+				<?= $this->get_property_html( 'address_city' ) ?>
+				<?= $this->get_property_html( 'address_postal_code' ) ?>
+			</div>
+			<?= $this->get_property_html( 'address_line' ) ?>
+		</div>
+		<?= $this->get_property_html( 'remarks' ) ?>
+	</div>
+<?php
+		return ob_get_clean();
 	}
 }

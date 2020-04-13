@@ -51,6 +51,7 @@ define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
 define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
+define( 'CM_VERSION', '1.4.3' );
 
 
 Class Condolatie_Manager{
@@ -59,6 +60,7 @@ Class Condolatie_Manager{
     {
         $this->autoloader();
         $this->run();
+        $this->assets();
     }
 
     public function autoloader(){
@@ -123,6 +125,10 @@ Class Condolatie_Manager{
     public function scripts(){
         new Migrate();
         new Post_Type();
+    }
+
+    public function assets(){
+	    wp_register_style('cm/forms', CM_URL . 'css/forms.css', null, CM_VERSION );
     }
 }
 

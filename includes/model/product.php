@@ -47,6 +47,14 @@ class Product extends Custom_Post {
 	 */
 	public function set_price( $price ) {
 		$this->price = $price;
+
 		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_description() {
+		return get_the_title( $this->get_post() );
 	}
 }
