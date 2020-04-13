@@ -52,16 +52,20 @@ class Order_Type {
 		);
 	}
 
+	public static function order_customer_link(Order $order) {
+	    return sprintf(
+		    '<a href="%s"><strong>%s</strong></a>',
+		    get_edit_post_link($order->get_id()),
+		    $order->get_customer()
+	    );;
+    }
+
 	public function column_content( $column, $post_id ) {
 		$order = Order::from_id( $post_id );
 
 		switch ( $column ) {
 			case 'cm_customer':
-				echo sprintf(
-					'<a href="%s"><strong>%s</strong></a>',
-					get_edit_post_link($post_id),
-					$order->get_customer()
-				);
+				echo static::order_customer_link($order);
 				break;
 			case 'cm_deceased':
 				echo get_the_title( $order->get_deceased_id() );

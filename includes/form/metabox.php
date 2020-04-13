@@ -3,8 +3,11 @@
 namespace cm\includes\form;
 
 use cm\includes\coffee_table\Coffee_Table_Controller;
+use cm\includes\model\Order;
 use cm\includes\register\Custom_Post_Type;
 use cm\includes\register\Location_Type;
+use cm\includes\register\Order_Type;
+use WP_Query;
 
 class Metabox {
 
@@ -22,6 +25,7 @@ class Metabox {
 		add_meta_box( 'wpt_condolence_person_location', __( 'Information about deceased', 'cm_translate' ), array( $this, 'deceased_callback' ), Custom_Post_Type::post_type(), 'normal', 'high' );
 		add_meta_box( 'wpt_condolence_person_location_linked_location', __( 'Location', 'cm_translate' ), array( $this, 'location_metabox' ), Custom_Post_Type::post_type(), 'side', 'default' );
 		add_meta_box( 'wpt_condolence_person_location_side', __( 'View comments', 'cm_translate' ), array( $this, 'password_callback' ), Custom_Post_Type::post_type(), 'side', 'default' );
+		add_meta_box( 'wpt_condolence_person_location_orders', __( 'Orders', 'cm_translate' ), array( $this, 'order_metabox' ), Custom_Post_Type::post_type(), 'normal', 'default' );
 		add_meta_box( 'wpt_condolence_person_location_side_down', __( 'Coffee table', 'cm_translate' ), array( $this, 'coffee_table_metabox' ), Custom_Post_Type::post_type(), 'side', 'default' );
 	}
 
@@ -549,6 +553,49 @@ class Metabox {
 								<?php endforeach; ?>
               </select>
           </div>
+      </div>
+		<?php
+	}
+
+	/**
+	 * Orders metabox
+	 */
+	public function order_metabox( $post ) {
+		$order_query_args = array(
+				'post_type'      => Order_Type::POST_TYPE,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+				'posts_per_page' => -1,
+                'meta_key'       => 'cm_order_deceased_id',
+                'meta_value'     => $post->ID,
+		);
+
+		$order_query = new WP_Query( $order_query_args );?>
+      <div class="form-wrap">
+          <?php if(!$order_query->have_posts()):?>
+            <em><?= __('No orders have been placed for this person.', 'cm_translate')?></em>
+          <?php else: ?>
+          <table class="wp-list-table widefat fixed striped posts">
+              <thead>
+                <tr>
+                    <th><?=__('Customer', 'cm_translate')?></th>
+                    <th><?=__('Summary', 'cm_translate')?></th>
+                    <th><?=__('Total', 'cm_translate')?></th>
+                    <th><?=__('Placed at', 'cm_translate')?></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php while($order_query->have_posts()): $order_query->the_post(); $order = Order::from_id(get_the_ID());?>
+                <tr>
+                    <td><?= Order_Type::order_customer_link($order)?></td>
+                    <td><?= $order->get_summary()?></td>
+                    <td><?= $order->get_total()->display(true)?></td>
+                    <td><?php the_date()?></td>
+                </tr>
+                <?php endwhile;?>
+              </tbody>
+          </table>
+          <?php endif;?>
       </div>
 		<?php
 	}
