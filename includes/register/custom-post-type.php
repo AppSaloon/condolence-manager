@@ -90,26 +90,38 @@ class Custom_Post_Type{
             $page = '';
             $arg = shortcode_atts(array(
                 'posts_per_page' => get_option('posts_per_page'),
+                'location' => 'all',
                 'pagination' => false,
             ), $atts);
 
-            if($arg['pagination'] === 'true'){
-                $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                if(substr($url, -1) === '/'){
-                    $url = substr($url, 0, -1);
-                }
 
-                $end = explode('/', $url);
+            $args = array(
+            	'post_type' => static::post_type(),
+	            'posts_per_page' => $arg['posts_per_page'],
+            );
 
-                if(is_numeric(end($end)) ){
-                    $paged = end($end);
-                    $page = '&paged='.end($end);
-                }
-
+            if($arg['location'] !== 'all') {
+            	$args['meta_key'] = Location_Type::META_KEY;
+            	$args['meta_value'] = $arg['location'];
             }
 
-            $posttype = static::post_type();
-            $posts = query_posts('post_type=' . $posttype . '&posts_per_page=' . $arg['posts_per_page'].$page);
+            // todo wut?
+	        if($arg['pagination'] === 'true'){
+		        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		        if(substr($url, -1) === '/'){
+			        $url = substr($url, 0, -1);
+		        }
+
+		        $end = explode('/', $url);
+
+		        if(is_numeric(end($end)) ){
+			        $paged = end($end);
+			        $args['paged'] = $end;
+		        }
+
+	        }
+
+            $posts = query_posts($args);
             ob_start();
             include CM_BASE_DIR . '/includes/templates/archive.php';
             $content = ob_get_clean();
