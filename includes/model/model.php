@@ -91,8 +91,12 @@ class Model {
 		}
 	}
 
+	/**
+	 * Returns validation errors.
+	 * @return array
+	 */
 	public function validate() {
-		return true;
+		return [];
 	}
 
 	public static function is_deserializable($class) {

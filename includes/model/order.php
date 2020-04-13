@@ -58,7 +58,7 @@ class Order extends Custom_Post {
 				'order_lines'         => new Field( 'order_lines', true, array(
 						'type'           => 'object',
 						'class'          => Order_Line::class,
-						'label'          => __( 'Order lines', 'cm_translate' ),
+						'label'          => __( 'Products', 'cm_translate' ),
 				), false ),
 				'deceased_id'         => new Select_Field( 'deceased_id', true, array(
 						'label'       => __( 'Linked condolence', 'cm_translate' ),

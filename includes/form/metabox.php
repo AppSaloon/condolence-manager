@@ -92,6 +92,12 @@ class Metabox {
               </td>
           </tr>
           <tr>
+              <td><label for="funeraldate"><?php _e( 'Funeral date', 'cm_translate' ); ?></label></td>
+              <td class="form-field">
+                  <input type="date" name="funeraldate" id="funeraldate" value="<?php echo self::normalize_date($this->get_field_value( 'funeraldate', $post->ID )); ?>" />
+              </td>
+          </tr>
+          <tr>
               <td><?php _e( 'Funeral information' ); ?></td>
               <td class="form-field"><textarea rows="3" name="funeralinformation"
                   ><?php echo $this->get_field_value( 'funeralinformation', $post->ID ); ?></textarea></td>
@@ -630,7 +636,7 @@ class Metabox {
                     <td><?= $order->get_total()->display(true)?></td>
                     <td><?php the_date()?></td>
                 </tr>
-                <?php endwhile;?>
+                <?php endwhile; wp_reset_postdata();?>
               </tbody>
           </table>
           <?php endif;?>
@@ -675,6 +681,7 @@ class Metabox {
 				'birthplace',
 				'placeofdeath',
 				'dateofdeath',
+				'funeraldate',
 				'funeralinformation',
 				'prayervigilinformation',
 				'greetinginformation',

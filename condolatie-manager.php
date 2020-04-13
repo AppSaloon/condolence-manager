@@ -61,6 +61,7 @@ Class Condolatie_Manager{
         $this->autoloader();
         $this->run();
         $this->assets();
+        $this->includes();
     }
 
     public function autoloader(){
@@ -129,6 +130,9 @@ Class Condolatie_Manager{
 
     public function assets(){
 	    wp_register_style('cm/forms', CM_URL . 'css/forms.css', null, CM_VERSION );
+    }
+    private function includes(){
+	    require_once CM_DIR . '/includes/controller/products.php';
     }
 }
 

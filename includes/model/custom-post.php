@@ -27,7 +27,7 @@ class Custom_Post extends Model {
 	 */
 	private $updated_fields = array();
 
-	protected function __construct( $id ) {
+	protected function __construct( $id = null ) {
 		$this->id = $id;
 	}
 
@@ -69,6 +69,15 @@ class Custom_Post extends Model {
 	}
 
 	/**
+	 * Create a new post
+	 *
+	 * @return static
+	 */
+	public static function create_new() {
+		return new static();
+	}
+
+	/**
 	 * Get post type name.
 	 *
 	 * @return string
@@ -80,7 +89,7 @@ class Custom_Post extends Model {
 	/**
 	 * Load fields from database.
 	 */
-	protected function load_fields() {
+	public function load_fields() {
 		/**
 		 * @var  $property string
 		 * @var  $field    Field
