@@ -76,7 +76,7 @@ class Metabox {
           <tr>
               <td><?php _e( 'Birthdate', 'cm_translate' ); ?></td>
               <td class="form-field"><input type="date" name="birthdate"
-                                            value="<?php echo $this->get_field_value( 'birthdate', $post->ID ); ?>">
+                                            value="<?php echo self::normalize_date($this->get_field_value( 'birthdate', $post->ID )); ?>">
               </td>
           </tr>
           <tr>
@@ -88,13 +88,13 @@ class Metabox {
           <tr>
               <td><?php _e( 'Date of death', 'cm_translate' ); ?></td>
               <td class="form-field"><input type="date" name="dateofdeath"
-                                            value="<?php echo $this->get_field_value( 'dateofdeath', $post->ID ); ?>">
+                                            value="<?php echo self::normalize_date($this->get_field_value( 'dateofdeath', $post->ID )); ?>">
               </td>
           </tr>
           <tr>
               <td><?php _e( 'Funeral information' ); ?></td>
               <td class="form-field"><textarea rows="3" name="funeralinformation"
-                  "><?php echo $this->get_field_value( 'funeralinformation', $post->ID ); ?></textarea></td>
+                  ><?php echo $this->get_field_value( 'funeralinformation', $post->ID ); ?></textarea></td>
           </tr>
           <tr>
               <td><?php _e( 'Prayer Vigil information', 'cm_translate' ); ?></td>
@@ -529,6 +529,44 @@ class Metabox {
 		<?php
 	}
 
+	protected static function get_months() {
+		return array(
+			"Januari",
+			"Februari",
+			"Maart",
+			"April",
+			"Mei",
+			"Juni",
+			"Juli",
+			"Augustus",
+			"September",
+			"Oktober",
+			"November",
+			"December"
+		);
+    }
+
+    protected static function normalize_month($month_name) {
+	    $month_map = array_flip(static::get_months());
+
+	    return isset($month_map[$month_name]) ? $month_map[$month_name] + 1 : 1;
+    }
+
+    protected static function normalize_date($date) {
+	    $format = 'Y-m-d';
+
+	    if(\DateTime::createFromFormat($format, $date)) {
+	        return $date;
+        }
+
+	    list($day, $month, $year) = explode(' ', $date);
+	    $month = static::normalize_month($month);
+
+	    $dateTime = \DateTime::createFromFormat('Y-n-j', "$year-$month-$day");
+
+	    return $dateTime ? $dateTime->format($format) : $date;
+    }
+
 	/**
 	 * Location metabox
 	 */
@@ -698,20 +736,8 @@ class Metabox {
 		}
 
 		if ( isset( $_POST['dateofdeath'] ) && isset( $_POST['name'] ) && isset( $_POST['familyname'] ) ) {
-			$arraymaand = array(
-					"Januari",
-					"Februari",
-					"Maart",
-					"April",
-					"Mei",
-					"Juni",
-					"Juli",
-					"Augustus",
-					"September",
-					"Oktober",
-					"November",
-					"December"
-			);
+			$arraymaand = static::get_months();
+
 			$date       = $_POST['dateofdeath'];
 			$pieces     = explode( "-", $date );
 			$num        = intval( $pieces[1] );
