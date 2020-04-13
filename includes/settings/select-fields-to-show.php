@@ -7,6 +7,7 @@ use cm\includes\coffee_table\Menu_Page_View;
 
 
 class Select_Fields_To_Show {
+    const MENU_SLUG = 'condolence-manager';
 
 	public static $defaultFields;
 
@@ -24,11 +25,26 @@ class Select_Fields_To_Show {
 	}
 
 	public function add_admin_page() {
-		add_menu_page( __( 'Condolence manager', 'cm_translate' ), __( 'Condolence manager', 'cm_translate' ),
-			'manage_options', 'condolence-manager', array(
-				$this,
-				'my_plugin_function',
-			) );
+        add_menu_page(
+            __( 'Condolence manager', 'cm_translate' ),
+            __( 'Condolence manager', 'cm_translate' ),
+            'edit_posts',
+            static::MENU_SLUG,
+            '',
+            'dashicons-businessperson',
+            10
+        );
+
+         add_submenu_page(
+            static::MENU_SLUG,
+            __( 'Condolence manager options', 'cm_translate' ),
+            __( 'Options' ),
+            'manage_options',
+            static::MENU_SLUG . '_options',
+            array($this, 'my_plugin_function'),
+            99
+        );
+
 		wp_register_script( 'my-jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' );
 		wp_enqueue_script( 'my-jquery-ui' );
 		wp_enqueue_style( 'style-my-jquery-ui',

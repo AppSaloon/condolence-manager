@@ -1,6 +1,8 @@
 <?php
 namespace cm\includes\register;
 
+use cm\includes\settings\Select_Fields_To_Show;
+
 class Location_Type {
 	const POST_TYPE = 'location';
 	const META_KEY = '_cm_linked_location';
@@ -18,7 +20,7 @@ class Location_Type {
 				'singular_name'      => _x( 'Location', 'Post Type Singular Name', 'cm_translate' ),
 				'menu_name'          => __( 'Locations', 'cm_translate' ),
 				'parent_item_colon'  => __( 'Parent Location', 'cm_translate' ),
-				'all_items'          => __( 'All Locations', 'cm_translate' ),
+				'all_items'          => __( 'Locations', 'cm_translate' ),
 				'view_item'          => __( 'View Location', 'cm_translate' ),
 				'add_new_item'       => __( 'Add New Location', 'cm_translate' ),
 				'add_new'            => __( 'Add New', 'cm_translate' ),
@@ -38,10 +40,10 @@ class Location_Type {
 				'hierarchical'        => false,
 				'public'              => true,
 				'show_ui'             => true,
-				'show_in_menu'        => true,
+				'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
 				'show_in_nav_menus'   => true,
 				'show_in_admin_bar'   => true,
-				'menu_position'       => 5,
+				'menu_position'       => 2,
 				'can_export'          => true,
 				'has_archive'         => true,
 				'exclude_from_search' => false,

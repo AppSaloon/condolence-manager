@@ -104,8 +104,8 @@ Class Condolatie_Manager{
     public function register(){
             new Custom_Post_Type();
             new Location_Type();
-            new Order_Type();
             new Product_Type();
+	        new Order_Type();
             new Translation();
             new Form_Filter_Controller();
     }

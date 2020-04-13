@@ -3,6 +3,7 @@
 namespace cm\includes\register;
 
 use cm\includes\model\Order;
+use cm\includes\settings\Select_Fields_To_Show;
 use WP_Post;
 
 class Order_Type {
@@ -26,7 +27,7 @@ class Order_Type {
 				'singular_name'      => _x( 'Order', 'Post Type Singular Name', 'cm_translate' ),
 				'menu_name'          => __( 'Orders', 'cm_translate' ),
 				'parent_item_colon'  => __( 'Parent Order', 'cm_translate' ),
-				'all_items'          => __( 'All Orders', 'cm_translate' ),
+				'all_items'          => __( 'Orders', 'cm_translate' ),
 				'view_item'          => __( 'View Order', 'cm_translate' ),
 				'add_new_item'       => __( 'Add New Order', 'cm_translate' ),
 				'add_new'            => __( 'Add New', 'cm_translate' ),
@@ -46,10 +47,10 @@ class Order_Type {
 				'hierarchical'        => false,
 				'public'              => false,
 				'show_ui'             => true,
-				'show_in_menu'        => true,
+				'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
 				'show_in_nav_menus'   => true,
 				'show_in_admin_bar'   => true,
-				'menu_position'       => 5,
+				'menu_position'       => 10,
 				'can_export'          => true,
 				'has_archive'         => false,
 				'exclude_from_search' => true,

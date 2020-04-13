@@ -4,6 +4,7 @@ namespace cm\includes\register;
 
 use cm\includes\comments\Inline_Comment_Error;
 use cm\includes\form\Metabox;
+use cm\includes\settings\Select_Fields_To_Show;
 
 class Custom_Post_Type{
     public $post_type;
@@ -35,7 +36,7 @@ class Custom_Post_Type{
             'singular_name'       => _x( 'Condolence', 'Post Type Singular Name', 'cm_translate' ),
             'menu_name'           => __( 'Condolences', 'cm_translate' ),
             'parent_item_colon'   => __( 'Parent Condolence', 'cm_translate' ),
-            'all_items'           => __( 'All Condolences', 'cm_translate' ),
+            'all_items'           => __( 'Condolences', 'cm_translate' ),
             'view_item'           => __( 'View Condolence', 'cm_translate' ),
             'add_new_item'        => __( 'Add New Condolence', 'cm_translate' ),
             'add_new'             => __( 'Add New', 'cm_translate' ),
@@ -55,10 +56,10 @@ class Custom_Post_Type{
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
-            'show_in_menu'        => true,
+            'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
             'show_in_nav_menus'   => true,
             'show_in_admin_bar'   => true,
-            'menu_position'       => 5,
+            'menu_position'       => 1,
             'can_export'          => true,
             'has_archive'         => true,
             'exclude_from_search' => false,

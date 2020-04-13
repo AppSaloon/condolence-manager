@@ -4,6 +4,7 @@ namespace cm\includes\register;
 
 use cm\includes\model\Price;
 use cm\includes\model\Product;
+use cm\includes\settings\Select_Fields_To_Show;
 
 class Product_Type {
 	const POST_TYPE = 'cm_product';
@@ -75,7 +76,7 @@ class Product_Type {
 				'singular_name'      => _x( 'Product', 'Post Type Singular Name', 'cm_translate' ),
 				'menu_name'          => __( 'Products', 'cm_translate' ),
 				'parent_item_colon'  => __( 'Parent Product', 'cm_translate' ),
-				'all_items'          => __( 'All Products', 'cm_translate' ),
+				'all_items'          => __( 'Products', 'cm_translate' ),
 				'view_item'          => __( 'View Product', 'cm_translate' ),
 				'add_new_item'       => __( 'Add New Product', 'cm_translate' ),
 				'add_new'            => __( 'Add New', 'cm_translate' ),
@@ -95,10 +96,10 @@ class Product_Type {
 				'hierarchical'        => false,
 				'public'              => true,
 				'show_ui'             => true,
-				'show_in_menu'        => true,
+				'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
 				'show_in_nav_menus'   => true,
 				'show_in_admin_bar'   => true,
-				'menu_position'       => 5,
+				'menu_position'       => 2,
 				'can_export'          => true,
 				'has_archive'         => true,
 				'exclude_from_search' => false,
