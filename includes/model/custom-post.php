@@ -147,8 +147,6 @@ class Custom_Post extends Model {
 		 */
 		foreach ( static::schema() as $property => $field ) {
 			$this->set_field_from_input( $property, $field, $input );
-
-			$this->updated_fields[] = $property;
 		}
 
 		$this->updated_fields = array_unique( $this->updated_fields );
@@ -164,10 +162,17 @@ class Custom_Post extends Model {
 	 */
 	private function set_field_from_input( $property, Field $field, $input, $prefix = null ) {
 		$field_key = static::prefix_key( $field->get_name(), $prefix );
-		$value     = isset( $input[$field_key] ) ? $input[$field_key] : null;
-		$value     = $field->denormalize( $value );
+
+		if ( ! isset( $input[ $field_key ] ) && ! $this->is_field_editable( $property ) ) {
+			return;
+		}
+
+
+		$value = isset( $input[ $field_key ] ) ? $input[ $field_key ] : null;
+		$value = $field->denormalize( $value );
 
 		$this->set( $property, $value );
+		$this->updated_fields[] = $property;
 	}
 
 	/**
@@ -253,5 +258,13 @@ class Custom_Post extends Model {
 	 */
 	private function is_loaded() {
 		return $this->fields_loaded;
+	}
+
+	private function is_field_editable( $property ) {
+		return in_array( $property, $this->editable_fields() );
+	}
+
+	protected function editable_fields() {
+		return array_keys( static::schema() );
 	}
 }

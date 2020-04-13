@@ -351,12 +351,63 @@ class Order extends Custom_Post {
 			<div class="cm-form-grid">
 				<?= $this->get_property_html( 'address_city' ) ?>
 				<?= $this->get_property_html( 'address_postal_code' ) ?>
-			</div>
+            </div>
 			<?= $this->get_property_html( 'address_line' ) ?>
-		</div>
+        </div>
 		<?= $this->get_property_html( 'remarks' ) ?>
-	</div>
-<?php
+    </div>
+		<?php
 		return ob_get_clean();
+	}
+
+	public function get_customer_name() {
+		return "{$this->get_contact_first_name()} {$this->get_contact_last_name()}";
+	}
+
+	public function get_customer() {
+		$output = $this->get_customer_name();
+
+		if ( ( $company = $this->get_company_name() ) && ! empty( $company ) ) {
+			$output .= " ({$company})";
+		}
+
+		return $output;
+	}
+
+	public function get_total() {
+		$total_amount = array_reduce( $this->get_order_lines(), static function ( $total, Order_Line $order_line ) {
+			$total += $order_line->get_total()->get_amount();
+
+			return $total;
+		}, 0 );
+
+		return new Price( $total_amount );
+	}
+
+	public function get_summary() {
+		$list = array_reduce( $this->get_order_lines(), static function ( $list, Order_Line $order_line ) {
+			$list .= sprintf(
+				'<li>%d &times; <a href="%s">%s</a> = %s',
+				$order_line->get_qty(),
+				get_edit_post_link( $order_line->get_product_id() ),
+				$order_line->get_description(),
+				$order_line->get_total()->display( true )
+			);
+
+			return $list;
+		}, '' );
+		if ( ! empty( $list ) ) {
+			$list = "<ul>{$list}</ul>";
+		}
+
+		return $list;
+	}
+
+	protected function editable_fields() {
+		if ( ! Order_Type::is_order_editable( $this ) ) {
+			return array_diff( parent::editable_fields(), array( 'order_lines' ) );
+		}
+
+		return parent::editable_fields();
 	}
 }

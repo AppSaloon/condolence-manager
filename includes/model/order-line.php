@@ -57,7 +57,7 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 						'label' => __( 'Description', 'cm_translate' ),
 						'hidden'         => true,
 				) ),
-				'qty'         => new Field( 'quantity', true, array(
+				'qty'         => new Field( 'qty', true, array(
 						'type'          => 'number',
 						'default_value' => 1,
 						'label'         => __( 'Quantity', 'cm_translate' ),

@@ -14,17 +14,79 @@ class Order_Type {
 		add_action( 'add_meta_boxes', array( $this, 'add_order_metaboxes' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
 		add_action( 'save_post', array( $this, 'save_order_metadata' ) );
+
+		$post_type = static::POST_TYPE;
+		add_filter( "manage_{$post_type}_posts_columns", array( $this, 'add_columns' ) );
+		add_action( "manage_{$post_type}_posts_custom_column", array( $this, 'column_content' ), 10, 2 );
+
+		add_action( 'admin_head', function () use ( $post_type ) {
+			$current_screen = get_current_screen();
+
+			if ( null !== $current_screen && $current_screen->id === "edit-$post_type" ) {
+				$this->add_styling();
+			}
+		} );
+
 	}
 
-	private static function is_post_editable( WP_Post $post ) {
-		return $post instanceof WP_Post && in_array( $post->post_status, array( 'auto-draft', 'draft' ) );
+	public function add_styling() {
+		?>
+		<style type="text/css">
+			th#cm_price,
+			td.column-cm_price {
+				width: 100px;
+				text-align: right;
+			}
+		</style>
+		<?php
+	}
+
+	public function add_columns( $columns ) {
+		return array(
+			'cb'          => '<input type="checkbox" />',
+			'cm_customer' => __( 'Order', 'cm_translate' ),
+			'cm_deceased' => __( 'Condolence', 'cm_translate' ),
+			'cm_summary'  => __( 'Order summary', 'cm_translate' ),
+			'cm_price'    => __( 'Order total', 'cm_translate' ),
+			'date'        => __( 'Date' )
+		);
+	}
+
+	public function column_content( $column, $post_id ) {
+		$order = Order::from_id( $post_id );
+
+		switch ( $column ) {
+			case 'cm_customer':
+				echo sprintf(
+					'<a href="%s"><strong>%s</strong></a>',
+					get_edit_post_link($post_id),
+					$order->get_customer()
+				);
+				break;
+			case 'cm_deceased':
+				echo get_the_title( $order->get_deceased_id() );
+				break;
+			case 'cm_summary':
+				echo $order->get_summary();
+				break;
+			case 'cm_price':
+				echo $order->get_total()->display(true);
+				break;
+			default:
+		}
+	}
+
+	public static function is_order_editable( Order $order ) {
+		$post = $order->get_post();
+
+		return !$post instanceof WP_Post || $post->post_status !== 'publish';
 	}
 
 	public function register_post_type() {
 		// Set UI labels for Custom Post Type
 		$labels = array(
-				'name'               => _x( 'Orders', 'Post Type General Name', 'cm_translate' ),
-				'singular_name'      => _x( 'Order', 'Post Type Singular Name', 'cm_translate' ),
+			'name'                   => _x( 'Orders', 'Post Type General Name', 'cm_translate' ),
+			'singular_name'          => _x( 'Order', 'Post Type Singular Name', 'cm_translate' ),
 				'menu_name'          => __( 'Orders', 'cm_translate' ),
 				'parent_item_colon'  => __( 'Parent Order', 'cm_translate' ),
 				'all_items'          => __( 'Orders', 'cm_translate' ),
@@ -132,7 +194,19 @@ class Order_Type {
 	public function products_metabox_content( WP_Post $post ) {
 		$order = Order::from_id( $post->ID );
 
-		echo $order->render_lines_form();
+		if(static::is_order_editable($order)) {
+			echo $order->render_lines_form();
+			return;
+		}
+
+		?>
+		<div>
+			<h3><?=__('Products', 'cm_translate')?></h3>
+			<?= $order->get_summary() ?>
+			<h3><?=__('Total', 'cm_translate')?></h3>
+			<?= $order->get_total()->display(true) ?>
+		</div>
+<?php
 	}
 
 	public function details_metabox_content( WP_Post $post ) {
