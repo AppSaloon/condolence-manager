@@ -60,7 +60,7 @@ class Order_Type {
 	/**
 	 * @param $deceased_id
 	 *
-	 * @return DateTime
+	 * @return DateTime|null
 	 */
 	public static function get_funeral_date( $deceased_id ) {
 		$funeral_date_string = get_post_meta( $deceased_id, 'funeraldate', true );
@@ -69,10 +69,11 @@ class Order_Type {
 			$funeral_date = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$funeral_date_string} 00:00:00", static::get_timezone() );
 		} else {
 			$date_of_death = Metabox::normalize_date( get_post_meta( $deceased_id, 'dateofdeath', true ) );
-			$funeral_date  = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$date_of_death} 00:00:00", static::get_timezone() )->modify( '+2 week' );
+			$funeral_date  = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$date_of_death} 00:00:00", static::get_timezone() );
+			if($funeral_date) { $funeral_date->modify( '+2 week' ); }
 		}
 
-		return $funeral_date;
+		return $funeral_date instanceof DateTime ? $funeral_date : null;
 	}
 
 	/**
@@ -82,6 +83,11 @@ class Order_Type {
 	 */
 	public static function get_order_before_date( $deceased_id ) {
 		$funeral_date = static::get_funeral_date( $deceased_id );
+
+		if(null === $funeral_date) {
+		    return new DateTime();
+        }
+
 		$order_before = clone $funeral_date;
 		$order_before->modify( static::get_close_offset() );
 

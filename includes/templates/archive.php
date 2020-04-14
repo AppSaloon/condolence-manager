@@ -136,14 +136,13 @@ get_header(); ?>
                                        value="<?php _e('Condole', 'cm_translate'); ?>"><?php if ($values['coffee_table'][0] == 'yes') { ?>
                                     <input type="button" onclick="location.href='<?php the_permalink(); ?>'"
                                            value="<?php _e('Coffee Table', 'cm_translate'); ?>"><?php }
-                                if ($values["flowers"][0] !== 0) {
-                                    $string = $values["flowers"][0];
-                                    if ($string != '0') { ?>
+                                if (cm_orders_allowed(get_post())):
+                                    // todo: this should definitely be a link
+                                    ?>
                                         <input type="button"
-                                               onclick="location.href='/<?php _e('Flowers', 'cm_translate'); ?>'"
+                                               onclick="location.href='<?php the_permalink()?>#cm-products'"
                                                value="<?php _e('Flowers', 'cm_translate'); ?>">
-                                    <?php }
-                                }
+                                <?php endif;
                                 /**
                                  * add additional buttons if are added on backend in condolatie-manager menu page
                                  */
