@@ -8,6 +8,7 @@ $(document).ready(function(){
 
     var blank_fields = cm.blank_fields;
     var thanks = cm.thanks;
+    var confirmation = cm.confirmation;
     var wait = cm.wait;
     var not_send = cm.not_send;
 
@@ -74,9 +75,13 @@ $(document).ready(function(){
                        if($('.comments-list').hasClass('family_page')){
                            location.reload();
                        }else{
-                           statusdiv.html('<p class="ajax-success" >'+thanks+'</p>');
+                           statusdiv.html('<p class="ajax-success" >'+confirmation.text+'</p>');
                            $('.comment-form-comment').hide();
                            $('.error_box').hide();
+
+                           if(confirmation.type === 'page') {
+                               window.location = confirmation.page;
+                           }
                        }
 
                         if($(".comments-list").has("ol.commentlist").length > 0){

@@ -25,6 +25,17 @@ class Select_Fields_To_Show {
 		die();
 	}
 
+	public static function get_confirmation_settings() {
+	    return array(
+	            'type' => get_option('cm_option_confirmation_type', 'text'),
+	            'text' => get_option(
+	                    'cm_option_confirmation_text',
+	                    __( 'Thanks for your comment. We appreciate your response.', 'cm_translate')
+                ),
+	            'page' => get_option('cm_option_confirmation_page'),
+	    );
+	}
+
 	public function add_admin_page() {
         add_menu_page(
             __( 'Condolence manager', 'cm_translate' ),
@@ -161,7 +172,7 @@ class Select_Fields_To_Show {
                 </th>
                 <td>
                     <?php
-                    $confirmation_type = get_option('cm_option_confirmation_type', 'text');
+                    $confirmation_type = static::get_confirmation_settings()['type'];
  ?>
                     <p><label><input type="radio" name="cm_option_confirmation_type" value="page" <?php checked('page', $confirmation_type);?>><?php _e('Page','cm_translate'); ?></label></p>
                     <p><label><input type="radio" name="cm_option_confirmation_type" value="text" <?php checked('text', $confirmation_type);?>><?php _e('Text','cm_translate'); ?></label></p>
@@ -175,7 +186,7 @@ class Select_Fields_To_Show {
                     <label for="cm_option_confirmation_page"><?php _e('Confirmation page','cm_translate'); ?></label>
                 </th>
                 <td>
-                   <input type="url" value="<?php echo esc_attr(get_option('cm_option_confirmation_page'))?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="<?php _e('https://www.example.com/thank-you', 'cm_translate'); ?>">
+                   <input type="url" value="<?php echo esc_attr(static::get_confirmation_settings()['page'])?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="<?php _e('https://www.example.com/thank-you', 'cm_translate'); ?>">
                     <p class="description">
                     <?php _e('If you selected "page" as the confirmation type, please enter the URL to the page your users will be redirected to after writing a condolence.','cm_translate'); ?>
                     </p>
@@ -187,7 +198,7 @@ class Select_Fields_To_Show {
                 </th>
                 <td>
                     <textarea name="cm_option_confirmation_text" class="regular-text" id="cm_option_confirmation_text" placeholder="<?php _e('Thank you note', 'cm_translate'); ?>"><?php
-                    echo esc_textarea(get_option('cm_option_confirmation_text', ''));
+                    echo esc_textarea(static::get_confirmation_settings()['text']);
                     ?></textarea>
                     <p class="description">
                     <?php _e('If you selected "text" as the confirmation type, the text in the field above will be displayed to a user after writing a condolence.','cm_translate'); ?>
