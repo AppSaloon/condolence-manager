@@ -75,8 +75,9 @@ class Select_Field extends Field {
 				'name'     => $field_name,
 				'id'       => $field_name,
 				'required' => $this->is_required() ? 'required' : null,
-
 		);
+
+		$attributes = array_merge($attributes, $this->options['attributes']);
 
 		$choices = $this->get_choices();
 

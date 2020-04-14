@@ -58,9 +58,10 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 						'hidden'         => true,
 				) ),
 				'qty'         => new Field( 'qty', true, array(
-						'type'          => 'number',
-						'default_value' => 1,
-						'label'         => __( 'Quantity', 'cm_translate' ),
+					'type'          => 'number',
+					'default_value' => 1,
+					'label'         => __( 'Quantity', 'cm_translate' ),
+					'attributes'    => array( 'min' => '1', 'step' => '1', 'max' => '99' ),
 				) ),
 				'price'       => new Field( 'price', true, array(
 						'type'           => 'object',
@@ -89,7 +90,6 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 			$return['price'] = $product->get_price();
 		} catch(\Exception $e) {
 			// Product might have been deleted.
-			var_dump($e);die();
 		}
 
 		return $return;

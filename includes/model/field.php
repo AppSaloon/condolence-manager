@@ -31,6 +31,7 @@ class Field {
 	 *   'placeholder'   => null,
 	 *   'schema'   => null,
 	 *   'hidden'   => false,
+	 *   'attributes'   => false,
 	 *   'sanitize_cb'   => null,
 	 *   'validate_cb'   => null,
 	 *   'serialize_cb'   => null,
@@ -55,6 +56,7 @@ class Field {
 				'placeholder'    => null,
 				'schema'         => null,
 				'hidden'         => false,
+				'attributes'     => array(),
 				'sanitize_cb'    => null,
 				'validate_cb'    => null,
 				'serialize_cb'   => null,
@@ -77,6 +79,7 @@ class Field {
 		if ( $this->is_required() && empty( $value ) ) {
 			return false;
 		}
+
 
 		$validate_cb = $this->options['validate_cb'];
 
@@ -450,6 +453,8 @@ class Field {
 				'value'       => $value,
 				'required'    => $this->is_required() ? 'required' : null,
 		);
+
+		$attributes = array_merge($attributes, $this->options['attributes']);
 
 		if ( $this->get_type() === 'longtext' ):?>
         <textarea <?= static::get_tag_attributes( $attributes ) ?>><?= esc_textarea( $value ); ?></textarea>

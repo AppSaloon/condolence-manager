@@ -410,4 +410,42 @@ class Order extends Custom_Post {
 
 		return parent::editable_fields();
 	}
+
+	protected function validate_model() {
+		$errors = [];
+
+		if ( empty( $this->get_order_lines() ) ) {
+			$errors[] = __( 'No products selected.', 'cm_translate' );
+		} else {
+			foreach ( $this->get_order_lines() as $order_line ) {
+				if ( empty( $order_line->get_product_id() ) ) {
+					$errors[] = __( 'No product selected.', 'cm_translate' );
+					continue;
+				}
+
+				if ( empty( $order_line->get_qty() ) || ! ctype_digit( $order_line->get_qty() ) || intval( $order_line->get_qty() ) <= 0 ) {
+					$errors[] = __( 'Invalid product quantity.', 'cm_translate' );
+				}
+			}
+		}
+
+		/**
+		 * @var $field Field
+		 * @var $property string
+		 */
+		foreach ( static::schema() as $property => $field ) {
+			$value = $this->get( $property );
+
+			if ( $field->is_required() && empty( $value ) ) {
+				$errors[] = sprintf( __( 'Field "%s" is required.', 'cm_translate' ), $property );
+				continue;
+			}
+		}
+
+		if ( ! filter_var( $this->get_contact_email(), FILTER_VALIDATE_EMAIL ) ) {
+			$errors[] = __( 'Please enter a valid email.', 'cm_translate' );
+		}
+
+		return $errors;
+	}
 }

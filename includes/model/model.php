@@ -96,6 +96,23 @@ class Model {
 	 * @return array
 	 */
 	public function validate() {
+		$errors = $this->validate_model();
+
+		// todo field level validation?
+		/*foreach(static::schema() as $property => $field) {
+			$value = $this->get($property);
+			$errors = array_merge($errors, $field->validate($value));
+		}*/
+
+		return $errors;
+	}
+
+	/**
+	 * Function to override for model-wide validations.
+	 *
+	 * @return array
+	 */
+	protected function validate_model() {
 		return [];
 	}
 
