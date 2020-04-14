@@ -558,19 +558,25 @@ class Metabox {
 	    return isset($month_map[$month_name]) ? $month_map[$month_name] + 1 : 1;
     }
 
-    protected static function normalize_date($date) {
+	/**
+     * Normalize date for DOMString format for HTML5 date widget:
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
+     *
+	 * @param $date
+	 *
+	 * @return string
+	 */
+    public static function normalize_date($date) {
 	    $format = 'Y-m-d';
 
-	    if(\DateTime::createFromFormat($format, $date)) {
+	    if(\DateTime::createFromFormat($format, $date, Order_Type::get_timezone())) {
 	        return $date;
         }
 
 	    list($day, $month, $year) = explode(' ', $date);
 	    $month = static::normalize_month($month);
 
-	    $dateTime = \DateTime::createFromFormat('Y-n-j', "$year-$month-$day");
-
-	    return $dateTime ? $dateTime->format($format) : $date;
+	    return sprintf("%s-%02s-%02s", $year, $month, $day);
     }
 
 	/**

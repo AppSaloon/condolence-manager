@@ -6,30 +6,48 @@ use cm\includes\model\Product;
 use cm\includes\register\Product_Type;
 
 /**
+ * Check whether orders are allowed.
+ *
+ * @param $deceased
+ *
+ * @return string
+ */
+function are_orders_allowed( $deceased ) {
+	$allow_orders = (bool) intval( get_post_meta( $deceased->ID, 'flowers', true ) );
+
+	/**
+	 * Allow orders being placed for this person.
+	 *
+	 * @since 1.5.0
+	 */
+	return apply_filters( 'cm/allow_orders', $allow_orders, $deceased );
+}
+
+/**
  * Places an order.
  *
  * @param Order $order
- * @param $deceased_id
+ * @param $deceased
  * @param $order_data
  *
  * @return array
  */
-function place_order(Order $order, $deceased_id, $order_data) {
-    $order_data[Order::prefix_key('deceased_id')] = (int) $deceased_id;
-    $order->set_fields_from_input($order_data);
-    $errors = $order->validate();
+function place_order( Order $order, WP_Post $deceased, $order_data ) {
+	$order_data[ Order::prefix_key( 'deceased_id' ) ] = $deceased->ID;
+	$order->set_fields_from_input( $order_data );
+	$errors = $order->validate();
 
-    if(count($errors) === 0) {
-        $order->update();
-    }
+	if ( count( $errors ) === 0 ) {
+		$order->update();
+	}
 
-    return $errors;
+	return $errors;
 }
 
 // Product catalog and order form
 function cm_display_order_form( $btn_text, $deceased = null ) {
 	if ( null !== $deceased ) {
-		$deceased = get_the_ID();
+		$deceased = get_post();
 	}
 
 	$order = Order::create_new();
@@ -44,26 +62,26 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
     }
 
 	if(is_array($errors) && count($errors) === 0) {
-	    $order->load_fields();
-	    ?>
+		$order->load_fields();
+		?>
         <div class="cm-order-success">
-			<?php _e('Your order has been succesfully placed!', 'cm_translate');?>
+			<?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
         </div>
         <div class="cm-order-summary">
-            <h3><?=__('Products', 'cm_translate')?></h3>
+            <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
 			<?= $order->get_summary() ?>
-            <h3><?=__('Total', 'cm_translate')?></h3>
-			<?= $order->get_total()->display(true) ?>
+            <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
+			<?= $order->get_total()->display( true ) ?>
         </div>
-        <?php
-        return;
-    } else {
-	    ?>
+		<?php
+		return;
+	} else {
+		?>
         <div class="cm-order-error">
-            <?php _e('There were some errors with your order, please try again.', 'cm_translate');?>
+			<?php _e( 'There were some errors with your order, please try again.', 'cm_translate' ); ?>
         </div>
-        <?php
-    }
+		<?php
+	}
 
 	if(isset($_GET['cm_order_product'])) {
 		$product = get_post($_GET['cm_order_product']);
@@ -107,16 +125,7 @@ function cm_products_shortcode( $atts ) {
 		return '';
 	}
 
-	$allow_orders = (bool) intval( get_post_meta( $deceased->ID, 'flowers', true ) );
-
-	/**
-	 * Allow orders being placed for this person.
-	 *
-	 * @since 1.5.0
-	 */
-	$allow_orders = apply_filters( 'cm/allow_orders', $allow_orders, $deceased );
-
-	if ( ! $allow_orders ) {
+	if ( ! are_orders_allowed( $deceased ) ) {
 		// Placing orders is not allowed.
 		return '';
 	}
@@ -187,16 +196,22 @@ add_shortcode( 'cm_products', 'cm_products_shortcode' );
  */
 function cm_order_form_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
-		'title'  => __( 'Order', 'cm_translate' ),
-		'button' => __( 'Place Order', 'cm_translate' ),
+		'title'    => __( 'Order', 'cm_translate' ),
+		'button'   => __( 'Place Order', 'cm_translate' ),
 		'deceased' => get_the_ID(),
 	), $atts );
+
+	$deceased = get_post( $atts['deceased'] );
+
+	if ( ! are_orders_allowed( $deceased ) ) {
+		return '';
+	}
 
 	ob_start();
 	?>
     <div id="cm-order-form" class="cm-order-form">
         <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
-        <?php cm_display_order_form($atts['button'], $atts['deceased']);?>
+		<?php cm_display_order_form( $atts['button'], $atts['deceased'] ); ?>
     </div>
 	<?php
 	return ob_get_clean();
