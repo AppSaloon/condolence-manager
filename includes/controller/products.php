@@ -3,6 +3,7 @@
 use cm\includes\model\Order;
 use cm\includes\model\Order_Line;
 use cm\includes\model\Product;
+use cm\includes\register\Order_Type;
 use cm\includes\register\Product_Type;
 
 /**
@@ -252,7 +253,17 @@ function cm_order_form_shortcode( $atts ) {
 	?>
     <div id="cm-order-form" class="cm-order-form">
         <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
-		<?php cm_display_order_form( $atts['button'], $atts['deceased'] ); ?>
+        <p>
+		<?php
+		$dummy_date = ( new DateTime() )->setTime( 0, 0, 0 );
+		$order_time = $dummy_date->modify( Order_Type::get_close_offset() )->format( 'H:i' );
+		printf(
+			__( 'Ordering is possible up until the day before the funeral at %s.', 'cm_translate' ),
+			$order_time
+		);
+		?>
+        </p>
+        <?php cm_display_order_form( $atts['button'], $atts['deceased'] );?>
     </div>
 	<?php
 	return ob_get_clean();
