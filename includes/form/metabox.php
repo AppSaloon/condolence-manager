@@ -460,8 +460,6 @@ class Metabox {
 		global $post;
 
 		?>
-      <label><?php _e( 'E-mail', 'cm_translate' ); ?></label>
-      <input type="text" name="email" value="<?php echo $this->get_field_value( 'email', $post->ID ); ?>">
       <label><?php _e( 'Password', 'cm_translate' ); ?> <a id="generate"
                                                            href=""><?php _e( 'Create token', 'cm_translate' ); ?></a></label>
       <input id="password" type="text" name="password"
@@ -488,6 +486,8 @@ class Metabox {
              style="width: 15px;" <?php if ( $this->get_field_value( 'check_email', $post->ID ) === 'check_email' ) {
 			echo 'checked';
 		} ?>><?php _e( 'Send email to family when someone condones', 'cm_translate' ); ?>
+        <label><?php _e( 'E-mail', 'cm_translate' ); ?></label>
+        <input type="text" name="email" value="<?php echo $this->get_field_value( 'email', $post->ID ); ?>">
 		<?php
 	}
 
