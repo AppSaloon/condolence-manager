@@ -221,7 +221,7 @@ $deseased = false;
             do_action('conman_single_render');
             ?>
 
-             <?php if ($password == '') { 
+             <?php if ($password == '') {
                            if ( comments_open() !== false ){ ?>
                             <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
                             <?php }
@@ -302,5 +302,7 @@ if (!empty($password) && $password == $check_password) { ?>
         ?>
     </div>
 <?php } ?>
+<?=do_shortcode('[cm_products]');?>
+<?=do_shortcode('[cm_order_form]');?>
 
 <?php get_footer(); ?>
