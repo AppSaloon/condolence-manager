@@ -1,7 +1,7 @@
 .cm-form-grid {
     display: grid;
     grid-template-columns: var(--cm-grid-template-columns, 1fr);
-    grid-gap: var(--cm-grid-gap, 15px);
+    grid-gap: var(--cm-grid-gap, 1rem);
 }
 
 .cm-form-field input[type=email],
@@ -26,6 +26,10 @@
     max-width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+#cm-order-form .form-wrap--submit {
+    margin-top: 1rem;
 }
 
 @media screen and (min-width: 980px) {

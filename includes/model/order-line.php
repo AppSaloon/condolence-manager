@@ -38,6 +38,7 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 		return array(
 				'product_id'  => new Select_Field( 'product_id', true, array(
 						'label'   => __( 'Product', 'cm_translate' ),
+						'description'         => __( 'Please select the problem you wish to order form the list.', 'cm_translate' ),
 						'choices' => static function () {
 							$products = get_posts( array(
 									'post_type'      => Product_Type::POST_TYPE,
@@ -46,12 +47,17 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 									'order'          => 'asc',
 							) );
 
-							return array_reduce( $products, static function ( $carry, WP_Post $product ) {
-								$carry[$product->ID] = get_the_title( $product->ID );
+							return array_reduce( $products, static function ( $carry, WP_Post $post ) {
+								$product = Product::from_id($post->ID);
+								$carry[$post->ID] = sprintf(
+									'%s (%s)',
+									get_the_title( $post->ID ),
+									$product instanceof Product ? $product->get_price()->display(true) : ''
+								);
 
 								return $carry;
 							}, array() );
-						}
+						},
 				) ),
 				'description' => new Field( 'description', false, array(
 						'label' => __( 'Description', 'cm_translate' ),

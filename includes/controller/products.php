@@ -70,7 +70,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 		$order->load_fields();
 		?>
         <div class="cm-order-success">
-			<?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
+	        <?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
         </div>
         <div class="cm-order-summary">
             <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
@@ -80,7 +80,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
         </div>
 		<?php
 		return;
-	} else {
+	} elseif ( is_array( $errors ) ) {
 		?>
         <div class="cm-order-error">
 			<?php _e( 'There were some errors with your order, please try again.', 'cm_translate' ); ?>
@@ -138,6 +138,9 @@ function cm_display_products( $title = '', $products_query_arguments = array() )
 		return '';
 	}
 
+	// Enqueue stylesheet
+	wp_enqueue_style( 'cm/products' );
+
 	ob_start();
 	?>
     <div id="cm-products" class="cm-products">
@@ -147,16 +150,16 @@ function cm_display_products( $title = '', $products_query_arguments = array() )
         <div class="cm-products--list">
 			<?php while ( $products_query->have_posts() ): $products_query->the_post();
 				$product = Product::from_id( get_the_id() ); ?>
-                <div class="cm-product-wrapper">
-                    <article class="cm-product">
+                <div class="cm-product--wrapper">
+                    <div class="cm-product">
+	                    <?php if ( has_post_thumbnail() ): ?>
+	                    <figure class="cm-product--image-wrapper">
+		                    <?php the_post_thumbnail( 'medium', array(
+			                    'class' => 'cm-product--image',
+		                    ) ); ?>
+	                    </figure>
+	                    <?php endif; ?>
                         <header class="cm-product--header">
-							<?php if ( has_post_thumbnail() ): ?>
-                                <figure class="cm-product--image-wrapper">
-									<?php the_post_thumbnail( 'thumbnail', array(
-										'class' => 'cm-product--image',
-									) ); ?>
-                                </figure>
-							<?php endif; ?>
                             <h3 class="cm-product--title"><?php the_title(); ?></h3>
                             <span class="cm-product--price"><?= $product->get_price()->display( true ) ?></span>
                         </header>
@@ -169,7 +172,7 @@ function cm_display_products( $title = '', $products_query_arguments = array() )
 								<?php _e( 'Order', 'cm_translate' ); ?>
                             </a>
                         </footer>
-                    </article>
+                    </div>
                 </div>
 			<?php endwhile;
 			wp_reset_postdata(); ?>
