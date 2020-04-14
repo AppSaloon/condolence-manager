@@ -556,17 +556,28 @@ class Metabox {
 			"November",
 			"December"
 		);
-    }
+	}
 
-    protected static function normalize_month($month_name) {
-	    $month_map = array_flip(static::get_months());
+	protected static function generate_password( $length = 10 ) {
+		$characters        = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$characters_length = strlen( $characters );
+		$password          = '';
+		for ( $i = 0; $i < $length; $i ++ ) {
+			$password .= $characters[ rand( 0, $characters_length - 1 ) ];
+		}
 
-	    return isset($month_map[$month_name]) ? $month_map[$month_name] + 1 : 1;
-    }
+		return $password;
+	}
+
+	protected static function normalize_month( $month_name ) {
+		$month_map = array_flip( static::get_months() );
+
+		return isset( $month_map[ $month_name ] ) ? $month_map[ $month_name ] + 1 : 1;
+	}
 
 	/**
-     * Normalize date for DOMString format for HTML5 date widget:
-     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
+	 * Normalize date for DOMString format for HTML5 date widget:
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
      *
 	 * @param $date
 	 *
@@ -675,37 +686,46 @@ class Metabox {
 
 		// Verify this came from the our screen and with proper authorization,
 		// because save_post can be triggered at other times
-		if ( !wp_verify_nonce( $_POST['deceased_noncename'], plugin_basename( __FILE__ ) ) )
+		if ( ! wp_verify_nonce( $_POST['deceased_noncename'], plugin_basename( __FILE__ ) ) ) {
 			return;
+		}
 
 
 		// Check permissions to edit pages and/or posts
 		if ( Custom_Post_Type::post_type() == $_POST['post_type'] ) {
-			if ( !current_user_can( 'edit_page', $post_id ) || !current_user_can( 'edit_post', $post_id ) )
+			if ( ! current_user_can( 'edit_page', $post_id ) || ! current_user_can( 'edit_post', $post_id ) ) {
 				return $post_id;
+			}
+		}
+
+		/**
+		 * Update password if empty
+		 */
+		if ( empty( $_POST['password'] ) ) {
+			$_POST['password'] = static::generate_password();
 		}
 
 		// save meta fields
 		$postfields = array(
-				'name',
-				'familyname',
-				'birthdate',
-				'birthplace',
-				'placeofdeath',
-				'dateofdeath',
-				'funeraldate',
-				'funeralinformation',
-				'prayervigilinformation',
-				'greetinginformation',
-				'residence',
-				'gender',
-				'masscard',
-				'password',
-				'email',
-				'honoraryitle',
-				'coffee_table',
-				'coffee_table_email',
-				'check_email'
+			'name',
+			'familyname',
+			'birthdate',
+			'birthplace',
+			'placeofdeath',
+			'dateofdeath',
+			'funeraldate',
+            'funeralinformation',
+            'prayervigilinformation',
+            'greetinginformation',
+            'residence',
+            'gender',
+            'masscard',
+            'password',
+            'email',
+            'honoraryitle',
+            'coffee_table',
+            'coffee_table_email',
+            'check_email'
 		);
 
 		foreach ( $postfields as $field ) {
