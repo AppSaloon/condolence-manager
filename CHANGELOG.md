@@ -2,6 +2,10 @@
 
 requires: 4.6
 tested: 5.1.1
+## Version 1.5.1 2020/04/23
+- Fix assets Css
+- Fix normalize dates
+
 
 ## Version 1.4.3 2019/04/24
 - Fix display comment button single.php

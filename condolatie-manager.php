@@ -3,7 +3,7 @@
  * Plugin Name: Condolence Manager
  * Plugin URI: http://www.appsaloon.be
  * Description: This plugin allows visitors to condole the family of the deceased.
- * Version: 1.5.0
+ * Version: 1.5.1
  * Text Domain: cm_translate
  * Author: AppSaloon
  * Author URI: http://www.appsaloon.be
@@ -60,7 +60,7 @@ Class Condolatie_Manager{
     {
         $this->autoloader();
         $this->run();
-        $this->assets();
+        add_action('wp_enqueue_scripts', array($this, 'assets'));
         $this->includes();
     }
 

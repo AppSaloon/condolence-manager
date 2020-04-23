@@ -446,11 +446,12 @@ class Metabox {
 	public function get_field_value( $field_name, $post_id ) {
 		$meta_value = get_post_meta( $post_id, $field_name, false );
 
+    $result = '';
 		if ( $meta_value ) {
-			return current( $meta_value );
+			$result= current( $meta_value );
 		}
-
-		return '';
+//        error_log(var_export([$field_name, $result],1));
+		return $result;
 	}
 
 	/**
@@ -585,15 +586,19 @@ class Metabox {
 	 */
     public static function normalize_date($date) {
 	    $format = 'Y-m-d';
+	    if ( $date != '' ) {
+            if(\DateTime::createFromFormat($format, $date, Order_Type::get_timezone())) {
+                return $date;
+            }
+            list($day, $month, $year) = explode(' ', $date);
+            $month = static::normalize_month($month);
 
-	    if(\DateTime::createFromFormat($format, $date, Order_Type::get_timezone())) {
-	        return $date;
+            return sprintf("%s-%02s-%02s", $year, $month, $day);
         }
 
-	    list($day, $month, $year) = explode(' ', $date);
-	    $month = static::normalize_month($month);
-
-	    return sprintf("%s-%02s-%02s", $year, $month, $day);
+	    else {
+	        return "";
+        }
     }
 
 	/**
