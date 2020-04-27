@@ -733,9 +733,11 @@ class Metabox {
             'check_email'
 		);
 
-		foreach ( $postfields as $field ) {
-			update_post_meta( $post_id, $field, $_POST[$field] );
-		}
+        foreach ( $postfields as $field ) {
+            if(isset($_POST[$field])) {
+                update_post_meta( $post_id, $field, $_POST[$field] );
+            }
+        }
 
 		/**
 		 * Update location field
@@ -769,7 +771,7 @@ class Metabox {
 				$current_relation['other']      = $_POST['relation' . $relation_number . '_other'];
 				$current_relation['name']       = $_POST['relation' . $relation_number . '_name'];
 				$current_relation['familyname'] = $_POST['relation' . $relation_number . '_familyname'];
-				$current_relation['alive']      = ($_POST['relation' . $relation_number . '_alive']) ? '1' : '0';
+				$current_relation['alive']      = (isset( $_POST['relation' . $relation_number . '_alive'] ) && $_POST['relation' . $relation_number . '_alive']) ? '1' : '0';
 				$current_relation['gender']     = $_POST['relation' . $relation_number . '_gender'];
 				$relations[]                    = $current_relation;
 			}
