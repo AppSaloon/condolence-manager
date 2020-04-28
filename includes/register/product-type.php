@@ -149,7 +149,7 @@ class Product_Type {
 		$product->set_fields_from_input( $_POST );
 
 		$errors = $product->validate();
-		if ( isset($errors) && is_array($errors) && count($errors) === 0 ) {
+		if ( !empty( $errors ) ) {
 			$product->update();
 		}
 	}

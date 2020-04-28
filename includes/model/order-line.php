@@ -38,7 +38,7 @@ class Order_Line extends Model implements JsonSerializable, Deserializable {
 		return array(
 				'product_id'  => new Select_Field( 'product_id', true, array(
 						'label'   => __( 'Product', 'cm_translate' ),
-						'description'         => __( 'Please select the problem you wish to order form the list.', 'cm_translate' ),
+						'description'         => __( 'Please select the product you wish to order from the list.', 'cm_translate' ),
 						'choices' => static function () {
 							$products = get_posts( array(
 									'post_type'      => Product_Type::POST_TYPE,

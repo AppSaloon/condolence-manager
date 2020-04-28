@@ -267,7 +267,8 @@ class Order_Type {
 		$order = Order::from_id( $post_id );
 		$order->set_fields_from_input( $_POST );
 
-		if ( $order->validate() ) {
+		$errors = $order->validate();
+		if ( empty ( $errors ) ) {
 			$order->update();
 		}
 	}
