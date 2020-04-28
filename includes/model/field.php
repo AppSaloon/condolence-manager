@@ -276,7 +276,7 @@ class Field {
 				array_map( static function ( $property ) use ( &$schema, &$input ) {
 					/** @var Field $field */
 					$field = $schema[ $property ];
-					$value = $input[ $property ];
+					$value = isset( $input[ $property ] ) ? $input[ $property ]  : null;
 
 					return $field->denormalize( $value );
 				}, $properties )
