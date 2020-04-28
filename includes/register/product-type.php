@@ -148,7 +148,8 @@ class Product_Type {
 		$product = Product::from_id( $post_id );
 		$product->set_fields_from_input( $_POST );
 
-		if ( $product->validate() ) {
+		$errors = $product->validate();
+		if ( isset($errors) && is_array($errors) && count($errors) === 0 ) {
 			$product->update();
 		}
 	}
