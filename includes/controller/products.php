@@ -75,7 +75,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
         </div>
         <div class="cm-order-summary">
             <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
-			<?= $order->get_summary() ?>
+			<?= strip_tags( $order->get_summary(), 'li ul' ) ?>
             <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
 			<?= $order->get_total()->display( true ) ?>
         </div>
