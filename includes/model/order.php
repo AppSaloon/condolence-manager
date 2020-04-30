@@ -10,6 +10,9 @@ class Order extends Custom_Post {
 	/** @var Order_Line[] */
 	private $order_lines = array();
 
+    /** @var string */
+	private $ribbon_text;
+
 	/** @var integer */
 	private $deceased_id;
 
@@ -60,6 +63,10 @@ class Order extends Custom_Post {
 						'class'          => Order_Line::class,
 						'label'          => __( 'Products', 'cm_translate' ),
 				), false ),
+                'ribbon_text'         => new Field( 'ribbon_text', false, array(
+                    'type'  => 'text',
+                    'label' => __( 'Ribbon text', 'cm_translate' ),
+                ) ),
 				'deceased_id'         => new Select_Field( 'deceased_id', true, array(
 						'label'       => __( 'Linked condolence', 'cm_translate' ),
 						'description' => __( 'Select the person linked to this order in the select box.', 'cm_translate' ),
@@ -132,6 +139,23 @@ class Order extends Custom_Post {
 		$this->order_lines = $order_lines;
 		return $this;
 	}
+
+    /**
+     * @return string
+     */
+	public function get_ribbon_text() {
+	    return $this->ribbon_text;
+    }
+
+    /**
+     * @param $ribbon_text
+     *
+     * @return $this
+     */
+    public function set_ribbon_text($ribbon_text) {
+	    $this->ribbon_text = $ribbon_text;
+	    return $this;
+    }
 
 	/**
 	 * @return int
@@ -335,6 +359,7 @@ class Order extends Custom_Post {
 		ob_start();
 ?>
 	<div class="form-wrap cm-form-wrap--<?= esc_attr( static::get_type() ) ?>">
+        <?= $this->get_property_html( 'ribbon_text' ) ?>
 		<div class="form-wrap form-wrap--name cm-form-grid">
 			<?= $this->get_property_html( 'contact_first_name' ) ?>
 			<?= $this->get_property_html( 'contact_last_name' ) ?>
