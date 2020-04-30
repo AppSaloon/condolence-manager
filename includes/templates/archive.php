@@ -129,14 +129,14 @@ get_header(); ?>
                                         <strong><?php _e('Greeting information','cm_translate'); ?>: </strong><?php echo $values["greetinginformation"][0]; ?>
                                     </div>
                                 <?php } ?>
-                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="<?php _e('Condole', 'cm_translate'); ?>">
+                                <input type="button" onclick="location.href='<?php the_permalink(); ?>?comments'" value="<?php _e('Condole', 'cm_translate'); ?>">
                                 <?php
                                 if($values["flowers"][0] ) {
                                     if(isset($values["flowers"][0])){
                                         $string = $values["flowers"][0];
                                     }
                                     if($string != '0'){ ?>
-                                        <input type="button" onclick="location.href='/<?php _e('Flowers', 'cm_translate'); ?>'" value="<?php _e('Flowers', 'cm_translate'); ?>">
+                                        <input type="button" onclick="location.href='<?php the_permalink(); ?>?cm-products&cm-order-form'" value="<?php _e('Flowers', 'cm_translate'); ?>">
                                     <?php }
                                 }
 

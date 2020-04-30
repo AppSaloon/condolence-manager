@@ -116,6 +116,17 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 	<?php
 }
 
+function cm_get_display_value($id) {
+    $query = array();
+    parse_str($_SERVER['QUERY_STRING'], $query);
+
+    if (!is_single() || isset($query[$id])) {
+        return 'block';
+    }
+
+    return 'none';
+}
+
 function cm_display_products( $title = '', $products_query_arguments = array(), $hide_order_buttons = false ) {
 	$products_query_arguments = wp_parse_args(
 		$products_query_arguments,
@@ -144,7 +155,7 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 
 	ob_start();
 	?>
-    <div id="cm-products" class="cm-products rouw">
+    <div id="cm-products" class="cm-products rouw" style="display: <?php echo cm_get_display_value('cm-products'); ?>;">
 		<?php if ( ! empty( $title ) ): ?>
             <h2 class="cm-products--title"><?= esc_html( $title ); ?></h2>
 		<?php endif; ?>
@@ -171,7 +182,7 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
                         if (! $hide_order_buttons) {
                            ?>
                             <footer class="cm-product--footer">
-                                <a href="?cm_order_product=<?php the_ID(); ?>#cm-order-form" class="cm-product--order-link"
+                                <a href="?cm-products&cm-order-form&cm_order_product=<?php the_ID(); ?>#cm-order-form" class="cm-product--order-link"
                                    data-product="<?php the_ID(); ?>">
                                     <?php _e( 'Order', 'cm_translate' ); ?>
                                 </a>
@@ -262,7 +273,7 @@ function cm_order_form_shortcode( $atts ) {
 
 	ob_start();
 	?>
-    <div id="cm-order-form" class="cm-order-form rouw">
+    <div id="cm-order-form" class="cm-order-form rouw" style="display: <?php echo cm_get_display_value('cm-order-form'); ?>;">
         <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
         <p>
 		<?php

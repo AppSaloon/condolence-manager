@@ -2,6 +2,17 @@
  * Created by miekenijs on 15/02/16.
  */
 
+function toggleQueryParameter(param, onlyDelete = false) {
+    const query = new URLSearchParams(window.location.search)
+    if(query.has(param) || onlyDelete) {
+        query.delete(param)
+    } else {
+        query.append(param, '')
+    }
+    const queryString = query.toString().replace('=&', '&').replace(/=$/, '')
+    const url = `${window.location.href.split('?')[0]}?${queryString}`.replace(/\?$/, '')
+    history.pushState({url}, '', url)
+}
 
 (function($) {
 $(document).ready(function(){
@@ -11,12 +22,24 @@ $(document).ready(function(){
     var confirmation = cm.confirmation;
     var wait = cm.wait;
     var not_send = cm.not_send;
+    var scrollDuration = 200;
 
 
     $("#toggle_comment").click(function(e){
         e.preventDefault();
+        toggleQueryParameter('comments')
         $("div.comments").toggle();
     });
+
+    $("#toggle_products").click(function(e){
+        e.preventDefault();
+        toggleQueryParameter('cm-products')
+        toggleQueryParameter('cm-order-form')
+        toggleQueryParameter('cm_order_product', true)
+        $("div#cm-products").toggle();
+        $("div#cm-order-form").toggle();
+    });
+
     $("#toggle_coffee_table").click(function(e){
         e.preventDefault();
         $("#coffee-table-form").toggle();
@@ -26,13 +49,19 @@ $(document).ready(function(){
     $("#toggle_coffee_table").click(function () {
         $('html, body').animate({
             scrollTop: $("#ct_form").offset().top
-        }, 2000);
+        }, scrollDuration);
     });
     // Smooth scroll to form ( condolences )
     $("#toggle_comment").click(function () {
         $('html, body').animate({
             scrollTop: $(".comments").offset().top
-        }, 2000);
+        }, scrollDuration);
+    });
+    // Smooth scroll to flowers list
+    $("#toggle_products").click(function () {
+        $('html, body').animate({
+            scrollTop: $("#cm-products").offset().top
+        }, scrollDuration);
     });
 
     // if exist error message from gform or succes message

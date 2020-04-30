@@ -54,9 +54,6 @@ $deseased = false;
 
 
                                         case 'masscard':
-                                            echo '<a class="btn" target="_blank" href="' . current($fields[$required_str]) . '" >';
-                                            echo __('Mass card', 'cm_translate');
-                                            echo '</a>';
                                             break;
                                         case 'name':
                                             echo '<p class="' . $required_str . '" id="name">';
@@ -220,8 +217,21 @@ $deseased = false;
                             }
                             ?>
                             <?php if ($password == '') { ?>
-                                <a href="#" class="btn" id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
+                                <a href="javascript:void(0);" class="btn"
+                                   id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
                                 <?php
+
+                                if ($fields['flowers'][0] === '1') { ?>
+                                    <a href="javascript:void(0);" class="btn"
+                                       id="toggle_products"><?php _e('Flowers', 'cm_translate'); ?></a>
+                                    <?php
+                                }
+
+                                if (isset($fields['masscard'][0])) { ?>
+                                    <a target="_blank" href="<?= $fields['masscard'][0] ?>" class="btn"
+                                       id="toggle_flowers"><?php _e('Mass card', 'cm_translate'); ?></a>
+                                    <?php
+                                }
 
                                 if ($fields['coffee_table'][0] == 'yes') {
                                     ?>
@@ -263,7 +273,7 @@ $deseased = false;
 
                 <?php } else { ?>
 
-                    <div class="comments" style="display: none;">
+                    <div class="comments" style="display: <?=cm_get_display_value('comments')?>;">
                         <?php
                         $errors = apply_filters('wpice_get_comment_form_errors_as_list', ''); // call template tag to print the error list
                         if ($errors) {
@@ -300,11 +310,10 @@ $deseased = false;
                     </div>
                 <?php } ?>
             </div>
+            <?= do_shortcode('[cm_products]'); ?>
+            <?= do_shortcode('[cm_order_form]'); ?>
         </div>
     </div>
 </div>
-
-<?= do_shortcode('[cm_products]'); ?>
-<?= do_shortcode('[cm_order_form]'); ?>
 
 <?php get_footer(); ?>
