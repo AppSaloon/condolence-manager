@@ -116,7 +116,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 	<?php
 }
 
-function cm_display_products( $title = '', $products_query_arguments = array() ) {
+function cm_display_products( $title = '', $products_query_arguments = array(), $hide_order_buttons = false ) {
 	$products_query_arguments = wp_parse_args(
 		$products_query_arguments,
 		array(
@@ -167,12 +167,18 @@ function cm_display_products( $title = '', $products_query_arguments = array() )
                         <main class="cm-product--content">
                             <p class="cm-product-excerpt"><?php the_excerpt(); ?></p>
                         </main>
-                        <footer class="cm-product--footer">
-                            <a href="?cm_order_product=<?php the_ID(); ?>#cm-order-form" class="cm-product--order-link"
-                               data-product="<?php the_ID(); ?>">
-								<?php _e( 'Order', 'cm_translate' ); ?>
-                            </a>
-                        </footer>
+                        <?php
+                        if (! $hide_order_buttons) {
+                           ?>
+                            <footer class="cm-product--footer">
+                                <a href="?cm_order_product=<?php the_ID(); ?>#cm-order-form" class="cm-product--order-link"
+                                   data-product="<?php the_ID(); ?>">
+                                    <?php _e( 'Order', 'cm_translate' ); ?>
+                                </a>
+                            </footer>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
 			<?php endwhile;
@@ -198,19 +204,24 @@ function cm_products_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
 		'title'    => __( 'Flowers', 'cm_translate' ),
 		'deceased' => get_the_ID(),
+        'hide_order_buttons' => false
 	), $atts );
 
 	$deceased = get_post( $atts['deceased'] );
+    $hide_order_buttons = $atts['hide_order_buttons'] === 'true';
 
-	if ( ! $deceased instanceof WP_Post ) {
-		// No deceased linked.
-		return '';
-	}
+    //ignore deceased and orders if hide_order_buttons is true
+    if ( ! $hide_order_buttons) {
+        if ( ! $deceased instanceof WP_Post ) {
+            // No deceased linked.
+            return '';
+        }
 
-	if ( ! cm_orders_allowed( $deceased ) ) {
-		// Placing orders is not allowed.
-		return '';
-	}
+        if ( ! cm_orders_allowed( $deceased ) ) {
+            // Placing orders is not allowed.
+            return '';
+        }
+    }
 
 	/**
 	 * Filter to adjust the product query arguments.
@@ -224,7 +235,7 @@ function cm_products_shortcode( $atts ) {
 		'order'          => 'asc',
 	) );
 
-	return cm_display_products( $atts['title'], $products_query_arguments );
+	return cm_display_products( $atts['title'], $products_query_arguments, $hide_order_buttons );
 }
 
 add_shortcode( 'cm_products', 'cm_products_shortcode' );
