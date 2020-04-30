@@ -5,10 +5,11 @@
 
 get_header(); ?>
 
-<div id="primary" class="content-area cm-content-wrapper">
-    <div id="rouw-content" class="site-content" role="main">
-        <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post();
+<div id="primary" class="content-area">
+    <div id="main" class="site-content rouw-main" role="main">
+        <?php if ( have_posts() ) : ?>
+
+            <?php while ( have_posts() ) : the_post();
                 $values = get_post_meta(get_the_ID());
                 $arraymonth = array(
                     __("January", "cm_translate"),
@@ -25,12 +26,14 @@ get_header(); ?>
                     __("December", "cm_translate"),
                 );
                 ?>
-                <div class="rouw entry-content cm_clear">
+                <div class="rouw entry-content clear">
                     <article>
-                        <div class="embed cm_clear">
-                            <div class="deceased-img" style="min-height: 230px;">
-                                <?php if (has_post_thumbnail()) : ?><a href="<?php the_permalink(); ?>"
-                                                                       title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail(); ?></a>
+                        <div class="embed clear">
+                            <div class="deceased-img" <?php echo 'style="min-height: 252px;"' ?>>
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    </a>
                                 <?php endif; ?>
                             </div>
                             <div class="deceased-info">
@@ -39,9 +42,11 @@ get_header(); ?>
                                 <div class="deceased-partner">
                                     <?php
                                     $gender = current($values['gender']);
-                                    $relations = unserialize(current($values["relations"]));
-                                    if (!empty($relations)) {
-                                        foreach ($relations as $relation) {
+
+                                    $relations = unserialize( current($values["relations"]) );
+
+                                    if( !empty( $relations ) ){
+                                        foreach( $relations as $relation){
                                             if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
                                                 echo '<p class="alive">';
                                                 _e('Beloved husband of', 'cm_translate');
@@ -86,145 +91,90 @@ get_header(); ?>
                                         }
                                     }
                                     ?></div>
-                                <div class="deceased-partner"><?php echo __('Born in', 'cm_translate') . '&nbsp;' . $values["birthplace"][0]; ?><?php if (isset($values["birthdate"][0]) && $values["birthdate"][0] != '') {
-                                        echo ' ' . __('on', 'cm_translate') . ' ';
+                                <div class="deceased-partner">Geboren te <?php echo $values["birthplace"][0]; ?>
+                                    <?php if(isset($values["birthdate"][0]) && $values["birthdate"][0] != ''){
+                                        echo 'op ';
                                     }
                                     $date = $values["birthdate"][0];
                                     $pieces = explode("-", $date);
-                                    $num = intval($pieces[1]);
-                                    $month = $arraymonth[$num - 1];
-                                    echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
+                                    //var_dump($pieces);
+                                    //$num = intval($pieces[1]);
+                                    //$month = $arraymonth[$num - 1];
+                                    //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
+                                    echo $pieces[0];
                                     ?>
                                 </div>
-                                <div class="deceased-place-died"><?php echo __('Passed away in', 'cm_translate') . '&nbsp;' . $values["placeofdeath"][0]; ?><?php if (isset($values["dateofdeath"][0]) && $values["dateofdeath"][0] != '') {
-                                        echo ' ' . __('on', 'cm_translate') . ' ';
+                                <div class="deceased-place-died">Overleden te <?php echo $values["placeofdeath"][0]; ?>
+                                    <?php if(isset($values["dateofdeath"][0]) && $values["dateofdeath"][0] != ''){
+                                        echo 'op ';
                                     }
                                     $date = $values["dateofdeath"][0];
                                     $pieces = explode("-", $date);
-                                    $num = intval($pieces[1]);
-                                    $month = $arraymonth[$num - 1];
-                                    echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
+                                    //$num = intval($pieces[1]);
+                                    //$month = $arraymonth[$num - 1];
+                                    //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
+                                    echo $pieces[0];
                                     ?></div>
                                 <?php if ($values["funeralinformation"][0]) { ?>
                                     <div class="deceased-uitvaart">
-                                        <strong><?php _e('Funeral information', 'cm_translate'); ?>
-                                            : </strong><?php echo $values["funeralinformation"][0]; ?></div>
+                                        <strong><?php _e('Funeral information','cm_translate'); ?>: </strong><?php echo $values["funeralinformation"][0]; ?></div>
                                 <?php } ?>
                                 <?php if ($values["prayervigilinformation"][0]) { ?>
                                     <div class="deceased-wake">
-                                        <strong><?php _e('Prayer vigil information', 'cm_translate'); ?>
-                                            : </strong><?php echo $values["prayervigilinformation"][0]; ?>
+                                        <strong><?php _e('Prayer vigil information','cm_translate'); ?>: </strong><?php echo $values["prayervigilinformation"][0]; ?>
                                     </div>
                                 <?php } ?>
                                 <?php if ($values["greetinginformation"][0]) { ?>
                                     <div class="deceased-greetings">
-                                        <strong><?php _e('Greeting information', 'cm_translate'); ?>
-                                            : </strong><?php echo $values["greetinginformation"][0]; ?>
+                                        <strong><?php _e('Greeting information','cm_translate'); ?>: </strong><?php echo $values["greetinginformation"][0]; ?>
                                     </div>
                                 <?php } ?>
-                            </div>
-                            <div class="cm_clear"></div>
-                            <div class="btns-wrapper"><?php if ($values["masscard"][0]) {
-                                    $string = $values["masscard"][0]; ?>
-                                    <input type="button" onclick="location.href='<?php echo $string; ?>'"
-                                           value="<?php _e('Mass card', 'cm_translate'); ?>"><?php }
-                                /**
-                                 *  action hook to render extra field
-                                 */
-                                do_action('conman_archive_render'); ?>
-                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'"
-                                       value="<?php _e('Condole', 'cm_translate'); ?>"><?php if ($values['coffee_table'][0] == 'yes') { ?>
-                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"
-                                           value="<?php _e('Coffee Table', 'cm_translate'); ?>"><?php }
-                                if (cm_orders_allowed(get_post())):
-                                    // todo: this should definitely be a link
-                                    ?>
-                                        <input type="button"
-                                               onclick="location.href='<?php the_permalink()?>#cm-products'"
-                                               value="<?php _e('Flowers', 'cm_translate'); ?>">
-                                <?php endif;
-                                /**
-                                 * add additional buttons if are added on backend in condolatie-manager menu page
-                                 */
-                                if (isset($values["cm_additional_btn"]) && $values["cm_additional_btn"][0] != 0) {
-                                    $additional_btn = get_option('cm_additional_btn');
-                                    if (!empty($additional_btn)) {
-                                        foreach ($additional_btn as $btn) {
-                                            ?><input type="button"
-                                                     onclick="location.href='<?php echo $btn['href']; ?>'"
-                                                     value="<?php echo $btn['caption']; ?>">
-                                        <?php }
+                                <input type="button" onclick="location.href='<?php the_permalink(); ?>'" value="Condoleren">
+                                <?php
+                                if($values["flowers"][0] ) {
+                                    if(isset($values["flowers"][0])){
+                                        $string = $values["flowers"][0];
                                     }
+                                    if($string != '0'){ ?>
+                                        <input type="button" onclick="location.href='/<?php _e('Flowers', 'cm_translate'); ?>'" value="<?php _e('Flowers', 'cm_translate'); ?>">
+                                    <?php }
+                                }
+
+                                if($values['coffee_table'][0] == 'yes'){
+                                    ?>
+                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"  value="<?php _e('Coffee Table', 'cm_translate'); ?>">
+                                    <?php
+                                }
+
+                                if($values["masscard"][0]) {
+                                    $string = $values["masscard"][0];
+                                    echo '<a class="btn-masscard" target="_blank" href="' . $string . '" >';
+                                    echo __('Mass card', 'cm_translate');
+                                    echo '</a>';
                                 }
                                 ?>
                             </div>
+
                         </div>
                         <footer class="entry-meta">
-                            <?php edit_post_link(__('Edit', 'cm-translation'), '<span class="edit-link">', '</span>'); ?>
+                            <?php edit_post_link( __( 'Edit', 'cm-translation' ), '<span class="edit-link">', '</span>' ); ?>
                         </footer><!-- .entry-meta -->
                     </article>
                 </div> <!-- #content -->
             <?php endwhile; ?>
 
         <?php endif; ?>
-        <?php
-
-        if (!isset($arg['pagination'])){ ?>
-            <div class="pagination">
-                <?php
-                $big = 99999999;
-                the_posts_pagination(array(
-                    'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                    'format' => '?paged=%#%',
-                    'prev_text' => __('<<', 'cm-translation'),
-                    'next_text' => __('>>', 'cm-translation'),
-                ));
-                ?>
-            </div>
-        <?php }elseif(isset($arg['pagination']) && $arg['pagination'] === 'true'){
-            global $wp_query;
-            $page_nr = intval($paged);
-            $max_pg = $wp_query->max_num_pages;
-            $array_pages = [1, $page_nr-1, $page_nr, $page_nr+1, $max_pg];
-
-            $output = '';
-
-            $output .=  '<div class="pagination"><div class="nav-links">';
-            $dots = false;
-            for ($i=1; $i <= $max_pg; $i++ ) {
-                if($i == $paged){
-                    $output .= '<span aria-current="page" class="page-numbers current">'.$i.'</span>';
-                    $dots = false;
-                }elseif(in_array($i, $array_pages)){
-                    if(strpos($permalink, '?page') !== false){
-                        $permalink = explode('?page',$permalink);
-                        $permalink = $permalink[0].'?page='.$i;
-                    }elseif(strpos($permalink, '?') !== false){
-                        $permalink .= '&page='.$i;
-                    }else{
-                        $permalink = $permalink.'?page='.$i;
-                    }
-                    $output .= '<a class="page-numbers" href="'.$permalink.'">'.$i.'</a>';
-                    $dots = false;
-                }elseif(!$dots){
-                    $output .= '<span class="page-numbers dots">…</span>';
-                    $dots = true;
-                }
-            }
-            $output .= '</div></div>';
-            echo $output;
-        } ?>
     </div><!-- #main -->
 </div><!-- #primary -->
 
 <script>
-    jQuery(document).ready(function () {
-        var deceasedIMG = jQuery('.deceased-img');
-        var deceasedInfoHeight = jQuery('.deceased-info');
-        for (var i = deceasedInfoHeight.length - 1; i >= 0; i--) {
-            deceasedIMG[i].style.minHeight = deceasedInfoHeight[i].offsetHeight + 32 + 'px';
-            console.log(deceasedIMG[i].offsetHeight);
-        }
-    });
+  jQuery(document).ready( function() {
+    var deceasedIMG = jQuery('.deceased-img');
+    var deceasedInfoHeight = jQuery('.deceased-info');
+    for (var i = deceasedInfoHeight.length - 1; i >= 0; i--) {
+      deceasedIMG[i].style.minHeight = deceasedInfoHeight[i].offsetHeight + 32 + 'px';
+      //console.log(deceasedIMG[i].offsetHeight);
+    }
+  });
 </script>
 <?php get_footer(); ?>
