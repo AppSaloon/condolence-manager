@@ -46,7 +46,14 @@ class Order extends Custom_Post {
 	/** @var string */
 	private $remarks;
 
-	/**
+	public function __construct($id = null)
+    {
+        if (isset($id)) {
+            parent::__construct($id);
+        }
+    }
+
+    /**
 	 * @inheritDoc
 	 */
 	public static function get_type() {

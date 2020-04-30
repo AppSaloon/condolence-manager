@@ -2,6 +2,7 @@
 $password = isset($_GET['code']) ? $_GET['code'] : '';
 $born = false;
 $deseased = false;
+ob_start();
 ?>
 <?php get_header(); ?>
 <?php if (is_single()){ ?>
@@ -316,4 +317,8 @@ $deseased = false;
     </div>
 </div>
 
-<?php get_footer(); ?>
+<?php
+get_footer();
+
+echo ob_get_clean();
+?>

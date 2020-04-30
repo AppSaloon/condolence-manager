@@ -39,10 +39,55 @@ function cm_place_order( Order $order, WP_Post $deceased, $order_data ) {
 	$errors = $order->validate();
 
 	if ( count( $errors ) === 0 ) {
-		$order->update();
+		$order_id = $order->update();
+		header("Location:./?cm-order-form&cm-products&order_id=$order_id#cm-order-form");
+		die();
 	}
 
 	return $errors;
+}
+
+function cm_submit_order_form(Order $order, WP_Post $deceased) {
+    $errors = null;
+
+    if (!wp_verify_nonce($_POST['cm_order_nonce'], 'cm_place_order')) {
+        $errors[] = __('The order form has expired.', 'cm_translate');
+    } else {
+        $errors = cm_place_order($order, $deceased, $_POST);
+    }
+
+    if (is_array($errors) && count($errors) > 0) {
+        ?>
+        <div class="cm-order-error">
+            <?php _e('There were some errors with your order, please try again.', 'cm_translate'); ?>
+            <ul class="cm-order-error--list">
+                <?php foreach ($errors as $key => $value): ?>
+                    <li><?= $value ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php
+    }
+}
+
+/**
+ * @param string $order_id
+ */
+function cm_display_order_form_submitted (string $order_id) {
+    $order = new Order($order_id);
+    $order->load_fields();
+    ?>
+    <div class="cm-order-success">
+        <?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
+    </div>
+    <div class="cm-order-summary">
+        <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
+        <?= strip_tags( $order->get_summary(), 'li ul' ) ?>
+        <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
+        <?= $order->get_total()->display( true ) ?>
+    </div>
+    <?php
+    return;
 }
 
 /**
@@ -57,42 +102,15 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 	}
 
 	$order = Order::create_new();
-	$errors = null;
 
-	if($_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['cm_order_nonce'] )) {
-	    if(! wp_verify_nonce( $_POST['cm_order_nonce'], 'cm_place_order' )) {
-            $errors[] = __('The order form has expired.', 'cm_translate');
-        } else {
-		    $errors = cm_place_order( $order, $deceased, $_POST );
-	    }
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        cm_submit_order_form($order, $deceased);
     }
 
-	if(is_array($errors) && count($errors) === 0) {
-		$order->load_fields();
-		?>
-        <div class="cm-order-success">
-	        <?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
-        </div>
-        <div class="cm-order-summary">
-            <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
-			<?= strip_tags( $order->get_summary(), 'li ul' ) ?>
-            <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
-			<?= $order->get_total()->display( true ) ?>
-        </div>
-		<?php
-		return;
-	} elseif ( is_array( $errors ) ) {
-		?>
-        <div class="cm-order-error">
-			<?php _e( 'There were some errors with your order, please try again.', 'cm_translate' ); ?>
-            <ul class="cm-order-error--list">
-				<?php foreach ( $errors as $key => $value ): ?>
-                    <li><?= $value ?></li>
-				<?php endforeach; ?>
-            </ul>
-        </div>
-		<?php
-	}
+	if ( isset( $_GET['order_id'] ) ) {
+	    cm_display_order_form_submitted($_GET['order_id']);
+	    return;
+    }
 
 	if ( isset( $_GET['cm_order_product'] ) ) {
 		$product = get_post( $_GET['cm_order_product'] );

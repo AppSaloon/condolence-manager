@@ -193,6 +193,8 @@ class Custom_Post extends Model {
 
 	/**
 	 * Update fields in database.
+     *
+     * @return string
 	 */
 	public function update() {
 		// Dealing with a new entity here.
@@ -213,6 +215,8 @@ class Custom_Post extends Model {
 		foreach ( static::schema() as $property => $field ) {
 			$this->update_meta_field( $property, $field );
 		}
+
+		return $this->id;
 	}
 
 	/**
