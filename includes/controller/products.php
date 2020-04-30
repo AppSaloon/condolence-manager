@@ -144,7 +144,7 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 
 	ob_start();
 	?>
-    <div id="cm-products" class="cm-products">
+    <div id="cm-products" class="cm-products rouw">
 		<?php if ( ! empty( $title ) ): ?>
             <h2 class="cm-products--title"><?= esc_html( $title ); ?></h2>
 		<?php endif; ?>
@@ -262,7 +262,7 @@ function cm_order_form_shortcode( $atts ) {
 
 	ob_start();
 	?>
-    <div id="cm-order-form" class="cm-order-form">
+    <div id="cm-order-form" class="cm-order-form rouw">
         <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
         <p>
 		<?php
