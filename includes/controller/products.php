@@ -104,7 +104,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 		}
 	}
 	?>
-    <form action="" method="post">
+    <form action="?cm-order-form&cm-products#cm-order-form" method="post">
 		<?= $order->render_lines_form() ?>
 		<?= $order->render_details_form() ?>
 		<?php wp_nonce_field( 'cm_place_order', 'cm_order_nonce' ); ?>
