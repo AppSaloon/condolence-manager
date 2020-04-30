@@ -146,13 +146,16 @@ function cm_get_display_value($id) {
 }
 
 function cm_display_products( $title = '', $products_query_arguments = array(), $hide_order_buttons = false ) {
-	$products_query_arguments = wp_parse_args(
+    $current_page_number = (int) (isset($_GET['cm-products-page']) ? $_GET['cm-products-page'] : 1);
+
+    $products_query_arguments = wp_parse_args(
 		$products_query_arguments,
 		array(
 			'post_type'      => Product_Type::POST_TYPE,
-			'posts_per_page' => - 1,
 			'orderby'        => 'post_title',
 			'order'          => 'asc',
+            'posts_per_page' => 15,
+            'offset'         => ($current_page_number - 1) * 15
 		)
 	);
 
@@ -163,6 +166,11 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 	 */
 	$products_query_arguments = apply_filters( 'cm/products_query_args', $products_query_arguments );
 	$products_query           = new WP_Query( $products_query_arguments );
+    $max_num_pages = (int) $products_query->max_num_pages;
+    if($current_page_number < 1 || $current_page_number > $max_num_pages) {
+        $products_query_arguments['offset'] = 0;
+        $products_query = new WP_Query( $products_query_arguments );
+    }
 
 	if ( ! $products_query->have_posts() ) {
 		return '';
@@ -213,6 +221,28 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 			<?php endwhile;
 			wp_reset_postdata(); ?>
         </div>
+        <?php
+        if($max_num_pages > 1) { ?>
+            <form action="./" method="get" class="cm-products-pagination">
+                <?php
+                if($hide_order_buttons === false) { ?>
+                    <input type="hidden" name="cm-products"/>
+                    <input type="hidden" name="cm-order-form"/>
+                    <?php
+                }
+                ?>
+                <?php
+                for ($page_number = 1; $page_number <= $max_num_pages; $page_number++) {
+                    $style = ($current_page_number === $page_number) ? "background: #f5f5f5; border-color: #bbb #bbb #aaa #" : "";
+                    ?>
+                    <button name="cm-products-page" value="<?=$page_number?>" style="<?=$style?>"><?= $page_number; ?></button>
+                    <?php
+                }
+                ?>
+            </form>
+            <?php
+        }
+        ?>
     </div>
 	<?php
 	return ob_get_clean();
@@ -259,7 +289,6 @@ function cm_products_shortcode( $atts ) {
 	 */
 	$products_query_arguments = apply_filters( 'cm/products_shortcode_query', array(
 		'post_type'      => Product_Type::POST_TYPE,
-		'posts_per_page' => - 1,
 		'orderby'        => 'post_title',
 		'order'          => 'asc',
 	) );
