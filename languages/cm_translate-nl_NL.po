@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-04 13:09+0200\n"
-"PO-Revision-Date: 2020-05-04 13:09+0200\n"
+"POT-Creation-Date: 2020-05-04 18:15+0200\n"
+"PO-Revision-Date: 2020-05-04 18:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -56,7 +56,7 @@ msgstr "e-mail"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:9
 msgid "telephone"
-msgstr "Telefoonnummer"
+msgstr "telefoonnummer"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:11
 msgid "I won't be able to make it to the coffee table"
@@ -71,7 +71,7 @@ msgid "Failure"
 msgstr "Error"
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:3
-msgid "Sorry we couldn't save your data. Refresh and try one more time"
+msgid "Sorry we couldn't save your data. Refresh and try one more time."
 msgstr ""
 "Sorry, maar we konden de data niet opslaan. Herlaadt de pagina en probeer "
 "opnieuw."
@@ -132,11 +132,11 @@ msgstr "Verstuur"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:98
 msgid "Please fill out this field"
-msgstr "Vul a.u.b. dit veld in."
+msgstr "Vul a.u.b. dit veld in"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:101
 msgid "This email address is incorrect"
-msgstr "Uw e-mailadres is niet correct."
+msgstr "Dit e-mailadres is niet correct"
 
 #: includes/coffee-table/coffee-table-form/templates/success-submission.php:2
 msgid "Success"
@@ -151,31 +151,37 @@ msgstr "Wij sturen uw info naar de familie. Dank je."
 msgid "%1$sPlease correct the following problems:%2$s"
 msgstr "%1$sGelieve de volgende problemen te corrigeren:%2$s"
 
-#: includes/controller/comment-email.php:36
-msgid "New"
-msgstr "Nieuwe"
-
-#: includes/controller/comment-email.php:37
+#: includes/controller/comment-email.php:41
 #, php-format
-msgid "on your condolence from %s:"
-msgstr "op jou condolatie van %s:"
+msgid "New condolence from %s"
+msgstr "Nieuwe rouwbetuiging van %s"
 
-#: includes/controller/comment-email.php:40
+#: includes/controller/comment-email.php:43
+msgid "click here to view the condolence"
+msgstr "klik hier om op deze rouwbetuiging te bekijken"
+
+#: includes/controller/comment-email.php:52
+msgid "New Condolence"
+msgstr "Nieuwe rouwbetuiging"
+
+#: includes/controller/comment-email.php:70
+#, php-format
+msgid "New reply on your condolence from %s"
+msgstr "Nieuw antwoord van %s op jouw rouwbetuiging"
+
+#: includes/controller/comment-email.php:79
 msgid "New Comment"
 msgstr "Nieuwe reactie"
 
 #: includes/controller/products.php:54
-#, fuzzy
 msgid "The order form has expired."
 msgstr "Het bestelformulier is verlopen."
 
 #: includes/controller/products.php:62
-#, fuzzy
 msgid "There were some errors with your order, please try again."
-msgstr "Er waren een aantal fouten met uw bestelling, probeer het opnieuw."
+msgstr "Er ging iets mis met uw bestelling, probeer het opnieuw."
 
 #: includes/controller/products.php:81
-#, fuzzy
 msgid "Your order has been successfully placed!"
 msgstr "Uw bestelling is geplaatst!"
 
@@ -193,7 +199,7 @@ msgstr "Totaal"
 #: includes/controller/products.php:213 includes/controller/products.php:310
 #: includes/register/order-type.php:132 includes/register/order-type.php:226
 msgid "Order"
-msgstr "Volgorde"
+msgstr "Bestel"
 
 #: includes/controller/products.php:264 includes/form/metabox.php:133
 #: includes/templates/archive.php:139 includes/templates/single.php:227
@@ -205,9 +211,9 @@ msgid "Place Order"
 msgstr "Bestelling plaatsen"
 
 #: includes/controller/products.php:330
-#, fuzzy, php-format
+#, php-format
 msgid "Ordering is possible up until the day before the funeral at %s."
-msgstr "Bestellen is mogelijk tot de dag voor de begrafenis bij %s."
+msgstr "Bestellen is mogelijk tot de dag voor de begrafenis voor %s."
 
 #: includes/controller/templates.php:76
 msgid "You might have left one of the fields blank, or be posting too quickly"
@@ -230,8 +236,6 @@ msgstr ""
 "ingevuld."
 
 #: includes/form/metabox.php:25
-#, fuzzy
-#| msgid "Information about deseaded"
 msgid "Information about deceased"
 msgstr "Informatie over de overledene"
 
@@ -293,8 +297,6 @@ msgid "Date of death"
 msgstr "Datum van overlijden"
 
 #: includes/form/metabox.php:95
-#, fuzzy
-#| msgid "Funeral information"
 msgid "Funeral date"
 msgstr "Begrafenis informatie"
 
@@ -327,18 +329,17 @@ msgid "Choose mass card"
 msgstr "Kies rouwbrief"
 
 #: includes/form/metabox.php:139
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If enabled, a list of products and an order form will appear below a "
 "condolence page. Note, if you use a custom template file, you'll need to add "
 "these shortcodes: %s and %s."
 msgstr ""
 "Indien ingeschakeld, verschijnt er een lijst met producten en een "
-"bestelformulier onder een condoleancepagina. Als u een aangepast "
+"bestelformulier onder de rouwbetuiging-pagina. Als u een aangepast "
 "sjabloonbestand gebruikt, moet u de volgende shortcodes toevoegen: %s en %s."
 
 #: includes/form/metabox.php:146
-#, fuzzy
 msgid "Additional buttons"
 msgstr "Extra knoppen"
 
@@ -384,17 +385,13 @@ msgstr "Relatie naam"
 msgid "Is alive?"
 msgstr "Leeft nog?"
 
-#: includes/form/metabox.php:202
-msgid "Relation "
+#: includes/form/metabox.php:202 includes/form/metabox.php:292
+msgid "Relation"
 msgstr "Relatie"
 
 #: includes/form/metabox.php:218 includes/form/metabox.php:320
 msgid "Remove relation"
 msgstr "Verwijder relatie"
-
-#: includes/form/metabox.php:292
-msgid "Relation"
-msgstr "Relatie"
 
 #: includes/form/metabox.php:357
 msgid "Select a gender"
@@ -417,9 +414,9 @@ msgid "Link to view comments"
 msgstr "Link om condolaties te bekijken"
 
 #: includes/form/metabox.php:489
-#, fuzzy
-msgid "Send email to family when someone condones"
-msgstr "E-mail naar familie verzenden wanneer iemand dit vergoelijkt"
+msgid "Send email to family when someone condoles"
+msgstr ""
+"E-mail naar familie verzenden wanneer iemand een rouwbetuiging schrijft"
 
 #: includes/form/metabox.php:490
 msgid "E-mail"
@@ -454,7 +451,6 @@ msgid "Choose a location"
 msgstr "Kies een locatie"
 
 #: includes/form/metabox.php:648
-#, fuzzy
 msgid "No orders have been placed for this person."
 msgstr "Er zijn geen bestellingen geplaatst voor deze persoon."
 
@@ -467,12 +463,10 @@ msgid "Summary"
 msgstr "Samenvatting"
 
 #: includes/form/metabox.php:656
-#, fuzzy
-#| msgid "Place of death"
 msgid "Placed at"
-msgstr "Plaats van overlijden"
+msgstr "Besteld op"
 
-#: includes/form/metabox.php:815 includes/register/custom-post-type.php:37
+#: includes/form/metabox.php:826 includes/register/custom-post-type.php:37
 #: includes/register/custom-post-type.php:39
 msgid "Condolences"
 msgstr "Overlijdens"
@@ -482,9 +476,8 @@ msgid "Product"
 msgstr "Product"
 
 #: includes/model/order-line.php:41
-#, fuzzy
 msgid "Please select the product you wish to order from the list."
-msgstr "Selecteer het product dat u wilt bestellen in de lijst."
+msgstr "Selecteer het product dat u wilt bestellen uit de lijst."
 
 #: includes/model/order-line.php:63
 msgid "Description"
@@ -504,22 +497,17 @@ msgid "Ribbon text"
 msgstr "Ribbon text"
 
 #: includes/model/order.php:78 includes/register/order-type.php:240
-#, fuzzy
-#| msgid "View Condolence"
 msgid "Linked condolence"
-msgstr "Bekijk overlijden"
+msgstr "Overledene in kwestie"
 
 #: includes/model/order.php:79
-#, fuzzy
 msgid "Select the person linked to this order in the select box."
 msgstr ""
-"Selecteer de persoon die aan deze volgorde is gekoppeld in het selectievak."
+"Selecteer de persoon die aan deze bestelling is gekoppeld in het selectievak."
 
 #: includes/model/order.php:80
-#, fuzzy
-#| msgid "Parent Condolence"
 msgid "Please pick a condolence"
-msgstr "Hoofd overlijden"
+msgstr "Kies een rouwbetuiging"
 
 #: includes/model/order.php:98
 msgid "Email Address"
@@ -551,26 +539,22 @@ msgid "Company name"
 msgstr "Bedrijfsnaam"
 
 #: includes/model/order.php:120
-#, fuzzy
 msgid "Enter the company name if applicable."
-msgstr "Voer indien van toepassing de bedrijfsnaam in."
+msgstr "Voer de bedrijfsnaam in. (indien toepasselijk)"
 
 #: includes/model/order.php:123
-#, fuzzy
 msgid "Company Vat"
-msgstr "Bedrijfsbtw"
+msgstr "Bedrijf BTW-nummer"
 
 #: includes/model/order.php:124
-#, fuzzy
 msgid "Enter the company vat number if applicable."
-msgstr "Voer indien van toepassing het btw-nummer van het bedrijf in."
+msgstr "Voer het btw-nummer van het bedrijf in. (indien toepasselijk)"
 
 #: includes/model/order.php:128
 msgid "Remarks"
 msgstr "Opmerkingen"
 
 #: includes/model/order.php:450
-#, fuzzy
 msgid "No products selected."
 msgstr "Geen producten geselecteerd."
 
@@ -579,7 +563,6 @@ msgid "No product selected."
 msgstr "Geen product geselecteerd."
 
 #: includes/model/order.php:459
-#, fuzzy
 msgid "Invalid product quantity."
 msgstr "Ongeldig productaantal."
 
@@ -743,7 +726,7 @@ msgstr "Bestellingen"
 #: includes/register/order-type.php:178
 msgctxt "Post Type Singular Name"
 msgid "Order"
-msgstr "Volgorde"
+msgstr "Bestelling"
 
 #: includes/register/order-type.php:180
 msgid "Parent Order"
@@ -842,17 +825,14 @@ msgid "Condolence manager"
 msgstr "Condolatie manager"
 
 #: includes/settings/select-fields-to-show.php:52
-#, fuzzy
-#| msgid "Condolence manager"
 msgid "Condolence manager options"
-msgstr "Condolatie manager"
+msgstr "Condolatie manager opties"
 
 #: includes/settings/select-fields-to-show.php:53
 msgid "Options"
 msgstr "Opties"
 
 #: includes/settings/select-fields-to-show.php:108
-#, fuzzy
 msgid "Field Mapping"
 msgstr "Veldtoewijzing"
 
@@ -861,9 +841,8 @@ msgid "Confirmation"
 msgstr "Bevestiging"
 
 #: includes/settings/select-fields-to-show.php:110
-#, fuzzy
 msgid "Rename CPT"
-msgstr "De naam van CPT wijzigen"
+msgstr "CPT hernoemen"
 
 #: includes/settings/select-fields-to-show.php:111
 msgid "Update"
@@ -891,18 +870,16 @@ msgid "Submit changes"
 msgstr "Bevestig veranderingen"
 
 #: includes/settings/select-fields-to-show.php:166
-#, fuzzy
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
 msgstr ""
-"Beheer de condoleancebevestiging. Dit kan een bedanktekst zijn, of een "
+"Beheer de rouwbetuiging bevestiging. Dit kan een bedankbriefje zijn, of een "
 "pagina om naar om te leiden."
 
 #: includes/settings/select-fields-to-show.php:171
-#, fuzzy
 msgid "Confirmation type"
-msgstr "Bevestigingstype"
+msgstr "Bevestiging-type"
 
 #: includes/settings/select-fields-to-show.php:177
 msgid "Page"
@@ -913,49 +890,38 @@ msgid "Text"
 msgstr "Tekst"
 
 #: includes/settings/select-fields-to-show.php:180
-#, fuzzy
 msgid "Choose what will happen after a user writes a condolence."
-msgstr ""
-"Kies wat er gebeurt nadat een gebruiker een condoleanceregister schrijft."
+msgstr "Kies wat er gebeurt nadat een gebruiker een rouwbetuiging schrijft."
 
 #: includes/settings/select-fields-to-show.php:186
 msgid "Confirmation page"
 msgstr "Bevestigingspagina"
 
-#: includes/settings/select-fields-to-show.php:189
-#, fuzzy
-msgid "https://www.example.com/thank-you"
-msgstr "https://www.example.com/thank-you"
-
 #: includes/settings/select-fields-to-show.php:191
-#, fuzzy
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
 msgstr ""
-"Als u 'pagina' als bevestigingstype hebt geselecteerd, voert u de URL in "
+"Als u 'pagina' als bevestiging-type hebt geselecteerd, voert u de URL in "
 "naar de pagina naar wie uw gebruikers worden doorgestuurd nadat ze een "
-"condoleanceregister hebben geschreven."
+"rouwbetuiging hebben geschreven."
 
 #: includes/settings/select-fields-to-show.php:197
-#, fuzzy
 msgid "Confirmation text"
 msgstr "Bevestigingstekst"
 
 #: includes/settings/select-fields-to-show.php:200
-#, fuzzy
 msgid "Thank you note"
-msgstr "Dank u nota"
+msgstr "Bedank-tekst"
 
 #: includes/settings/select-fields-to-show.php:204
-#, fuzzy
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
 msgstr ""
-"Als u \"tekst\" als bevestigingstype hebt geselecteerd, wordt de tekst in "
+"Als u \"tekst\" als bevestiging-type hebt geselecteerd, wordt de tekst in "
 "het bovenstaande veld weergegeven aan een gebruiker na het schrijven van een "
-"condoleanceregister."
+"rouwbetuiging."
 
 #: includes/settings/select-fields-to-show.php:227
 msgid "You can change the <b>custom post type slug</b>."
@@ -983,7 +949,6 @@ msgid "Add your license key"
 msgstr "Uw licentiesleutel toevoegen"
 
 #: includes/settings/select-fields-to-show.php:292
-#, fuzzy
 msgid "Add license key"
 msgstr "Licentiesleutel toevoegen"
 
@@ -1124,7 +1089,7 @@ msgstr "Condolatie manager"
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "http://www.appsaloon.be"
-msgstr "http://www.appsaloon.be"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid "This plugin allows visitors to condole the family of the deceased."
@@ -1134,6 +1099,16 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "AppSaloon"
 msgstr "AppSaloon"
+
+#~ msgid "Relation "
+#~ msgstr "Relatie"
+
+#, fuzzy
+#~ msgid "https://www.example.com/thank-you"
+#~ msgstr "https://www.example.com/thank-you"
+
+#~ msgid "New"
+#~ msgstr "Nieuwe"
 
 #~ msgid "All Condolences"
 #~ msgstr "Alle overlijdens"

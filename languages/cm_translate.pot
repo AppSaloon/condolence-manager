@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-04 13:12+0200\n"
+"POT-Creation-Date: 2020-05-04 18:16+0200\n"
 "PO-Revision-Date: 2020-05-04 13:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -71,7 +71,7 @@ msgid "Failure"
 msgstr ""
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:3
-msgid "Sorry we couldn't save your data. Refresh and try one more time"
+msgid "Sorry we couldn't save your data. Refresh and try one more time."
 msgstr ""
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:17
@@ -149,16 +149,25 @@ msgstr ""
 msgid "%1$sPlease correct the following problems:%2$s"
 msgstr ""
 
-#: includes/controller/comment-email.php:36
-msgid "New"
-msgstr ""
-
-#: includes/controller/comment-email.php:37
+#: includes/controller/comment-email.php:41
 #, php-format
-msgid "on your condolence from %s:"
+msgid "New condolence from %s"
 msgstr ""
 
-#: includes/controller/comment-email.php:40
+#: includes/controller/comment-email.php:43
+msgid "click here to view the condolence"
+msgstr ""
+
+#: includes/controller/comment-email.php:52
+msgid "New Condolence"
+msgstr ""
+
+#: includes/controller/comment-email.php:70
+#, php-format
+msgid "New reply on your condolence from %s"
+msgstr ""
+
+#: includes/controller/comment-email.php:79
 msgid "New Comment"
 msgstr ""
 
@@ -368,16 +377,12 @@ msgstr ""
 msgid "Is alive?"
 msgstr ""
 
-#: includes/form/metabox.php:202
-msgid "Relation "
+#: includes/form/metabox.php:202 includes/form/metabox.php:292
+msgid "Relation"
 msgstr ""
 
 #: includes/form/metabox.php:218 includes/form/metabox.php:320
 msgid "Remove relation"
-msgstr ""
-
-#: includes/form/metabox.php:292
-msgid "Relation"
 msgstr ""
 
 #: includes/form/metabox.php:357
@@ -401,7 +406,7 @@ msgid "Link to view comments"
 msgstr ""
 
 #: includes/form/metabox.php:489
-msgid "Send email to family when someone condones"
+msgid "Send email to family when someone condoles"
 msgstr ""
 
 #: includes/form/metabox.php:490
@@ -452,7 +457,7 @@ msgstr ""
 msgid "Placed at"
 msgstr ""
 
-#: includes/form/metabox.php:815 includes/register/custom-post-type.php:37
+#: includes/form/metabox.php:826 includes/register/custom-post-type.php:37
 #: includes/register/custom-post-type.php:39
 msgid "Condolences"
 msgstr ""
@@ -873,10 +878,6 @@ msgstr ""
 
 #: includes/settings/select-fields-to-show.php:186
 msgid "Confirmation page"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:189
-msgid "https://www.example.com/thank-you"
 msgstr ""
 
 #: includes/settings/select-fields-to-show.php:191
