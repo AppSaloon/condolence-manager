@@ -10,7 +10,7 @@
             <label class="col-sm-2" for="ct_surname"><?php _e('Surname', 'cm_translate'); ?>:</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="ct_surname"
-                       placeholder="<?php _e('Surname', 'cm_translate'); ?>" required>
+                       placeholder="<?php _e('Surname', 'cm_translate'); ?>" <?php _e('required', 'cm_translate'); ?>>
             </div>
         </div>
         <div class="form-group">
