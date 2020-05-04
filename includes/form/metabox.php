@@ -681,23 +681,34 @@ class Metabox {
 	public function save_condolence_person( $post_id, $post ) {
 		global $wpdb;
 
+		$post_data = array();
+        foreach($_POST as $key=>$value) {
+            if($key == 'deceased_noncename') {
+                $post_data[$key] = $value;
+            } else if ($key == 'email' || $key == 'coffee_table_email') {
+                $post_data[$key] = sanitize_email($value);
+            } else {
+                $post_data[$key] = sanitize_text_field($value);
+            }
+        }
+
 		// Verify if this is an auto save routine. If it is our form has not been submitted, so we dont want
 		// to do anything
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-			return;
+			return false;
 
-		if ( !isset( $_POST['deceased_noncename'] ) )
-			return;
+		if ( !isset( $post_data['deceased_noncename'] ) )
+			return false;
 
 		// Verify this came from the our screen and with proper authorization,
 		// because save_post can be triggered at other times
-		if ( ! wp_verify_nonce( $_POST['deceased_noncename'], plugin_basename( __FILE__ ) ) ) {
-			return;
+		if ( ! wp_verify_nonce( $post_data['deceased_noncename'], plugin_basename( __FILE__ ) ) ) {
+			return false;
 		}
 
 
 		// Check permissions to edit pages and/or posts
-		if ( Custom_Post_Type::post_type() == $_POST['post_type'] ) {
+		if ( Custom_Post_Type::post_type() == $post_data['post_type'] ) {
 			if ( ! current_user_can( 'edit_page', $post_id ) || ! current_user_can( 'edit_post', $post_id ) ) {
 				return $post_id;
 			}
@@ -706,8 +717,8 @@ class Metabox {
 		/**
 		 * Update password if empty
 		 */
-		if ( empty( $_POST['password'] ) ) {
-			$_POST['password'] = static::generate_password();
+		if ( empty( $post_data['password'] ) ) {
+			$post_data['password'] = static::generate_password();
 		}
 
 		// save meta fields
@@ -734,45 +745,45 @@ class Metabox {
 		);
 
         foreach ( $postfields as $field ) {
-            if(isset($_POST[$field])) {
-                update_post_meta( $post_id, $field, $_POST[$field] );
+            if(isset($post_data[$field])) {
+                update_post_meta( $post_id, $field, $post_data[$field] );
             }
         }
 
 		/**
 		 * Update location field
 		 */
-		update_post_meta( $post_id, Location_Type::META_KEY, (int) $_POST[Location_Type::META_KEY] );
+		update_post_meta( $post_id, Location_Type::META_KEY, (int) $post_data[Location_Type::META_KEY] );
 
 		/**
 		 * update flowers button
 		 */
-		if ( isset( $_POST['flowers'] ) ) {
-			update_post_meta( $post_id, 'flowers', $_POST['flowers'] );
+		if ( isset( $post_data['flowers'] ) ) {
+			update_post_meta( $post_id, 'flowers', $post_data['flowers'] );
 		} else {
 			update_post_meta( $post_id, 'flowers', 0 );
 		}
 		/**
 		 * update additional buttons metabox
 		 */
-		if ( isset( $_POST['cm_additional_btn'] ) ) {
-			update_post_meta( $post_id, 'cm_additional_btn', $_POST['cm_additional_btn'] );
+		if ( isset( $post_data['cm_additional_btn'] ) ) {
+			update_post_meta( $post_id, 'cm_additional_btn', $post_data['cm_additional_btn'] );
 		} else {
 			update_post_meta( $post_id, 'cm_additional_btn', 0 );
 		}
 
 		$relations = array();
 		// save relations
-		foreach ( $_POST as $key => $value ) {
+		foreach ( $post_data as $key => $value ) {
 			if ( strpos( $key, 'relation_id' ) === 0 ) {
 				$relation_number                = filter_var( $key, FILTER_SANITIZE_NUMBER_INT );
 				$current_relation               = array();
 				$current_relation['type']       = $value;
-				$current_relation['other']      = $_POST['relation' . $relation_number . '_other'];
-				$current_relation['name']       = $_POST['relation' . $relation_number . '_name'];
-				$current_relation['familyname'] = $_POST['relation' . $relation_number . '_familyname'];
-				$current_relation['alive']      = (isset( $_POST['relation' . $relation_number . '_alive'] ) && $_POST['relation' . $relation_number . '_alive']) ? '1' : '0';
-				$current_relation['gender']     = $_POST['relation' . $relation_number . '_gender'];
+				$current_relation['other']      = $post_data['relation' . $relation_number . '_other'];
+				$current_relation['name']       = $post_data['relation' . $relation_number . '_name'];
+				$current_relation['familyname'] = $post_data['relation' . $relation_number . '_familyname'];
+				$current_relation['alive']      = (isset( $post_data['relation' . $relation_number . '_alive'] ) && $post_data['relation' . $relation_number . '_alive']) ? '1' : '0';
+				$current_relation['gender']     = $post_data['relation' . $relation_number . '_gender'];
 				$relations[]                    = $current_relation;
 			}
 		}
@@ -781,14 +792,14 @@ class Metabox {
 			update_post_meta( $post_id, 'relations', $relations );
 		}
 
-		if ( isset( $_POST['dateofdeath'] ) && isset( $_POST['name'] ) && isset( $_POST['familyname'] ) ) {
+		if ( isset( $post_data['dateofdeath'] ) && isset( $post_data['name'] ) && isset( $post_data['familyname'] ) ) {
 			$arraymaand = static::get_months();
 
-			$date       = $_POST['dateofdeath'];
+			$date       = $post_data['dateofdeath'];
 			$pieces     = explode( "-", $date );
 			$num        = intval( $pieces[1] );
 			$month      = $arraymaand[$num - 1];
-			$post_title = $pieces[2] . ' ' . $month . ' ' . $pieces[0] . ' - ' . $_POST['name'] . ' ' . $_POST['familyname'];
+			$post_title = $pieces[2] . ' ' . $month . ' ' . $pieces[0] . ' - ' . $post_data['name'] . ' ' . $post_data['familyname'];
 
 			$post_title_sanitize = sanitize_title( $post_title );
 
