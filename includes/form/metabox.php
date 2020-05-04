@@ -199,7 +199,7 @@ class Metabox {
 					foreach ( $relations as $relation ) {
 						?>
               <tr>
-                  <td valign="top"><?php echo __( 'Relation ', 'cm_translate' ) . $count; ?></td>
+                  <td valign="top"><?php echo __( 'Relation', 'cm_translate' ) . '&nbsp;' . $count; ?></td>
                   <td class="form-field">
                       <select name="relation_id<?php echo $count; ?>" id="relation_id<?php echo $count; ?>">
                           <option><?php _e( 'Select relation type', 'cm_translate' ); ?></option>
