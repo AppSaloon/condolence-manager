@@ -186,7 +186,7 @@ class Select_Fields_To_Show {
                     <label for="cm_option_confirmation_page"><?php _e('Confirmation page','cm_translate'); ?></label>
                 </th>
                 <td>
-                   <input type="url" value="<?php echo esc_attr(static::get_confirmation_settings()['page'])?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="<?php _e('https://www.example.com/thank-you', 'cm_translate'); ?>">
+                   <input type="url" value="<?php echo esc_attr(static::get_confirmation_settings()['page'])?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="https://www.example.com/thank-you">
                     <p class="description">
                     <?php _e('If you selected "page" as the confirmation type, please enter the URL to the page your users will be redirected to after writing a condolence.','cm_translate'); ?>
                     </p>
