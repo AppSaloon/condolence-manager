@@ -438,8 +438,8 @@ class Metabox {
 	/**
 	 * Checks meta value
 	 *
-	 * @param $field_name meta key
-	 * @param $post_id    post id
+	 * @param $field_name string //meta key
+	 * @param $post_id int    //post id
 	 *
 	 * @return mixed|string returns field value or empty string
 	 */
