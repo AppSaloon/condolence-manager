@@ -488,7 +488,7 @@ class Metabox {
 			echo 'checked';
 		} ?>><?php _e( 'Send email to family when someone condones', 'cm_translate' ); ?>
         <label><?php _e( 'E-mail', 'cm_translate' ); ?></label>
-        <input type="text" name="email" value="<?php echo $this->get_field_value( 'email', $post->ID ); ?>">
+        <input autocomplete="new-password" type="text" name="email" value="<?php echo $this->get_field_value( 'email', $post->ID ); ?>">
 		<?php
 	}
 
