@@ -104,12 +104,12 @@ $(document).ready(function(){
                        if($('.comments-list').hasClass('family_page')){
                            location.reload();
                        }else{
-                           statusdiv.html('<p class="ajax-success" >'+confirmation.text+'</p>');
-                           $('.comment-form-comment').hide();
-                           $('.error_box').hide();
-
                            if(confirmation.type === 'page') {
                                window.location = confirmation.page;
+                           } else {
+                               statusdiv.html('<p class="ajax-success" >'+confirmation.text+'</p>');
+                               $('.comment-form > *:not(#comment-status)').hide();
+                               $('.error_box').hide();
                            }
                        }
 
