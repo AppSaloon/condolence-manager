@@ -486,7 +486,7 @@ class Metabox {
       <input type="checkbox" name="check_email" value="check_email"
              style="width: 15px;" <?php if ( $this->get_field_value( 'check_email', $post->ID ) === 'check_email' ) {
 			echo 'checked';
-		} ?>><?php _e( 'Send email to family when someone condones', 'cm_translate' ); ?>
+		} ?>><?php _e( 'Send email to family when someone condoles', 'cm_translate' ); ?>
         <label><?php _e( 'E-mail', 'cm_translate' ); ?></label>
         <input autocomplete="new-password" type="text" name="email" value="<?php echo $this->get_field_value( 'email', $post->ID ); ?>">
 		<?php
