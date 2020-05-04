@@ -41,7 +41,7 @@ class Comment_Email{
         $comment = get_comment( $comment_ID );
 
         if(  $comment->comment_parent != 0) {
-            $this->set_comment_status($comment_ID);
+            $this->approve_comment($comment_ID);
             $parent_comment = get_comment( $comment->comment_parent );
             ob_start();
             ?>
@@ -58,7 +58,7 @@ class Comment_Email{
         }
     }
 
-    private function set_comment_status($comment_ID){
+    private function approve_comment($comment_ID){
         global $wpdb;
 
         $query = "UPDATE ".$wpdb->prefix."comments SET comment_approved='1' WHERE comment_ID=".$comment_ID;
