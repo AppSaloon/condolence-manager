@@ -40,7 +40,7 @@ class Comment_Email
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
                 <?php echo sprintf(__('New condolence from %s'), $comment->comment_author); ?>
                 <br/>
-                <a href="<?php echo $url; ?>">click here to view the condolence</a>
+                <a href="<?php echo $url; ?>"><?php echo __('click here to view the condolence');?></a>
             </p>
             <?php
             self::render_condolence_info($post_ID);
@@ -49,7 +49,7 @@ class Comment_Email
             add_filter('wp_mail_content_type', function () {
                 return "text/html";
             });
-            wp_mail($master_email, 'New Condolence', $message);
+            wp_mail($master_email, __('New Condolence'), $message);
         }
     }
 
@@ -67,7 +67,7 @@ class Comment_Email
             ob_start();
             ?>
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
-                <?php echo sprintf(__('New reply on your condolence from %s:'), $comment->comment_author); ?>
+                <?php echo sprintf(__('New reply on your condolence from %s'), $comment->comment_author); ?>
             </p>
             <?php
             self::render_condolence_info($post_ID);
