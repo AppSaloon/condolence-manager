@@ -192,12 +192,16 @@ ob_start();
                                         }
                                         break;
                                     case '_cm_linked_location':
-                                        $location_id = (int) current($fields[$required_str]);
-                                        $location = get_the_title($location_id);
-                                        if (!empty($location)) {
-                                            echo '<p class="' . $required_str . '">';
-                                            echo '<strong>' . _e("Laid out at", "cm_translate") . ': </strong>' . $location;
-                                            echo '</p>';
+                                        if(isset($fields[$required_str])) {
+                                            $location_id = current($fields[$required_str]);
+                                            if($location_id != 0) {
+                                                $location = get_the_title($location_id);
+                                                if (!empty($location)) {
+                                                    echo '<p class="' . $required_str . '">';
+                                                    echo '<strong>' . _e("Laid out at", "cm_translate") . ': </strong>' . $location;
+                                                    echo '</p>';
+                                                }
+                                            }
                                         }
                                         break;
                                     default:
