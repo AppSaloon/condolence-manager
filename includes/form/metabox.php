@@ -835,10 +835,10 @@ class Metabox {
 		global $post;
 		if ( is_object( $post ) ) {
 			if ( $post->post_type == Custom_Post_Type::post_type() ) {
-				wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, '1.0.0' );
+				wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, CM_VERSION );
 				wp_enqueue_style( 'metabox_css' );
 
-				wp_register_script( 'metabox_js', CM_URL . 'js/metabox.js', array(), false, true );
+				wp_register_script( 'metabox_js', CM_URL . 'js/metabox.js', array(), CM_VERSION, true );
 				wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
 				wp_enqueue_script( 'metabox_js' );
 				wp_enqueue_media();

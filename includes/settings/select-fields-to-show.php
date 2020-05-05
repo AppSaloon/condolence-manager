@@ -58,11 +58,11 @@ class Select_Fields_To_Show {
 		wp_enqueue_style( 'style-my-jquery-ui',
 			'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css' );
 
-		wp_register_script( 'drag-and-drop', CM_URL . '/js/drag-and-drop.js', array(), false, true );
+		wp_register_script( 'drag-and-drop', CM_URL . '/js/drag-and-drop.js', array(), CM_VERSION, true );
 		wp_localize_script( 'drag-and-drop', 'dragAndDrop', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
 		wp_enqueue_script( 'drag-and-drop' );
 
-		wp_register_style( 'drag-and-drop-css', CM_URL . 'css/drag-and-drop.css', false, '1.0.0' );
+		wp_register_style( 'drag-and-drop-css', CM_URL . 'css/drag-and-drop.css', false, CM_VERSION );
 		wp_enqueue_style( 'drag-and-drop-css' );
 
 

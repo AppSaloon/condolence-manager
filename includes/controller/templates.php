@@ -19,7 +19,7 @@ class Templates{
         $post_id = get_the_ID();
 
         if(has_shortcode( $post->post_content, 'condolence_overview' )){
-            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css');
+            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css', null, CM_VERSION);
         }
 
 
@@ -83,7 +83,7 @@ class Templates{
         }
 
         if( is_archive()){
-            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css');
+            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css', null, CM_VERSION);
         }
 
     }
