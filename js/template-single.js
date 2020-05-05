@@ -42,6 +42,7 @@ $(document).ready(function(){
 
     $("#toggle_coffee_table").click(function(e){
         e.preventDefault();
+        toggleQueryParameter('ct_form')
         $("#coffee-table-form").toggle();
     });
 

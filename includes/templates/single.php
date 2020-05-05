@@ -222,7 +222,7 @@ ob_start();
 
                                 if ($fields['coffee_table'][0] == 'yes') {
                                     ?>
-                                    <a href="#" class="btn"
+                                    <a href="javascript:void(0);" class="btn"
                                        id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
                                     <?php
                                 }

@@ -1,4 +1,4 @@
-<div id="ct_div" style="display: none;">
+<div id="ct_div"  style="display: <?php echo cm_get_display_value('ct_form') ?>">
     <p id="ct_form_message" class="ct_form"></p>
     <form class="form-horizontal" id="ct_form">
         <div class="form-group">

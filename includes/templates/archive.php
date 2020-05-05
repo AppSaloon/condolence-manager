@@ -142,7 +142,7 @@ get_header(); ?>
 
                                 if($values['coffee_table'][0] == 'yes'){
                                     ?>
-                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>'"  value="<?php _e('Coffee Table', 'cm_translate'); ?>">
+                                    <input type="button" onclick="location.href='<?php the_permalink(); ?>?ct_form'"  value="<?php _e('Coffee Table', 'cm_translate'); ?>">
                                     <?php
                                 }
 
