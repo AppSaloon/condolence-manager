@@ -3,8 +3,6 @@
 namespace cm\includes\settings;
 
 use cm\includes\coffee_table\Coffee_Table_Controller;
-use cm\includes\coffee_table\Menu_Page_View;
-
 
 class Select_Fields_To_Show {
     const MENU_SLUG = 'condolence-manager';
