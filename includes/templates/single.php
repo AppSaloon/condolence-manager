@@ -25,7 +25,7 @@ ob_start();
                         </td>
                         <td class="text deceased-info">
                             <?php
-                            $required_fields = get_option('cm_fields');
+                            $required_fields = cm\includes\settings\Select_Fields_To_Show::get_saved_fields();
                             $fields = get_post_meta(get_the_ID());
                             $arraymonth = array(
                                 __("January", "cm_translate"),
@@ -43,7 +43,7 @@ ob_start();
                             );
 
                             if (!$required_fields) {
-                                $required_fields = cm\includes\settings\Select_Fields_To_Show::$defaultFields;
+                                $required_fields = cm\includes\settings\Select_Fields_To_Show::get_default_fields();
                             }
 
                             foreach ($required_fields as $required => $value) {

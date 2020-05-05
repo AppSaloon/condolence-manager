@@ -8,8 +8,6 @@ class Select_Fields_To_Show {
     const MENU_SLUG = 'condolence-manager';
     const MENU_OPTIONS_SLUG = 'condolence-manager_options';
 
-	public static $defaultFields;
-
 
 	public function __construct() {
 
@@ -70,9 +68,8 @@ class Select_Fields_To_Show {
 
 	}
 
-	public function my_plugin_function() {
-
-		self::$defaultFields = array(
+	public static function get_default_fields() {
+	    return array(
 			"full_name"              => __( 'Honorary title + full name', 'cm_translate' ),
 			"birthplace"             => __( 'Birthplace', 'cm_translate' ),
 			"birthdate"              => __( 'Birthdate', 'cm_translate' ),
@@ -85,14 +82,21 @@ class Select_Fields_To_Show {
 			"relations"              => __( 'Relations', 'cm_translate' ),
 			"_cm_linked_location"    => __( 'Funeral home', 'cm_translate' ),
 		);
+	}
+
+	public static function get_saved_fields() {
+	    $saved_fields = get_option( 'cm_fields' );
+		return array_filter($saved_fields, function($saved_field) {
+		    return in_array($saved_field, array_keys(self::get_default_fields()));
+		}, ARRAY_FILTER_USE_KEY);
+	}
+
+	public function my_plugin_function() {
 
 		$obj = new Coffee_Table_Controller();
 		$obj->all_coffee_posts();
-		$saved_fields = get_option( 'cm_fields' );
-		$saved_fields = array_filter($saved_fields, function($saved_field) {
-		    return in_array($saved_field, array_keys(self::$defaultFields));
-		}, ARRAY_FILTER_USE_KEY);
-		$fields     = ( $saved_fields ) ? $saved_fields : self::$defaultFields;
+		$saved_fields = self::get_saved_fields();
+		$fields     = ( $saved_fields ) ? $saved_fields : self::get_default_fields();
 		/**
 		 * filter hook to add eventually fildes on backend site
 		 */
@@ -122,7 +126,7 @@ class Select_Fields_To_Show {
 					echo 'border';
 				} ?>">
 					<?php
-					$result = ( $saved_fields ) ? array_diff( self::$defaultFields, $saved_fields ) : '';
+					$result = ( $saved_fields ) ? array_diff( self::get_default_fields(), $saved_fields ) : '';
 					if ( $result ) {
 						foreach ( $result as $key => $value ) {
 							?>
