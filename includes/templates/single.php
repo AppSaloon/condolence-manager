@@ -220,16 +220,16 @@ ob_start();
                                     <?php
                                 }
 
-                                if (isset($fields['masscard'][0])) { ?>
-                                    <a target="_blank" href="<?= $fields['masscard'][0] ?>" class="btn"
-                                       id="toggle_flowers"><?php _e('Mass card', 'cm_translate'); ?></a>
-                                    <?php
-                                }
-
                                 if ($fields['coffee_table'][0] == 'yes') {
                                     ?>
                                     <a href="#" class="btn"
                                        id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
+                                    <?php
+                                }
+
+                                if (isset($fields['masscard'][0])) { ?>
+                                    <a target="_blank" href="<?= $fields['masscard'][0] ?>" class="btn"
+                                       id="toggle_flowers"><?php _e('Mass card', 'cm_translate'); ?></a>
                                     <?php
                                 }
                             } ?>
