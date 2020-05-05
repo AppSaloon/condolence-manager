@@ -73,7 +73,6 @@ class Select_Fields_To_Show {
 	public function my_plugin_function() {
 
 		self::$defaultFields = array(
-			"gender"                 => __( 'Gender', 'cm_translate' ),
 			"full_name"              => __( 'Honorary title + full name', 'cm_translate' ),
 			"birthplace"             => __( 'Birthplace', 'cm_translate' ),
 			"birthdate"              => __( 'Birthdate', 'cm_translate' ),
