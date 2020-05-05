@@ -128,7 +128,7 @@ class Select_Fields_To_Show {
 						foreach ( $result as $key => $value ) {
 							?>
                             <li class="ui-state-default ui-sortable-handle"
-                                data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="add">+</span></li> <?php
+                                data-value="<?php echo $key; ?>"><?php echo $value; ?><span class="cm_field_mapping_add">+</span></li> <?php
 						}
 					}
 					?>
@@ -140,7 +140,7 @@ class Select_Fields_To_Show {
 					foreach ( $fields as $key => $value ) {
 						?>
                         <li class="ui-state-default ui-sortable-handle"
-                            data-value="<?php echo $key; ?>"><?php echo $value; ?><span id="delete">X</span></li> <?php
+                            data-value="<?php echo $key; ?>"><?php echo $value; ?><span class="cm_field_mapping_delete">X</span></li> <?php
 					}
 					?>
                 </ul>

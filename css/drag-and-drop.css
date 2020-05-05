@@ -1,11 +1,11 @@
-span#delete {
+span.cm_field_mapping_delete {
     float: right;
     padding-right: 10px;
     color: red;
     cursor: pointer;
 }
 
-span#add{
+span.cm_field_mapping_add {
     float: right;
     padding-right: 10px;
     color: green;

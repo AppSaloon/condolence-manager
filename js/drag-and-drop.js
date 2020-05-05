@@ -5,37 +5,64 @@
 
 (function ($) {
     $(document).ready(function () {
+        let lastSortableChildren = getSortableChildren();
+        function getSortableChildren () {
+            return Array.from(document.querySelector('#sortable').children).map((child) => {
+                return child.dataset.value
+            }).filter((value) => typeof value !== 'undefined')
+        }
+        function sortableChildrenIsDifferent () {
+            const sortableChildren = getSortableChildren();
+            return sortableChildren.length !== lastSortableChildren.length || sortableChildren.some((sortableChild, index) => {
+                return sortableChild !== lastSortableChildren[index]
+            });
+        }
+        function toggleSubmitButtonDisabled () {
+            if(sortableChildrenIsDifferent()) {
+                $("input.btn-set-fields").removeAttr('disabled');
+            } else {
+                $("input.btn-set-fields").attr('disabled', true)
+            }
+        }
+
         $("#sortable").sortable({
-            revert: true
+            revert: true,
+            stop: toggleSubmitButtonDisabled
         });
         $("#draggable").draggable({
             connectToSortable: "#sortable",
             helper: "clone",
-            revert: "invalid"
+            revert: "invalid",
         });
         $("ul, li").disableSelection();
 
-
-        $("span#delete").on('click', function () {
-            if (!$('ul.hide').hasClass('border')) {
-                $('ul.hide').addClass('border');
-            }
-            $('ul.hide').append($(this).parent('li'));
-            $(this).parent('li').append('<span id="add">+</span>');
-            $(this).remove();
-        });
-
-        $('li').on('click', '#add', function () {
+        $('li')
+          .on('mousedown', '.cm_field_mapping_delete', function (event) {
+              if(event.which === 1) {
+                  if (!$('ul.hide').hasClass('border')) {
+                      $('ul.hide').addClass('border')
+                  }
+                  $('ul.hide').append($(this).parent('li'))
+                  $(this).parent('li').append('<span class="cm_field_mapping_add">+</span>')
+                  $(this).remove()
+                  toggleSubmitButtonDisabled()
+              }
+          })
+          .on('mousedown', '.cm_field_mapping_add', function () {
             $('ul.show').append($(this).parent('li'));
-            $(this).parent('li').append('<span id="delete">X</span>');
+            $(this).parent('li').append('<span class="cm_field_mapping_delete">X</span>');
             $(this).remove();
             if ($('ul.border li').length < 1) {
                 $('ul.hide').removeClass('border');
             }
+            toggleSubmitButtonDisabled()
         });
 
 
-        $("input.btn-set-fields").on('click', function (e) {
+        $("input.btn-set-fields")
+          .attr('disabled', true)
+          .on('click', function (e) {
+            $(this).attr('disabled', true);
             var table = {};
             e.preventDefault();
             $("ul.show li.ui-sortable-handle").each(function (index) {
@@ -54,6 +81,7 @@
                         action: 'set_fields'
                     },
                     success: function (result) {
+                        lastSortableChildren = getSortableChildren()
                     }
                 }
             );
