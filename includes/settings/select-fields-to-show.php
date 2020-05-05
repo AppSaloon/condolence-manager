@@ -86,6 +86,7 @@ class Select_Fields_To_Show {
 			"residence"              => __( 'Residence', 'cm_translate' ),
 			"relations"              => __( 'Relations', 'cm_translate' ),
 			"honoraryitle"           => __( 'Honorary title', 'cm_translate' ),
+			"_cm_linked_location"    => __( 'Funeral home', 'cm_translate' ),
 		);
 
 		$obj = new Coffee_Table_Controller();
