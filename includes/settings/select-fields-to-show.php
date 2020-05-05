@@ -91,8 +91,11 @@ class Select_Fields_To_Show {
 
 		$obj = new Coffee_Table_Controller();
 		$obj->all_coffee_posts();
-		$tableArray = get_option( 'cm_fields' );
-		$fields     = ( $tableArray ) ? $tableArray : self::$defaultFields;
+		$saved_fields = get_option( 'cm_fields' );
+		$saved_fields = array_filter($saved_fields, function($saved_field) {
+		    return in_array($saved_field, array_keys(self::$defaultFields));
+		}, ARRAY_FILTER_USE_KEY);
+		$fields     = ( $saved_fields ) ? $saved_fields : self::$defaultFields;
 		/**
 		 * filter hook to add eventually fildes on backend site
 		 */
