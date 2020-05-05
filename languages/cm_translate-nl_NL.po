@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-05 11:56+0200\n"
-"PO-Revision-Date: 2020-05-05 12:13+0200\n"
+"POT-Creation-Date: 2020-05-05 12:21+0200\n"
+"PO-Revision-Date: 2020-05-05 12:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -36,7 +36,6 @@ msgstr "Aanwezigheid koffietafel"
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:7
 #: includes/form/metabox.php:54 includes/form/metabox.php:183
 #: includes/form/metabox.php:229 includes/form/metabox.php:337
-#: includes/settings/select-fields-to-show.php:77
 msgid "Name"
 msgstr "Naam"
 
@@ -130,7 +129,7 @@ msgid "min 1"
 msgstr "min 1"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:88
-#: includes/settings/select-fields-to-show.php:209
+#: includes/settings/select-fields-to-show.php:210
 msgid "Submit"
 msgstr "Verstuur"
 
@@ -276,27 +275,26 @@ msgstr "Vrouw"
 
 #: includes/form/metabox.php:59 includes/form/metabox.php:185
 #: includes/form/metabox.php:232 includes/form/metabox.php:344
-#: includes/settings/select-fields-to-show.php:78
 msgid "Family name"
 msgstr "Familienaam"
 
-#: includes/form/metabox.php:65 includes/settings/select-fields-to-show.php:88
+#: includes/form/metabox.php:65
 msgid "Honorary title"
 msgstr "Ere titel"
 
-#: includes/form/metabox.php:71 includes/settings/select-fields-to-show.php:79
+#: includes/form/metabox.php:71 includes/settings/select-fields-to-show.php:78
 msgid "Birthplace"
 msgstr "Geboorteplaats"
 
-#: includes/form/metabox.php:77 includes/settings/select-fields-to-show.php:80
+#: includes/form/metabox.php:77 includes/settings/select-fields-to-show.php:79
 msgid "Birthdate"
 msgstr "Geboortedatum"
 
-#: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:81
+#: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:80
 msgid "Place of death"
 msgstr "Plaats van overlijden"
 
-#: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:82
+#: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:81
 msgid "Date of death"
 msgstr "Datum van overlijden"
 
@@ -304,21 +302,21 @@ msgstr "Datum van overlijden"
 msgid "Funeral date"
 msgstr "Begrafenis informatie"
 
-#: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:83
+#: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:82
 #: includes/templates/archive.php:120 includes/templates/single.php:134
 msgid "Funeral information"
 msgstr "Begrafenis informatie"
 
-#: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:84
+#: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:83
 msgid "Prayer Vigil information"
 msgstr "Gebedswake informatie"
 
-#: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:85
+#: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:84
 #: includes/templates/archive.php:129 includes/templates/single.php:148
 msgid "Greeting information"
 msgstr "Begroeting informatie"
 
-#: includes/form/metabox.php:118 includes/settings/select-fields-to-show.php:86
+#: includes/form/metabox.php:118 includes/settings/select-fields-to-show.php:85
 msgid "Residence"
 msgstr "Woonplaats"
 
@@ -347,7 +345,7 @@ msgstr ""
 msgid "Additional buttons"
 msgstr "Extra knoppen"
 
-#: includes/form/metabox.php:159 includes/settings/select-fields-to-show.php:87
+#: includes/form/metabox.php:159 includes/settings/select-fields-to-show.php:86
 msgid "Relations"
 msgstr "Relaties"
 
@@ -824,7 +822,7 @@ msgstr "Producten"
 
 #: includes/settings/select-fields-to-show.php:39
 #: includes/settings/select-fields-to-show.php:40
-#: includes/settings/select-fields-to-show.php:102
+#: includes/settings/select-fields-to-show.php:103
 msgid "Condolence manager"
 msgstr "Condolatie manager"
 
@@ -836,29 +834,33 @@ msgstr "Condolatie manager opties"
 msgid "Options"
 msgstr "Opties"
 
-#: includes/settings/select-fields-to-show.php:89
+#: includes/settings/select-fields-to-show.php:77
+msgid "Honorary title + full name"
+msgstr "Ere titel + volledige naam"
+
+#: includes/settings/select-fields-to-show.php:87
 #, fuzzy
 #| msgid "Funeral date"
 msgid "Funeral home"
 msgstr "Begrafenis informatie"
 
-#: includes/settings/select-fields-to-show.php:106
+#: includes/settings/select-fields-to-show.php:107
 msgid "Field Mapping"
 msgstr "Veldtoewijzing"
 
-#: includes/settings/select-fields-to-show.php:107
+#: includes/settings/select-fields-to-show.php:108
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: includes/settings/select-fields-to-show.php:108
+#: includes/settings/select-fields-to-show.php:109
 msgid "Rename CPT"
 msgstr "CPT hernoemen"
 
-#: includes/settings/select-fields-to-show.php:109
+#: includes/settings/select-fields-to-show.php:110
 msgid "Update"
 msgstr "Update"
 
-#: includes/settings/select-fields-to-show.php:116
+#: includes/settings/select-fields-to-show.php:117
 msgid ""
 "Change the layout of the condolence post by reordering the items listed "
 "below."
@@ -866,7 +868,7 @@ msgstr ""
 "Verander de layout van de overlijdens door de volgorde van de items "
 "hieronder te wisselen."
 
-#: includes/settings/select-fields-to-show.php:118
+#: includes/settings/select-fields-to-show.php:119
 msgid ""
 "Drag and drop the items to your desired order or delete and add items to the "
 "list. If the order is as you wish submit the changes."
@@ -875,11 +877,11 @@ msgstr ""
 "lijst. Als de lijst is zoals je wenst klik op opslaan om je wijziging te "
 "bevestigen."
 
-#: includes/settings/select-fields-to-show.php:148
+#: includes/settings/select-fields-to-show.php:149
 msgid "Submit changes"
 msgstr "Bevestig veranderingen"
 
-#: includes/settings/select-fields-to-show.php:164
+#: includes/settings/select-fields-to-show.php:165
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
@@ -887,27 +889,27 @@ msgstr ""
 "Beheer de rouwbetuiging bevestiging. Dit kan een bedankbriefje zijn, of een "
 "pagina om naar om te leiden."
 
-#: includes/settings/select-fields-to-show.php:169
+#: includes/settings/select-fields-to-show.php:170
 msgid "Confirmation type"
 msgstr "Bevestiging-type"
 
-#: includes/settings/select-fields-to-show.php:175
+#: includes/settings/select-fields-to-show.php:176
 msgid "Page"
 msgstr "Pagina"
 
-#: includes/settings/select-fields-to-show.php:176
+#: includes/settings/select-fields-to-show.php:177
 msgid "Text"
 msgstr "Tekst"
 
-#: includes/settings/select-fields-to-show.php:178
+#: includes/settings/select-fields-to-show.php:179
 msgid "Choose what will happen after a user writes a condolence."
 msgstr "Kies wat er gebeurt nadat een gebruiker een rouwbetuiging schrijft."
 
-#: includes/settings/select-fields-to-show.php:184
+#: includes/settings/select-fields-to-show.php:185
 msgid "Confirmation page"
 msgstr "Bevestigingspagina"
 
-#: includes/settings/select-fields-to-show.php:189
+#: includes/settings/select-fields-to-show.php:190
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
@@ -916,15 +918,15 @@ msgstr ""
 "naar de pagina naar wie uw gebruikers worden doorgestuurd nadat ze een "
 "rouwbetuiging hebben geschreven."
 
-#: includes/settings/select-fields-to-show.php:195
+#: includes/settings/select-fields-to-show.php:196
 msgid "Confirmation text"
 msgstr "Bevestigingstekst"
 
-#: includes/settings/select-fields-to-show.php:198
+#: includes/settings/select-fields-to-show.php:199
 msgid "Thank you note"
 msgstr "Bedank-tekst"
 
-#: includes/settings/select-fields-to-show.php:202
+#: includes/settings/select-fields-to-show.php:203
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
@@ -933,19 +935,19 @@ msgstr ""
 "het bovenstaande veld weergegeven aan een gebruiker na het schrijven van een "
 "rouwbetuiging."
 
-#: includes/settings/select-fields-to-show.php:225
+#: includes/settings/select-fields-to-show.php:226
 msgid "You can change the <b>custom post type slug</b>."
 msgstr "Je kan de <b>slug van deze custom post</b> wijzigen."
 
-#: includes/settings/select-fields-to-show.php:227
+#: includes/settings/select-fields-to-show.php:228
 msgid "Slug name"
 msgstr "Slug naam"
 
-#: includes/settings/select-fields-to-show.php:231
+#: includes/settings/select-fields-to-show.php:232
 msgid "Change post type"
 msgstr "Verander post type"
 
-#: includes/settings/select-fields-to-show.php:257
+#: includes/settings/select-fields-to-show.php:258
 msgid ""
 "Before starting to migrate, be sure that <b>custom post type slug</b> is "
 "correct! Because the changes made in this step can't be reversed."
@@ -954,11 +956,11 @@ msgstr ""
 "slug</b> correct is! Veranderingen in deze stap kunnen niet terug gezet "
 "worden."
 
-#: includes/settings/select-fields-to-show.php:286
+#: includes/settings/select-fields-to-show.php:287
 msgid "Add your license key"
 msgstr "Uw licentiesleutel toevoegen"
 
-#: includes/settings/select-fields-to-show.php:290
+#: includes/settings/select-fields-to-show.php:291
 msgid "Add license key"
 msgstr "Licentiesleutel toevoegen"
 

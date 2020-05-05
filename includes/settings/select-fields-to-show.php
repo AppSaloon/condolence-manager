@@ -74,8 +74,7 @@ class Select_Fields_To_Show {
 
 		self::$defaultFields = array(
 			"gender"                 => __( 'Gender', 'cm_translate' ),
-			"name"                   => __( 'Name', 'cm_translate' ),
-			"familyname"             => __( 'Family name', 'cm_translate' ),
+			"full_name"              => __( 'Honorary title + full name', 'cm_translate' ),
 			"birthplace"             => __( 'Birthplace', 'cm_translate' ),
 			"birthdate"              => __( 'Birthdate', 'cm_translate' ),
 			"placeofdeath"           => __( 'Place of death', 'cm_translate' ),
@@ -85,7 +84,6 @@ class Select_Fields_To_Show {
 			"greetinginformation"    => __( 'Greeting information', 'cm_translate' ),
 			"residence"              => __( 'Residence', 'cm_translate' ),
 			"relations"              => __( 'Relations', 'cm_translate' ),
-			"honoraryitle"           => __( 'Honorary title', 'cm_translate' ),
 			"_cm_linked_location"    => __( 'Funeral home', 'cm_translate' ),
 		);
 
@@ -121,11 +119,11 @@ class Select_Fields_To_Show {
             <p class="info"><?php _e( 'Drag and drop the items to your desired order or delete and add items to the list. If the order is as you wish submit the changes.',
 					'cm_translate' ); ?></p>
             <div class="field_wrap">
-                <ul class="ui-sortable hide <?php if ( $tableArray ) {
+                <ul class="ui-sortable hide <?php if ( $saved_fields ) {
 					echo 'border';
 				} ?>">
 					<?php
-					$result = ( $tableArray ) ? array_diff( self::$defaultFields, $tableArray ) : '';
+					$result = ( $saved_fields ) ? array_diff( self::$defaultFields, $saved_fields ) : '';
 					if ( $result ) {
 						foreach ( $result as $key => $value ) {
 							?>
