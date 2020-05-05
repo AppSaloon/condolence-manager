@@ -54,8 +54,6 @@ ob_start();
                                     switch ($required_str) {
 
 
-                                        case 'masscard':
-                                            break;
                                         case 'name':
                                             echo '<p class="' . $required_str . '" id="name">';
                                             echo current($fields[$required_str]);

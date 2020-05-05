@@ -86,7 +86,6 @@ class Select_Fields_To_Show {
 			"prayervigilinformation" => __( 'Prayer Vigil information', 'cm_translate' ),
 			"greetinginformation"    => __( 'Greeting information', 'cm_translate' ),
 			"residence"              => __( 'Residence', 'cm_translate' ),
-			"masscard"               => __( 'Mass card', 'cm_translate' ),
 			"relations"              => __( 'Relations', 'cm_translate' ),
 			"honoraryitle"           => __( 'Honorary title', 'cm_translate' ),
 		);
