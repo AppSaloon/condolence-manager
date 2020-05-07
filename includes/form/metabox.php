@@ -132,14 +132,23 @@ class Metabox {
           <tr>
               <td><?php _e( 'Flowers', 'cm_translate' ); ?></td>
               <td class="form-field">
-                  <input id="flowers" type="checkbox" name="flowers"
-                         value="1" <?php echo ( $this->get_field_value( 'flowers', $post->ID ) == '0' ) ? '' : 'checked'; ?>>
-                  <p class="description"><?php
-				      printf(
-					      __( 'If enabled, a list of products and an order form will appear below a condolence page. Note, if you use a custom template file, you\'ll need to add these shortcodes: %s and %s.', 'cm_translate' ),
-					      '[cm_products]',
-					      '[cm_order_form]'
-				      ); ?></p>
+                  <p class="description">
+                      <label>
+                          <input id="flowers"
+                                 type="checkbox"
+                                 name="flowers"
+                                 value="1"
+                              <?php echo ( $this->get_field_value( 'flowers', $post->ID ) == '0' ) ? '' : 'checked'; ?>
+                          >
+                          <?php
+                          printf(
+                              __('If enabled, a list of products and an order form will appear below a condolence page. Note, if you use a custom template file, you\'ll need to add these shortcodes: %s and %s.', 'cm_translate'),
+                              '[cm_products]',
+                              '[cm_order_form]'
+                          );
+                          ?>
+                      </label>
+                  </p>
               </td>
           </tr>
           <tr>
