@@ -115,6 +115,19 @@ get_header(); ?>
                                     //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
                                     echo $pieces[0];
                                     ?></div>
+                                <?php
+                                if (isset($values["_cm_linked_location"])) {
+                                    $location_id = current($values["_cm_linked_location"]);
+                                    if ($location_id != 0) {
+                                        $location = get_the_title($location_id);
+                                        if (!empty($location)) {
+                                            echo '<p class="_cm_linked_location">';
+                                            echo '<strong>' . _e("Laid out at", "cm_translate") . ': </strong>' . $location;
+                                            echo '</p>';
+                                        }
+                                    }
+                                }
+                                ?>
                                 <?php if ($values["funeralinformation"][0]) { ?>
                                     <div class="deceased-uitvaart">
                                         <strong><?php _e('Funeral information','cm_translate'); ?>: </strong><?php echo $values["funeralinformation"][0]; ?></div>
