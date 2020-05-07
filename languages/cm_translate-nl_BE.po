@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-07 13:26+0200\n"
-"PO-Revision-Date: 2020-05-07 13:28+0200\n"
+"POT-Creation-Date: 2020-05-07 14:14+0200\n"
+"PO-Revision-Date: 2020-05-07 14:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -103,7 +103,7 @@ msgstr "Plaatsnaam"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:41
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:44
-#: includes/templates/single.php:310
+#: includes/templates/single.php:309
 msgid "Email"
 msgstr "Email"
 
@@ -205,7 +205,7 @@ msgid "Order"
 msgstr "Volgorde"
 
 #: includes/controller/products.php:264 includes/form/metabox.php:133
-#: includes/templates/archive.php:153 includes/templates/single.php:235
+#: includes/templates/archive.php:171 includes/templates/single.php:234
 msgid "Flowers"
 msgstr "Bloemen"
 
@@ -303,7 +303,7 @@ msgid "Funeral date"
 msgstr "Datum van begrafenis"
 
 #: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:78
-#: includes/templates/archive.php:134 includes/templates/single.php:118
+#: includes/templates/archive.php:148 includes/templates/single.php:117
 msgid "Funeral information"
 msgstr "Begrafenis informatie"
 
@@ -312,7 +312,7 @@ msgid "Prayer Vigil information"
 msgstr "Gebedswake informatie"
 
 #: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:80
-#: includes/templates/archive.php:143 includes/templates/single.php:132
+#: includes/templates/archive.php:160 includes/templates/single.php:131
 msgid "Greeting information"
 msgstr "Begroeting informatie"
 
@@ -320,8 +320,8 @@ msgstr "Begroeting informatie"
 msgid "Residence"
 msgstr "Woonplaats"
 
-#: includes/form/metabox.php:124 includes/templates/archive.php:165
-#: includes/templates/single.php:248
+#: includes/form/metabox.php:124 includes/templates/archive.php:183
+#: includes/templates/single.php:247
 msgid "Mass card"
 msgstr "Rouwbrief"
 
@@ -720,7 +720,7 @@ msgstr "Adres"
 msgid "Street name"
 msgstr "Straat"
 
-#: includes/register/order-type.php:133 includes/templates/single.php:320
+#: includes/register/order-type.php:133 includes/templates/single.php:319
 msgid "Condolence"
 msgstr "Condoleer"
 
@@ -1068,97 +1068,105 @@ msgstr "November"
 msgid "December"
 msgstr "December"
 
-#: includes/templates/archive.php:52 includes/templates/single.php:143
+#: includes/templates/archive.php:46 includes/templates/single.php:110
+msgid "Resident of"
+msgstr "Bewoner van"
+
+#: includes/templates/archive.php:61 includes/templates/single.php:142
 msgid "Beloved husband of"
 msgstr "Echtgenoot van"
 
-#: includes/templates/archive.php:58 includes/templates/single.php:149
+#: includes/templates/archive.php:67 includes/templates/single.php:148
 msgid "Beloved wife of"
 msgstr "Echtgenote van"
 
-#: includes/templates/archive.php:64 includes/templates/single.php:155
+#: includes/templates/archive.php:73 includes/templates/single.php:154
 msgid "Beloved husband of the late"
 msgstr "Weduwnaar van"
 
-#: includes/templates/archive.php:70 includes/templates/single.php:161
+#: includes/templates/archive.php:79 includes/templates/single.php:160
 msgid "Beloved wife of the late"
 msgstr "Weduwe van"
 
-#: includes/templates/archive.php:125 includes/templates/single.php:201
-msgid "Laid out at"
-msgstr "Opgebaard te"
-
-#: includes/templates/archive.php:138 includes/templates/single.php:125
-msgid "Prayer vigil information"
-msgstr "Gebedswake"
-
-#: includes/templates/archive.php:146 includes/templates/single.php:230
-msgid "Condole"
-msgstr "Condoleer"
-
-#: includes/templates/archive.php:159 includes/templates/single.php:242
-msgid "Coffee Table"
-msgstr "Koffietafel"
-
-#: includes/templates/archive.php:183
-msgid "Edit"
-msgstr "Aanpassen"
-
-#: includes/templates/single.php:72 includes/templates/single.php:82
+#: includes/templates/archive.php:104 includes/templates/single.php:70
+#: includes/templates/single.php:80
 msgid "Born"
 msgstr "Geboren"
 
-#: includes/templates/single.php:75 includes/templates/single.php:97
-msgid "on"
-msgstr "op"
-
-#: includes/templates/single.php:85 includes/templates/single.php:107
+#: includes/templates/archive.php:105 includes/templates/archive.php:120
+#: includes/templates/single.php:83 includes/templates/single.php:104
 msgid "in"
 msgstr "te"
 
-#: includes/templates/single.php:94 includes/templates/single.php:104
+#: includes/templates/archive.php:108 includes/templates/archive.php:123
+#: includes/templates/single.php:73 includes/templates/single.php:94
+msgid "on"
+msgstr "op"
+
+#: includes/templates/archive.php:119 includes/templates/single.php:91
+#: includes/templates/single.php:101
 msgid "Passed away"
 msgstr "Overleden"
 
-#: includes/templates/single.php:213
+#: includes/templates/archive.php:138 includes/templates/single.php:200
+msgid "Laid out at"
+msgstr "Opgebaard te"
+
+#: includes/templates/archive.php:154 includes/templates/single.php:124
+msgid "Prayer vigil information"
+msgstr "Gebedswake"
+
+#: includes/templates/archive.php:164 includes/templates/single.php:229
+msgid "Condole"
+msgstr "Condoleer"
+
+#: includes/templates/archive.php:177 includes/templates/single.php:241
+msgid "Coffee Table"
+msgstr "Koffietafel"
+
+#: includes/templates/archive.php:201
+msgid "Edit"
+msgstr "Aanpassen"
+
+#: includes/templates/single.php:212
 msgid "Live-stream information"
 msgstr "Live-stream informatie"
 
-#: includes/templates/single.php:254
+#: includes/templates/single.php:253
 msgid "Funeral live-stream"
 msgstr "Begrafenis live-stream"
 
-#: includes/templates/single.php:269
+#: includes/templates/single.php:268
 msgid "Condolences for the family"
 msgstr "Condolaties voor de familie"
 
-#: includes/templates/single.php:271
+#: includes/templates/single.php:270
 msgid "Reply to this condolence"
 msgstr "Reageer op deze condolatie"
 
-#: includes/templates/single.php:271
+#: includes/templates/single.php:270
 msgid "This message will be send by mail to the author of the condolence."
 msgstr ""
 "Dit bericht zal verzonden worden per mail naar de schrijver van deze "
 "condolatie."
 
-#: includes/templates/single.php:271
+#: includes/templates/single.php:270
 msgid "Reply"
 msgstr "Beantwoord"
 
-#: includes/templates/single.php:297
+#: includes/templates/single.php:296
 msgid "Comment Error"
 msgstr "Er is een fout opgetreden"
 
-#: includes/templates/single.php:305
+#: includes/templates/single.php:304
 msgid "Naam"
 msgstr "Naam"
 
-#: includes/templates/single.php:318
+#: includes/templates/single.php:317
 msgid "Leave your condolences for the family"
 msgstr "Laat een condolatie na voor de familie"
 
-#: includes/templates/single.php:319
+#: includes/templates/single.php:318
 msgid "This message is only visible for the family"
 msgstr "Dit bericht is enkel zichtbaar voor de familie"
 
