@@ -209,7 +209,7 @@ ob_start();
                                             &&  isset($fields['live_stream_description'][0]) && $fields['live_stream_description'][0]
                                         ) {?>
                                             <p>
-                                                <?php _e('Live-stream information'); ?>:&nbsp;
+                                                <?php _e('Live-stream information', 'cm_translate'); ?>:&nbsp;
                                                 <?php echo current($fields['live_stream_description']); ?>
                                             </p>
                                             <?php
