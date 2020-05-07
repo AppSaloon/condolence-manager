@@ -100,7 +100,10 @@ get_header(); ?>
                                         }
                                     }
                                     ?></div>
-                                <div class="deceased-partner">Geboren te <?php echo $values["birthplace"][0]; ?>
+                                <div class="deceased-partner">
+                                    <?php _e('Born', 'cm_translate'); ?>
+                                    <?php _e('in', 'cm_translate'); ?>
+                                    <?php echo $values["birthplace"][0]; ?>
                                     <?php if(isset($values["birthdate"][0]) && $values["birthdate"][0] != ''){
                                         echo 'op ';
                                     }
@@ -112,7 +115,10 @@ get_header(); ?>
                                     echo $date;
                                     ?>
                                 </div>
-                                <div class="deceased-place-died">Overleden te <?php echo $values["placeofdeath"][0]; ?>
+                                <div class="deceased-place-died">
+                                    <?php _e('Passed away', 'cm_translate'); ?>
+                                    <?php _e('in', 'cm_translate'); ?>
+                                    <?php echo $values["placeofdeath"][0]; ?>
                                     <?php if(isset($values["dateofdeath"][0]) && $values["dateofdeath"][0] != ''){
                                         echo 'op ';
                                     }
