@@ -25,8 +25,6 @@ ob_start();
                         </td>
                         <td class="text deceased-info">
                             <?php
-                            $required_fields = cm\includes\settings\Select_Fields_To_Show::get_saved_fields();
-                            $fields = get_post_meta(get_the_ID());
                             $arraymonth = array(
                                 __("January", "cm_translate"),
                                 __("February", "cm_translate"),
@@ -42,17 +40,38 @@ ob_start();
                                 __("December", "cm_translate"),
                             );
 
-                            if (!$required_fields) {
-                                $required_fields = cm\includes\settings\Select_Fields_To_Show::get_default_fields();
-                            }
+//                            $required_fields = cm\includes\settings\Select_Fields_To_Show::get_saved_fields();
+                            $required_fields = [
+                                "full_name",
+                                "line_break",
+                                "residence",
+                                "relations",
+                                "line_break",
+                                "birthplace",
+                                "birthdate",
+                                "placeofdeath",
+                                "dateofdeath",
+                                "funeralinformation",
+                                "prayervigilinformation",
+                                "greetinginformation",
+                                "line_break",
+                                "live_stream_description",
+                            ];
+//                            if (!$required_fields) {
+//                                $required_fields = cm\includes\settings\Select_Fields_To_Show::get_default_fields();
+//                            }
+                            $fields = get_post_meta(get_the_ID());
 
-                            foreach ($required_fields as $required => $value) {
+                            foreach ($required_fields as $required) {
 
                                 $required_str = strtolower($required);
                                 $required_str = preg_replace('/\s+/', '', $required_str);
                                 $gender = current($fields['gender']);
 
                                 switch ($required_str) {
+                                    case 'line_break':
+                                        echo '<br/>';
+                                        break;
                                     case 'full_name':
                                         $honorary_title = current($fields['honoraryitle']);
                                         echo '<p class="' . $required_str . '" id="name">';
@@ -138,49 +157,49 @@ ob_start();
                                             $relations = unserialize($raw_data);
                                             foreach ($relations as $relation) {
                                                 if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     _e('Beloved husband of', 'cm_translate');
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     _e('Beloved wife of', 'cm_translate');
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     _e('Beloved husband of the late', 'cm_translate');
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     _e('Beloved wife of the late', 'cm_translate');
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Male') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     echo $relation['other'];
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Female') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     echo $relation['other'];
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Male') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     echo $relation['other'];
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Female') {
-                                                    echo '<p class="alive">';
+                                                    echo '<p>';
                                                     echo $relation['other'];
                                                     echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
