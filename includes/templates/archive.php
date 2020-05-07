@@ -96,12 +96,11 @@ get_header(); ?>
                                         echo 'op ';
                                     }
                                     $date = $values["birthdate"][0];
-                                    $pieces = explode("-", $date);
                                     //var_dump($pieces);
                                     //$num = intval($pieces[1]);
                                     //$month = $arraymonth[$num - 1];
                                     //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
-                                    echo $pieces[0];
+                                    echo $date;
                                     ?>
                                 </div>
                                 <div class="deceased-place-died">Overleden te <?php echo $values["placeofdeath"][0]; ?>
@@ -109,11 +108,10 @@ get_header(); ?>
                                         echo 'op ';
                                     }
                                     $date = $values["dateofdeath"][0];
-                                    $pieces = explode("-", $date);
                                     //$num = intval($pieces[1]);
                                     //$month = $arraymonth[$num - 1];
                                     //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
-                                    echo $pieces[0];
+                                    echo $date;
                                     ?></div>
                                 <?php
                                 if (isset($values["_cm_linked_location"])) {

@@ -65,14 +65,12 @@ ob_start();
                                         break;
                                     case 'birthdate':
                                         $bornOn = '';
-                                        $date = current($fields[$required_str]);
-                                        $pieces = explode("-", $date);
                                         if ($born == false) {
                                             $born = true;
                                             $bornOn = __('Born', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . $pieces[0];
+                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
                                     case 'birthplace':
@@ -88,13 +86,12 @@ ob_start();
                                     case 'dateofdeath':
                                         $passedAway = '';
                                         $date = current($fields[$required_str]);
-                                        $pieces = explode("-", $date);
                                         if ($deseased == false) {
                                             $deseased = true;
                                             $passedAway = __('Passed away', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . $pieces[0];
+                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . $date;
                                         echo '</p>';
                                         break;
                                     case 'placeofdeath':
