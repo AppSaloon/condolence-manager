@@ -37,8 +37,17 @@ get_header(); ?>
                                 <?php endif; ?>
                             </div>
                             <div class="deceased-info">
-                                <div class="deceased-name"><?php echo $values["name"][0] . '&nbsp;' . $values["familyname"][0]; ?></div>
-                                <div class="deceased-subtitle"><?php _e('Resident of', 'cm_translate'); ?>: <?php echo $values["residence"][0]; ?></div>
+                                <div class="deceased-name">
+                                    <?php echo $values["name"][0] . '&nbsp;' . $values["familyname"][0]; ?>
+                                </div>
+                                <?php
+                                if(isset($values["residence"][0]) && $values["residence"][0]) { ?>
+                                    <div class="deceased-subtitle">
+                                        <?php _e('Resident of', 'cm_translate'); ?>: <?php echo $values["residence"][0]; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
                                 <div class="deceased-partner">
                                     <?php
                                     $gender = current($values['gender']);

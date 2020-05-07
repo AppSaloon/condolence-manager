@@ -105,9 +105,11 @@ ob_start();
                                         echo '</p>';
                                         break;
                                     case 'residence':
-                                        echo '<p class="deceased-subtitle">';
-                                        echo __('Resident of', 'cm_translate') . ': ' . current($fields[$required_str]);
-                                        echo '</p>';
+                                        if(isset($fields[$required_str][0]) && $fields[$required_str][0]) {
+                                            echo '<p class="deceased-subtitle">';
+                                            echo __('Resident of', 'cm_translate') . ': ' . current($fields[$required_str]);
+                                            echo '</p>';
+                                        }
                                         break;
                                     case 'funeralinformation':
                                         if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
