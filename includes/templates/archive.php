@@ -120,10 +120,11 @@ get_header(); ?>
                                     $location_id = current($values["_cm_linked_location"]);
                                     if ($location_id != 0) {
                                         $location = get_the_title($location_id);
-                                        if (!empty($location)) {
-                                            echo '<p class="_cm_linked_location">';
-                                            echo '<strong>' . _e("Laid out at", "cm_translate") . ': </strong>' . $location;
-                                            echo '</p>';
+                                        if (!empty($location)) { ?>
+                                            <div class="_cm_linked_location">
+                                                <strong><?php _e("Laid out at", "cm_translate"); ?>: </strong> <?php echo $location; ?>
+                                            </div>
+                                            <?php
                                         }
                                     }
                                 }
@@ -159,11 +160,11 @@ get_header(); ?>
                                     <?php
                                 }
 
-                                if($values["masscard"][0]) {
-                                    $string = $values["masscard"][0];
-                                    echo '<a class="btn-masscard" target="_blank" href="' . $string . '" >';
-                                    echo __('Mass card', 'cm_translate');
-                                    echo '</a>';
+                                if($values["masscard"][0]) { ?>
+                                    <a target="_blank" href="<?php echo $values["masscard"][0];?>" >
+                                        <input type="button" value="<?php _e('Mass card', 'cm_translate'); ?>"/>
+                                    </a>
+                                    <?php
                                 }
                                 ?>
                             </div>
