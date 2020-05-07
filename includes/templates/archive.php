@@ -59,25 +59,25 @@ get_header(); ?>
                                             if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
                                                 echo '<p class="alive">';
                                                 _e('Beloved husband of', 'cm_translate');
-                                                echo '&nbsp;';
+                                                echo ':&nbsp;';
                                                 echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                 echo '</p>';
                                             } elseif ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female') {
                                                 echo '<p class="alive">';
                                                 _e('Beloved wife of', 'cm_translate');
-                                                echo '&nbsp;';
+                                                echo ':&nbsp;';
                                                 echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                 echo '</p>';
                                             } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male') {
                                                 echo '<p class="alive">';
                                                 _e('Beloved husband of the late', 'cm_translate');
-                                                echo '&nbsp;';
+                                                echo ':&nbsp;';
                                                 echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                 echo '</p>';
                                             } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female') {
                                                 echo '<p class="alive">';
                                                 _e('Beloved wife of the late', 'cm_translate');
-                                                echo '&nbsp;';
+                                                echo ':&nbsp;';
                                                 echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                 echo '</p>';
                                             } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Male') {
@@ -102,10 +102,10 @@ get_header(); ?>
                                     ?></div>
                                 <div class="deceased-partner">
                                     <?php _e('Born', 'cm_translate'); ?>
-                                    <?php _e('in', 'cm_translate'); ?>
+                                    <?php _e('in', 'cm_translate'); ?>:
                                     <?php echo $values["birthplace"][0]; ?>
                                     <?php if(isset($values["birthdate"][0]) && $values["birthdate"][0] != ''){
-                                        echo 'op ';
+                                        echo __('on', 'cm_translate') . ':&nbsp;';
                                     }
                                     $date = $values["birthdate"][0];
                                     //var_dump($pieces);
@@ -117,10 +117,10 @@ get_header(); ?>
                                 </div>
                                 <div class="deceased-place-died">
                                     <?php _e('Passed away', 'cm_translate'); ?>
-                                    <?php _e('in', 'cm_translate'); ?>
+                                    <?php _e('in', 'cm_translate'); ?>:
                                     <?php echo $values["placeofdeath"][0]; ?>
                                     <?php if(isset($values["dateofdeath"][0]) && $values["dateofdeath"][0] != ''){
-                                        echo 'op ';
+                                        echo __('on', 'cm_translate') . ':&nbsp;';
                                     }
                                     $date = $values["dateofdeath"][0];
                                     //$num = intval($pieces[1]);
@@ -135,7 +135,7 @@ get_header(); ?>
                                         $location = get_the_title($location_id);
                                         if (!empty($location)) { ?>
                                             <div class="_cm_linked_location">
-                                                <?php _e("Laid out at", "cm_translate"); ?>:&nbsp;
+                                                <?php _e("Laid out at", "cm_translate"); ?>:
                                                 <?php echo $location; ?>
                                             </div>
                                             <?php

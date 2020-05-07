@@ -70,7 +70,7 @@ ob_start();
                                             $bornOn = __('Born', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . current($fields[$required_str]);
+                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
                                     case 'birthplace':
@@ -80,7 +80,7 @@ ob_start();
                                             $bornOn = __('Born', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('in', 'cm_translate') . '&nbsp;' . current($fields[$required_str]);
+                                        echo $bornOn . '&nbsp;' . __('in', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
                                     case 'dateofdeath':
@@ -91,7 +91,7 @@ ob_start();
                                             $passedAway = __('Passed away', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . '&nbsp;' . $date;
+                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;' . $date;
                                         echo '</p>';
                                         break;
                                     case 'placeofdeath':
@@ -101,7 +101,7 @@ ob_start();
                                             $passedAway = __('Passed away', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('in', 'cm_translate') . '&nbsp;' . current($fields[$required_str]);
+                                        echo $passedAway . '&nbsp;' . __('in', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
                                     case 'residence':
@@ -140,49 +140,49 @@ ob_start();
                                                 if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
                                                     echo '<p class="alive">';
                                                     _e('Beloved husband of', 'cm_translate');
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female') {
                                                     echo '<p class="alive">';
                                                     _e('Beloved wife of', 'cm_translate');
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male') {
                                                     echo '<p class="alive">';
                                                     _e('Beloved husband of the late', 'cm_translate');
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female') {
                                                     echo '<p class="alive">';
                                                     _e('Beloved wife of the late', 'cm_translate');
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Male') {
                                                     echo '<p class="alive">';
                                                     echo $relation['other'];
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Female') {
                                                     echo '<p class="alive">';
                                                     echo $relation['other'];
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Male') {
                                                     echo '<p class="alive">';
                                                     echo $relation['other'];
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Female') {
                                                     echo '<p class="alive">';
                                                     echo $relation['other'];
-                                                    echo '&nbsp;';
+                                                    echo ':&nbsp;';
                                                     echo $relation['name'] . '&nbsp;' . $relation['familyname'];
                                                     echo '</p>';
                                                 }
