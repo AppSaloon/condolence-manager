@@ -152,6 +152,36 @@ class Metabox {
               </td>
           </tr>
           <tr>
+              <td><?php _e( 'Live-stream', 'cm_translate' ); ?></td>
+              <td class="form-field">
+                  <p class="description">
+                      <label>
+                          <input id="live_stream"
+                                 type="checkbox"
+                                 name="live_stream"
+                                 value="1"
+                                 <?php echo ( $this->get_field_value( 'live_stream', $post->ID ) == '1' ) ? 'checked' : ''; ?>
+                          >
+                          <?php _e( 'If enabled, a live-stream button for the funeral will appear. Please enter a link and a description for the livestream below.', 'cm_translate' ); ?>
+                      </label>
+                  </p>
+                  <p>
+                      <input  type="text"
+                              name="live_stream_url"
+                              placeholder="https://www.example.com/live-stream"
+                              value="<?php echo $this->get_field_value( 'live_stream_url', $post->ID ); ?>"
+                      >
+                  </p>
+                  <p>
+                      <input  type="text"
+                              name="live_stream_description"
+                              placeholder="<?php _e('Example: the live-stream will start at 08:00', 'cm_translate'); ?>"
+                              value="<?php echo $this->get_field_value( 'live_stream_description', $post->ID ); ?>"
+                      >
+                  </p>
+              </td>
+          </tr>
+          <tr>
               <td><?php _e( 'Additional buttons', 'cm_translate' ); ?></td>
               <td class="form-field">
                   <input id="cm_additional_btn" type="checkbox" name="cm_additional_btn"
@@ -750,7 +780,9 @@ class Metabox {
             'honoraryitle',
             'coffee_table',
             'coffee_table_email',
-            'check_email'
+            'check_email',
+            'live_stream_url',
+            'live_stream_description',
 		);
 
         foreach ( $postfields as $field ) {
@@ -771,6 +803,14 @@ class Metabox {
 			update_post_meta( $post_id, 'flowers', $post_data['flowers'] );
 		} else {
 			update_post_meta( $post_id, 'flowers', 0 );
+		}
+		/**
+		 * update live-stream button
+		 */
+		if ( isset( $post_data['live_stream'] ) ) {
+			update_post_meta( $post_id, 'live_stream', $post_data['live_stream'] );
+		} else {
+			update_post_meta( $post_id, 'live_stream', 0 );
 		}
 		/**
 		 * update additional buttons metabox

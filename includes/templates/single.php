@@ -204,6 +204,18 @@ ob_start();
                                             }
                                         }
                                         break;
+                                    case 'live_stream_description':
+                                        if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] == 1
+                                            &&  isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]
+                                            &&  isset($fields['live_stream_description'][0]) && $fields['live_stream_description'][0]
+                                        ) {?>
+                                            <p>
+                                                <strong><?php _e('Live-stream information'); ?>:</strong>
+                                                <?php echo current($fields['live_stream_description']); ?>
+                                            </p>
+                                            <?php
+                                        }
+                                        break;
                                     default:
                                         echo '<p class="' . $required_str . '">';
                                         echo current($fields[$required_str]);
@@ -234,6 +246,12 @@ ob_start();
                                 if (isset($fields['masscard'][0])) { ?>
                                     <a target="_blank" href="<?= $fields['masscard'][0] ?>" class="btn"
                                        id="toggle_flowers"><?php _e('Mass card', 'cm_translate'); ?></a>
+                                    <?php
+                                }
+
+                                if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] && isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]) { ?>
+                                    <a target="_blank" href="<?= $fields['live_stream_url'][0] ?>" class="btn"
+                                       id="live_stream_url"><?php _e('Funeral live-stream', 'cm_translate'); ?></a>
                                     <?php
                                 }
                             } ?>

@@ -166,6 +166,15 @@ get_header(); ?>
                                     </a>
                                     <?php
                                 }
+
+                                /* TODO: should we show this in the archive?
+                                if (isset($values['live_stream'][0]) && $values['live_stream'][0] && isset($values['live_stream_url'][0]) && $values['live_stream_url'][0]) { ?>
+                                    <a target="_blank" href="<?= $values['live_stream_url'][0] ?>">
+                                        <input type="button" value="<?php _e('Funeral live-stream', 'cm_translate'); ?>" />
+                                    </a>
+                                    <?php
+                                }
+                                */
                                 ?>
                             </div>
 
