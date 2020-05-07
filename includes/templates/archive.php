@@ -38,7 +38,7 @@ get_header(); ?>
                             </div>
                             <div class="deceased-info">
                                 <div class="deceased-name"><?php echo $values["name"][0] . '&nbsp;' . $values["familyname"][0]; ?></div>
-                                <div class="deceased-subtitle"><?php echo $values["residence"][0]; ?></div>
+                                <div class="deceased-subtitle"><?php _e('Resident of', 'cm_translate'); ?>: <?php echo $values["residence"][0]; ?></div>
                                 <div class="deceased-partner">
                                     <?php
                                     $gender = current($values['gender']);
@@ -120,7 +120,8 @@ get_header(); ?>
                                         $location = get_the_title($location_id);
                                         if (!empty($location)) { ?>
                                             <div class="_cm_linked_location">
-                                                <strong><?php _e("Laid out at", "cm_translate"); ?>: </strong> <?php echo $location; ?>
+                                                <?php _e("Laid out at", "cm_translate"); ?>:&nbsp;
+                                                <?php echo $location; ?>
                                             </div>
                                             <?php
                                         }
@@ -129,16 +130,20 @@ get_header(); ?>
                                 ?>
                                 <?php if ($values["funeralinformation"][0]) { ?>
                                     <div class="deceased-uitvaart">
-                                        <strong><?php _e('Funeral information','cm_translate'); ?>: </strong><?php echo $values["funeralinformation"][0]; ?></div>
+                                        <?php _e('Funeral information','cm_translate'); ?>:
+                                        <?php echo $values["funeralinformation"][0]; ?>
+                                    </div>
                                 <?php } ?>
                                 <?php if ($values["prayervigilinformation"][0]) { ?>
                                     <div class="deceased-wake">
-                                        <strong><?php _e('Prayer vigil information','cm_translate'); ?>: </strong><?php echo $values["prayervigilinformation"][0]; ?>
+                                        <?php _e('Prayer vigil information','cm_translate'); ?>:
+                                        <?php echo $values["prayervigilinformation"][0]; ?>
                                     </div>
                                 <?php } ?>
                                 <?php if ($values["greetinginformation"][0]) { ?>
                                     <div class="deceased-greetings">
-                                        <strong><?php _e('Greeting information','cm_translate'); ?>: </strong><?php echo $values["greetinginformation"][0]; ?>
+                                        <?php _e('Greeting information','cm_translate'); ?>:
+                                        <?php echo $values["greetinginformation"][0]; ?>
                                     </div>
                                 <?php } ?>
                                 <input type="button" onclick="location.href='<?php the_permalink(); ?>?comments'" value="<?php _e('Condole', 'cm_translate'); ?>">

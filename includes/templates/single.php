@@ -106,27 +106,27 @@ ob_start();
                                         break;
                                     case 'residence':
                                         echo '<p class="deceased-subtitle">';
-                                        echo current($fields[$required_str]);
+                                        echo __('Resident of', 'cm_translate') . ': ' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
                                     case 'funeralinformation':
                                         if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                             echo '<p class="' . $required_str . '">';
-                                            echo '<strong>' . _e("Funeral information", "cm_translate") . ': </strong>' . current($fields[$required_str]);
+                                            echo _e("Funeral information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
                                             echo '</p>';
                                         }
                                         break;
                                     case 'prayervigilinformation':
                                         if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                             echo '<p class="' . $required_str . '">';
-                                            echo '<strong>' . _e("Prayer vigil information", "cm_translate") . ': </strong>' . current($fields[$required_str]);
+                                            echo _e("Prayer vigil information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
                                             echo '</p>';
                                         }
                                         break;
                                     case 'greetinginformation':
                                         if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
                                             echo '<p class="' . $required_str . '">';
-                                            echo '<strong>' . _e("Greeting information", "cm_translate") . ': </strong>' . current($fields[$required_str]);
+                                            echo _e("Greeting information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
                                             echo '</p>';
                                         }
                                         break;
@@ -195,7 +195,7 @@ ob_start();
                                                 $location = get_the_title($location_id);
                                                 if (!empty($location)) {
                                                     echo '<p class="' . $required_str . '">';
-                                                    echo '<strong>' . _e("Laid out at", "cm_translate") . ': </strong>' . $location;
+                                                    echo _e("Laid out at", "cm_translate") . ':&nbsp;' . $location;
                                                     echo '</p>';
                                                 }
                                             }
@@ -207,7 +207,7 @@ ob_start();
                                             &&  isset($fields['live_stream_description'][0]) && $fields['live_stream_description'][0]
                                         ) {?>
                                             <p>
-                                                <strong><?php _e('Live-stream information'); ?>:</strong>
+                                                <?php _e('Live-stream information'); ?>:&nbsp;
                                                 <?php echo current($fields['live_stream_description']); ?>
                                             </p>
                                             <?php
