@@ -51,6 +51,8 @@ ob_start();
                                 "birthdate",
                                 "placeofdeath",
                                 "dateofdeath",
+                                "line_break",
+                                "_cm_linked_location",
                                 "funeralinformation",
                                 "prayervigilinformation",
                                 "greetinginformation",
@@ -132,7 +134,7 @@ ob_start();
                                         break;
                                     case 'funeralinformation':
                                         if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
-                                            echo '<p class="' . $required_str . '">';
+                                            echo '<p>';
                                             echo _e("Funeral information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
                                             echo '</p>';
                                         }
