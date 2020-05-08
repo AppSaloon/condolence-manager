@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-04 13:06+0200\n"
-"PO-Revision-Date: 2020-05-04 13:08+0200\n"
+"POT-Creation-Date: 2020-05-08 15:02+0200\n"
+"PO-Revision-Date: 2020-05-08 15:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_BE\n"
@@ -22,68 +22,63 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:1
-#: includes/form/metabox.php:29 includes/form/metabox.php:517
-#, fuzzy
+#: includes/form/metabox.php:29 includes/form/metabox.php:556
 msgid "Coffee table"
-msgstr "Table basse"
+msgstr "Funeral reception"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:3
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:54
-#, fuzzy
 msgid "Presence coffee table"
-msgstr "Table basse de présence"
+msgstr "Présence à la réception funéraire"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:5
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:5
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:7
-#: includes/form/metabox.php:54 includes/form/metabox.php:183
-#: includes/form/metabox.php:229 includes/form/metabox.php:337
-#: includes/settings/select-fields-to-show.php:79
+#: includes/form/metabox.php:54 includes/form/metabox.php:222
+#: includes/form/metabox.php:268 includes/form/metabox.php:376
 msgid "Name"
-msgstr "Nom"
+msgstr "Prénom"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:6
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:10
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:13
-#, fuzzy
 msgid "Surname"
-msgstr "Nom"
+msgstr "Nom de famille"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:7
 msgid "Address"
 msgstr "Adresse"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:8
-#, fuzzy
 msgid "email"
-msgstr "email"
+msgstr "Adresse e-mail"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:9
-#, fuzzy
 msgid "telephone"
 msgstr "Téléphone"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:11
-#, fuzzy
 msgid "I won't be able to make it to the coffee table"
-msgstr "Je ne pourrai pas aller à la table basse"
+msgstr "Je ne pourrai pas assister à la réception funéraire"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:13
-#, fuzzy
 msgid "I will be present with"
-msgstr "Je serai présent avec"
+msgstr "J’assisterai avec"
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:2
-#, fuzzy
 msgid "Failure"
-msgstr "Échec"
+msgstr "Erreur"
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:3
 #, fuzzy
-msgid "Sorry we couldn't save your data. Refresh and try one more time"
+#| msgid "Sorry we couldn't save your data. Refresh and try one more time"
+msgid "Sorry we couldn't save your data. Refresh and try one more time."
 msgstr ""
-"Désolé de ne pas avoir pu enregistrer vos données. Rafraîchissez-vous et "
-"essayez une fois de plus"
+"Désolé, nous n’avons pas pu enregistrer vos données. Actualisez et réessayez."
+
+#: includes/coffee-table/coffee-table-form/templates/form-template.php:13
+msgid "required"
+msgstr ""
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:17
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:20
@@ -102,16 +97,16 @@ msgstr "Code postal"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:35
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:37
-#: includes/model/order.php:116 includes/register/location-type.php:123
+#: includes/model/order.php:97 includes/register/location-type.php:123
 #: includes/register/location-type.php:126
 msgid "City"
 msgstr "Ville"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:41
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:44
-#: includes/templates/single.php:296
+#: includes/templates/single.php:330
 msgid "Email"
-msgstr "Email"
+msgstr "Adresse e-mail"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:46
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:48
@@ -119,37 +114,31 @@ msgid "Phone"
 msgstr "Téléphone"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:61
-#, fuzzy
 msgid "Will be present"
-msgstr "Sera présent"
+msgstr "Sera présent(e)"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:64
-#, fuzzy
 msgid "Will not be present"
-msgstr "Ne sera pas présent"
+msgstr "Ne sera pas présent(e)"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:76
-#, fuzzy
 msgid "How many people will attend"
-msgstr "Combien de personnes y assisteront"
+msgstr "Combien de personnes assisteront"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:79
-#, fuzzy
 msgid "min 1"
-msgstr "min 1"
+msgstr "moins un"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:88
-#: includes/settings/select-fields-to-show.php:211
+#: includes/settings/select-fields-to-show.php:214
 msgid "Submit"
 msgstr "Soumettre"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:98
-#, fuzzy
 msgid "Please fill out this field"
-msgstr "S’il vous plaît remplir ce champ"
+msgstr "Veuillez remplir ce champ"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:101
-#, fuzzy
 msgid "This email address is incorrect"
 msgstr "Cette adresse e-mail est incorrecte"
 
@@ -158,43 +147,51 @@ msgid "Success"
 msgstr "Succès"
 
 #: includes/coffee-table/coffee-table-form/templates/success-submission.php:3
-#, fuzzy
 msgid "We send your info to the family. Thank You."
-msgstr "Nous envoyons vos informations à la famille. Je vous remercie."
+msgstr "Nous avons envoyé vos informations à la famille. Merci."
 
 #: includes/comments/inline-comment-error.php:450
-#, fuzzy, php-format
+#, php-format
 msgid "%1$sPlease correct the following problems:%2$s"
-msgstr "%1$sPlease corriger les problèmes suivants:%2$s"
+msgstr "%1$sVeuillez corriger les problèmes suivants:%2$s"
 
-#: includes/controller/comment-email.php:36
-msgid "New"
-msgstr "New"
-
-#: includes/controller/comment-email.php:37
+#: includes/controller/comment-email.php:41
 #, fuzzy, php-format
-msgid "on your condolence from %s:"
+#| msgid "on your condolence from %s:"
+msgid "New condolence from %s"
 msgstr "sur vos condoléances de %s:"
 
-#: includes/controller/comment-email.php:40
+#: includes/controller/comment-email.php:43
 #, fuzzy
+#| msgid "Reply to this condolence"
+msgid "click here to view the condolence"
+msgstr "Répondre à ces condoléances"
+
+#: includes/controller/comment-email.php:52
+#, fuzzy
+#| msgid "View Condolence"
+msgid "New Condolence"
+msgstr "Afficher condoléances"
+
+#: includes/controller/comment-email.php:70
+#, fuzzy, php-format
+#| msgid "on your condolence from %s:"
+msgid "New reply on your condolence from %s"
+msgstr "sur vos condoléances de %s:"
+
+#: includes/controller/comment-email.php:79
 msgid "New Comment"
 msgstr "Nouveau commentaire"
 
 #: includes/controller/products.php:54
-#, fuzzy
 msgid "The order form has expired."
-msgstr "Le formulaire d’ordre a expiré."
+msgstr "Le bon de commande a expiré."
 
 #: includes/controller/products.php:62
-#, fuzzy
 msgid "There were some errors with your order, please try again."
-msgstr ""
-"Il y a eu quelques erreurs avec votre commande, s’il vous plaît essayer à "
-"nouveau."
+msgstr "Il y a eu des erreurs avec votre commande, veuillez réessayer."
 
 #: includes/controller/products.php:81
-#, fuzzy
 msgid "Your order has been successfully placed!"
 msgstr "Votre commande a été passée avec succès!"
 
@@ -204,7 +201,7 @@ msgstr "Votre commande a été passée avec succès!"
 msgid "Products"
 msgstr "Produits"
 
-#: includes/controller/products.php:86 includes/form/metabox.php:655
+#: includes/controller/products.php:86 includes/form/metabox.php:694
 #: includes/register/order-type.php:297
 msgid "Total"
 msgstr "Total"
@@ -215,322 +212,289 @@ msgid "Order"
 msgstr "Commande"
 
 #: includes/controller/products.php:264 includes/form/metabox.php:133
-#: includes/templates/archive.php:139 includes/templates/single.php:227
-#, fuzzy
+#: includes/templates/archive.php:171 includes/templates/single.php:255
 msgid "Flowers"
 msgstr "Fleurs"
 
 #: includes/controller/products.php:311
-#, fuzzy
 msgid "Place Order"
-msgstr "Commande de place"
+msgstr "Passer la commande"
 
 #: includes/controller/products.php:330
-#, fuzzy, php-format
+#, php-format
 msgid "Ordering is possible up until the day before the funeral at %s."
 msgstr "La commande est possible jusqu’à la veille des funérailles à %s."
 
 #: includes/controller/templates.php:76
-#, fuzzy
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr ""
-"Vous avez peut-être laissé l’un des champs vides, ou être l’affichage trop "
-"rapidement"
+"Vous avez peut-être laissé un des champs vide ou vous publiez trop rapidement"
 
 #: includes/controller/templates.php:77
-#: includes/settings/select-fields-to-show.php:33
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:29
 msgid "Thanks for your comment. We appreciate your response."
 msgstr "Merci pour votre commentaire. Nous apprécions votre réponse."
 
 #: includes/controller/templates.php:79
-#, fuzzy
 msgid "Please wait a while before posting your next comment."
 msgstr ""
-"S’il vous plaît attendre un certain temps avant d’afficher votre prochain "
-"commentaire."
+"Veuillez patienter un moment avant de poster votre prochain commentaire."
 
 #: includes/controller/templates.php:80
-#, fuzzy
 msgid "Your message is not send. You might have left one of the fields blank."
 msgstr ""
-"Votre message n’est pas envoyé. Vous avez peut-être laissé un des champs "
-"vides."
+"Votre message n’a pas été envoyé. Vous avez peut-être laissé un des champs "
+"vide."
 
 #: includes/form/metabox.php:25
-#, fuzzy
 msgid "Information about deceased"
-msgstr "Informations sur les personnes décédées"
+msgstr "Informations sur le défunt"
 
-#: includes/form/metabox.php:26 includes/form/metabox.php:619
+#: includes/form/metabox.php:26 includes/form/metabox.php:658
 msgid "Location"
 msgstr "Localité"
 
-#: includes/form/metabox.php:27 includes/form/metabox.php:469
-#, fuzzy
+#: includes/form/metabox.php:27 includes/form/metabox.php:508
 msgid "View comments"
-msgstr "Afficher les commentaires"
+msgstr "Voir les commentaires"
 
 #: includes/form/metabox.php:28 includes/register/order-type.php:179
 #: includes/register/order-type.php:181
 msgid "Orders"
 msgstr "Commandes"
 
-#: includes/form/metabox.php:44 includes/settings/select-fields-to-show.php:78
+#: includes/form/metabox.php:44
 msgid "Gender"
-msgstr "Genre"
+msgstr "Sexe"
 
-#: includes/form/metabox.php:47 includes/form/metabox.php:237
-#, fuzzy
+#: includes/form/metabox.php:47 includes/form/metabox.php:276
 msgid "Select gender"
 msgstr "Sélectionnez le sexe"
 
-#: includes/form/metabox.php:48 includes/form/metabox.php:189
-#: includes/form/metabox.php:238 includes/form/metabox.php:362
+#: includes/form/metabox.php:48 includes/form/metabox.php:228
+#: includes/form/metabox.php:277 includes/form/metabox.php:401
 msgid "Male"
 msgstr "Homme"
 
-#: includes/form/metabox.php:49 includes/form/metabox.php:190
-#: includes/form/metabox.php:239 includes/form/metabox.php:366
+#: includes/form/metabox.php:49 includes/form/metabox.php:229
+#: includes/form/metabox.php:278 includes/form/metabox.php:405
 msgid "Female"
 msgstr "Femme"
 
-#: includes/form/metabox.php:59 includes/form/metabox.php:185
-#: includes/form/metabox.php:232 includes/form/metabox.php:344
-#: includes/settings/select-fields-to-show.php:80
+#: includes/form/metabox.php:59 includes/form/metabox.php:224
+#: includes/form/metabox.php:271 includes/form/metabox.php:383
 msgid "Family name"
-msgstr "Nom"
+msgstr "Nom de famille"
 
-#: includes/form/metabox.php:65 includes/settings/select-fields-to-show.php:91
-#, fuzzy
+#: includes/form/metabox.php:65
 msgid "Honorary title"
 msgstr "Titre honorifique"
 
-#: includes/form/metabox.php:71 includes/settings/select-fields-to-show.php:81
-#, fuzzy
+#: includes/form/metabox.php:71 includes/settings/select-fields-to-show.php:74
 msgid "Birthplace"
-msgstr "Berceau"
+msgstr "Lieu de naissance"
 
-#: includes/form/metabox.php:77 includes/settings/select-fields-to-show.php:82
-#, fuzzy
+#: includes/form/metabox.php:77 includes/settings/select-fields-to-show.php:75
 msgid "Birthdate"
-msgstr "Naissance"
+msgstr "Date de naissance"
 
-#: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:83
-#, fuzzy
+#: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:76
 msgid "Place of death"
-msgstr "Lieu de la mort"
+msgstr "Lieu du décès"
 
-#: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:84
-#, fuzzy
+#: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:77
 msgid "Date of death"
 msgstr "Date de décès"
 
 #: includes/form/metabox.php:95
-#, fuzzy
 msgid "Funeral date"
-msgstr "Date de funérailles"
+msgstr "Date des funérailles"
 
-#: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:85
-#: includes/templates/archive.php:120 includes/templates/single.php:133
-#, fuzzy
+#: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:78
+#: includes/templates/archive.php:148 includes/templates/single.php:138
 msgid "Funeral information"
 msgstr "Informations sur les funérailles"
 
-#: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:86
-#, fuzzy
+#: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:79
 msgid "Prayer Vigil information"
 msgstr "Informations sur la veillée de prière"
 
-#: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:87
-#: includes/templates/archive.php:129 includes/templates/single.php:147
-#, fuzzy
+#: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:80
+#: includes/templates/archive.php:160 includes/templates/single.php:152
 msgid "Greeting information"
-msgstr "Informations d’accueil"
+msgstr "Informations de condoléances"
 
-#: includes/form/metabox.php:118 includes/settings/select-fields-to-show.php:88
-#, fuzzy
+#: includes/form/metabox.php:118 includes/settings/select-fields-to-show.php:81
 msgid "Residence"
 msgstr "Résidence"
 
-#: includes/form/metabox.php:124 includes/settings/select-fields-to-show.php:89
-#: includes/templates/archive.php:152 includes/templates/single.php:233
-#, fuzzy
+#: includes/form/metabox.php:124 includes/templates/archive.php:183
+#: includes/templates/single.php:268
 msgid "Mass card"
-msgstr "Carte de masse"
+msgstr "Carte funéraire"
 
-#: includes/form/metabox.php:129 includes/form/metabox.php:264
-#: includes/form/metabox.php:266
-#, fuzzy
+#: includes/form/metabox.php:129 includes/form/metabox.php:303
+#: includes/form/metabox.php:305
 msgid "Choose mass card"
-msgstr "Choisissez la carte de masse"
+msgstr "Choisissez la carte funéraire"
 
-#: includes/form/metabox.php:139
-#, fuzzy, php-format
+#: includes/form/metabox.php:145
+#, php-format
 msgid ""
 "If enabled, a list of products and an order form will appear below a "
 "condolence page. Note, if you use a custom template file, you'll need to add "
 "these shortcodes: %s and %s."
 msgstr ""
-"Si elle est activée, une liste de produits et un formulaire de commande "
-"apparaîtront ci-dessous une page de condoléances. Notez que si vous utilisez "
-"un fichier de modèle personnalisé, vous devrez ajouter ces codes courts :  "
-"%s et %s."
+"Si cette option est activée, une liste de produits et un bon de commande "
+"apparaîtront sous une page de condoléances. Notez que si vous utilisez un "
+"fichier de modèle personnalisé, vous devrez ajouter ces shortcodes:  %s et "
+"%s."
 
-#: includes/form/metabox.php:146
-#, fuzzy
+#: includes/form/metabox.php:155
+msgid "Live-stream"
+msgstr ""
+
+#: includes/form/metabox.php:165
+msgid ""
+"If enabled, a live-stream button for the funeral will appear. Please enter a "
+"link and a description for the livestream below."
+msgstr ""
+
+#: includes/form/metabox.php:178
+msgid "Example: the live-stream will start at 08:00"
+msgstr ""
+
+#: includes/form/metabox.php:185
 msgid "Additional buttons"
 msgstr "Boutons supplémentaires"
 
-#: includes/form/metabox.php:159 includes/settings/select-fields-to-show.php:90
-#, fuzzy
+#: includes/form/metabox.php:198 includes/settings/select-fields-to-show.php:82
 msgid "Relations"
 msgstr "Relations"
 
-#: includes/form/metabox.php:169
-#, fuzzy
+#: includes/form/metabox.php:208
 msgid "Relation 1"
 msgstr "Relation 1"
 
-#: includes/form/metabox.php:172 includes/form/metabox.php:205
-#: includes/form/metabox.php:303
-#, fuzzy
+#: includes/form/metabox.php:211 includes/form/metabox.php:244
+#: includes/form/metabox.php:342
 msgid "Select relation type"
-msgstr "Sélectionnez le type de relation"
+msgstr "Sélectionner le type de relation"
 
-#: includes/form/metabox.php:173 includes/form/metabox.php:206
-#: includes/form/metabox.php:307
+#: includes/form/metabox.php:212 includes/form/metabox.php:245
+#: includes/form/metabox.php:346
 msgid "Single"
-msgstr "Simple"
+msgstr "Célibataire"
 
-#: includes/form/metabox.php:174 includes/form/metabox.php:207
-#: includes/form/metabox.php:311
-#, fuzzy
+#: includes/form/metabox.php:213 includes/form/metabox.php:246
+#: includes/form/metabox.php:350
 msgid "Married"
-msgstr "Marié"
+msgstr "Marié(e)"
 
-#: includes/form/metabox.php:175 includes/form/metabox.php:208
-#: includes/form/metabox.php:315
+#: includes/form/metabox.php:214 includes/form/metabox.php:247
+#: includes/form/metabox.php:354
 msgid "Other"
 msgstr "Autre"
 
-#: includes/form/metabox.php:178 includes/form/metabox.php:214
-#, fuzzy
+#: includes/form/metabox.php:217 includes/form/metabox.php:253
 msgid "Add more relation"
-msgstr "Ajouter plus de relation"
+msgstr "Ajouter plus de relations"
 
-#: includes/form/metabox.php:182 includes/form/metabox.php:226
-#: includes/form/metabox.php:330
-#, fuzzy
+#: includes/form/metabox.php:221 includes/form/metabox.php:265
+#: includes/form/metabox.php:369
 msgid "Relation name"
 msgstr "Nom de relation"
 
-#: includes/form/metabox.php:186 includes/form/metabox.php:234
-#: includes/form/metabox.php:347
-#, fuzzy
+#: includes/form/metabox.php:225 includes/form/metabox.php:273
+#: includes/form/metabox.php:386
 msgid "Is alive?"
-msgstr "Il est vivant ?"
+msgstr "Est-il/elle toujours vivant(e)?"
 
-#: includes/form/metabox.php:202
-#, fuzzy
-msgid "Relation "
-msgstr "Rapport"
+#: includes/form/metabox.php:241 includes/form/metabox.php:331
+msgid "Relation"
+msgstr "Relation"
 
-#: includes/form/metabox.php:218 includes/form/metabox.php:320
-#, fuzzy
+#: includes/form/metabox.php:257 includes/form/metabox.php:359
 msgid "Remove relation"
 msgstr "Supprimer la relation"
 
-#: includes/form/metabox.php:292
-#, fuzzy
-msgid "Relation"
-msgstr "Rapport"
-
-#: includes/form/metabox.php:357
-#, fuzzy
+#: includes/form/metabox.php:396
 msgid "Select a gender"
 msgstr "Sélectionnez un sexe"
 
-#: includes/form/metabox.php:376
-#, fuzzy
+#: includes/form/metabox.php:415
 msgid "Are you sure to delete this relation?"
-msgstr "Etes-vous sûr de supprimer cette relation?"
+msgstr "Supprimer cette relation?"
 
-#: includes/form/metabox.php:464
+#: includes/form/metabox.php:503
 msgid "Password"
 msgstr "Mot de passe"
 
-#: includes/form/metabox.php:465
-#, fuzzy
+#: includes/form/metabox.php:504
 msgid "Create token"
-msgstr "Créer le jeton"
+msgstr "Créer un jeton"
 
-#: includes/form/metabox.php:484
-#, fuzzy
+#: includes/form/metabox.php:523
 msgid "Link to view comments"
-msgstr "Lien pour afficher les commentaires"
+msgstr "Lien pour voir les commentaires"
 
-#: includes/form/metabox.php:489
+#: includes/form/metabox.php:528
 #, fuzzy
-msgid "Send email to family when someone condones"
-msgstr "Envoyer un courriel à votre famille lorsque quelqu’un tolère"
+#| msgid "Send email to family when someone condones"
+msgid "Send email to family when someone condoles"
+msgstr ""
+"Envoyer un e-mail à la famille lorsque quelqu’un exprime ses condoléances"
 
-#: includes/form/metabox.php:490
+#: includes/form/metabox.php:529
 msgid "E-mail"
 msgstr "Email"
 
-#: includes/form/metabox.php:519
+#: includes/form/metabox.php:558
 msgid "No"
 msgstr "Non"
 
-#: includes/form/metabox.php:522
+#: includes/form/metabox.php:561
 msgid "Yes"
 msgstr "Oui"
 
-#: includes/form/metabox.php:527
+#: includes/form/metabox.php:566
 msgid "Email address"
 msgstr "Adresse e-mail"
 
-#: includes/form/metabox.php:533
-#, fuzzy
+#: includes/form/metabox.php:572
 msgid "Download CSV list"
 msgstr "Télécharger la liste CSV"
 
-#: includes/form/metabox.php:534
-#, fuzzy
+#: includes/form/metabox.php:573
 msgid "Emails: "
 msgstr "E-mails:"
 
-#: includes/form/metabox.php:535
-#, fuzzy
+#: includes/form/metabox.php:574
 msgid "Participants: "
 msgstr "Participants:"
 
-#: includes/form/metabox.php:622
+#: includes/form/metabox.php:661
 msgid "Choose a location"
 msgstr "Choisissez un site"
 
-#: includes/form/metabox.php:648
-#, fuzzy
+#: includes/form/metabox.php:687
 msgid "No orders have been placed for this person."
 msgstr "Aucune commande n’a été passée pour cette personne."
 
-#: includes/form/metabox.php:653
+#: includes/form/metabox.php:692
 msgid "Customer"
 msgstr "Client"
 
-#: includes/form/metabox.php:654
+#: includes/form/metabox.php:693
 msgid "Summary"
 msgstr "Résumé"
 
-#: includes/form/metabox.php:656
-#, fuzzy
+#: includes/form/metabox.php:695
 msgid "Placed at"
 msgstr "Placé à"
 
-#: includes/form/metabox.php:815 includes/register/custom-post-type.php:37
+#: includes/form/metabox.php:875 includes/register/custom-post-type.php:37
 #: includes/register/custom-post-type.php:39
-#, fuzzy
 msgid "Condolences"
 msgstr "Condoléances"
 
@@ -539,11 +503,9 @@ msgid "Product"
 msgstr "Produit"
 
 #: includes/model/order-line.php:41
-#, fuzzy
 msgid "Please select the product you wish to order from the list."
 msgstr ""
-"S’il vous plaît sélectionnez le produit que vous souhaitez commander à "
-"partir de la liste."
+"Veuillez sélectionner le produit que vous souhaitez commander dans la liste."
 
 #: includes/model/order-line.php:63
 msgid "Description"
@@ -555,141 +517,108 @@ msgstr "Quantité"
 
 #: includes/model/order-line.php:76 includes/model/product.php:31
 #: includes/register/product-type.php:120
-#, fuzzy
 msgid "Product price"
 msgstr "Prix du produit"
 
 #: includes/model/order.php:75
-#, fuzzy
 msgid "Ribbon text"
 msgstr "Texte de ruban"
 
-#: includes/model/order.php:78 includes/register/order-type.php:240
-#, fuzzy
-msgid "Linked condolence"
-msgstr "Condoléances liées"
-
 #: includes/model/order.php:79
-#, fuzzy
-msgid "Select the person linked to this order in the select box."
-msgstr "Sélectionnez la personne liée à cet ordre dans la case sélectionnée."
-
-#: includes/model/order.php:80
-#, fuzzy
-msgid "Please pick a condolence"
-msgstr "S’il vous plaît choisir une condoléances"
-
-#: includes/model/order.php:98
 msgid "Email Address"
-msgstr "Adresse Mail"
+msgstr "Adresse email"
 
-#: includes/model/order.php:101
+#: includes/model/order.php:82
 msgid "Phone number"
 msgstr "Numéro de téléphone"
 
-#: includes/model/order.php:104
+#: includes/model/order.php:85
 msgid "First name"
 msgstr "Prénom"
 
-#: includes/model/order.php:107
+#: includes/model/order.php:88
 msgid "Last name"
-msgstr "Nom"
+msgstr "Nom de famille"
 
-#: includes/model/order.php:110 includes/register/location-type.php:101
-#, fuzzy
+#: includes/model/order.php:91 includes/register/location-type.php:101
 msgid "Address line"
 msgstr "Ligne d’adresse"
 
-#: includes/model/order.php:113 includes/register/location-type.php:112
+#: includes/model/order.php:94 includes/register/location-type.php:112
 #: includes/register/location-type.php:115
-#, fuzzy
 msgid "Postal code"
 msgstr "Code postal"
 
-#: includes/model/order.php:119
+#: includes/model/order.php:100
 msgid "Company name"
 msgstr "Nom de l'entreprise"
 
-#: includes/model/order.php:120
-#, fuzzy
+#: includes/model/order.php:101
 msgid "Enter the company name if applicable."
-msgstr "Entrez le nom de l’entreprise le cas échéant."
+msgstr "Entrez le nom de l’entreprise, le cas échéant."
 
-#: includes/model/order.php:123
-#, fuzzy
+#: includes/model/order.php:104
 msgid "Company Vat"
-msgstr "Vat de l’entreprise"
+msgstr "TVA d’entreprise"
 
-#: includes/model/order.php:124
-#, fuzzy
+#: includes/model/order.php:105
 msgid "Enter the company vat number if applicable."
-msgstr "Entrez le numéro de cuve de l’entreprise le cas échéant."
+msgstr "Entrez le numéro de TVA de l’entreprise, le cas échéant."
 
-#: includes/model/order.php:128
-#, fuzzy
+#: includes/model/order.php:109
 msgid "Remarks"
 msgstr "Remarques"
 
-#: includes/model/order.php:450
-#, fuzzy
+#: includes/model/order.php:431
 msgid "No products selected."
 msgstr "Aucun produit sélectionné."
 
-#: includes/model/order.php:454
-#, fuzzy
+#: includes/model/order.php:435
 msgid "No product selected."
 msgstr "Aucun produit sélectionné."
 
-#: includes/model/order.php:459
-#, fuzzy
+#: includes/model/order.php:440
 msgid "Invalid product quantity."
-msgstr "Quantité de produit invalide."
+msgstr "Quantité de produit non valide."
 
-#: includes/model/order.php:472
-#, fuzzy, php-format
+#: includes/model/order.php:453
+#, php-format
 msgid "Field \"%s\" is required."
-msgstr "Field \"%s\" est nécessaire."
+msgstr "Champ \"%s\" est obligatoire."
 
-#: includes/model/order.php:478
-#, fuzzy
+#: includes/model/order.php:459
 msgid "Please enter a valid email."
-msgstr "Veuillez entrer un e-mail valide."
+msgstr "Veuillez entrer une adresse e-mail valide."
 
 #: includes/model/price.php:176
 msgid "Amount"
 msgstr "Montant"
 
 #: includes/model/price.php:185
-#, fuzzy
 msgid "Currency"
-msgstr "Monnaie"
+msgstr "Devise"
 
 #: includes/register/custom-post-type.php:35
-#, fuzzy
 msgctxt "Post Type General Name"
 msgid "Condolences"
 msgstr "Condoléances"
 
 #: includes/register/custom-post-type.php:36
-#, fuzzy
 msgctxt "Post Type Singular Name"
 msgid "Condolence"
 msgstr "Condoléances"
 
 #: includes/register/custom-post-type.php:38
-#, fuzzy
 msgid "Parent Condolence"
-msgstr "Condoléances des parents"
+msgstr "Condoléances parent"
 
 #: includes/register/custom-post-type.php:40
-#, fuzzy
 msgid "View Condolence"
 msgstr "Afficher condoléances"
 
 #: includes/register/custom-post-type.php:41
-#, fuzzy
 msgid "Add New Condolence"
-msgstr "Ajouter de nouvelles condoléances"
+msgstr "Ajouter nouvelles condoléances"
 
 #: includes/register/custom-post-type.php:42
 #: includes/register/location-type.php:26 includes/register/order-type.php:184
@@ -698,17 +627,14 @@ msgid "Add New"
 msgstr "Créer nouvelle"
 
 #: includes/register/custom-post-type.php:43
-#, fuzzy
 msgid "Edit Condolence"
-msgstr "Modifier condolence"
+msgstr "Modifier condoléances"
 
 #: includes/register/custom-post-type.php:44
-#, fuzzy
 msgid "Update Condolence"
-msgstr "Mise à jour Condoléances"
+msgstr "Mettre à jour condoléances"
 
 #: includes/register/custom-post-type.php:45
-#, fuzzy
 msgid "Search Condolence"
 msgstr "Rechercher condoléances"
 
@@ -716,22 +642,20 @@ msgstr "Rechercher condoléances"
 #: includes/register/location-type.php:30 includes/register/order-type.php:188
 #: includes/register/product-type.php:86
 msgid "Not Found"
-msgstr "N’ existe pas"
+msgstr "Pas trouvé"
 
 #: includes/register/custom-post-type.php:47
 #: includes/register/location-type.php:31 includes/register/order-type.php:189
 #: includes/register/product-type.php:87
 msgid "Not found in Trash"
-msgstr "Non trouvé dans la corbeille"
+msgstr "Pas trouvé dans la corbeille"
 
 #: includes/register/custom-post-type.php:52
-#, fuzzy
 msgctxt "Post Type Label Name"
 msgid "Condolences"
 msgstr "Condoléances"
 
 #: includes/register/custom-post-type.php:53
-#, fuzzy
 msgctxt "Post Type Description"
 msgid "Condolences"
 msgstr "Condoléances"
@@ -744,7 +668,7 @@ msgstr "Emplacements"
 #: includes/register/location-type.php:20
 msgctxt "Post Type Singular Name"
 msgid "Location"
-msgstr "Localité"
+msgstr "Emplacement"
 
 #: includes/register/location-type.php:21
 #: includes/register/location-type.php:23
@@ -753,31 +677,27 @@ msgstr "Emplacements"
 
 #: includes/register/location-type.php:22
 msgid "Parent Location"
-msgstr "Localisation des parents"
+msgstr "Emplacement parent"
 
 #: includes/register/location-type.php:24
-#, fuzzy
 msgid "View Location"
 msgstr "Afficher l’emplacement"
 
 #: includes/register/location-type.php:25
-#, fuzzy
 msgid "Add New Location"
-msgstr "Ajouter un nouvel emplacement"
+msgstr "Ajouter nouvel emplacement"
 
 #: includes/register/location-type.php:27
-#, fuzzy
 msgid "Edit Location"
 msgstr "Modifier l’emplacement"
 
 #: includes/register/location-type.php:28
-#, fuzzy
 msgid "Update Location"
-msgstr "Mise à jour de l’emplacement"
+msgstr "Mettre à jour l’emplacement"
 
 #: includes/register/location-type.php:29
 msgid "Search Location"
-msgstr "Rechercher une localisation"
+msgstr "Rechercher emplacement"
 
 #: includes/register/location-type.php:36
 msgctxt "Post Type Label Name"
@@ -790,29 +710,24 @@ msgid "Locations"
 msgstr "Emplacements"
 
 #: includes/register/location-type.php:67
-#, fuzzy
 msgid "Address details"
 msgstr "Détails de l’adresse"
 
 #: includes/register/location-type.php:104
-#, fuzzy
 msgid "Street name"
 msgstr "Nom de rue"
 
-#: includes/register/order-type.php:133 includes/templates/single.php:306
-#, fuzzy
+#: includes/register/order-type.php:133 includes/templates/single.php:340
 msgid "Condolence"
 msgstr "Condoléances"
 
 #: includes/register/order-type.php:134
-#, fuzzy
 msgid "Order summary"
-msgstr "Résumé de l’ordre"
+msgstr "Récapitulatif de la commande"
 
 #: includes/register/order-type.php:135
-#, fuzzy
 msgid "Order total"
-msgstr "Total des commandes"
+msgstr "Total de la commande"
 
 #: includes/register/order-type.php:136 includes/register/product-type.php:54
 msgid "Date"
@@ -829,18 +744,16 @@ msgid "Order"
 msgstr "Commande"
 
 #: includes/register/order-type.php:180
-#, fuzzy
 msgid "Parent Order"
-msgstr "Ordre des parents"
+msgstr "Commande parent"
 
 #: includes/register/order-type.php:182
-#, fuzzy
 msgid "View Order"
-msgstr "Afficher l’ordre"
+msgstr "Afficher commande"
 
 #: includes/register/order-type.php:183
 msgid "Add New Order"
-msgstr "Ajouter nouvelle commande"
+msgstr "Ajouter une nouvelle commande"
 
 #: includes/register/order-type.php:185
 msgid "Edit Order"
@@ -848,12 +761,11 @@ msgstr "Modifier la commande"
 
 #: includes/register/order-type.php:186
 msgid "Update Order"
-msgstr "Mise à jour de la commande"
+msgstr "Mettre à jour la commande"
 
 #: includes/register/order-type.php:187
-#, fuzzy
 msgid "Search Order"
-msgstr "Ordre de recherche"
+msgstr "Rechercher commande"
 
 #: includes/register/order-type.php:194
 msgctxt "Post Type Label Name"
@@ -868,6 +780,10 @@ msgstr "Commandes"
 #: includes/register/order-type.php:233
 msgid "Order details"
 msgstr "Détails de la commande"
+
+#: includes/register/order-type.php:240
+msgid "Linked condolence"
+msgstr "Condoléances liées"
 
 #: includes/register/product-type.php:51
 msgid "Image"
@@ -888,33 +804,28 @@ msgid "Product"
 msgstr "Produit"
 
 #: includes/register/product-type.php:78
-#, fuzzy
 msgid "Parent Product"
 msgstr "Produit parent"
 
 #: includes/register/product-type.php:80
-#, fuzzy
 msgid "View Product"
 msgstr "Afficher le produit"
 
 #: includes/register/product-type.php:81
-#, fuzzy
 msgid "Add New Product"
 msgstr "Ajouter un nouveau produit"
 
 #: includes/register/product-type.php:83
 msgid "Edit Product"
-msgstr "Modifier l'article"
+msgstr "Modifier produit"
 
 #: includes/register/product-type.php:84
-#, fuzzy
 msgid "Update Product"
-msgstr "Mise à jour du produit"
+msgstr "Mettre à jour le produit"
 
 #: includes/register/product-type.php:85
-#, fuzzy
 msgid "Search Product"
-msgstr "Rechercher le produit"
+msgstr "Rechercher produit"
 
 #: includes/register/product-type.php:92
 msgctxt "Post Type Label Name"
@@ -926,330 +837,342 @@ msgctxt "Post Type Description"
 msgid "Products"
 msgstr "Produits"
 
-#: includes/settings/select-fields-to-show.php:41
-#: includes/settings/select-fields-to-show.php:42
-#: includes/settings/select-fields-to-show.php:104
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:37
+#: includes/settings/select-fields-to-show.php:38
+#: includes/settings/select-fields-to-show.php:107
 msgid "Condolence manager"
 msgstr "Gestionnaire de condoléances"
 
-#: includes/settings/select-fields-to-show.php:52
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:48
 msgid "Condolence manager options"
-msgstr "Options de gestionnaire de condoléances"
+msgstr "Options du gestionnaire de condoléances"
 
-#: includes/settings/select-fields-to-show.php:53
+#: includes/settings/select-fields-to-show.php:49
 msgid "Options"
 msgstr "Options"
 
-#: includes/settings/select-fields-to-show.php:108
+#: includes/settings/select-fields-to-show.php:73
 #, fuzzy
-msgid "Field Mapping"
-msgstr "Cartographie de terrain"
+#| msgid "Honorary title"
+msgid "Honorary title + full name"
+msgstr "Titre honorifique"
 
-#: includes/settings/select-fields-to-show.php:109
+#: includes/settings/select-fields-to-show.php:83
 #, fuzzy
+#| msgid "Funeral date"
+msgid "Funeral home"
+msgstr "Date des funérailles"
+
+#: includes/settings/select-fields-to-show.php:84
+msgid "Live-stream description"
+msgstr ""
+
+#: includes/settings/select-fields-to-show.php:111
+msgid "Field Mapping"
+msgstr "Cartographie des champs"
+
+#: includes/settings/select-fields-to-show.php:112
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: includes/settings/select-fields-to-show.php:110
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:113
 msgid "Rename CPT"
 msgstr "Renommer CPT"
 
-#: includes/settings/select-fields-to-show.php:111
+#: includes/settings/select-fields-to-show.php:114
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: includes/settings/select-fields-to-show.php:118
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:121
 msgid ""
 "Change the layout of the condolence post by reordering the items listed "
 "below."
 msgstr ""
-"Modifier la disposition du poste de condoléances en réorganisant les "
-"articles énumérés ci-dessous."
+"Modifiez la disposition du message de condoléances en réorganisant les "
+"éléments répertoriés ci-dessous."
 
-#: includes/settings/select-fields-to-show.php:120
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:123
 msgid ""
 "Drag and drop the items to your desired order or delete and add items to the "
 "list. If the order is as you wish submit the changes."
 msgstr ""
-"Faites glisser et laissez tomber les éléments à votre commande désirée ou "
-"supprimez et ajoutez des éléments à la liste. Si la commande est comme vous "
-"le souhaitez soumettre les modifications."
+"Faites glisser et déposez les articles dans l’ordre souhaité ou supprimez et "
+"ajoutez des articles à la liste. Si la commande s’affiche comme souhaité, "
+"soumettez les modifications."
 
-#: includes/settings/select-fields-to-show.php:150
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:153
 msgid "Submit changes"
-msgstr "Soumettre des modifications"
+msgstr "Soumettre des changements"
 
-#: includes/settings/select-fields-to-show.php:166
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:169
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
 msgstr ""
-"Gérer la confirmation de condoléances. Il peut s’agir d’un texte de "
-"remerciement ou d’une page vers laquelle vous pouvez vous rediriger."
+"Gérer la confirmation de condoléances. Cela peut être un texte de "
+"remerciement ou une page vers laquelle rediriger."
 
-#: includes/settings/select-fields-to-show.php:171
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:174
 msgid "Confirmation type"
 msgstr "Type de confirmation"
 
-#: includes/settings/select-fields-to-show.php:177
+#: includes/settings/select-fields-to-show.php:180
 msgid "Page"
 msgstr "Page"
 
-#: includes/settings/select-fields-to-show.php:178
+#: includes/settings/select-fields-to-show.php:181
 msgid "Text"
 msgstr "Texte"
 
-#: includes/settings/select-fields-to-show.php:180
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:183
 msgid "Choose what will happen after a user writes a condolence."
 msgstr ""
-"Choisissez ce qui se passera après qu’un utilisateur a écrit une "
+"Choisissez ce qui se passera après qu’un utilisateur a écrit un message de "
 "condoléances."
 
-#: includes/settings/select-fields-to-show.php:186
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:189
 msgid "Confirmation page"
 msgstr "Page de confirmation"
 
-#: includes/settings/select-fields-to-show.php:189
-#, fuzzy
-msgid "https://www.example.com/thank-you"
-msgstr "https://www.example.com/thank-you"
-
-#: includes/settings/select-fields-to-show.php:191
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:194
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
 msgstr ""
-"Si vous avez choisi \"page\" comme type de confirmation, veuillez entrer "
-"l’URL vers la page vers laquelle vos utilisateurs seront redirigés après "
-"avoir écrit une condoléances."
+"Si vous avez sélectionné “page” comme type de confirmation, veuillez saisir "
+"l’URL de la page vers laquelle vos utilisateurs seront redirigés après avoir "
+"écrit un message de condoléances."
 
-#: includes/settings/select-fields-to-show.php:197
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:200
 msgid "Confirmation text"
 msgstr "Texte de confirmation"
 
-#: includes/settings/select-fields-to-show.php:200
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:203
 msgid "Thank you note"
-msgstr "Merci de noter"
+msgstr "Note de remerciement"
 
-#: includes/settings/select-fields-to-show.php:204
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:207
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
 msgstr ""
-"Si vous avez choisi le \"texte\" comme type de confirmation, le texte sur le "
-"terrain ci-dessus sera affiché à un utilisateur après avoir écrit une "
-"condoléances."
+"Si vous avez sélectionné “texte” comme type de confirmation, le texte du "
+"champ ci-dessus sera affiché pour un utilisateur après avoir écrit un "
+"message de condoléances."
 
-#: includes/settings/select-fields-to-show.php:227
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:230
 msgid "You can change the <b>custom post type slug</b>."
-msgstr "Vous pouvez modifier la <b>limace de type poste personnalisé</b>."
+msgstr "Vous pouvez modifier le <b>slug de type poste personnalisé</b>."
 
-#: includes/settings/select-fields-to-show.php:229
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:232
 msgid "Slug name"
 msgstr "Nom de limace"
 
-#: includes/settings/select-fields-to-show.php:233
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:236
 msgid "Change post type"
-msgstr "Modifier le type de poste"
+msgstr "Modifier type de poste"
 
-#: includes/settings/select-fields-to-show.php:259
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:262
 msgid ""
 "Before starting to migrate, be sure that <b>custom post type slug</b> is "
 "correct! Because the changes made in this step can't be reversed."
 msgstr ""
-"Avant de commencer à migrer, assurez-vous que <b>la limace de type post "
-"personnalisé</b> est correcte! Parce que les changements apportés dans cette "
-"étape ne peuvent pas être inversés."
+"Avant de commencer à migrer, assurez-vous que <b>slug de type post "
+"personnalisé</b> est correcte! Parce que les modifications apportées à cette "
+"étape ne peuvent pas être annulées."
 
-#: includes/settings/select-fields-to-show.php:288
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:291
 msgid "Add your license key"
 msgstr "Ajoutez votre clé de licence"
 
-#: includes/settings/select-fields-to-show.php:292
-#, fuzzy
+#: includes/settings/select-fields-to-show.php:295
 msgid "Add license key"
-msgstr "Ajouter la clé de licence"
+msgstr "Ajouter clé de licence"
 
-#: includes/templates/archive.php:15 includes/templates/single.php:28
+#: includes/templates/archive.php:15 includes/templates/single.php:29
 msgid "January"
 msgstr "Janvier"
 
-#: includes/templates/archive.php:16 includes/templates/single.php:29
+#: includes/templates/archive.php:16 includes/templates/single.php:30
 msgid "February"
 msgstr "Février"
 
-#: includes/templates/archive.php:17 includes/templates/single.php:30
+#: includes/templates/archive.php:17 includes/templates/single.php:31
 msgid "March"
 msgstr "Mars"
 
-#: includes/templates/archive.php:18 includes/templates/single.php:31
+#: includes/templates/archive.php:18 includes/templates/single.php:32
 msgid "April"
 msgstr "Avril"
 
-#: includes/templates/archive.php:19 includes/templates/single.php:32
+#: includes/templates/archive.php:19 includes/templates/single.php:33
 msgid "May"
 msgstr "Mai"
 
-#: includes/templates/archive.php:20 includes/templates/single.php:33
+#: includes/templates/archive.php:20 includes/templates/single.php:34
 msgid "June"
 msgstr "Juin"
 
-#: includes/templates/archive.php:21 includes/templates/single.php:34
+#: includes/templates/archive.php:21 includes/templates/single.php:35
 msgid "July"
 msgstr "Juillet"
 
-#: includes/templates/archive.php:22 includes/templates/single.php:35
+#: includes/templates/archive.php:22 includes/templates/single.php:36
 msgid "August"
 msgstr "Août"
 
-#: includes/templates/archive.php:23 includes/templates/single.php:36
+#: includes/templates/archive.php:23 includes/templates/single.php:37
 msgid "September"
 msgstr "Septembre"
 
-#: includes/templates/archive.php:24 includes/templates/single.php:37
+#: includes/templates/archive.php:24 includes/templates/single.php:38
 msgid "October"
 msgstr "Octobre"
 
-#: includes/templates/archive.php:25 includes/templates/single.php:38
+#: includes/templates/archive.php:25 includes/templates/single.php:39
 msgid "November"
 msgstr "Novembre"
 
-#: includes/templates/archive.php:26 includes/templates/single.php:39
+#: includes/templates/archive.php:26 includes/templates/single.php:40
 msgid "December"
 msgstr "Décembre"
 
-#: includes/templates/archive.php:52 includes/templates/single.php:158
+#: includes/templates/archive.php:46 includes/templates/single.php:131
 #, fuzzy
+#| msgid "Residence"
+msgid "Resident of"
+msgstr "Résidence"
+
+#: includes/templates/archive.php:61 includes/templates/single.php:163
 msgid "Beloved husband of"
 msgstr "Mari bien-aimé de"
 
-#: includes/templates/archive.php:58 includes/templates/single.php:164
-#, fuzzy
+#: includes/templates/archive.php:67 includes/templates/single.php:169
 msgid "Beloved wife of"
 msgstr "Épouse bien-aimée de"
 
-#: includes/templates/archive.php:64 includes/templates/single.php:170
-#, fuzzy
+#: includes/templates/archive.php:73 includes/templates/single.php:175
 msgid "Beloved husband of the late"
 msgstr "Mari bien-aimé de la fin"
 
-#: includes/templates/archive.php:70 includes/templates/single.php:176
-#, fuzzy
+#: includes/templates/archive.php:79 includes/templates/single.php:181
 msgid "Beloved wife of the late"
 msgstr "Épouse bien-aimée de la fin"
 
-#: includes/templates/archive.php:124 includes/templates/single.php:140
-#, fuzzy
-msgid "Prayer vigil information"
-msgstr "Informations sur la veillée de prière"
-
-#: includes/templates/archive.php:132 includes/templates/single.php:222
-#, fuzzy
-msgid "Condole"
-msgstr "Condole Condole"
-
-#: includes/templates/archive.php:145 includes/templates/single.php:240
-#, fuzzy
-msgid "Coffee Table"
-msgstr "Table de café"
-
-#: includes/templates/archive.php:160
-msgid "Edit"
-msgstr "Éditer"
-
-#: includes/templates/single.php:84 includes/templates/single.php:94
-#, fuzzy
+#: includes/templates/archive.php:104 includes/templates/single.php:91
+#: includes/templates/single.php:101
 msgid "Born"
-msgstr "Né"
+msgstr "Né(e)"
 
-#: includes/templates/single.php:87 includes/templates/single.php:112
-msgid "on"
-msgstr "le"
-
-#: includes/templates/single.php:97 includes/templates/single.php:122
+#: includes/templates/archive.php:105 includes/templates/archive.php:120
+#: includes/templates/single.php:104 includes/templates/single.php:125
 msgid "in"
 msgstr "dans"
 
-#: includes/templates/single.php:109 includes/templates/single.php:119
-#, fuzzy
+#: includes/templates/archive.php:108 includes/templates/archive.php:123
+#: includes/templates/single.php:94 includes/templates/single.php:115
+msgid "on"
+msgstr "le"
+
+#: includes/templates/archive.php:119 includes/templates/single.php:112
+#: includes/templates/single.php:122
 msgid "Passed away"
-msgstr "Décédé"
+msgstr "Décédé(e)"
 
-#: includes/templates/single.php:255
+#: includes/templates/archive.php:138 includes/templates/single.php:221
+msgid "Laid out at"
+msgstr ""
+
+#: includes/templates/archive.php:154 includes/templates/single.php:145
+msgid "Prayer vigil information"
+msgstr "Informations sur la veillée de prière"
+
+#: includes/templates/archive.php:164 includes/templates/single.php:250
+msgid "Condole"
+msgstr "Condole"
+
+#: includes/templates/archive.php:177 includes/templates/single.php:262
+msgid "Coffee Table"
+msgstr "Réception funéraire"
+
+#: includes/templates/archive.php:201
+msgid "Edit"
+msgstr "Éditer"
+
+#: includes/templates/single.php:233
 #, fuzzy
+#| msgid "Funeral information"
+msgid "Live-stream information"
+msgstr "Informations sur les funérailles"
+
+#: includes/templates/single.php:274
+#, fuzzy
+#| msgid "Funeral date"
+msgid "Funeral live-stream"
+msgstr "Date des funérailles"
+
+#: includes/templates/single.php:289
 msgid "Condolences for the family"
-msgstr "Condoléances pour la famille"
+msgstr "Condoléances à la famille"
 
-#: includes/templates/single.php:257
-#, fuzzy
+#: includes/templates/single.php:291
 msgid "Reply to this condolence"
-msgstr "Répondre à cette condoléances"
+msgstr "Répondre à ces condoléances"
 
-#: includes/templates/single.php:257
-#, fuzzy
+#: includes/templates/single.php:291
 msgid "This message will be send by mail to the author of the condolence."
-msgstr "Ce message sera envoyé par la poste à l’auteur de ses condoléances."
+msgstr "Ce message sera envoyé par email à l’auteur de la condoléance."
 
-#: includes/templates/single.php:257
+#: includes/templates/single.php:291
 msgid "Reply"
 msgstr "Répondre"
 
-#: includes/templates/single.php:283
-#, fuzzy
+#: includes/templates/single.php:317
 msgid "Comment Error"
 msgstr "Erreur de commentaire"
 
-#: includes/templates/single.php:291
-#, fuzzy
+#: includes/templates/single.php:325
 msgid "Naam"
-msgstr "Naam"
+msgstr "Nom"
 
-#: includes/templates/single.php:304
-#, fuzzy
+#: includes/templates/single.php:338
 msgid "Leave your condolences for the family"
 msgstr "Laissez vos condoléances à la famille"
 
-#: includes/templates/single.php:305
-#, fuzzy
+#: includes/templates/single.php:339
 msgid "This message is only visible for the family"
 msgstr "Ce message n’est visible que pour la famille"
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
 msgid "Condolence Manager"
-msgstr "Gestionnaire de condoléances"
+msgstr "Manager de condoléances"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
-#, fuzzy
 msgid "http://www.appsaloon.be"
 msgstr "http://www.appsaloon.be"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "This plugin allows visitors to condole the family of the deceased."
-msgstr "Ce plugin permet aux visiteurs de coter la famille du défunt."
+msgstr "Ce plugin permet aux visiteurs de tolérer la famille du défunt."
 
 #. Author of the plugin/theme
-#, fuzzy
 msgid "AppSaloon"
-msgstr "AppSaloon (AppSaloon)"
+msgstr "AppSaloon"
+
+#~ msgid "New"
+#~ msgstr "New"
+
+#~ msgid "Relation "
+#~ msgstr "Relation"
+
+#, fuzzy
+#~ msgid "Select the person linked to this order in the select box."
+#~ msgstr ""
+#~ "Sélectionnez la personne liée à cet ordre dans la case sélectionnée."
+
+#~ msgid "Please pick a condolence"
+#~ msgstr "Veuillez sélectionner une condoléance"
+
+#~ msgid "https://www.example.com/thank-you"
+#~ msgstr "https://www.example.com/thank-you"
