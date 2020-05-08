@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
 "POT-Creation-Date: 2020-05-04 13:03+0200\n"
-"PO-Revision-Date: 2020-05-04 13:04+0200\n"
+"PO-Revision-Date: 2020-05-08 15:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -23,15 +23,13 @@ msgstr ""
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:1
 #: includes/form/metabox.php:29 includes/form/metabox.php:517
-#, fuzzy
 msgid "Coffee table"
-msgstr "Couchtisch"
+msgstr "Kaffeetisch"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:3
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:54
-#, fuzzy
 msgid "Presence coffee table"
-msgstr "Präsenz Couchtisch"
+msgstr "Präsenz Kaffeetisch"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:5
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:5
@@ -61,25 +59,22 @@ msgid "telephone"
 msgstr "telefon"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:11
-#, fuzzy
 msgid "I won't be able to make it to the coffee table"
-msgstr "Ich werde es nicht auf den Couchtisch schaffen"
+msgstr "Ich werde es nicht auf den Kaffeetisch schaffen"
 
 #: includes/coffee-table/coffee-table-form/templates/email.php:13
-#, fuzzy
 msgid "I will be present with"
-msgstr "ich werde anwesend sein mit"
+msgstr "Ich werde anwesend sein mit"
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:2
 msgid "Failure"
 msgstr "Fehler"
 
 #: includes/coffee-table/coffee-table-form/templates/failure-submission.php:3
-#, fuzzy
 msgid "Sorry we couldn't save your data. Refresh and try one more time"
 msgstr ""
 "Es tut uns leid, dass wir Ihre Daten nicht speichern konnten. Aktualisieren "
-"und noch einmal versuchen"
+"sie und versuchen sie erneut"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:17
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:20
@@ -115,24 +110,20 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:61
-#, fuzzy
 msgid "Will be present"
 msgstr "Wird anwesend sein"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:64
-#, fuzzy
 msgid "Will not be present"
 msgstr "Wird nicht anwesend sein"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:76
-#, fuzzy
 msgid "How many people will attend"
-msgstr "Wie viele Personen werden teilnehmen?"
+msgstr "Wie viele Personen werden teilnehmen"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:79
-#, fuzzy
 msgid "min 1"
-msgstr "min 1"
+msgstr "min. 1"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:88
 #: includes/settings/select-fields-to-show.php:211
@@ -140,12 +131,10 @@ msgid "Submit"
 msgstr "Senden"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:98
-#, fuzzy
 msgid "Please fill out this field"
 msgstr "Bitte füllen Sie dieses Feld aus"
 
 #: includes/coffee-table/coffee-table-form/templates/form-template.php:101
-#, fuzzy
 msgid "This email address is incorrect"
 msgstr "Diese E-Mail-Adresse ist falsch"
 
@@ -154,21 +143,20 @@ msgid "Success"
 msgstr "Erfolg"
 
 #: includes/coffee-table/coffee-table-form/templates/success-submission.php:3
-#, fuzzy
 msgid "We send your info to the family. Thank You."
 msgstr "Wir senden Ihre Informationen an die Familie. Danke."
 
 #: includes/comments/inline-comment-error.php:450
-#, fuzzy, php-format
+#, php-format
 msgid "%1$sPlease correct the following problems:%2$s"
-msgstr "%1 sBitte korrigieren Sie die folgenden Probleme:%2 es"
+msgstr "%1$sBitte korrigieren Sie die folgenden Probleme:%2$s"
 
 #: includes/controller/comment-email.php:36
 msgid "New"
 msgstr "Neu"
 
 #: includes/controller/comment-email.php:37
-#, fuzzy, php-format
+#, php-format
 msgid "on your condolence from %s:"
 msgstr "über Ihr Beileid von %s:"
 
@@ -177,18 +165,15 @@ msgid "New Comment"
 msgstr "Neuer Kommentar"
 
 #: includes/controller/products.php:54
-#, fuzzy
 msgid "The order form has expired."
 msgstr "Das Bestellformular ist abgelaufen."
 
 #: includes/controller/products.php:62
-#, fuzzy
 msgid "There were some errors with your order, please try again."
 msgstr ""
 "Es gab einige Fehler mit Ihrer Bestellung, bitte versuchen Sie es erneut."
 
 #: includes/controller/products.php:81
-#, fuzzy
 msgid "Your order has been successfully placed!"
 msgstr "Ihre Bestellung wurde erfolgreich aufgegeben!"
 
@@ -210,7 +195,6 @@ msgstr "Bestellung"
 
 #: includes/controller/products.php:264 includes/form/metabox.php:133
 #: includes/templates/archive.php:139 includes/templates/single.php:227
-#, fuzzy
 msgid "Flowers"
 msgstr "Blumen"
 
@@ -219,16 +203,15 @@ msgid "Place Order"
 msgstr "Zahlungspflichtig bestellen"
 
 #: includes/controller/products.php:330
-#, fuzzy, php-format
+#, php-format
 msgid "Ordering is possible up until the day before the funeral at %s."
 msgstr "Die Bestellung ist bis zum Tag vor der Beerdigung bei %s möglich."
 
 #: includes/controller/templates.php:76
-#, fuzzy
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr ""
 "Möglicherweise haben Sie eines der Felder leer gelassen oder zu schnell "
-"gebucht"
+"veröffentlicht"
 
 #: includes/controller/templates.php:77
 #: includes/settings/select-fields-to-show.php:33
@@ -236,21 +219,17 @@ msgid "Thanks for your comment. We appreciate your response."
 msgstr "Danke für dein Feedback."
 
 #: includes/controller/templates.php:79
-#, fuzzy
 msgid "Please wait a while before posting your next comment."
 msgstr ""
-"Bitte warten Sie eine Weile, bevor Sie Ihren nächsten Kommentar "
-"veröffentlichen."
+"Bitte warten Sie eine Weile, bevor Sie Ihren nächsten Kommentar publizieren."
 
 #: includes/controller/templates.php:80
-#, fuzzy
 msgid "Your message is not send. You might have left one of the fields blank."
 msgstr ""
-"Ihre Nachricht wird nicht gesendet. Möglicherweise haben Sie eines der "
+"Ihre Nachricht wurde nicht gesendet. Möglicherweise haben Sie eines der "
 "Felder leer gelassen."
 
 #: includes/form/metabox.php:25
-#, fuzzy
 msgid "Information about deceased"
 msgstr "Informationen über Verstorbene"
 
@@ -272,7 +251,6 @@ msgid "Gender"
 msgstr "Geschlecht"
 
 #: includes/form/metabox.php:47 includes/form/metabox.php:237
-#, fuzzy
 msgid "Select gender"
 msgstr "Geschlecht auswählen"
 
@@ -289,12 +267,10 @@ msgstr "Weiblich"
 #: includes/form/metabox.php:59 includes/form/metabox.php:185
 #: includes/form/metabox.php:232 includes/form/metabox.php:344
 #: includes/settings/select-fields-to-show.php:80
-#, fuzzy
 msgid "Family name"
 msgstr "Familienname"
 
 #: includes/form/metabox.php:65 includes/settings/select-fields-to-show.php:91
-#, fuzzy
 msgid "Honorary title"
 msgstr "Ehrentitel"
 
@@ -307,34 +283,28 @@ msgid "Birthdate"
 msgstr "Geburtstag"
 
 #: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:83
-#, fuzzy
 msgid "Place of death"
 msgstr "Sterbeort"
 
 #: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:84
-#, fuzzy
 msgid "Date of death"
 msgstr "Todesdatum"
 
 #: includes/form/metabox.php:95
-#, fuzzy
 msgid "Funeral date"
 msgstr "Bestattungsdatum"
 
 #: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:85
 #: includes/templates/archive.php:120 includes/templates/single.php:133
-#, fuzzy
 msgid "Funeral information"
 msgstr "Informationen zur Beerdigung"
 
 #: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:86
-#, fuzzy
 msgid "Prayer Vigil information"
 msgstr "Informationen zur Gebetswache"
 
 #: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:87
 #: includes/templates/archive.php:129 includes/templates/single.php:147
-#, fuzzy
 msgid "Greeting information"
 msgstr "Grußinformationen"
 
@@ -344,18 +314,16 @@ msgstr "Anschrift"
 
 #: includes/form/metabox.php:124 includes/settings/select-fields-to-show.php:89
 #: includes/templates/archive.php:152 includes/templates/single.php:233
-#, fuzzy
 msgid "Mass card"
-msgstr "Massenkarte"
+msgstr "Beileidskarte"
 
 #: includes/form/metabox.php:129 includes/form/metabox.php:264
 #: includes/form/metabox.php:266
-#, fuzzy
 msgid "Choose mass card"
-msgstr "Wählen Sie Massenkarte"
+msgstr "Wählen Sie eine Beileidskarte"
 
 #: includes/form/metabox.php:139
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If enabled, a list of products and an order form will appear below a "
 "condolence page. Note, if you use a custom template file, you'll need to add "
@@ -363,13 +331,12 @@ msgid ""
 msgstr ""
 "Wenn diese Option aktiviert ist, wird unter einer Kondolenzseite eine "
 "Produktliste und ein Bestellformular angezeigt. Beachten Sie, dass Sie, wenn "
-"Sie eine benutzerdefinierte Vorlagendatei verwenden, diese Kurzwahlnummern "
+"Sie eine benutzerdefinierte Vorlagendatei verwenden, diese Shortcodes "
 "hinzufügen müssen: %s und %s."
 
 #: includes/form/metabox.php:146
-#, fuzzy
 msgid "Additional buttons"
-msgstr "Zusätzliche Tasten"
+msgstr "Zusätzliche Knöpfe"
 
 #: includes/form/metabox.php:159 includes/settings/select-fields-to-show.php:90
 msgid "Relations"
@@ -381,9 +348,8 @@ msgstr "Verhältnis 1"
 
 #: includes/form/metabox.php:172 includes/form/metabox.php:205
 #: includes/form/metabox.php:303
-#, fuzzy
 msgid "Select relation type"
-msgstr "Auswählen des Beziehungstyps"
+msgstr "Auswählen des Beziehungstypen"
 
 #: includes/form/metabox.php:173 includes/form/metabox.php:206
 #: includes/form/metabox.php:307
@@ -401,29 +367,24 @@ msgid "Other"
 msgstr "Andere"
 
 #: includes/form/metabox.php:178 includes/form/metabox.php:214
-#, fuzzy
 msgid "Add more relation"
 msgstr "Hinzufügen weiterer Beziehungen"
 
 #: includes/form/metabox.php:182 includes/form/metabox.php:226
 #: includes/form/metabox.php:330
-#, fuzzy
 msgid "Relation name"
 msgstr "Beziehungsname"
 
 #: includes/form/metabox.php:186 includes/form/metabox.php:234
 #: includes/form/metabox.php:347
-#, fuzzy
 msgid "Is alive?"
-msgstr "Ist lebendig?"
+msgstr "Is noch am leben?"
 
 #: includes/form/metabox.php:202
-#, fuzzy
 msgid "Relation "
-msgstr "Bezug"
+msgstr "Beziehung "
 
 #: includes/form/metabox.php:218 includes/form/metabox.php:320
-#, fuzzy
 msgid "Remove relation"
 msgstr "Entfernen der Beziehung"
 
@@ -432,34 +393,28 @@ msgid "Relation"
 msgstr "Beziehung"
 
 #: includes/form/metabox.php:357
-#, fuzzy
 msgid "Select a gender"
 msgstr "Wählen Sie ein Geschlecht"
 
 #: includes/form/metabox.php:376
-#, fuzzy
 msgid "Are you sure to delete this relation?"
-msgstr "Sind Sie sicher, dass Sie diese Beziehung löschen?"
+msgstr "Sind Sie sicher, dass Sie diese Beziehung löschen möchten?"
 
 #: includes/form/metabox.php:464
-#, fuzzy
 msgid "Password"
 msgstr "Passwort"
 
 #: includes/form/metabox.php:465
-#, fuzzy
 msgid "Create token"
 msgstr "Token erstellen"
 
 #: includes/form/metabox.php:484
-#, fuzzy
 msgid "Link to view comments"
 msgstr "Link zum Anzeigen von Kommentaren"
 
 #: includes/form/metabox.php:489
-#, fuzzy
 msgid "Send email to family when someone condones"
-msgstr "E-Mail an Familie senden, wenn jemand duldet"
+msgstr "E-Mail an Familie senden, wenn jemand Kondoliert"
 
 #: includes/form/metabox.php:490
 msgid "E-mail"
@@ -478,26 +433,22 @@ msgid "Email address"
 msgstr "E-Mail-Adresse"
 
 #: includes/form/metabox.php:533
-#, fuzzy
 msgid "Download CSV list"
 msgstr "CSV-Liste herunterladen"
 
 #: includes/form/metabox.php:534
-#, fuzzy
 msgid "Emails: "
-msgstr "E-mails:"
+msgstr "E-mails: "
 
 #: includes/form/metabox.php:535
-#, fuzzy
 msgid "Participants: "
-msgstr "Teilnehmer:"
+msgstr "Teilnehmer: "
 
 #: includes/form/metabox.php:622
 msgid "Choose a location"
 msgstr "Ort wählen"
 
 #: includes/form/metabox.php:648
-#, fuzzy
 msgid "No orders have been placed for this person."
 msgstr "Für diese Person wurden keine Bestellungen erteilt."
 
@@ -510,13 +461,11 @@ msgid "Summary"
 msgstr "Zusammenfassung"
 
 #: includes/form/metabox.php:656
-#, fuzzy
 msgid "Placed at"
-msgstr "Platziert an"
+msgstr "Platziert am"
 
 #: includes/form/metabox.php:815 includes/register/custom-post-type.php:37
 #: includes/register/custom-post-type.php:39
-#, fuzzy
 msgid "Condolences"
 msgstr "Beileid"
 
@@ -525,10 +474,9 @@ msgid "Product"
 msgstr "Produkt"
 
 #: includes/model/order-line.php:41
-#, fuzzy
 msgid "Please select the product you wish to order from the list."
 msgstr ""
-"Bitte wählen Sie das Produkt, das Sie bestellen möchten, aus der Liste aus."
+"Bitte wählen Sie das Produkt aus der Liste aus, das Sie bestellen möchten."
 
 #: includes/model/order-line.php:63
 msgid "Description"
@@ -548,21 +496,18 @@ msgid "Ribbon text"
 msgstr "Ribbon Text"
 
 #: includes/model/order.php:78 includes/register/order-type.php:240
-#, fuzzy
 msgid "Linked condolence"
 msgstr "Verbundenes Beileid"
 
 #: includes/model/order.php:79
-#, fuzzy
 msgid "Select the person linked to this order in the select box."
 msgstr ""
 "Wählen Sie im Auswahlfeld die Person aus, die mit dieser Bestellung "
 "verknüpft ist."
 
 #: includes/model/order.php:80
-#, fuzzy
 msgid "Please pick a condolence"
-msgstr "Bitte wählen Sie ein Beileid"
+msgstr "Bitte wählen Sie eine Kondolenz"
 
 #: includes/model/order.php:98
 msgid "Email Address"
@@ -581,7 +526,6 @@ msgid "Last name"
 msgstr "Nachname"
 
 #: includes/model/order.php:110 includes/register/location-type.php:101
-#, fuzzy
 msgid "Address line"
 msgstr "Adresszeile"
 
@@ -595,17 +539,14 @@ msgid "Company name"
 msgstr "Firmenname"
 
 #: includes/model/order.php:120
-#, fuzzy
 msgid "Enter the company name if applicable."
 msgstr "Geben Sie ggf. den Firmennamen ein."
 
 #: includes/model/order.php:123
-#, fuzzy
 msgid "Company Vat"
-msgstr "Unternehmen Vat"
+msgstr "Unternehmen MwSt.-Nummer"
 
 #: includes/model/order.php:124
-#, fuzzy
 msgid "Enter the company vat number if applicable."
 msgstr "Geben Sie ggf. die Firmen-MwSt.-Nummer ein."
 
@@ -614,17 +555,14 @@ msgid "Remarks"
 msgstr "Bemerkungen"
 
 #: includes/model/order.php:450
-#, fuzzy
 msgid "No products selected."
 msgstr "Es wurden keine Produkte ausgewählt."
 
 #: includes/model/order.php:454
-#, fuzzy
 msgid "No product selected."
 msgstr "Kein Produkt ausgewählt."
 
 #: includes/model/order.php:459
-#, fuzzy
 msgid "Invalid product quantity."
 msgstr "Ungültige Produktmenge."
 
@@ -646,16 +584,14 @@ msgid "Currency"
 msgstr "Währung"
 
 #: includes/register/custom-post-type.php:35
-#, fuzzy
 msgctxt "Post Type General Name"
 msgid "Condolences"
-msgstr "Beileid"
+msgstr "Kondolenz"
 
 #: includes/register/custom-post-type.php:36
-#, fuzzy
 msgctxt "Post Type Singular Name"
 msgid "Condolence"
-msgstr "Anteilnahme"
+msgstr "Kondolenz"
 
 #: includes/register/custom-post-type.php:38
 #, fuzzy
@@ -663,14 +599,12 @@ msgid "Parent Condolence"
 msgstr "Eltern-Kondolenz"
 
 #: includes/register/custom-post-type.php:40
-#, fuzzy
 msgid "View Condolence"
 msgstr "Kondolenz ansehen"
 
 #: includes/register/custom-post-type.php:41
-#, fuzzy
 msgid "Add New Condolence"
-msgstr "Neues Kondolenz hinzufügen"
+msgstr "Neue Kondolenz hinzufügen"
 
 #: includes/register/custom-post-type.php:42
 #: includes/register/location-type.php:26 includes/register/order-type.php:184
@@ -679,17 +613,14 @@ msgid "Add New"
 msgstr "Neu hinzufügen"
 
 #: includes/register/custom-post-type.php:43
-#, fuzzy
 msgid "Edit Condolence"
-msgstr "Edit Condolence"
+msgstr "Bearbeite Kondolenz"
 
 #: includes/register/custom-post-type.php:44
-#, fuzzy
 msgid "Update Condolence"
-msgstr "Update Condolence"
+msgstr "Update Kondolenz"
 
 #: includes/register/custom-post-type.php:45
-#, fuzzy
 msgid "Search Condolence"
 msgstr "Suche Kondolenz"
 
@@ -706,16 +637,14 @@ msgid "Not found in Trash"
 msgstr "Nichts im Papierkorb gefunden"
 
 #: includes/register/custom-post-type.php:52
-#, fuzzy
 msgctxt "Post Type Label Name"
 msgid "Condolences"
-msgstr "Beileid"
+msgstr "Kondolenz"
 
 #: includes/register/custom-post-type.php:53
-#, fuzzy
 msgctxt "Post Type Description"
 msgid "Condolences"
-msgstr "Beileid"
+msgstr "Kondolenz"
 
 #: includes/register/location-type.php:19
 msgctxt "Post Type General Name"
@@ -775,9 +704,8 @@ msgid "Street name"
 msgstr "Straße"
 
 #: includes/register/order-type.php:133 includes/templates/single.php:306
-#, fuzzy
 msgid "Condolence"
-msgstr "Anteilnahme"
+msgstr "Kondolenz"
 
 #: includes/register/order-type.php:134
 msgid "Order summary"
@@ -894,12 +822,10 @@ msgstr "Produkte"
 #: includes/settings/select-fields-to-show.php:41
 #: includes/settings/select-fields-to-show.php:42
 #: includes/settings/select-fields-to-show.php:104
-#, fuzzy
 msgid "Condolence manager"
 msgstr "Kondolenzmanager"
 
 #: includes/settings/select-fields-to-show.php:52
-#, fuzzy
 msgid "Condolence manager options"
 msgstr "Kondolenz-Manager-Optionen"
 
@@ -916,16 +842,14 @@ msgid "Confirmation"
 msgstr "Bestätigung"
 
 #: includes/settings/select-fields-to-show.php:110
-#, fuzzy
 msgid "Rename CPT"
-msgstr "CPT umbenennen"
+msgstr "Beitragstyp umbenennen"
 
 #: includes/settings/select-fields-to-show.php:111
 msgid "Update"
 msgstr "Aktualisieren"
 
 #: includes/settings/select-fields-to-show.php:118
-#, fuzzy
 msgid ""
 "Change the layout of the condolence post by reordering the items listed "
 "below."
@@ -934,22 +858,19 @@ msgstr ""
 "aufgeführten Artikel neu ordnen."
 
 #: includes/settings/select-fields-to-show.php:120
-#, fuzzy
 msgid ""
 "Drag and drop the items to your desired order or delete and add items to the "
 "list. If the order is as you wish submit the changes."
 msgstr ""
-"Ziehen Sie die Elemente in die gewünschte Reihenfolge, und löschen Sie sie "
+"Ziehen Sie die Elemente in die gewünschte Reihenfolge, oder löschen Sie sie "
 "und fügen Sie Elemente der Liste hinzu. Wenn die Bestellung so ist, wie Sie "
-"möchten, senden Sie die Änderungen."
+"möchten, speichern Sie die Änderungen."
 
 #: includes/settings/select-fields-to-show.php:150
-#, fuzzy
 msgid "Submit changes"
-msgstr "Änderungen übermitteln"
+msgstr "Änderungen speichern"
 
 #: includes/settings/select-fields-to-show.php:166
-#, fuzzy
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
@@ -958,7 +879,6 @@ msgstr ""
 "oder eine Seite, auf die umgeleitet werden kann."
 
 #: includes/settings/select-fields-to-show.php:171
-#, fuzzy
 msgid "Confirmation type"
 msgstr "Bestätigungstyp"
 
@@ -971,22 +891,20 @@ msgid "Text"
 msgstr "Text"
 
 #: includes/settings/select-fields-to-show.php:180
-#, fuzzy
 msgid "Choose what will happen after a user writes a condolence."
 msgstr ""
-"Wählen Sie aus, was geschieht, nachdem ein Benutzer ein Beileid schreibt."
+"Wählen Sie aus, was geschieht, nachdem ein Benutzer ein Beileid geschrieben "
+"hat."
 
 #: includes/settings/select-fields-to-show.php:186
 msgid "Confirmation page"
 msgstr "Bestätigungsseite"
 
 #: includes/settings/select-fields-to-show.php:189
-#, fuzzy
 msgid "https://www.example.com/thank-you"
-msgstr "https://www.example.com/thank-you"
+msgstr "https://www.example.com/danke"
 
 #: includes/settings/select-fields-to-show.php:191
-#, fuzzy
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
@@ -1000,54 +918,46 @@ msgid "Confirmation text"
 msgstr "Bestätigungstext"
 
 #: includes/settings/select-fields-to-show.php:200
-#, fuzzy
 msgid "Thank you note"
-msgstr "Vielen Dank"
+msgstr "Danke notiz"
 
 #: includes/settings/select-fields-to-show.php:204
-#, fuzzy
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
 msgstr ""
 "Wenn Sie \"Text\" als Bestätigungstyp ausgewählt haben, wird der Text im "
-"Feld oben einem Benutzer angezeigt, nachdem Sie ein Kondolenzschreiben "
-"geschrieben haben."
+"Feld über einem Benutzer angezeigt, nachdem Sie ein beileid geschrieben "
+"haben."
 
 #: includes/settings/select-fields-to-show.php:227
-#, fuzzy
 msgid "You can change the <b>custom post type slug</b>."
-msgstr "Sie können den <b>benutzerdefinierten Posttyp slug</b>ändern."
+msgstr "Sie können den <b>Beitragstyp slug</b>ändern."
 
 #: includes/settings/select-fields-to-show.php:229
-#, fuzzy
 msgid "Slug name"
 msgstr "Slug-Name"
 
 #: includes/settings/select-fields-to-show.php:233
-#, fuzzy
 msgid "Change post type"
-msgstr "Posttyp ändern"
+msgstr "Beitragstyp ändern"
 
 #: includes/settings/select-fields-to-show.php:259
-#, fuzzy
 msgid ""
 "Before starting to migrate, be sure that <b>custom post type slug</b> is "
 "correct! Because the changes made in this step can't be reversed."
 msgstr ""
 "Bevor Sie mit der Migration beginnen, stellen Sie sicher, dass <b>der "
-"benutzerdefinierte Posttyp slug</b> korrekt ist! Da die in diesem Schritt "
-"vorgenommenen Änderungen nicht rückgängig gemacht werden können."
+"Beitragstyp slug</b> korrekt ist! Da die in diesem Schritt vorgenommenen "
+"Änderungen nicht rückgängig gemacht werden können."
 
 #: includes/settings/select-fields-to-show.php:288
-#, fuzzy
 msgid "Add your license key"
-msgstr "Hinzufügen ihres Lizenzschlüssels"
+msgstr "Hinzufügen ihres Lizenzschlüssel"
 
 #: includes/settings/select-fields-to-show.php:292
-#, fuzzy
 msgid "Add license key"
-msgstr "Hinzufügen eines Lizenzschlüssels"
+msgstr "Hinzufügen eines Lizenzschlüssel"
 
 #: includes/templates/archive.php:15 includes/templates/single.php:28
 msgid "January"
@@ -1098,34 +1008,28 @@ msgid "December"
 msgstr "Dezember"
 
 #: includes/templates/archive.php:52 includes/templates/single.php:158
-#, fuzzy
 msgid "Beloved husband of"
 msgstr "Geliebter Ehemann von"
 
 #: includes/templates/archive.php:58 includes/templates/single.php:164
-#, fuzzy
 msgid "Beloved wife of"
 msgstr "Geliebte Frau von"
 
 #: includes/templates/archive.php:64 includes/templates/single.php:170
-#, fuzzy
 msgid "Beloved husband of the late"
 msgstr "Geliebter Ehemann des Verstorbenen"
 
 #: includes/templates/archive.php:70 includes/templates/single.php:176
-#, fuzzy
 msgid "Beloved wife of the late"
 msgstr "Geliebte Frau der verstorbenen"
 
 #: includes/templates/archive.php:124 includes/templates/single.php:140
-#, fuzzy
 msgid "Prayer vigil information"
 msgstr "Informationen zur Gebetswache"
 
 #: includes/templates/archive.php:132 includes/templates/single.php:222
-#, fuzzy
 msgid "Condole"
-msgstr "Condole"
+msgstr "Beileid"
 
 #: includes/templates/archive.php:145 includes/templates/single.php:240
 msgid "Coffee Table"
@@ -1136,7 +1040,6 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: includes/templates/single.php:84 includes/templates/single.php:94
-#, fuzzy
 msgid "Born"
 msgstr "Geboren"
 
@@ -1149,22 +1052,18 @@ msgid "in"
 msgstr "in"
 
 #: includes/templates/single.php:109 includes/templates/single.php:119
-#, fuzzy
 msgid "Passed away"
 msgstr "Starb"
 
 #: includes/templates/single.php:255
-#, fuzzy
 msgid "Condolences for the family"
 msgstr "Beileid für die Familie"
 
 #: includes/templates/single.php:257
-#, fuzzy
 msgid "Reply to this condolence"
 msgstr "Antwort auf dieses Beileid"
 
 #: includes/templates/single.php:257
-#, fuzzy
 msgid "This message will be send by mail to the author of the condolence."
 msgstr "Diese Nachricht wird per Post an den Verfasser des Beileids gesendet."
 
@@ -1173,42 +1072,35 @@ msgid "Reply"
 msgstr "Antworten"
 
 #: includes/templates/single.php:283
-#, fuzzy
 msgid "Comment Error"
 msgstr "Kommentarfehler"
 
 #: includes/templates/single.php:291
-#, fuzzy
 msgid "Naam"
-msgstr "Naam"
+msgstr "Name"
 
 #: includes/templates/single.php:304
-#, fuzzy
 msgid "Leave your condolences for the family"
 msgstr "Überlassen Sie Der Familie Ihr Beileid"
 
 #: includes/templates/single.php:305
-#, fuzzy
 msgid "This message is only visible for the family"
 msgstr "Diese Nachricht ist nur für die Familie sichtbar"
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
 msgid "Condolence Manager"
 msgstr "Kondolenz-Manager"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
-#, fuzzy
 msgid "http://www.appsaloon.be"
 msgstr "http://www.appsaloon.be"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "This plugin allows visitors to condole the family of the deceased."
 msgstr ""
 "Dieses Plugin ermöglicht es den Besuchern, die Familie des Verstorbenen zu "
-"kondok."
+"Kondolieren."
 
 #. Author of the plugin/theme
 msgid "AppSaloon"

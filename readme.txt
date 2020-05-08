@@ -54,3 +54,4 @@ To overwrite the frontend template just place a copy of single.php and archive.p
 
 == Credits ==
 * Thanks to Jean François Dejonghe for the French translation.
+* Thanks to Mark Creeten for the German translation.
