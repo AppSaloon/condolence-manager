@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
 "POT-Creation-Date: 2020-05-08 15:03+0200\n"
-"PO-Revision-Date: 2020-05-08 15:54+0200\n"
+"PO-Revision-Date: 2020-05-11 15:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -202,7 +202,7 @@ msgstr "Totaal"
 #: includes/controller/products.php:213 includes/controller/products.php:310
 #: includes/register/order-type.php:132 includes/register/order-type.php:226
 msgid "Order"
-msgstr "Volgorde"
+msgstr "Bestel"
 
 #: includes/controller/products.php:264 includes/form/metabox.php:133
 #: includes/templates/archive.php:171 includes/templates/single.php:255
