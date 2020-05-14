@@ -54,9 +54,9 @@ class Coffee_Table_Controller
 
         ob_start();
         if(  $result  ){
-            include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/success-submission.php' );
-        }else{
-            include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/failure-submission.php' );
+	        include ( CM_BASE_DIR . '/templates/coffee_table_submit_success.php' );
+        } else {
+            include ( CM_BASE_DIR . '/templates/coffee_table_submit_failed.php' );
         }
 
         $response = ob_get_clean();
@@ -273,7 +273,7 @@ class Coffee_Table_Controller
          */
         extract( $detail_to_email );
 
-        include ( CM_DIR . '/includes/coffee-table/coffee-table-form/templates/email.php' );
+        include ( CM_BASE_DIR . '/templates/coffee_table_email.php' );
         $body = ob_get_clean();
         $headers = array('Content-Type: text/html; charset=UTF-8');
 

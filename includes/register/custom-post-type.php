@@ -122,7 +122,7 @@ class Custom_Post_Type{
 
             $posts = query_posts($args);
             ob_start();
-            include CM_BASE_DIR . '/includes/templates/archive.php';
+            include CM_BASE_DIR . '/templates/archive.php';
             $content = ob_get_clean();
             wp_reset_query();
             $result = preg_replace('!\s+!smi', ' ', $content);

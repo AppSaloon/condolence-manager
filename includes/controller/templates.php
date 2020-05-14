@@ -46,7 +46,7 @@ class Templates{
         // Get the template slug
         $template_slug = rtrim( $template, '.php' );
         $template = $template_slug . '.php';
-        $templates = CM_BASE_DIR . '/includes/templates/' . $template;
+        $templates = CM_BASE_DIR . '/templates/' . $template;
 
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
         if ( $theme_file = locate_template( array( 'condolatie-manager-plugin/' . $template , $templates ), false )) {
@@ -54,7 +54,7 @@ class Templates{
             add_action('wp_enqueue_scripts', array($this, 'hook_css'));
         }
         else {
-            $file = CM_BASE_DIR . '/includes/templates/' . $template;
+            $file = CM_BASE_DIR . '/templates/' . $template;
             add_action('wp_enqueue_scripts', array($this, 'hook_css'));
         }
 
