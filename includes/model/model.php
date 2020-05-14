@@ -4,7 +4,7 @@ namespace cm\includes\model;
 
 use RuntimeException;
 
-class Model {
+abstract class Model {
 	/**
 	 * @param      $property
 	 * @param null $prefix
