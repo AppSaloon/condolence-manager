@@ -384,8 +384,8 @@ class Inline_Comment_Error {
 	 * @since 1.0
 	 */
 	public function convert_values_from_session() {
-		if ( comments_open() ) { // any content that allows comments
-			global $post;
+		global $post;
+		if ( $post && comments_open() ) { // any content that allows comments
 			$current_post_id = $post->ID; // get the post id of the current page or post
 			if ( isset( $_SESSION[ $this->session_form_data ]['comment_post_ID'] ) ) {
 				$stored_post_id = $_SESSION[ $this->session_form_data ]['comment_post_ID']; // get the post id stored in session
