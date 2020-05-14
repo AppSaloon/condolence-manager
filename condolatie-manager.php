@@ -39,7 +39,6 @@ use cm\includes\register\Order_Type;
 use cm\includes\register\Product_Type;
 use cm\includes\register\Translation;
 use cm\includes\settings\Admin_Options_Page;
-use cm\update\Auto_Update;
 use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\coffee_table\coffee_table_form\Form_Filter_Controller;
 
@@ -90,7 +89,6 @@ Class Condolatie_Manager{
         new Templates();
         new Comment_Email();
 	    new Coffee_Table_Controller();
-        new Auto_Update();
         new Additional_Buttons_Controller();
     }
 
