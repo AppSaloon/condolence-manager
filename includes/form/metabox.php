@@ -549,6 +549,8 @@ class Metabox {
 	 */
 	public function coffee_table_metabox( $post ) {
 		$controller       = new Coffee_Table_Controller();
+		$all_participants = $controller->all_participants_by_id( $post->ID );
+		$has_participants = count($all_participants) > 0;
 		$sum_participants = $controller->get_sum_of_otherparticipants( $post->ID );
 		$sum_emails       = $controller->get_sum_of_posts( $post->ID );
 		?>
@@ -568,11 +570,19 @@ class Metabox {
                     <?php if ( $this->get_field_value( 'coffee_table', $post->ID ) ) {
 											echo " value= '" . $this->get_field_value( 'coffee_table_email', $post->ID ) . "'";
 										} ?> ></li>
-            <li><input type="submit" name="btn_coffee_table_csv"
-                       value="<?php _e( 'Download CSV list', 'cm_translate' ); ?>"></li>
-                <?php echo is_numeric( $sum_emails ) ? '<li><p>' . __( 'Emails: ', 'cm_translate' ) . $sum_emails . '</p></li>' : false;
-								echo '<li><p>' . __( 'Participants: ', 'cm_translate' ) . $sum_participants . '</p></li>';
-								?>
+                <?php
+                echo is_numeric( $sum_emails ) ? '<li><p>' . __( 'Emails: ', 'cm_translate' ) . $sum_emails . '</p></li>' : false;
+                echo '<li><p>' . __( 'Participants: ', 'cm_translate' ) . $sum_participants . '</p></li>';
+				if($has_participants) {
+				    ?>
+                    <li>
+                        <input type="submit" name="btn_coffee_table_csv"
+                               value="<?php _e( 'Download CSV list', 'cm_translate' ); ?>"
+                        >
+                    </li>
+                    <?php
+                }
+                ?>
             </span>
       </ul>
       </td>
