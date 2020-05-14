@@ -74,6 +74,25 @@ class Order extends Custom_Post {
                     'type'  => 'text',
                     'label' => __( 'Ribbon text', 'cm_translate' ),
                 ) ),
+				'deceased_id'         => new Select_Field( 'deceased_id', true, array(
+						'label'       => __( 'Linked condolence', 'cm_translate' ),
+						'description' => __( 'Select the person linked to this order in the select box.', 'cm_translate' ),
+						'placeholder' => __( 'Please pick a condolence', 'cm_translate' ),
+						'choices'     => static function () {
+							$people = get_posts( array(
+									'post_type'      => Custom_Post_Type::post_type(),
+									'posts_per_page' => - 1,
+									'orderby'        => 'post_name',
+									'order'          => 'asc',
+							) );
+
+							return array_reduce( $people, static function ( $carry, WP_Post $person ) {
+								$carry[$person->ID] = get_the_title( $person->ID );
+
+								return $carry;
+							}, array() );
+						}
+				) ),
 				'contact_email'       => new Field( 'contact_email', true, array(
 						'type'  => 'email',
 						'label' => __( 'Email Address', 'cm_translate' ),
