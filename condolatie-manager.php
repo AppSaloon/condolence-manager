@@ -114,8 +114,8 @@ Class Condolatie_Manager{
     }
 
     public function assets(){
-	    wp_register_style('cm/forms', CM_URL . 'css/forms.css', null, CM_VERSION );
-	    wp_register_style('cm/products', CM_URL . 'css/products.css', null, CM_VERSION );
+	    wp_register_style('cm/forms', CM_URL . 'assets/css/forms.css', null, CM_VERSION );
+	    wp_register_style('cm/products', CM_URL . 'assets/css/products.css', null, CM_VERSION );
     }
     private function includes(){
 	    require_once CM_DIR . '/includes/controller/products.php';

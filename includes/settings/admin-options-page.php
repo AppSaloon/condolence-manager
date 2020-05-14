@@ -65,7 +65,7 @@ class Admin_Options_Page {
 	}
 
 	public function enqueue_script_on_admin_page() {
-		wp_register_style( 'admin-options-page', CM_URL . 'css/admin-options-page.css', false, CM_VERSION );
+		wp_register_style( 'admin-options-page', CM_URL . 'assets/css/admin-options-page.css', false, CM_VERSION );
 		wp_enqueue_style( 'admin-options-page' );
 	}
 

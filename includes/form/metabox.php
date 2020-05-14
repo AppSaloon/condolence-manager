@@ -894,16 +894,19 @@ class Metabox {
 		global $post;
 		if ( is_object( $post ) ) {
 			if ( $post->post_type == Custom_Post_Type::post_type() ) {
-				wp_register_style( 'metabox_css', CM_URL . 'css/metabox.css', false, CM_VERSION );
+				wp_register_style( 'metabox_css', CM_URL . 'assets/css/metabox.css', false, CM_VERSION );
 				wp_enqueue_style( 'metabox_css' );
 
-				wp_register_script( 'metabox_js', CM_URL . 'js/metabox.js', array(), CM_VERSION, true );
+				wp_register_script( 'metabox_js', CM_URL . 'assets/js/metabox.js', array(), CM_VERSION, true );
 				wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
 				wp_enqueue_script( 'metabox_js' );
 				wp_enqueue_media();
 
-				wp_enqueue_script( 'jquery-datepicker', 'http://jquery-ui.googlecode.com/svn/trunk/ui/jquery.ui.datepicker.js', array( 'jquery', 'jquery-ui-core' ) );
-				wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
+				// TODO: actually use datepicker somewhere
+				// Load the datepicker script (pre-registered in WordPress).
+				wp_enqueue_script( 'jquery-ui-datepicker' );
+				wp_register_style( 'jquery-ui', 'https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css' );
+				wp_enqueue_style( 'jquery-ui' );
 			}
 		}
 	}

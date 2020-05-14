@@ -1,9 +1,7 @@
 jQuery(document).ready(function ($) {
     $('#generate').on('click', function(e){
         e.preventDefault();
-
         var password = makeid();
-
         $('#password').val(password);
     });
 });
