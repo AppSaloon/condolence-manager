@@ -27,20 +27,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace cm;
+namespace appsaloon\cm;
 
 
-use cm\includes\controller\Additional_Buttons_Controller;
-use cm\includes\controller\Comment_Email;
-use cm\includes\controller\Templates;
-use cm\includes\register\Custom_Post_Type;
-use cm\includes\register\Location_Type;
-use cm\includes\register\Order_Type;
-use cm\includes\register\Product_Type;
-use cm\includes\register\Translation;
-use cm\includes\settings\Admin_Options_Page;
-use cm\includes\coffee_table\Coffee_Table_Controller;
-use cm\includes\coffee_table\coffee_table_form\Form_Filter_Controller;
+use appsaloon\cm\controller\Additional_Buttons_Controller;
+use appsaloon\cm\controller\Comment_Email;
+use appsaloon\cm\controller\Templates;
+use appsaloon\cm\register\Custom_Post_Type;
+use appsaloon\cm\register\Location_Type;
+use appsaloon\cm\register\Order_Type;
+use appsaloon\cm\register\Product_Type;
+use appsaloon\cm\register\Translation;
+use appsaloon\cm\settings\Admin_Options_Page;
+use appsaloon\cm\coffee_table\Coffee_Table_Controller;
+use appsaloon\cm\coffee_table\coffee_table_form\Form_Filter_Controller;
 
 
 define( 'CM_BASE_FILE', __FILE__ );
@@ -50,33 +50,18 @@ define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
 define( 'CM_VERSION', '2.0.0' );
 
+/**
+ * Register autoloader to load files/classes dynamically
+ */
+include_once CM_BASE_DIR . '/vendor/autoload.php';
 
 Class Condolatie_Manager{
 
     public function __construct()
     {
-        $this->autoloader();
         $this->run();
         add_action('wp_enqueue_scripts', array($this, 'assets'));
         $this->includes();
-    }
-
-    public function autoloader(){
-        spl_autoload_register( array($this, 'cm_autoload') );
-    }
-
-    public function cm_autoload( $class ) {
-        if( strpos( $class, 'cm\\' ) === 0 ) {
-            $path = substr( $class, strlen( 'cm\\' ) );
-            $path = strtolower( $path );
-            $path = str_replace( '_', '-', $path );
-            $path = str_replace( '\\', DIRECTORY_SEPARATOR, $path ) . '.php';
-            $path = __DIR__ . DIRECTORY_SEPARATOR . $path;
-
-            if ( file_exists( $path ) ) {
-                include $path;
-            }
-        }
     }
 
     /**
@@ -118,7 +103,7 @@ Class Condolatie_Manager{
 	    wp_register_style('cm/products', CM_URL . 'assets/css/products.css', null, CM_VERSION );
     }
     private function includes(){
-	    require_once CM_DIR . '/includes/controller/products.php';
+	    require_once CM_BASE_DIR . '/src/controller/products.php';
     }
 }
 

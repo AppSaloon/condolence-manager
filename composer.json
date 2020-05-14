@@ -1,0 +1,25 @@
+{
+  "name": "appsaloon/condolatie-manager-plugin",
+  "autoload": {
+    "psr-4": {
+      "appsaloon\\cm\\" : "src/"
+    }
+  },
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "v1.0.6"
+  },
+  "archive": {
+    "exclude": [
+      ".gitignore",
+      "*.yml",
+      "tests/",
+      "composer.json",
+      "composer.lock",
+      "phpunit.xml.dist",
+      "README.md",
+      "regenerate_docs.sh",
+      "!vendor/*"
+    ]
+  }
+}
