@@ -18,17 +18,16 @@ class Templates{
         global $post;
         $post_id = get_the_ID();
 
-        if(has_shortcode( $post->post_content, 'condolence_overview' )){
-            wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css', null, CM_VERSION);
+        if( $post_id ) {
+	        if(has_shortcode( $post->post_content, 'condolence_overview' )){
+		        wp_enqueue_style('condolence-archive', CM_URL . 'css/condolence-archive.css', null, CM_VERSION);
+	        }
+
+	        // For all other CPT
+	        if ( get_post_type( $post_id ) != Custom_Post_Type::post_type() ) {
+		        return $template;
+	        }
         }
-
-
-        // For all other CPT
-        if ( get_post_type( $post_id ) != Custom_Post_Type::post_type() ) {
-            return $template;
-        }
-
-
 
         // Else use custom template
         if ( is_single() ) {
@@ -40,7 +39,7 @@ class Templates{
         }
 
 
-
+		return $template;
     }
 
     public function cm_get_template_hierarchy( $template ) {
