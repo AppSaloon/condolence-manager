@@ -4,7 +4,7 @@ namespace cm\includes\register;
 
 use cm\includes\comments\Inline_Comment_Error;
 use cm\includes\form\Metabox;
-use cm\includes\settings\Select_Fields_To_Show;
+use cm\includes\settings\Admin_Options_Page;
 
 class Custom_Post_Type{
     public $post_type;
@@ -25,8 +25,7 @@ class Custom_Post_Type{
     }
 
     public static function post_type(){
-        $value = get_option( 'condolence_cpt_base' );
-        return $value;
+	    return get_option( 'condolence_cpt_base' );
     }
 
     public function register_post_type(){
@@ -56,7 +55,7 @@ class Custom_Post_Type{
             'hierarchical'        => false,
             'public'              => true,
             'show_ui'             => true,
-            'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
+            'show_in_menu'        => Admin_Options_Page::MENU_SLUG,
             'show_in_nav_menus'   => true,
             'show_in_admin_bar'   => true,
             'menu_position'       => 1,

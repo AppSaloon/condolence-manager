@@ -40,7 +40,6 @@ ob_start();
                                 __("December", "cm_translate"),
                             );
 
-//                            $required_fields = cm\includes\settings\Select_Fields_To_Show::get_saved_fields();
                             $required_fields = [
                                 "full_name",
                                 "line_break",
@@ -59,9 +58,6 @@ ob_start();
                                 "line_break",
                                 "live_stream_description",
                             ];
-//                            if (!$required_fields) {
-//                                $required_fields = cm\includes\settings\Select_Fields_To_Show::get_default_fields();
-//                            }
                             $fields = get_post_meta(get_the_ID());
 
                             foreach ($required_fields as $required) {

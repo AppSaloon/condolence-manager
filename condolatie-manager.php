@@ -38,9 +38,7 @@ use cm\includes\register\Location_Type;
 use cm\includes\register\Order_Type;
 use cm\includes\register\Product_Type;
 use cm\includes\register\Translation;
-use cm\includes\script\Migrate;
-use cm\includes\script\Post_Type;
-use cm\includes\settings\Select_Fields_To_Show;
+use cm\includes\settings\Admin_Options_Page;
 use cm\update\Auto_Update;
 use cm\includes\coffee_table\Coffee_Table_Controller;
 use cm\includes\coffee_table\coffee_table_form\Form_Filter_Controller;
@@ -88,7 +86,6 @@ Class Condolatie_Manager{
     public function run(){
         $this->register();
         $this->settings();
-        $this->scripts();
 
         new Templates();
         new Comment_Email();
@@ -115,17 +112,7 @@ Class Condolatie_Manager{
      * Settings page
      */
     public function settings(){
-        new Select_Fields_To_Show();
-    }
-
-    /**
-     * scripts:
-     * - Migrate from old version to new one
-     * - Translate custom post type slug and move the posts
-     */
-    public function scripts(){
-        new Migrate();
-        new Post_Type();
+        new Admin_Options_Page();
     }
 
     public function assets(){

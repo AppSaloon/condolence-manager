@@ -3,7 +3,7 @@
 namespace cm\includes\controller;
 
 use cm\includes\register\Custom_Post_Type;
-use cm\includes\settings\Select_Fields_To_Show;
+use cm\includes\settings\Admin_Options_Page;
 
 class Templates{
 
@@ -74,7 +74,7 @@ class Templates{
                 array(
                     'blank_fields' => __( 'You might have left one of the fields blank, or be posting too quickly', 'cm_translate'),
                     'thanks' => __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'),
-                    'confirmation' => Select_Fields_To_Show::get_confirmation_settings(),
+                    'confirmation' => Admin_Options_Page::get_confirmation_settings(),
                     'wait' => __( 'Please wait a while before posting your next comment.', 'cm_translate'),
                     'not_send' => __( 'Your message is not send. You might have left one of the fields blank.', 'cm_translate')
                 )

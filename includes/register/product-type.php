@@ -4,7 +4,7 @@ namespace cm\includes\register;
 
 use cm\includes\model\Price;
 use cm\includes\model\Product;
-use cm\includes\settings\Select_Fields_To_Show;
+use cm\includes\settings\Admin_Options_Page;
 
 class Product_Type {
 	const POST_TYPE = 'cm_product';
@@ -96,7 +96,7 @@ class Product_Type {
 				'hierarchical'        => false,
 				'public'              => true,
 				'show_ui'             => true,
-				'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
+				'show_in_menu'        => Admin_Options_Page::MENU_SLUG,
 				'show_in_nav_menus'   => true,
 				'show_in_admin_bar'   => true,
 				'menu_position'       => 2,

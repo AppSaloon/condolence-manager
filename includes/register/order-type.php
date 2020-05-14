@@ -4,7 +4,7 @@ namespace cm\includes\register;
 
 use cm\includes\form\Metabox;
 use cm\includes\model\Order;
-use cm\includes\settings\Select_Fields_To_Show;
+use cm\includes\settings\Admin_Options_Page;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -198,7 +198,7 @@ class Order_Type {
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
-			'show_in_menu'        => Select_Fields_To_Show::MENU_SLUG,
+			'show_in_menu'        => Admin_Options_Page::MENU_SLUG,
 			'show_in_nav_menus'   => true,
 			'show_in_admin_bar'   => true,
 			'menu_position'       => 10,
