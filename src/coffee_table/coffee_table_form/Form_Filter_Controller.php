@@ -14,7 +14,6 @@ class Form_Filter_Controller
     public function add_form()
     {
        if ( $this->check_page() ){
-           global $post;
            include ( CM_BASE_DIR . '/templates/coffee_table_form_template.php' );
        }
     }
