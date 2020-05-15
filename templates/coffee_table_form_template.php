@@ -92,14 +92,13 @@
     </form>
 </div>
 
-<script language="JavaScript">
+<script type="text/javascript">
     function InvalidMsg(textbox) {
-
-        if (textbox.value == '') {
-            textbox.setCustomValidity('<?php _e('Please fill out this field', 'cm_translate'); ?>');
+        if (textbox.value === '') {
+            textbox.setCustomValidity('<?php echo esc_attr__('Please fill out this field', 'cm_translate'); ?>');
         }
         else if(textbox.validity.typeMismatch){
-            textbox.setCustomValidity('<?php _e('This email address is incorrect', 'cm_translate'); ?>');
+            textbox.setCustomValidity('<?php echo esc_attr__('This email address is incorrect', 'cm_translate'); ?>');
         }
         else {
             textbox.setCustomValidity('');
