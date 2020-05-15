@@ -72,11 +72,11 @@ class Templates{
                 'condolence-single',
                 'cm',
                 array(
-                    'blank_fields' => __( 'You might have left one of the fields blank, or be posting too quickly', 'cm_translate'),
-                    'thanks' => __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'),
+                    'blank_fields' => esc_html__( 'You might have left one of the fields blank, or be posting too quickly', 'cm_translate'),
+                    'thanks' => esc_html__( 'Thanks for your comment. We appreciate your response.', 'cm_translate'),
                     'confirmation' => Admin_Options_Page::get_confirmation_settings(),
-                    'wait' => __( 'Please wait a while before posting your next comment.', 'cm_translate'),
-                    'not_send' => __( 'Your message is not send. You might have left one of the fields blank.', 'cm_translate')
+                    'wait' => esc_html__( 'Please wait a while before posting your next comment.', 'cm_translate'),
+                    'not_send' => esc_html__( 'Your message is not send. You might have left one of the fields blank.', 'cm_translate')
                 )
             );
         }
