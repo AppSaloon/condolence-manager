@@ -103,7 +103,7 @@ Class Condolatie_Manager{
 	    wp_register_style('cm/products', CM_URL . 'assets/css/products.css', null, CM_VERSION );
     }
     private function includes(){
-	    require_once CM_BASE_DIR . '/src/controller/products.php';
+	    require_once CM_BASE_DIR . '/src/controller/Products.php';
     }
 }
 
