@@ -30,6 +30,7 @@
 namespace appsaloon\cm;
 
 
+use appsaloon\cm\controller\Comment_Sanitizer;
 use appsaloon\cm\controller\Comment_Email;
 use appsaloon\cm\controller\Templates;
 use appsaloon\cm\register\Custom_Post_Type;
@@ -87,6 +88,7 @@ Class Condolatie_Manager{
 	        new Order_Type();
             new Translation();
             new Form_Filter_Controller();
+            new Comment_Sanitizer();
     }
 
     /**
