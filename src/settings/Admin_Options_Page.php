@@ -32,7 +32,7 @@ class Admin_Options_Page {
 	            'type' => get_option('cm_option_confirmation_type', 'text'),
 	            'text' => get_option(
 	                    'cm_option_confirmation_text',
-	                    __( 'Thanks for your comment. We appreciate your response.', 'cm_translate')
+	                    esc_html__( 'Thanks for your comment. We appreciate your response.', 'cm_translate')
                 ),
 	            'page' => get_option('cm_option_confirmation_page'),
 	    );
