@@ -29,12 +29,9 @@ class Admin_Options_Page {
 
 	public static function get_confirmation_settings() {
 	    return array(
-	            'type' => get_option('cm_option_confirmation_type', 'text'),
-	            'text' => get_option(
-	                    'cm_option_confirmation_text',
-	                    esc_html__( 'Thanks for your comment. We appreciate your response.', 'cm_translate')
-                ),
-	            'page' => get_option('cm_option_confirmation_page'),
+	            'type' => esc_html__(get_option('cm_option_confirmation_type', 'text')),
+	            'text' => esc_html__(get_option('cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'))),
+	            'page' => esc_html__(get_option('cm_option_confirmation_page')),
 	    );
 	}
 
