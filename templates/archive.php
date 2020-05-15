@@ -11,20 +11,6 @@ get_header(); ?>
 
             <?php while ( have_posts() ) : the_post();
                 $values = get_post_meta(get_the_ID());
-                $arraymonth = array(
-                    __("January", "cm_translate"),
-                    __("February", "cm_translate"),
-                    __("March", "cm_translate"),
-                    __("April", "cm_translate"),
-                    __("May", "cm_translate"),
-                    __("June", "cm_translate"),
-                    __("July", "cm_translate"),
-                    __("August", "cm_translate"),
-                    __("September", "cm_translate"),
-                    __("October", "cm_translate"),
-                    __("November", "cm_translate"),
-                    __("December", "cm_translate"),
-                );
                 ?>
                 <div class="rouw entry-content clear">
                     <article>
@@ -108,10 +94,6 @@ get_header(); ?>
                                         echo __('on', 'cm_translate') . ':&nbsp;';
                                     }
                                     $date = $values["birthdate"][0];
-                                    //var_dump($pieces);
-                                    //$num = intval($pieces[1]);
-                                    //$month = $arraymonth[$num - 1];
-                                    //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
                                     echo $date;
                                     ?>
                                 </div>
@@ -123,9 +105,6 @@ get_header(); ?>
                                         echo __('on', 'cm_translate') . ':&nbsp;';
                                     }
                                     $date = $values["dateofdeath"][0];
-                                    //$num = intval($pieces[1]);
-                                    //$month = $arraymonth[$num - 1];
-                                    //echo $pieces[2] . '&nbsp;' . $month . '&nbsp;' . $pieces[0];
                                     echo $date;
                                     ?></div>
                                 <?php
