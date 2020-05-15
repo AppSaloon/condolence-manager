@@ -38,9 +38,9 @@ class Comment_Email
             ob_start();
             ?>
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
-                <?php echo sprintf(__('New condolence from %s'), $comment->comment_author); ?>
+                <?php echo sprintf(esc_html__('New condolence from %s'), $comment->comment_author); ?>
                 <br/>
-                <a href="<?php echo $url; ?>"><?php echo __('click here to view the condolence');?></a>
+                <a href="<?php echo esc_attr($url); ?>"><?php echo esc_html__('click here to view the condolence');?></a>
             </p>
             <?php
             self::render_condolence_info($post_ID);
@@ -49,7 +49,7 @@ class Comment_Email
             add_filter('wp_mail_content_type', function () {
                 return "text/html";
             });
-            wp_mail($master_email, __('New Condolence'), $message);
+            wp_mail($master_email, esc_html__('New Condolence'), $message);
         }
     }
 
@@ -67,7 +67,7 @@ class Comment_Email
             ob_start();
             ?>
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
-                <?php echo sprintf(__('New reply on your condolence from %s'), $comment->comment_author); ?>
+                <?php echo sprintf(esc_html__('New reply on your condolence from %s'), $comment->comment_author); ?>
             </p>
             <?php
             self::render_condolence_info($post_ID);
@@ -76,7 +76,7 @@ class Comment_Email
             add_filter('wp_mail_content_type', function () {
                 return "text/html";
             });
-            wp_mail($parent_comment->comment_author_email, __('New Comment'), $message);
+            wp_mail($parent_comment->comment_author_email, esc_html__('New Comment'), $message);
         }
     }
 
@@ -100,7 +100,7 @@ class Comment_Email
     {
         ?>
         <p style="font-size: 16px; font-weight: normal; margin: 16px 0 0 0; background-color: #FAFAFA; color: #999; padding: 6px;">
-            <?php echo get_the_title($post_ID); ?>
+            <?php echo esc_html(get_the_title($post_ID)); ?>
         </p>
         <?php
     }
@@ -113,9 +113,9 @@ class Comment_Email
     {
         ?>
         <div style="font-size: 16px; font-weight: normal; margin: 16px 6px; padding: 0 6px; border-left: 4px solid #BBBBBB;">
-            <?php echo nl2br($comment->comment_content); ?>
+            <?php echo nl2br(esc_html($comment->comment_content)); ?>
             <div style="color: #AAAAAA; font-style: italic; font-size: 12px; margin-top: 4px;">
-                - <?php echo $comment->comment_author; ?>
+                - <?php echo esc_html($comment->comment_author); ?>
             </div>
             <?php
             if ($nested_comment !== null) {
