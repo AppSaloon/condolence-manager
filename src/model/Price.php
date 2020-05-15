@@ -108,7 +108,7 @@ class Price extends Model implements JsonSerializable, Deserializable {
 	 * Retrieves currency information from config.
 	 *
 	 * @return null
-	 * @see `plugin_root`/config/currencies.php
+	 * @see `plugin_root`/src/config/currencies.php
 	 *
 	 */
 	public static function get_currencies() {
@@ -123,7 +123,7 @@ class Price extends Model implements JsonSerializable, Deserializable {
 		$currencies = apply_filters( 'cm/currencies', static::$currencies );
 
 		if ( null === $currencies ) {
-			$currency_file = CM_BASE_DIR . '/config/currencies.php';
+			$currency_file = CM_BASE_DIR . '/src/config/currencies.php';
 
 			if ( !is_readable( $currency_file ) ) {
 				throw new RuntimeException( sprintf( 'Unable to open %s.', $currency_file ) );
