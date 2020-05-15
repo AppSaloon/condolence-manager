@@ -2,7 +2,6 @@
 
 namespace appsaloon\cm\register;
 
-use appsaloon\cm\comments\Inline_Comment_Error;
 use appsaloon\cm\form\Metabox;
 use appsaloon\cm\settings\Admin_Options_Page;
 
@@ -73,8 +72,6 @@ class Custom_Post_Type{
         flush_rewrite_rules();
 
         new Metabox();
-
-        new Inline_Comment_Error();
     }
 
     public function removeWhitespace($buffer)
