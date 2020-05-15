@@ -123,26 +123,6 @@ class Coffee_Table_Controller
 	    return $participants_array;
     }
 
-	/**
-	 * @return array|null|object
-	 * find all posts with coffee table option
-	 */
-    public function all_coffee_posts()
-    {
-	    global $wpdb;
-	    $query = "SELECT post_id as ID FROM " . $wpdb->postmeta . " WHERE meta_key = 'coffee_table'  AND meta_value = 'yes'  ";
-	    $result = $wpdb->get_results($query);
-
-	    $tmp_arary = array();
-	    foreach ( $result as $ID ){
-	    	$tmp_arary[] = $ID->ID;
-	    }
-	    $result = $tmp_arary;
-	    unset($tmp_arary);
-
-	    return $result;
-    }
-
     private function get_all_participants_in_array( $post_id = null )
     {
         $result = $this->all_participants_by_id( $post_id );
