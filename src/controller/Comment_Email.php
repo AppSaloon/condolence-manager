@@ -87,7 +87,7 @@ class Comment_Email
     {
         global $wpdb;
 
-        $query = "UPDATE " . $wpdb->prefix . "comments SET comment_approved='1' WHERE comment_ID=" . $comment_ID;
+        $query = $wpdb->prepare("UPDATE " . $wpdb->prefix . "comments SET comment_approved='1' WHERE comment_ID=%d", $comment_ID);
         $wpdb->query($query);
 
         clean_comment_cache($comment_ID);
