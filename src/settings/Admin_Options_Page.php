@@ -2,8 +2,6 @@
 
 namespace appsaloon\cm\settings;
 
-use appsaloon\cm\coffee_table\Coffee_Table_Controller;
-
 class Admin_Options_Page {
     const MENU_SLUG = 'condolence-manager';
     const MENU_OPTIONS_SLUG = 'condolence-manager_options';
@@ -135,9 +133,6 @@ class Admin_Options_Page {
                 <?php
 	        }
 	    }
-
-		$obj = new Coffee_Table_Controller();
-		$obj->all_coffee_posts();
 		?>
 
         <h2><?php _e( 'Condolence manager', 'cm_translate' ); ?></h2>
