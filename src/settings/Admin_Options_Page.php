@@ -68,13 +68,13 @@ class Admin_Options_Page {
 	}
 
 	private static function slug_exists($slug) {
-    global $wpdb;
-    $query = 'SELECT * FROM ' . $wpdb->posts . ' WHERE post_type=%s OR post_name=%s LIMIT 1';
-    $sql = $wpdb->prepare($query, $slug, $slug);
-    if($wpdb->get_row($sql, 'ARRAY_A')) {
-        return true;
-    } else {
-        return false;
+        global $wpdb;
+        $query = 'SELECT * FROM ' . $wpdb->posts . ' WHERE post_type=%s OR post_name=%s LIMIT 1';
+        $sql = $wpdb->prepare($query, $slug, $slug);
+        if($wpdb->get_row($sql, 'ARRAY_A')) {
+            return true;
+        } else {
+            return false;
     }
 }
 
