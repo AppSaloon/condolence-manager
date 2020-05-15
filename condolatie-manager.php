@@ -30,7 +30,6 @@
 namespace appsaloon\cm;
 
 
-use appsaloon\cm\controller\Additional_Buttons_Controller;
 use appsaloon\cm\controller\Comment_Email;
 use appsaloon\cm\controller\Templates;
 use appsaloon\cm\register\Custom_Post_Type;
@@ -74,7 +73,6 @@ Class Condolatie_Manager{
         new Templates();
         new Comment_Email();
 	    new Coffee_Table_Controller();
-        new Additional_Buttons_Controller();
     }
 
     /**
