@@ -8,7 +8,8 @@ $deseased = false;
 ob_start();
 ?>
 <?php get_header(); ?>
-<?php if (is_single()){ ?>
+<?php if (is_single()){
+$fields = get_post_meta(get_the_ID()); ?>
 <div id="primary" class="content-area">
     <div id="main" class="site-content" role="main">
 
@@ -58,7 +59,6 @@ ob_start();
                                 "line_break",
                                 "live_stream_description",
                             ];
-                            $fields = get_post_meta(get_the_ID());
 
                             foreach ($required_fields as $required) {
 
@@ -319,7 +319,7 @@ ob_start();
                             echo '</div>';
                         }
 
-                        $fields = array(
+                        $comment_form_fields = array(
                             'author' =>
                                 '<p class="comment-form-author"><label for="author">' . __('Naam', 'cm_translate') . ' ' .
                                 '<span class="required">*</span></label>' .
@@ -337,7 +337,7 @@ ob_start();
                                 'title_reply' => __('Leave your condolences for the family', 'cm_translate'),
                                 'title_reply_after' => '</h3><p id="info_text">' . __('This message is only visible for the family', 'cm_translate') . '</p>',
                                 'label_submit' => __('Condolence', 'cm_translate'),
-                                'fields' => apply_filters('comment_form_default_fields', $fields)
+                                'fields' => apply_filters('comment_form_default_fields', $comment_form_fields)
                             )
                         );
                         ?>
