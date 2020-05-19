@@ -38,9 +38,9 @@ class Comment_Email
             ob_start();
             ?>
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
-                <?php echo sprintf(esc_html__('New condolence from %s'), $comment->comment_author); ?>
+                <?php echo sprintf(esc_html__('New condolence from %s', 'cm_translate'), $comment->comment_author); ?>
                 <br/>
-                <a href="<?php echo esc_attr($url); ?>"><?php echo esc_html__('click here to view the condolence');?></a>
+                <a href="<?php echo esc_attr($url); ?>"><?php echo esc_html__('click here to view the condolence', 'cm_translate');?></a>
             </p>
             <?php
             self::render_condolence_info($post_ID);
@@ -49,7 +49,7 @@ class Comment_Email
             add_filter('wp_mail_content_type', function () {
                 return "text/html";
             });
-            wp_mail($master_email, esc_html__('New Condolence'), $message);
+            wp_mail($master_email, esc_html__('New Condolence', 'cm_translate'), $message);
         }
     }
 
@@ -67,7 +67,7 @@ class Comment_Email
             ob_start();
             ?>
             <p style="font-size: 22px; font-weight: bold; line-height: 26px; vertical-align: 20px; margin-top: 50px;">
-                <?php echo sprintf(esc_html__('New reply on your condolence from %s'), $comment->comment_author); ?>
+                <?php echo sprintf(esc_html__('New reply on your condolence from %s', 'cm_translate'), $comment->comment_author); ?>
             </p>
             <?php
             self::render_condolence_info($post_ID);
@@ -76,7 +76,7 @@ class Comment_Email
             add_filter('wp_mail_content_type', function () {
                 return "text/html";
             });
-            wp_mail($parent_comment->comment_author_email, esc_html__('New Comment'), $message);
+            wp_mail($parent_comment->comment_author_email, esc_html__('New Comment', 'cm_translate'), $message);
         }
     }
 
