@@ -31,7 +31,7 @@ class Comment_Email
 
         $master_email_checked = get_post_meta($post_ID, 'check_email', true);
         $master_email = get_post_meta($post_ID, 'email', true);
-        if ($master_email_checked === 'check_email' && isset($master_email) && is_email($master_email) && $comment->parent == 0 && $comment->comment_approved == 1) {
+        if ($master_email_checked === 'check_email' && isset($master_email) && is_email($master_email) && $comment->comment_parent == 0 && $comment->comment_approved == 1) {
             $permalink = get_the_permalink($post_ID);
             $password = get_post_meta($post_ID, 'password', true);
             $url = (strpos($permalink, '?') !== false) ? $permalink . '&code=' . $password : $permalink . '?code=' . $password;
