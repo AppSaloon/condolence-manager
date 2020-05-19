@@ -2,18 +2,6 @@
  * Created by miekenijs on 15/02/16.
  */
 
-function toggleQueryParameter(param, onlyDelete = false) {
-    const query = new URLSearchParams(window.location.search)
-    if(query.has(param) || onlyDelete) {
-        query.delete(param)
-    } else {
-        query.append(param, '')
-    }
-    const queryString = query.toString().replace('=&', '&').replace(/=$/, '')
-    const url = `${window.location.href.split('?')[0]}?${queryString}`.replace(/\?$/, '')
-    history.pushState({url}, '', url)
-}
-
 (function($) {
 $(document).ready(function(){
 
@@ -23,28 +11,6 @@ $(document).ready(function(){
     var wait = cm.wait;
     var not_send = cm.not_send;
     var scrollDuration = 200;
-
-
-    $("#toggle_comment").click(function(e){
-        e.preventDefault();
-        toggleQueryParameter('comments')
-        $("div.comments").toggle();
-    });
-
-    $("#toggle_products").click(function(e){
-        e.preventDefault();
-        toggleQueryParameter('cm-products')
-        toggleQueryParameter('cm-order-form')
-        toggleQueryParameter('cm_order_product', true)
-        $("div#cm-products").toggle();
-        $("div#cm-order-form").toggle();
-    });
-
-    $("#toggle_coffee_table").click(function(e){
-        e.preventDefault();
-        toggleQueryParameter('ct_form')
-        $("#coffee-table-form").toggle();
-    });
 
     // Smooth scroll to form ( Coffee table )
     $("#toggle_coffee_table").click(function () {

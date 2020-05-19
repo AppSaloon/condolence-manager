@@ -242,20 +242,23 @@ ob_start();
                             }
                             ?>
                             <?php if ($password == '') { ?>
-                                <a href="javascript:void(0);" class="btn"
-                                   id="toggle_comment"><?php _e('Condole', 'cm_translate'); ?></a>
+                                <a href="?comments" class="btn">
+                                    <?php _e('Condole', 'cm_translate'); ?>
+                                </a>
                                 <?php
 
                                 if ($fields['flowers'][0] === '1') { ?>
-                                    <a href="javascript:void(0);" class="btn"
-                                       id="toggle_products"><?php _e('Flowers', 'cm_translate'); ?></a>
+                                    <a href="?cm-products&cm-order-form&cm_order_product" class="btn">
+                                        <?php _e('Flowers', 'cm_translate'); ?>
+                                    </a>
                                     <?php
                                 }
 
                                 if ($fields['coffee_table'][0] == 'yes') {
                                     ?>
-                                    <a href="javascript:void(0);" class="btn"
-                                       id="toggle_coffee_table"><?php _e('Coffee Table', 'cm_translate'); ?></a>
+                                    <a href="?ct_form" class="btn">
+                                        <?php _e('Coffee Table', 'cm_translate'); ?>
+                                    </a>
                                     <?php
                                 }
 
