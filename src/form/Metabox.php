@@ -165,6 +165,17 @@ class Metabox {
                           <?php _e( 'If enabled, a live-stream button for the funeral will appear. Please enter a link and a description for the livestream below.', 'cm_translate' ); ?>
                       </label>
                   </p>
+                  <p class="description">
+                      <label>
+                          <input id="live_stream_embed"
+                                 name="live_stream_embed"
+                                 type="checkbox"
+                                 value="1"
+                                 <?php echo ( $this->get_field_value('live_stream_embed', $post->ID ) == '1' ) ? 'checked' : '' ?>
+                          >
+                          <?php _e('If enabled, the livestream video will be embedded within the page.', 'cm_translate'); ?>
+                      </label>
+                  </p>
                   <p>
                       <input  type="text"
                               name="live_stream_url"
@@ -814,6 +825,11 @@ class Metabox {
 			update_post_meta( $post_id, 'live_stream', $post_data['live_stream'] );
 		} else {
 			update_post_meta( $post_id, 'live_stream', 0 );
+		}
+		if ( isset( $post_data['live_stream_embed'] ) ) {
+			update_post_meta( $post_id, 'live_stream_embed', $post_data['live_stream_embed'] );
+		} else {
+			update_post_meta( $post_id, 'live_stream_embed', 0 );
 		}
 
 		$relations = array();

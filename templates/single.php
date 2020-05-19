@@ -268,8 +268,13 @@ $fields = get_post_meta(get_the_ID()); ?>
                                     <?php
                                 }
 
-                                if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] && isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]) { ?>
-                                    <a target="_blank" href="<?= $fields['live_stream_url'][0] ?>" class="btn"
+                                if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] && isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]) {
+                                    $is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream'][0];
+                                    $live_stream_url = $is_embedded
+                                        ? '?livestream'
+                                        : $fields['live_stream_url'][0];
+                                    ?>
+                                    <a <?php echo $is_embedded ? '': 'target="_blank"' ?> href="<?= $live_stream_url ?>" class="btn"
                                        id="live_stream_url"><?php _e('Funeral live-stream', 'cm_translate'); ?></a>
                                     <?php
                                 }
@@ -344,6 +349,29 @@ $fields = get_post_meta(get_the_ID()); ?>
                     </div>
                 <?php } ?>
             </div>
+
+            <?php
+            $live_stream_is_enabled = isset($fields['live_stream'][0]) && $fields['live_stream'][0];
+            $live_stream_has_url = isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0];
+            $live_stream_is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream'][0];
+            $page_is_live_stream = isset($_GET['livestream']);
+            if ( $live_stream_is_enabled && $live_stream_has_url && $live_stream_is_embedded && $page_is_live_stream ):
+	            ?>
+                <div style="width: 100%;">
+                    <div style="padding-bottom: calc((9 / 16) * 100%); position:relative;">
+                        <div style="display: block; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+                            <iframe src="<?php echo $fields['live_stream_url'][0]; ?>"
+                                    style="width: 100%; height: 100%;"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                    wmode="Opaque"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <?= do_shortcode('[cm_products]'); ?>
             <?= do_shortcode('[cm_order_form]'); ?>
         </div>
