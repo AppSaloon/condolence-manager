@@ -7,6 +7,9 @@
     margin-bottom: 10px;
     margin-left: 20px;
 }
+.rouw-main .rouw input[type=button]:disabled {
+    background: lightgrey;
+}
 .cm-content-wrapper #rouw-content {
     max-width: 940px;
     margin: 0 auto;

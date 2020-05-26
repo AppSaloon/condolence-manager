@@ -66,11 +66,15 @@ class Order_Type {
 		$funeral_date_string = get_post_meta( $deceased_id, 'funeraldate', true );
 
 		if ( ! empty( $funeral_date_string ) ) {
-			$funeral_date = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$funeral_date_string} 00:00:00", static::get_timezone() );
+			$funeral_date = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$funeral_date_string} 00:00:00",
+				static::get_timezone() );
 		} else {
 			$date_of_death = Metabox::normalize_date( get_post_meta( $deceased_id, 'dateofdeath', true ) );
-			$funeral_date  = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$date_of_death} 00:00:00", static::get_timezone() );
-			if($funeral_date) { $funeral_date->modify( '+2 week' ); }
+			$funeral_date  = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$date_of_death} 00:00:00",
+				static::get_timezone() );
+			if ( $funeral_date ) {
+				$funeral_date->modify( '+2 week' );
+			}
 		}
 
 		return $funeral_date instanceof DateTime ? $funeral_date : null;
@@ -84,9 +88,9 @@ class Order_Type {
 	public static function get_order_before_date( $deceased_id ) {
 		$funeral_date = static::get_funeral_date( $deceased_id );
 
-		if(null === $funeral_date) {
-		    return new DateTime();
-        }
+		if ( null === $funeral_date ) {
+			return new DateTime();
+		}
 
 		$order_before = clone $funeral_date;
 		$order_before->modify( static::get_close_offset() );
@@ -98,7 +102,7 @@ class Order_Type {
 	 * Hooks into `cm/allow_orders` and checks for the date.
 	 *
 	 * @param $allow_orders
-	 * @param WP_Post $deceased
+	 * @param  WP_Post  $deceased
 	 *
 	 * @return bool
 	 * @throws Exception
@@ -108,7 +112,19 @@ class Order_Type {
 			return $allow_orders;
 		}
 
-		$order_before = static::get_order_before_date( $deceased->ID );
+		return static::verify_order_funeral_date( $deceased->ID );
+	}
+
+	/**
+     * Verifies if the order date is valid for the given deceased
+     *
+	 * @param $deceased_id
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
+	public static function verify_order_funeral_date( $deceased_id ) {
+		$order_before = static::get_order_before_date( $deceased_id );
 		$current_date = new DateTime( 'now', static::get_timezone() );
 
 		return $current_date < $order_before;
@@ -133,14 +149,14 @@ class Order_Type {
 			'cm_deceased' => __( 'Condolence', 'cm_translate' ),
 			'cm_summary'  => __( 'Order summary', 'cm_translate' ),
 			'cm_price'    => __( 'Order total', 'cm_translate' ),
-			'date'        => __( 'Date' )
+			'date'        => __( 'Date' ),
 		);
 	}
 
-	public static function order_customer_link(Order $order) {
+	public static function order_customer_link( Order $order ) {
 		return sprintf(
 			'<a href="%s"><strong>%s</strong></a>',
-			get_edit_post_link($order->get_id()),
+			get_edit_post_link( $order->get_id() ),
 			$order->get_customer()
 		);
 	}
@@ -150,7 +166,7 @@ class Order_Type {
 
 		switch ( $column ) {
 			case 'cm_customer':
-				echo static::order_customer_link($order);
+				echo static::order_customer_link( $order );
 				break;
 			case 'cm_deceased':
 				echo get_the_title( $order->get_deceased_id() );
@@ -159,7 +175,7 @@ class Order_Type {
 				echo $order->get_summary();
 				break;
 			case 'cm_price':
-				echo $order->get_total()->display(true);
+				echo $order->get_total()->display( true );
 				break;
 			default:
 		}
@@ -168,7 +184,7 @@ class Order_Type {
 	public static function is_order_editable( Order $order ) {
 		$post = $order->get_post();
 
-		return !$post instanceof WP_Post || $post->post_status !== 'publish';
+		return ! $post instanceof WP_Post || $post->post_status !== 'publish';
 	}
 
 	public function register_post_type() {
@@ -207,7 +223,7 @@ class Order_Type {
 			'exclude_from_search' => true,
 			'publicly_queryable'  => false,
 			'capability_type'     => 'post',
-			'show_in_rest'        => false
+			'show_in_rest'        => false,
 		);
 
 		register_post_type( static::POST_TYPE, $args );
@@ -254,7 +270,7 @@ class Order_Type {
 			return;
 		}
 
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
 
@@ -284,7 +300,7 @@ class Order_Type {
 	public function products_metabox_content( WP_Post $post ) {
 		$order = Order::from_id( $post->ID );
 
-		if(static::is_order_editable($order)) {
+		if ( static::is_order_editable( $order ) ) {
 			echo $order->render_lines_form();
 
 			return;
@@ -292,12 +308,12 @@ class Order_Type {
 
 		?>
         <div>
-            <h3><?=__('Products', 'cm_translate')?></h3>
+            <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
 			<?= $order->get_summary() ?>
-            <h3><?=__('Total', 'cm_translate')?></h3>
-			<?= $order->get_total()->display(true) ?>
+            <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
+			<?= $order->get_total()->display( true ) ?>
         </div>
-<?php
+		<?php
 	}
 
 	public function details_metabox_content( WP_Post $post ) {

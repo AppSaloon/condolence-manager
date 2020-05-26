@@ -1,4 +1,4 @@
-@@@<?php
+<?php
 /**
  * The template for displaying Archive pages.
  */
@@ -141,10 +141,13 @@ get_header(); ?>
 									if ( isset( $post_meta["flowers"][0] ) ) {
 										$string = $post_meta["flowers"][0];
 									}
-									if ( $string != '0' ) { ?>
+									if ( $string != '0' ) {
+									    $can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() );
+									    ?>
                                         <input type="button"
                                                onclick="location.href='<?php the_permalink(); ?>?cm-products&cm-order-form'"
                                                value="<?php echo esc_attr__( 'Flowers', 'cm_translate' ); ?>"
+                                               <?php echo ($can_order_flower) ? '': 'disabled'; ?>
                                         />
 									<?php }
 								}

@@ -253,8 +253,12 @@ $fields = get_post_meta(get_the_ID()); ?>
                                 </a>
                                 <?php
 
-                                if ($fields['flowers'][0] === '1') { ?>
-                                    <a href="?cm-products&cm-order-form&cm_order_product" class="btn">
+                                if ($fields['flowers'][0] === '1') {
+	                                $can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() );
+
+	                                $flower_link = ($can_order_flower) ? '?cm-products&cm-order-form&cm_order_product' : '#';
+                                    ?>
+                                    <a href="<?php echo esc_attr($flower_link); ?>" class="btn<?php echo ($can_order_flower) ? '': ' disabled'; ?>">
                                         <?php _e('Flowers', 'cm_translate'); ?>
                                     </a>
                                     <?php
