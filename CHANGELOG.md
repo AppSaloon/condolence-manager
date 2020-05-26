@@ -1,7 +1,12 @@
 # CHANGELOG
 
 requires: 4.6
-tested: 5.1.1
+tested: 5.4.1
+
+## Version 2.4.2 2020/05/26
+- Update Flower button by disabling it when the funeral date is too close
+- Update dates to translate and use WordPress format
+
 ## Version 1.5.1 2020/04/23
 - Fix assets Css
 - Fix normalize dates

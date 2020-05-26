@@ -49,7 +49,7 @@ define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
 define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
-define( 'CM_VERSION', '2.4.1' );
+define( 'CM_VERSION', '2.4.2' );
 
 /**
  * Register autoloader to load files/classes dynamically
