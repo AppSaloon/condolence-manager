@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.3 2020/05/26
+- send email after order form submitted bug fix
+
 ## Version 2.4.2 2020/05/26
 - Update Flower button by disabling it when the funeral date is too close
 - Update dates to translate and use WordPress format
