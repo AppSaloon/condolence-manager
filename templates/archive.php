@@ -75,40 +75,43 @@ get_header(); ?>
 										}
 									}
 									?></div>
-                                <div class="deceased-partner">
-									<?php echo esc_html__( 'Born', 'cm_translate' ); ?>
-									<?php echo esc_html__( 'in', 'cm_translate' ); ?>:
-									<?php echo esc_html( $post_meta["birthplace"][0] ); ?>
-									<?php if ( isset( $post_meta["birthdate"][0] ) && $post_meta["birthdate"][0] != '' ) {
-										echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
-										$date = DateTime::createFromFormat( 'Y-m-d', $post_meta["birthdate"][0] )->getTimestamp();
-										$translated_date = date_i18n(get_option('date_format'), $date);
-										echo esc_html( $translated_date );
-									}
-									?>
-                                </div>
-                                <div class="deceased-death-place-and-date">
-									<?php echo esc_html__( 'Passed away', 'cm_translate' ); ?>
-									<?php echo esc_html__( 'in', 'cm_translate' ); ?>:
-									<?php echo esc_html( $post_meta["placeofdeath"][0] ); ?>
-									<?php if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ) {
-										echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
-										$date = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
-										$translated_date = date_i18n(get_option('date_format'), $date);
-										echo esc_html( $translated_date );
-									}
-									?>
-                                </div>
-                                <div class="deceased-funeral-date">
-		                            <?php echo esc_html__( 'Funeral date', 'cm_translate' ); ?>
-		                            <?php if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ) {
+	                            <?php if ( isset( $post_meta["birthdate"][0] ) && $post_meta["birthdate"][0] != '' ): ?>
+                                    <div class="deceased-partner">
+			                            <?php
+			                            $date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["birthdate"][0] )->getTimestamp();
+			                            $translated_date = date_i18n( get_option( 'date_format' ), $date );
+			                            echo esc_html__( 'Born', 'cm_translate' ) . '&nbsp;';
+			                            echo esc_html__( 'in', 'cm_translate' ) . ':&nbsp;';
+			                            echo esc_html( $post_meta["birthplace"][0] );
 			                            echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
-			                            $date = DateTime::createFromFormat( 'Y-m-d', $post_meta["funeraldate"][0] )->getTimestamp();
-			                            $translated_date = date_i18n(get_option('date_format'), $date);
 			                            echo esc_html( $translated_date );
-		                            }
-		                            ?>
+			                            ?>
+                                    </div>
+	                            <?php endif; ?>
+	                            <?php if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ): ?>
+                                    <div class="deceased-death-place-and-date">
+			                            <?php
+			                            echo esc_html__( 'Passed away', 'cm_translate' ) . '&nbsp;';
+			                            echo esc_html__( 'in', 'cm_translate' ) . ':&nbsp;';
+			                            echo esc_html( $post_meta["placeofdeath"][0] ) . '&nbsp;';
+			                            echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
+			                            $date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
+			                            $translated_date = date_i18n( get_option( 'date_format' ), $date );
+			                            echo esc_html( $translated_date );
+			                            ?>
                                 </div>
+                                <?php endif; ?>
+	                            <?php if ( isset( $post_meta["funeraldate"][0] ) && $post_meta["funeraldate"][0] != '' ): ?>
+                                    <div class="deceased-funeral-date">
+			                            <?php
+			                            echo esc_html__( 'Funeral date', 'cm_translate' ) . '&nbsp;';
+			                            echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
+			                            $date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["funeraldate"][0] )->getTimestamp();
+			                            $translated_date = date_i18n( get_option( 'date_format' ), $date );
+			                            echo esc_html( $translated_date );
+			                            ?>
+                                    </div>
+	                            <?php endif; ?>
                                 <br/>
 								<?php
 								if ( isset( $post_meta["_cm_linked_location"] ) ) {
