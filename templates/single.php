@@ -51,6 +51,7 @@ $fields = get_post_meta(get_the_ID()); ?>
                                 "birthdate",
                                 "placeofdeath",
                                 "dateofdeath",
+                                "funeraldate",
                                 "line_break",
                                 "_cm_linked_location",
                                 "funeralinformation",
@@ -127,6 +128,16 @@ $fields = get_post_meta(get_the_ID()); ?>
                                         echo $passedAway . '&nbsp;' . __('in', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
                                         echo '</p>';
                                         break;
+	                                case 'funeraldate':
+		                                $date = current($fields[$required_str]);
+		                                $funeral_at = __('Funeral date', 'cm_translate');
+		                                echo '<p class="' . $required_str . '" id="funeraldate">';
+		                                echo $funeral_at . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;';
+		                                $date = DateTime::createFromFormat( 'Y-m-d', $date )->getTimestamp();
+		                                $translated_date = date_i18n(get_option('date_format'), $date);
+		                                echo esc_html( $translated_date );
+		                                echo '</p>';
+		                                break;
                                     case 'residence':
                                         if(isset($fields[$required_str][0]) && $fields[$required_str][0]) {
                                             echo '<p class="deceased-subtitle">';
