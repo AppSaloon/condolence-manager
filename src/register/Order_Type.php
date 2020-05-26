@@ -18,7 +18,7 @@ class Order_Type {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_order_metaboxes' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
-		add_action( 'save_post', array( $this, 'save_order_metadata' ) );
+		add_action( 'save_post', array( $this, 'save_order_metadata' ), 10, 3);
 		add_filter( 'cm/allow_orders', array( $this, 'can_order_products' ), 10, 2 );
 
 		$post_type = static::POST_TYPE;
@@ -261,7 +261,7 @@ class Order_Type {
 		}
 	}
 
-	public function save_order_metadata( $post_id ) {
+	public function save_order_metadata( int $post_id, WP_Post $post, bool $update) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
@@ -286,6 +286,7 @@ class Order_Type {
 		$errors = $order->validate();
 		if ( empty ( $errors ) ) {
 			$order->update();
+			do_action('after_save_order_metadata', $order, $post_id, $post, $update);
 		}
 	}
 

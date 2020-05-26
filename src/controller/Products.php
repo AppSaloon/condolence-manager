@@ -123,6 +123,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 	}
 	?>
     <form action="?cm-order-form&cm-products#cm-order-form" method="post">
+        <input type="hidden" name="cm_order_deceased_id" value="<?php echo get_the_ID(); ?>">
 		<?= $order->render_lines_form() ?>
 		<?= $order->render_details_form() ?>
 		<?php wp_nonce_field( 'cm_place_order', 'cm_order_nonce' ); ?>
