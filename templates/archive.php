@@ -87,7 +87,7 @@ get_header(); ?>
 									}
 									?>
                                 </div>
-                                <div class="deceased-place-died">
+                                <div class="deceased-death-place-and-date">
 									<?php echo esc_html__( 'Passed away', 'cm_translate' ); ?>
 									<?php echo esc_html__( 'in', 'cm_translate' ); ?>:
 									<?php echo esc_html( $post_meta["placeofdeath"][0] ); ?>
@@ -99,6 +99,17 @@ get_header(); ?>
 									}
 									?>
                                 </div>
+                                <div class="deceased-funeral-date">
+		                            <?php echo esc_html__( 'Funeral date', 'cm_translate' ); ?>
+		                            <?php if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ) {
+			                            echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
+			                            $date = DateTime::createFromFormat( 'Y-m-d', $post_meta["funeraldate"][0] )->getTimestamp();
+			                            $translated_date = date_i18n(get_option('date_format'), $date);
+			                            echo esc_html( $translated_date );
+		                            }
+		                            ?>
+                                </div>
+                                <br/>
 								<?php
 								if ( isset( $post_meta["_cm_linked_location"] ) ) {
 									$location_id = current( $post_meta["_cm_linked_location"] );
