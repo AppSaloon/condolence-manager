@@ -1,4 +1,4 @@
-<?php
+@@@<?php
 /**
  * The template for displaying Archive pages.
  */
@@ -81,9 +81,10 @@ get_header(); ?>
 									<?php echo esc_html( $post_meta["birthplace"][0] ); ?>
 									<?php if ( isset( $post_meta["birthdate"][0] ) && $post_meta["birthdate"][0] != '' ) {
 										echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
+										$date = DateTime::createFromFormat( 'Y-m-d', $post_meta["birthdate"][0] )->getTimestamp();
+										$translated_date = date_i18n(get_option('date_format'), $date);
+										echo esc_html( $translated_date );
 									}
-									$date = $post_meta["birthdate"][0];
-									echo esc_html( $date );
 									?>
                                 </div>
                                 <div class="deceased-place-died">
@@ -92,9 +93,10 @@ get_header(); ?>
 									<?php echo esc_html( $post_meta["placeofdeath"][0] ); ?>
 									<?php if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ) {
 										echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
+										$date = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
+										$translated_date = date_i18n(get_option('date_format'), $date);
+										echo esc_html( $translated_date );
 									}
-									$date = $post_meta["dateofdeath"][0];
-									echo esc_html( $date );
 									?>
                                 </div>
 								<?php

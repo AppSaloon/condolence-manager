@@ -87,7 +87,10 @@ $fields = get_post_meta(get_the_ID()); ?>
                                             $bornOn = __('Born', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
+                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;';
+	                                    $date = DateTime::createFromFormat( 'Y-m-d', current($fields[$required_str]) )->getTimestamp();
+	                                    $translated_date = date_i18n(get_option('date_format'), $date);
+	                                    echo esc_html( $translated_date );
                                         echo '</p>';
                                         break;
                                     case 'birthplace':
@@ -108,7 +111,10 @@ $fields = get_post_meta(get_the_ID()); ?>
                                             $passedAway = __('Passed away', 'cm_translate');
                                         }
                                         echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;' . $date;
+                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;';
+	                                    $date = DateTime::createFromFormat( 'Y-m-d', $date )->getTimestamp();
+	                                    $translated_date = date_i18n(get_option('date_format'), $date);
+	                                    echo esc_html( $translated_date );
                                         echo '</p>';
                                         break;
                                     case 'placeofdeath':
