@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.4 2020/05/26
+- show funeral date in archive and single
+
 ## Version 2.4.3 2020/05/26
 - send email after order form submitted bug fix
 
