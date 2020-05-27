@@ -3,6 +3,10 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.6 2020/05/27
+- fix: added missing space in archive
+- fix: fixed conditional check for livestream embed
+
 ## Version 2.4.5 2020/05/26
 - fix: conditional rendering for dates in single and archive
 
