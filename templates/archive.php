@@ -82,7 +82,7 @@ get_header(); ?>
 			                            $translated_date = date_i18n( get_option( 'date_format' ), $date );
 			                            echo esc_html__( 'Born', 'cm_translate' ) . '&nbsp;';
 			                            echo esc_html__( 'in', 'cm_translate' ) . ':&nbsp;';
-			                            echo esc_html( $post_meta["birthplace"][0] );
+			                            echo esc_html( $post_meta["birthplace"][0] ) . '&nbsp;';
 			                            echo esc_html__( 'on', 'cm_translate' ) . ':&nbsp;';
 			                            echo esc_html( $translated_date );
 			                            ?>
