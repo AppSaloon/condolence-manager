@@ -292,7 +292,7 @@ $fields = get_post_meta(get_the_ID()); ?>
                                 }
 
                                 if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] && isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]) {
-                                    $is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream'][0];
+                                    $is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream_embed'][0];
                                     $live_stream_url = $is_embedded
                                         ? '?livestream'
                                         : $fields['live_stream_url'][0];
@@ -376,7 +376,7 @@ $fields = get_post_meta(get_the_ID()); ?>
             <?php
             $live_stream_is_enabled = isset($fields['live_stream'][0]) && $fields['live_stream'][0];
             $live_stream_has_url = isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0];
-            $live_stream_is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream'][0];
+            $live_stream_is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream_embed'][0];
             $page_is_live_stream = isset($_GET['livestream']);
             if ( $live_stream_is_enabled && $live_stream_has_url && $live_stream_is_embedded && $page_is_live_stream ):
 	            ?>
