@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.7 2020/05/28
+- fix: fixed save_order_metadata callback in Order_Type (email not being sent when making order as not logged in)
+
 ## Version 2.4.6 2020/05/27
 - fix: added missing space in archive
 - fix: fixed conditional check for livestream embed
