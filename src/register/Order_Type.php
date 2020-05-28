@@ -18,7 +18,7 @@ class Order_Type {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_order_metaboxes' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
-		add_action( 'save_post', array( $this, 'save_order_metadata' ), 10, 3);
+		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_order_metadata' ), 10, 3);
 		add_filter( 'cm/allow_orders', array( $this, 'can_order_products' ), 10, 2 );
 
 		$post_type = static::POST_TYPE;
@@ -266,18 +266,24 @@ class Order_Type {
 			return;
 		}
 
+		if($post->post_status !== 'publish') {
+		    return;
+		}
+
 		if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
 			return;
 		}
 
-		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		if ( is_wp_error( $post ) ) {
 			return;
-		}
-
-		$post = get_post( $post_id );
-
-		if ( is_wp_error( $post ) || $post->post_type !== Order::get_type() ) {
-			return;
+		} else {
+			error_log( var_export( [
+				"save_order_metadata post is WP_Error" => array(
+					"post_id" => $post_id,
+					"post"    => $post,
+					"update"  => $update,
+				)
+			], 1 ) );
 		}
 
 		$order = Order::from_id( $post_id );
@@ -286,7 +292,17 @@ class Order_Type {
 		$errors = $order->validate();
 		if ( empty ( $errors ) ) {
 			$order->update();
+			error_log(var_export(["save_order_metadata should trigger action after_save_order_metadata ..."], 1));
 			do_action('after_save_order_metadata', $order, $post_id, $post, $update);
+		} else {
+			error_log( var_export( [
+				"save_order_metadata errors is not empty" => array(
+					"post_id" => $post_id,
+					"post"    => $post,
+					"update"  => $update,
+					"errors"  => $errors,
+				)
+			], 1 ) );
 		}
 	}
 
