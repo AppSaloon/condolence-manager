@@ -3,6 +3,11 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.8 2020/06/02
+- fix: translation "opgebaard te:" > "Uitvaartcentrum:"
+- fix: added more info to Order email + translations
+- fix: fixed crash in single when funeraldate not set
+
 ## Version 2.4.7 2020/05/28
 - fix: fixed save_order_metadata callback in Order_Type (email not being sent when making order as not logged in)
 
