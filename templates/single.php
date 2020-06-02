@@ -129,7 +129,7 @@ $fields = get_post_meta(get_the_ID()); ?>
                                         echo '</p>';
                                         break;
 	                                case 'funeraldate':
-		                                if ( isset( $fields[ $required_str ][0] ) ) {
+		                                if ( isset( $fields[ $required_str ][0] ) && $fields[ $required_str ][0] ) {
 			                                $date       = current( $fields[ $required_str ] );
 			                                $funeral_at = __( 'Funeral date', 'cm_translate' );
 			                                echo '<p class="' . $required_str . '" id="funeraldate">';
