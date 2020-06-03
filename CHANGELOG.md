@@ -3,6 +3,10 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.4.9 2020/06/03
+- improvement: css cleaned for archive view
+- improvement: archive.php file cleanup redudant code & logic, overall better html output
+
 ## Version 2.4.8 2020/06/02
 - fix: translation "opgebaard te:" > "Uitvaartcentrum:"
 - fix: added more info to Order email + translations
