@@ -1,9 +1,9 @@
 === Condolence manager ===
-Contributors: Appsaloon, Aytaç Kokus, Mieke Nijs, Sebastiaan Kurzynowski
+Contributors: Appsaloon
 Tags: Condolence, deceased, comment, reply, private, coffee table
-Donate link: http://www.appsaloon.be/
+Donate link: http://www.appsaloon.be
 Requires at least: 3.0.1
-Tested up to: 5.1.1
+Tested up to: 5.4.1
 Stable tag: 1.5.1
 License: GPLv2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
