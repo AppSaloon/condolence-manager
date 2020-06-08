@@ -1,408 +1,297 @@
 <?php
 if ( ! is_admin() ) {
-    require_once( ABSPATH . 'wp-admin/includes/post.php' );
+	require_once( ABSPATH . 'wp-admin/includes/post.php' );
 }
 $password = isset($_GET['code']) ? $_GET['code'] : '';
-$born = false;
-$deseased = false;
-ob_start();
+$born = $deseased = false;
+//ob_start();
+
+get_header();
+
+$post_meta = get_post_meta( get_the_ID() );
 ?>
-<?php get_header(); ?>
-<?php if (is_single()){
-$fields = get_post_meta(get_the_ID()); ?>
-<div id="primary" class="content-area">
-    <div id="main" class="site-content" role="main">
 
-        <div class="rouw entry-post">
-            <div class="rouw-single">
-                <table>
-                    <tr>
-                        <td class="img deceased-img">
-                            <?php
-                            if (has_post_thumbnail()) {
-                                the_post_thumbnail();
-                            }
-                            ?>
-                        </td>
-                        <td class="text deceased-info">
-                            <?php
-                            $arraymonth = array(
-                                __("January", "cm_translate"),
-                                __("February", "cm_translate"),
-                                __("March", "cm_translate"),
-                                __("April", "cm_translate"),
-                                __("May", "cm_translate"),
-                                __("June", "cm_translate"),
-                                __("July", "cm_translate"),
-                                __("August", "cm_translate"),
-                                __("September", "cm_translate"),
-                                __("October", "cm_translate"),
-                                __("November", "cm_translate"),
-                                __("December", "cm_translate"),
-                            );
+<div id="cm-content-wrapper" class="alignwide">
+	<div class="cm-content">
+		<div class="cm-entry-content">
+			<article>
+				<div class="deceased-img">
+				<?php 
+				if ( has_post_thumbnail() ) :
+					the_post_thumbnail( 'medium' );
+				endif;
+				 ?>
+				</div>
+				<div class="deceased-info">
+					<h2 class="deceased-name">
+						<?php echo (isset($post_meta['honoraryitle']) && !empty( $post_meta['honoraryitle'][0]) ? $post_meta['honoraryitle'][0].' ' : '') . esc_html( $post_meta['name'][0] ) . ' ' . esc_html( $post_meta['familyname'][0] ); ?>
+					</h2>
+					<?php if ( isset( $post_meta["residence"][0] ) && $post_meta["residence"][0] ) { ?>
+					<h3 class="deceased-subtitle">
+						<?php echo esc_html__( 'Resident of', 'cm_translate' ).': '.esc_html( $post_meta['residence'][0] ); ?>
+					</h3>
+					<?php 
+					}
 
-                            $required_fields = [
-                                "full_name",
-                                "line_break",
-                                "residence",
-                                "relations",
-                                "line_break",
-                                "birthplace",
-                                "birthdate",
-                                "placeofdeath",
-                                "dateofdeath",
-                                "funeraldate",
-                                "line_break",
-                                "_cm_linked_location",
-                                "funeralinformation",
-                                "prayervigilinformation",
-                                "greetinginformation",
-                                "line_break",
-                                "live_stream_description",
-                            ];
+					$relations = unserialize( current( $post_meta["relations"] ) );
+					if ( ! empty( $relations ) ) {
+						$gender = current( $post_meta['gender'] );
+						echo '<div class="deceased-partner">';
+						echo '<p>';
+						foreach ( $relations as $relation ) {
+							if ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male' ) {
+								echo esc_html__( 'Beloved husband of', 'cm_translate' ).': ';
+								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
+							} 
+							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female' ) {
+								echo esc_html__( 'Beloved wife of', 'cm_translate' );': ';
+								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
+							} 
+							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male' ) {
+								echo esc_html__( 'Beloved husband of the late', 'cm_translate' ).': ';
+								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
+							} 
+							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female' ) {
+								echo esc_html__( 'Beloved wife of the late', 'cm_translate' ).': ';
+								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
+							} 
+							elseif ( $relation['type'] == 'Other' ) {
+								echo esc_html( $relation['other'] ) . ' ' . esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
+							}
+						}
+						echo '</p>';
+						echo '</div>';
+					}
 
-                            foreach ($required_fields as $required) {
+					if ( isset( $post_meta["birthdate"][0] ) && $post_meta["birthdate"][0] != '' ) :
+						echo '<div class="deceased-born-place-and-date">';
+						echo '<p>';
+							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["birthdate"][0] )->getTimestamp();
+							$translated_date = date_i18n( get_option( 'date_format' ), $date );
+							echo esc_html__( 'Born', 'cm_translate' ) . ' ';
+							echo esc_html__( 'in', 'cm_translate' ) . ': ';
+							echo esc_html( $post_meta["birthplace"][0] ) . ' ';
+							echo '<br>';
+							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							echo esc_html( $translated_date );
+						echo '</p>';
+						echo '</div>';
+					endif;
 
-                                $required_str = strtolower($required);
-                                $required_str = preg_replace('/\s+/', '', $required_str);
-                                $gender = current($fields['gender']);
+					if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ):
+						echo '<div class="deceased-death-place-and-date">';
+						echo '<p>';
+							echo esc_html__( 'Passed away', 'cm_translate' ) . ' ';
+							echo esc_html__( 'in', 'cm_translate' ) . ': ';
+							echo esc_html( $post_meta["placeofdeath"][0] ) . ' ';
+							echo '<br>';
+							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
+							$translated_date = date_i18n( get_option( 'date_format' ), $date );
+							echo esc_html( $translated_date );
+						echo '</p>';
+						echo '</div>';
+					endif;
 
-                                switch ($required_str) {
-                                    case 'line_break':
-                                        echo '<br/>';
-                                        break;
-                                    case 'full_name':
-                                        $honorary_title = current($fields['honoraryitle']);
-                                        echo '<p class="' . $required_str . '" id="name">';
-                                        if(!empty($honorary_title)) {
-                                            echo $honorary_title . '&nbsp;';
-                                        }
-                                        echo current($fields['name']) . '&nbsp;';
-                                        echo current($fields['familyname']);
-                                        echo '</p>';
-                                        break;
-                                    case 'birthdate':
-                                        $bornOn = '';
-                                        if ($born == false) {
-                                            $born = true;
-                                            $bornOn = __('Born', 'cm_translate');
-                                        }
-                                        echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;';
-	                                    $date = DateTime::createFromFormat( 'Y-m-d', current($fields[$required_str]) )->getTimestamp();
-	                                    $translated_date = date_i18n(get_option('date_format'), $date);
-	                                    echo esc_html( $translated_date );
-                                        echo '</p>';
-                                        break;
-                                    case 'birthplace':
-                                        $bornOn = '';
-                                        if ($born == false) {
-                                            $born = true;
-                                            $bornOn = __('Born', 'cm_translate');
-                                        }
-                                        echo '<p class="' . $required_str . '" id="birth">';
-                                        echo $bornOn . '&nbsp;' . __('in', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
-                                        echo '</p>';
-                                        break;
-                                    case 'dateofdeath':
-                                        $passedAway = '';
-                                        $date = current($fields[$required_str]);
-                                        if ($deseased == false) {
-                                            $deseased = true;
-                                            $passedAway = __('Passed away', 'cm_translate');
-                                        }
-                                        echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('on', 'cm_translate') . ':&nbsp;';
-	                                    $date = DateTime::createFromFormat( 'Y-m-d', $date )->getTimestamp();
-	                                    $translated_date = date_i18n(get_option('date_format'), $date);
-	                                    echo esc_html( $translated_date );
-                                        echo '</p>';
-                                        break;
-                                    case 'placeofdeath':
-                                        $passedAway = '';
-                                        if ($deseased == false) {
-                                            $deseased = true;
-                                            $passedAway = __('Passed away', 'cm_translate');
-                                        }
-                                        echo '<p class="' . $required_str . '" id="death">';
-                                        echo $passedAway . '&nbsp;' . __('in', 'cm_translate') . ':&nbsp;' . current($fields[$required_str]);
-                                        echo '</p>';
-                                        break;
-	                                case 'funeraldate':
-		                                if ( isset( $fields[ $required_str ][0] ) && $fields[ $required_str ][0] ) {
-			                                $date       = current( $fields[ $required_str ] );
-			                                $funeral_at = __( 'Funeral date', 'cm_translate' );
-			                                echo '<p class="' . $required_str . '" id="funeraldate">';
-			                                echo $funeral_at . '&nbsp;' . __( 'on', 'cm_translate' ) . ':&nbsp;';
-			                                $date            = DateTime::createFromFormat( 'Y-m-d', $date )->getTimestamp();
-			                                $translated_date = date_i18n( get_option( 'date_format' ), $date );
-			                                echo esc_html( $translated_date );
-			                                echo '</p>';
-		                                }
-		                                break;
-                                    case 'residence':
-                                        if(isset($fields[$required_str][0]) && $fields[$required_str][0]) {
-                                            echo '<p class="deceased-subtitle">';
-                                            echo __('Resident of', 'cm_translate') . ': ' . current($fields[$required_str]);
-                                            echo '</p>';
-                                        }
-                                        break;
-                                    case 'funeralinformation':
-                                        if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
-                                            echo '<p>';
-                                            echo _e("Funeral information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
-                                            echo '</p>';
-                                        }
-                                        break;
-                                    case 'prayervigilinformation':
-                                        if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
-                                            echo '<p class="' . $required_str . '">';
-                                            echo _e("Prayer vigil information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
-                                            echo '</p>';
-                                        }
-                                        break;
-                                    case 'greetinginformation':
-                                        if (isset($fields[$required_str][0]) && current($fields[$required_str]) != '') {
-                                            echo '<p class="' . $required_str . '">';
-                                            echo _e("Greeting information", "cm_translate") . ':&nbsp;' . current($fields[$required_str]);
-                                            echo '</p>';
-                                        }
-                                        break;
-                                    case 'relations':
-                                        $raw_data = current($fields[$required_str]);
-                                        if (!empty($raw_data)) {
-                                            $relations = unserialize($raw_data);
-                                            foreach ($relations as $relation) {
-                                                if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
-                                                    echo '<p>';
-                                                    _e('Beloved husband of', 'cm_translate');
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female') {
-                                                    echo '<p>';
-                                                    _e('Beloved wife of', 'cm_translate');
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male') {
-                                                    echo '<p>';
-                                                    _e('Beloved husband of the late', 'cm_translate');
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female') {
-                                                    echo '<p>';
-                                                    _e('Beloved wife of the late', 'cm_translate');
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Male') {
-                                                    echo '<p>';
-                                                    echo $relation['other'];
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Other' && $relation['alive'] == '1' && $gender == 'Female') {
-                                                    echo '<p>';
-                                                    echo $relation['other'];
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Male') {
-                                                    echo '<p>';
-                                                    echo $relation['other'];
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                } elseif ($relation['type'] == 'Other' && $relation['alive'] == '0' && $gender == 'Female') {
-                                                    echo '<p>';
-                                                    echo $relation['other'];
-                                                    echo ':&nbsp;';
-                                                    echo $relation['name'] . '&nbsp;' . $relation['familyname'];
-                                                    echo '</p>';
-                                                }
+					if ( isset( $post_meta["funeraldate"][0] ) && $post_meta["funeraldate"][0] != '' ):
+						echo '<div class="deceased-funeral-date">';
+						echo '<p>';
+							echo esc_html__( 'Funeral date', 'cm_translate' ) . ' ';
+							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["funeraldate"][0] )->getTimestamp();
+							$translated_date = date_i18n( get_option( 'date_format' ), $date );
+							echo esc_html( $translated_date );
+						echo '</p>';
+						echo '</div>';
+					endif;
 
-                                            }
-                                        }
-                                        break;
-                                    case '_cm_linked_location':
-                                        if(isset($fields[$required_str])) {
-                                            $location_id = current($fields[$required_str]);
-                                            if($location_id != 0) {
-                                                $location = get_the_title($location_id);
-                                                if (!empty($location)) {
-                                                    echo '<p class="' . $required_str . '">';
-                                                    echo _e("Laid out at", "cm_translate") . ':&nbsp;' . $location;
-                                                    echo '</p>';
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 'live_stream_description':
-                                        if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] == 1
-                                            &&  isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]
-                                            &&  isset($fields['live_stream_description'][0]) && $fields['live_stream_description'][0]
-                                        ) {?>
-                                            <p>
-                                                <?php _e('Live-stream information', 'cm_translate'); ?>:&nbsp;
-                                                <?php echo current($fields['live_stream_description']); ?>
-                                            </p>
-                                            <?php
-                                        }
-                                        break;
-                                    default:
-                                        echo '<p class="' . $required_str . '">';
-                                        echo current($fields[$required_str]);
-                                        echo '</p>';
-                                        break;
-                                    }
-                                }
-                            }
-                            ?>
-                            <?php if ($password == '') { ?>
-                                <a href="?comments" class="btn">
-                                    <?php _e('Condole', 'cm_translate'); ?>
-                                </a>
-                                <?php
+					if ( isset( $post_meta["_cm_linked_location"] ) ) {
+						$location_id = current( $post_meta["_cm_linked_location"] );
+						if ( $location_id != 0 ) {
+							$location = get_the_title( $location_id );
+							if ( ! empty( $location ) ) {
+								echo '<div class="deceased-linked-location">';
+								echo '<p>';
+								echo esc_html__( "Laid out at", "cm_translate" ).': ';
+								echo esc_html( $location );
+								echo '</p>';
+								echo '</div>';
+							}
+						}
+					}
 
-                                if ($fields['flowers'][0] === '1') {
-	                                $can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() );
+					if ( $post_meta["funeralinformation"][0] ) {
+						echo '<div class="deceased-funeral-info">';
+						echo '<p>';
+						echo esc_html__( 'Funeral information', 'cm_translate' ).': ';
+						echo esc_html( $post_meta["funeralinformation"][0] );
+						echo '</p>';
+						echo '</div>';
+					}
 
-	                                $flower_link = ($can_order_flower) ? '?cm-products&cm-order-form&cm_order_product' : '#';
-                                    ?>
-                                    <a href="<?php echo esc_attr($flower_link); ?>" class="btn<?php echo ($can_order_flower) ? '': ' disabled'; ?>">
-                                        <?php _e('Flowers', 'cm_translate'); ?>
-                                    </a>
-                                    <?php
-                                }
+					if ( $post_meta["prayervigilinformation"][0] ) {
+						echo '<div class="deceased-wake">';
+						echo '<p>';
+						echo esc_html__( 'Prayer vigil information', 'cm_translate' ).': ';
+						echo esc_html( $post_meta["prayervigilinformation"][0] );
+						echo '</p>';
+						echo '</div>';
+					}
+					
+					if ( $post_meta["greetinginformation"][0] ) {
+						echo '<div class="deceased-greetings">';
+						echo '<p>';
+						echo esc_html__( 'Greeting information', 'cm_translate' ).': ';
+						echo esc_html( $post_meta["greetinginformation"][0] );
+						echo '</p>';
+						echo '</div>';
+					}
 
-                                if ($fields['coffee_table'][0] == 'yes') {
-                                    ?>
-                                    <a href="?ct_form" class="btn">
-                                        <?php _e('Coffee Table', 'cm_translate'); ?>
-                                    </a>
-                                    <?php
-                                }
+					if ( isset($post_meta['live_stream'][0]) && $post_meta['live_stream'][0] == 1 &&  isset($post_meta['live_stream_url'][0]) && $post_meta['live_stream_url'][0] &&  isset($post_meta['live_stream_description'][0]) && $post_meta['live_stream_description'][0] ) {
+						echo '<div class="deceased-live-stream">';
+						echo '<p>';
+						echo __('Live-stream information', 'cm_translate').': '.current($post_meta['live_stream_description']);
+						echo '</p>';
+						echo '</div>';
+					}
 
-                                if (isset($fields['masscard'][0])) { ?>
-                                    <a target="_blank" href="<?= $fields['masscard'][0] ?>" class="btn"
-                                       id="toggle_flowers"><?php _e('Mass card', 'cm_translate'); ?></a>
-                                    <?php
-                                }
+					if ($password == '') {
+						echo '<div class="cm-buttons-wrapper">';
 
-                                if (isset($fields['live_stream'][0]) && $fields['live_stream'][0] && isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0]) {
-                                    $is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream_embed'][0];
-                                    $live_stream_url = $is_embedded
-                                        ? '?livestream'
-                                        : $fields['live_stream_url'][0];
-                                    ?>
-                                    <a <?php echo $is_embedded ? '': 'target="_blank"' ?> href="<?= $live_stream_url ?>" class="btn"
-                                       id="live_stream_url"><?php _e('Funeral live-stream', 'cm_translate'); ?></a>
-                                    <?php
-                                }
-                            } ?>
-                        </td>
-                    </tr>
-                </table>
+						echo '<a href="?comments" class="btn">';
+						_e('Condole', 'cm_translate');
+						echo '</a>';
+	
+						if ($post_meta['flowers'][0] === '1') {
+							$can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() );
+							$flower_link = ($can_order_flower) ? '?cm-products&cm-order-form&cm_order_product' : '#';
+							echo '<a href="'.esc_attr($flower_link).'>" class="btn'.($can_order_flower ? '': ' disabled').'">';
+							_e('Flowers', 'cm_translate');
+							echo '</a>';
+						}
 
+						if ($post_meta['coffee_table'][0] == 'yes') {
+							echo '<a href="?ct_form" class="btn">';
+							_e('Coffee Table', 'cm_translate');
+							echo '</a>';
+						}
 
-                <?php
-                $check_password = get_post_meta(get_the_ID(), 'password', true);
-                if (!empty($password) && $password == $check_password) { ?>
+						if (isset($post_meta['masscard'][0])) {
+							echo '<a target="_blank" href="'.$post_meta['masscard'][0].'" class="btn" id="toggle_flowers">';
+							_e('Mass card', 'cm_translate');
+							echo '</a>';
+						}
 
+						if (isset($post_meta['live_stream'][0]) && $post_meta['live_stream'][0] && isset($post_meta['live_stream_url'][0]) && $post_meta['live_stream_url'][0]) {
+							$is_embedded = isset($post_meta['live_stream_embed']) && $post_meta['live_stream_embed'][0];
+							$live_stream_url = $is_embedded ? '?livestream' : $post_meta['live_stream_url'][0];
+							echo '<a '.($is_embedded ? '': 'target="_blank"').' href="'.$live_stream_url.'" class="btn" id="live_stream_url">';
+							_e('Funeral live-stream', 'cm_translate');
+							echo '</a>';
+						}
 
-                    <div class="comments-list family_page">
-                        <h3><?php _e('Condolences for the family', 'cm_translate'); ?></h3>
-                        <ol class="commentlist">
-                            <?php comment_form(array('title_reply' => __('Reply to this condolence', 'cm_translate'), 'title_reply_after' => '</h3><p id="info_text">' . __('This message will be send by mail to the author of the condolence.', 'cm_translate') . '</p>', 'label_submit' => __('Reply', 'cm_translate'))); ?>
+						echo '</div>';
+					}
+					?>
+			</article>
+		</div>
 
-                            <?php
-                            //Gather comments for a specific page/post
-                            $comments = get_comments(array(
-                                'post_id' => get_the_ID(),
-                                'status' => 'approve' //Change this to the type of comments to be displayed
-                            ));
+		<?php
+		$check_password = get_post_meta(get_the_ID(), 'password', true);
+		if ( !empty($password) && $password == $check_password) { ?>
 
-                            //Display the list of comments
-                            wp_list_comments(array(
-                                'per_page' => 100, //Allow comment pagination
-                                'reverse_top_level' => false //Show the latest comments at the top of the list
-                            ), $comments);
-                            ?>
-                        </ol>
-                    </div>
+			<div class="comments-list family_page">
+				<h3><?php _e('Condolences for the family', 'cm_translate'); ?></h3>
+				<?php comment_form(array(
+					'title_reply' => __('Reply to this condolence', 'cm_translate'), 
+					'title_reply_after' => '</h3><p id="info_text">' . __('This message will be send by mail to the author of the condolence.', 'cm_translate') . '</p>', 
+					'label_submit' => __('Reply', 'cm_translate')
+				));
 
-                <?php } else { ?>
+				//Gather comments for a specific page/post
+				$comments = get_comments(array(
+					'post_id' => get_the_ID(),
+					'status' => 'approve' //Change this to the type of comments to be displayed
+				));
 
-                    <div class="comments" style="display: <?=cm_get_display_value('comments')?>;">
-                        <?php
-                        $errors = apply_filters('wpice_get_comment_form_errors_as_list', ''); // call template tag to print the error list
-                        if ($errors) {
-                            echo '<div class="error_box">';
-                            echo '<h3 class="secondarypage">';
-                            _e("Comment Error", "cm_translate");
-                            echo '</h3>';
-                            echo $errors;
-                            echo '</div>';
-                        }
+				//Display the list of comments
+				echo '<ol class="commentlist">';
+				wp_list_comments(array(
+					'per_page' => 100, //Allow comment pagination
+					'reverse_top_level' => false //Show the latest comments at the top of the list
+				), $comments);
+				echo '</ol>';
+				?>
+			</div>
 
-                        $comment_form_fields = array(
-                            'author' =>
-                                '<p class="comment-form-author"><label for="author">' . __('Naam', 'cm_translate') . ' ' .
-                                '<span class="required">*</span></label>' .
-                                '<input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"/></p>',
+		<?php } else { ?>
 
-                            'email' =>
-                                '<p class="comment-form-email"><label for="email">' . __('Email', 'cm_translate') . ' ' .
-                                '<span class="required">*</span></label>' .
-                                '<input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-required="true" aria-describedby="email-notes" required="required"/></p>',
+					<div class="comments" style="display: <?=cm_get_display_value('comments')?>;">
+						<?php
+						$errors = apply_filters('wpice_get_comment_form_errors_as_list', ''); // call template tag to print the error list
+						if ($errors) {
+							echo '<div class="error_box">';
+							echo '<h3 class="secondarypage">';
+							_e("Comment Error", "cm_translate");
+							echo '</h3>';
+							echo $errors;
+							echo '</div>';
+						}
 
-                        );
+						$comment_form_fields = array(
+							'author' =>
+								'<p class="comment-form-author"><label for="author">' . __('Naam', 'cm_translate') . ' ' .
+								'<span class="required">*</span></label>' .
+								'<input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"/></p>',
 
-                        comment_form(
-                            array(
-                                'title_reply' => __('Leave your condolences for the family', 'cm_translate'),
-                                'title_reply_after' => '</h3><p id="info_text">' . __('This message is only visible for the family', 'cm_translate') . '</p>',
-                                'label_submit' => __('Condolence', 'cm_translate'),
-                                'fields' => apply_filters('comment_form_default_fields', $comment_form_fields)
-                            )
-                        );
-                        ?>
-                    </div>
-                <?php } ?>
-            </div>
+							'email' =>
+								'<p class="comment-form-email"><label for="email">' . __('Email', 'cm_translate') . ' ' .
+								'<span class="required">*</span></label>' .
+								'<input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-required="true" aria-describedby="email-notes" required="required"/></p>',
 
-            <?php
-            $live_stream_is_enabled = isset($fields['live_stream'][0]) && $fields['live_stream'][0];
-            $live_stream_has_url = isset($fields['live_stream_url'][0]) && $fields['live_stream_url'][0];
-            $live_stream_is_embedded = isset($fields['live_stream_embed']) && $fields['live_stream_embed'][0];
-            $page_is_live_stream = isset($_GET['livestream']);
-            if ( $live_stream_is_enabled && $live_stream_has_url && $live_stream_is_embedded && $page_is_live_stream ):
-	            ?>
-                <div style="width: 100%;">
-                    <div style="padding-bottom: calc((9 / 16) * 100%); position:relative;">
-                        <div style="display: block; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
-                            <iframe src="<?php echo $fields['live_stream_url'][0]; ?>"
-                                    style="width: 100%; height: 100%;"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                    wmode="Opaque"
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
+						);
 
-            <?= do_shortcode('[cm_products]'); ?>
-            <?= do_shortcode('[cm_order_form]'); ?>
-        </div>
-    </div>
+						comment_form(
+							array(
+								'title_reply' => __('Leave your condolences for the family', 'cm_translate'),
+								'title_reply_after' => '</h3><p id="info_text">' . __('This message is only visible for the family', 'cm_translate') . '</p>',
+								'label_submit' => __('Condolence', 'cm_translate'),
+								'fields' => apply_filters('comment_form_default_fields', $comment_form_fields)
+							)
+						);
+						?>
+					</div>
+				<?php } ?>
+			</div>
+
+			<?php
+			$live_stream_is_enabled = isset($post_meta['live_stream'][0]) && $post_meta['live_stream'][0];
+			$live_stream_has_url = isset($post_meta['live_stream_url'][0]) && $post_meta['live_stream_url'][0];
+			$live_stream_is_embedded = isset($post_meta['live_stream_embed']) && $post_meta['live_stream_embed'][0];
+			$page_is_live_stream = isset($_GET['livestream']);
+			if ( $live_stream_is_enabled && $live_stream_has_url && $live_stream_is_embedded && $page_is_live_stream ):
+				?>
+				<div style="width: 100%;">
+					<div style="padding-bottom: calc((9 / 16) * 100%); position:relative;">
+						<div style="display: block; position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+							<iframe src="<?php echo $post_meta['live_stream_url'][0]; ?>"
+									style="width: 100%; height: 100%;"
+									frameborder="0"
+									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+									allowfullscreen
+									wmode="Opaque"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<?= do_shortcode('[cm_products]'); ?>
+			<?= do_shortcode('[cm_order_form]'); ?>
 </div>
 
 <?php
 get_footer();
 
-echo ob_get_clean();
+//echo ob_get_clean();
 ?>

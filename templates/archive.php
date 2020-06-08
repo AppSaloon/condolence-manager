@@ -7,32 +7,28 @@ get_header(); ?>
 
 <div id="cm-content-wrapper" class="alignwide">
 	<div class="cm-content">
-	<?php 
-	if ( have_posts() ) : while ( have_posts() ) : the_post();
-	$post_meta = get_post_meta( get_the_ID() );
-	?>
+		<?php 
+		if ( have_posts() ) : while ( have_posts() ) : the_post();
+		$post_meta = get_post_meta( get_the_ID() );
+		?>
 		<div class="cm-entry-content">
 			<article>
 				<div class="deceased-img">
 				<?php if ( has_post_thumbnail() ) : ?>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						<?php the_post_thumbnail( 'medium' ); ?>
-					</a>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( 'medium' ); ?></a>
 				<?php endif; ?>
 				</div>
 				<div class="deceased-info">
-					<h2 class="deceased-name">
-						<?php echo esc_html( $post_meta["name"][0] ) . '&nbsp;' . esc_html( $post_meta["familyname"][0] ); ?>
-					</h2>
-					<?php if ( isset( $post_meta["residence"][0] ) && $post_meta["residence"][0] ) { ?>
+					<h2 class="deceased-name"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php echo (isset($post_meta['honoraryitle']) && !empty( $post_meta['honoraryitle'][0]) ? $post_meta['honoraryitle'][0].' ' : '') . esc_html( $post_meta['name'][0] ) . ' ' . esc_html( $post_meta['familyname'][0] ); ?></a></h2>
+					<?php if ( isset( $post_meta['residence'][0] ) && $post_meta['residence'][0] ) { ?>
 					<h3 class="deceased-subtitle">
-						<?php echo esc_html__( 'Resident of', 'cm_translate' ); ?> : <?php echo esc_html( $post_meta["residence"][0] ); ?>
+						<?php echo esc_html__( 'Resident of', 'cm_translate' ).': '.esc_html( $post_meta['residence'][0] ); ?>
 					</h3>
 					<?php 
 					}
 
 					$relations = unserialize( current( $post_meta["relations"] ) );
-					if ( ! empty( $relations ) ) {
+					if ( ! empty( $relations ) &&  $relations['type'] != 'Single' ) {
 						$gender = current( $post_meta['gender'] );
 						echo '<div class="deceased-partner">';
 						echo '<p>';
@@ -69,6 +65,7 @@ get_header(); ?>
 							echo esc_html__( 'Born', 'cm_translate' ) . ' ';
 							echo esc_html__( 'in', 'cm_translate' ) . ': ';
 							echo esc_html( $post_meta["birthplace"][0] ) . ' ';
+							echo '<br>';
 							echo esc_html__( 'on', 'cm_translate' ) . ': ';
 							echo esc_html( $translated_date );
 						echo '</p>';
@@ -81,13 +78,14 @@ get_header(); ?>
 							echo esc_html__( 'Passed away', 'cm_translate' ) . ' ';
 							echo esc_html__( 'in', 'cm_translate' ) . ': ';
 							echo esc_html( $post_meta["placeofdeath"][0] ) . ' ';
+							echo '<br>';
 							echo esc_html__( 'on', 'cm_translate' ) . ': ';
 							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
 							$translated_date = date_i18n( get_option( 'date_format' ), $date );
 							echo esc_html( $translated_date );
 						echo '</p>';
 						echo '</div>';
-					endif; 
+					endif;
 
 					if ( isset( $post_meta["funeraldate"][0] ) && $post_meta["funeraldate"][0] != '' ):
 						echo '<div class="deceased-funeral-date">';
