@@ -61,7 +61,6 @@ Class Condolatie_Manager{
     public function __construct()
     {
         $this->run();
-        add_action('wp_enqueue_scripts', array($this, 'assets'));
         $this->includes();
     }
 
@@ -98,11 +97,6 @@ Class Condolatie_Manager{
      */
     public function settings(){
         new Admin_Options_Page();
-    }
-
-    public function assets(){
-	    wp_register_style('cm/forms', CM_URL . 'assets/css/forms.css', null, CM_VERSION );
-	    wp_register_style('cm/products', CM_URL . 'assets/css/products.css', null, CM_VERSION );
     }
     private function includes(){
 	    require_once CM_BASE_DIR . '/src/controller/Products.php';

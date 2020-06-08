@@ -23,7 +23,6 @@ class Form_Filter_Controller
         if( $this->check_page() ){
             wp_enqueue_script('coffee_table_script', CM_URL . 'assets/js/coffee-table-script.js', array( 'jquery' ), CM_VERSION);
             wp_localize_script('coffee_table_script', 'ajax_object', array( 'url' => admin_url('admin-ajax.php')));
-            wp_enqueue_style( 'scoffee_table_stylesheet', CM_URL . 'assets/css/coffee-table-stylesheet.css', null, CM_VERSION);
         }
     }
 

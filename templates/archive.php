@@ -21,9 +21,7 @@ get_header(); ?>
 				<div class="deceased-info">
 					<h2 class="deceased-name"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php echo (isset($post_meta['honoraryitle']) && !empty( $post_meta['honoraryitle'][0]) ? $post_meta['honoraryitle'][0].' ' : '') . esc_html( $post_meta['name'][0] ) . ' ' . esc_html( $post_meta['familyname'][0] ); ?></a></h2>
 					<?php if ( isset( $post_meta['residence'][0] ) && $post_meta['residence'][0] ) { ?>
-					<h3 class="deceased-subtitle">
-						<?php echo esc_html__( 'Resident of', 'cm_translate' ).': '.esc_html( $post_meta['residence'][0] ); ?>
-					</h3>
+					<h3 class="deceased-subtitle"><?php echo esc_html__( 'Resident of', 'cm_translate' ).': '.esc_html( $post_meta['residence'][0] ); ?></h3>
 					<?php 
 					}
 
@@ -34,19 +32,19 @@ get_header(); ?>
 						echo '<p>';
 						foreach ( $relations as $relation ) {
 							if ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male' ) {
-								echo esc_html__( 'Beloved husband of', 'cm_translate' ).': ';
+								echo '<strong>'.esc_html__( 'Beloved husband of', 'cm_translate' ).':</strong> ';
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female' ) {
-								echo esc_html__( 'Beloved wife of', 'cm_translate' );': ';
+								echo '<strong>'.esc_html__( 'Beloved wife of', 'cm_translate' );':</strong> ';
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male' ) {
-								echo esc_html__( 'Beloved husband of the late', 'cm_translate' ).': ';
+								echo '<strong>'.esc_html__( 'Beloved husband of the late', 'cm_translate' ).':</strong> ';
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female' ) {
-								echo esc_html__( 'Beloved wife of the late', 'cm_translate' ).': ';
+								echo '<strong>'.esc_html__( 'Beloved wife of the late', 'cm_translate' ).':</strong> ';
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Other' ) {
@@ -62,11 +60,10 @@ get_header(); ?>
 						echo '<p>';
 							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["birthdate"][0] )->getTimestamp();
 							$translated_date = date_i18n( get_option( 'date_format' ), $date );
-							echo esc_html__( 'Born', 'cm_translate' ) . ' ';
-							echo esc_html__( 'in', 'cm_translate' ) . ': ';
+							echo '<strong>'.esc_html__( 'Born', 'cm_translate' ) . ' '.esc_html__( 'in', 'cm_translate' ) . ':</strong> ';
 							echo esc_html( $post_meta["birthplace"][0] ) . ' ';
 							echo '<br>';
-							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							echo '<strong>'.esc_html__( 'on', 'cm_translate' ) . ':</strong> ';
 							echo esc_html( $translated_date );
 						echo '</p>';
 						echo '</div>';
@@ -75,11 +72,10 @@ get_header(); ?>
 					if ( isset( $post_meta["dateofdeath"][0] ) && $post_meta["dateofdeath"][0] != '' ):
 						echo '<div class="deceased-death-place-and-date">';
 						echo '<p>';
-							echo esc_html__( 'Passed away', 'cm_translate' ) . ' ';
-							echo esc_html__( 'in', 'cm_translate' ) . ': ';
+							echo '<strong>'.esc_html__( 'Passed away', 'cm_translate' ) . ' '.esc_html__( 'in', 'cm_translate' ) . ':</strong> ';
 							echo esc_html( $post_meta["placeofdeath"][0] ) . ' ';
 							echo '<br>';
-							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							echo '<strong>'.esc_html__( 'on', 'cm_translate' ) . ':</strong> ';
 							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["dateofdeath"][0] )->getTimestamp();
 							$translated_date = date_i18n( get_option( 'date_format' ), $date );
 							echo esc_html( $translated_date );
@@ -90,8 +86,7 @@ get_header(); ?>
 					if ( isset( $post_meta["funeraldate"][0] ) && $post_meta["funeraldate"][0] != '' ):
 						echo '<div class="deceased-funeral-date">';
 						echo '<p>';
-							echo esc_html__( 'Funeral date', 'cm_translate' ) . ' ';
-							echo esc_html__( 'on', 'cm_translate' ) . ': ';
+							echo '<strong>'.esc_html__( 'Funeral date', 'cm_translate' ) . ' '.esc_html__( 'on', 'cm_translate' ) . ':</strong> ';
 							$date            = DateTime::createFromFormat( 'Y-m-d', $post_meta["funeraldate"][0] )->getTimestamp();
 							$translated_date = date_i18n( get_option( 'date_format' ), $date );
 							echo esc_html( $translated_date );
@@ -106,7 +101,7 @@ get_header(); ?>
 							if ( ! empty( $location ) ) {
 								echo '<div class="deceased-linked-location">';
 								echo '<p>';
-								echo esc_html__( "Laid out at", "cm_translate" ).': ';
+								echo '<strong>'.esc_html__( "Laid out at", "cm_translate" ).':</strong> ';
 								echo esc_html( $location );
 								echo '</p>';
 								echo '</div>';
@@ -117,7 +112,7 @@ get_header(); ?>
 					if ( $post_meta["funeralinformation"][0] ) {
 						echo '<div class="deceased-funeral-info">';
 						echo '<p>';
-						echo esc_html__( 'Funeral information', 'cm_translate' ).': ';
+						echo '<strong>'.esc_html__( 'Funeral information', 'cm_translate' ).':</strong> ';
 						echo esc_html( $post_meta["funeralinformation"][0] );
 						echo '</p>';
 						echo '</div>';
@@ -126,7 +121,7 @@ get_header(); ?>
 					if ( $post_meta["prayervigilinformation"][0] ) {
 						echo '<div class="deceased-wake">';
 						echo '<p>';
-						echo esc_html__( 'Prayer vigil information', 'cm_translate' ).': ';
+						echo '<strong>'.esc_html__( 'Prayer vigil information', 'cm_translate' ).':</strong> ';
 						echo esc_html( $post_meta["prayervigilinformation"][0] );
 						echo '</p>';
 						echo '</div>';
@@ -135,7 +130,7 @@ get_header(); ?>
 					if ( $post_meta["greetinginformation"][0] ) {
 						echo '<div class="deceased-greetings">';
 						echo '<p>';
-						echo esc_html__( 'Greeting information', 'cm_translate' ).': ';
+						echo '<strong>'.esc_html__( 'Greeting information', 'cm_translate' ).':</strong> ';
 						echo esc_html( $post_meta["greetinginformation"][0] );
 						echo '</p>';
 						echo '</div>';
