@@ -106,13 +106,13 @@ class Order extends Custom_Post {
 				'contact_last_name'   => new Field( 'contact_last_name', true, array(
 						'label' => __( 'Last name', 'cm_translate' ),
 				) ),
-				'address_line'        => new Field( 'address_line', false, array(
+				'address_line'        => new Field( 'address_line', true, array(
 						'label' => __( 'Address line', 'cm_translate' ),
 				) ),
-				'address_postal_code' => new Field( 'address_postal_code', false, array(
+				'address_postal_code' => new Field( 'address_postal_code', true, array(
 						'label' => __( 'Postal code', 'cm_translate' ),
 				) ),
-				'address_city'        => new Field( 'address_city', false, array(
+				'address_city'        => new Field( 'address_city', true, array(
 						'label' => __( 'City', 'cm_translate' ),
 				) ),
 				'company_name'        => new Field( 'company_name', false, array(
