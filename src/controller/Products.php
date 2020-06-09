@@ -5,6 +5,7 @@ use appsaloon\cm\model\Order_Line;
 use appsaloon\cm\model\Product;
 use appsaloon\cm\register\Order_Type;
 use appsaloon\cm\register\Product_Type;
+use appsaloon\cm\settings\Admin_Options_Page;
 
 /**
  * Check whether orders are allowed.
@@ -77,9 +78,9 @@ function cm_display_order_form_submitted (string $order_id) {
     $order = new Order($order_id);
     $order->load_fields();
     ?>
-    <div class="cm-order-success">
-        <?php _e( 'Your order has been successfully placed!', 'cm_translate' ); ?>
-    </div>
+    <div class="cm-order-success" style="white-space: pre;"><?php
+        echo Admin_Options_Page::get_current_or_default_option('cm_option_confirmation_order_text');
+    ?></div>
     <div class="cm-order-summary">
         <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
         <?= strip_tags( $order->get_summary(), 'li ul' ) ?>

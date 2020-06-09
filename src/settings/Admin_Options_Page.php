@@ -5,6 +5,9 @@ namespace appsaloon\cm\settings;
 class Admin_Options_Page {
     const MENU_SLUG = 'condolence-manager';
     const MENU_OPTIONS_SLUG = 'condolence-manager_options';
+    const DEFAULT_OPTIONS = array(
+            'cm_option_confirmation_order_text' => 'Thank you for your order.',
+    );
 
     private $tabs;
     private $current_tab;
@@ -27,11 +30,29 @@ class Admin_Options_Page {
 		    : array_keys($this->tabs)[0];
 	}
 
+	public static function get_current_or_default_option(string $option)
+	{
+	    $value = get_option($option);
+	    error_log(var_export(["value" => $value], 1));
+	    if($value) {
+	       return $value;
+	    } else {
+	        if(isset(static::DEFAULT_OPTIONS[$option])) {
+	            error_log(var_export(["value" => static::DEFAULT_OPTIONS[$option]], 1));
+	            return static::DEFAULT_OPTIONS[$option];
+	        } else {
+	            error_log(var_export(["null" => null], 1));
+	            return null;
+	        }
+	    }
+	}
+
 	public static function get_confirmation_settings() {
 	    return array(
 	            'type' => esc_html__(get_option('cm_option_confirmation_type', 'text')),
 	            'text' => esc_html__(get_option('cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'))),
 	            'page' => esc_html__(get_option('cm_option_confirmation_page')),
+	            'order_text' => esc_html__(get_option('cm_option_confirmation_order_text'))
 	    );
 	}
 
@@ -152,6 +173,7 @@ class Admin_Options_Page {
             );
             update_option('cm_option_confirmation_text', sanitize_textarea_field($_POST['cm_option_confirmation_text']));
             update_option('cm_option_confirmation_page', esc_url($_POST['cm_option_confirmation_page']));
+            update_option('cm_option_confirmation_order_text', sanitize_textarea_field($_POST['cm_option_confirmation_order_text']));
         }
         ?>
         <p class="info"><?php _e('Manage the condolence confirmation. This can be a thank you text, or a page to redirect to.', 'cm_translate'); ?></p>
@@ -197,12 +219,23 @@ class Admin_Options_Page {
                 </td>
             </tr>
             <tr>
+                <th>
+                    <label for="cm_option_confirmation_order_text">
+                    <?php _e('Order confirmation message', 'cm_translate'); ?>
+                    </label>
+                </th>
+                <td>
+                   <textarea name="cm_option_confirmation_order_text" class="regular-text" id="cm_option_confirmation_order_text" placeholder="Thank you for your order."><?php
+                    echo esc_attr(static::get_confirmation_settings()['order_text'])
+                    ?></textarea>
+                </td>
+            </tr>
+            <tr>
                 <th></th>
                 <td>
                     <input type="submit" class="button-primary" value="<?php _e('Submit') ?>" name="btn_confirmation">
                 </td>
             </tr>
-
             </table>
 
         </form>

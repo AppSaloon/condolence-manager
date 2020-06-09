@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-06-02 11:30+0200\n"
-"PO-Revision-Date: 2020-06-02 11:31+0200\n"
+"POT-Creation-Date: 2020-06-09 15:16+0200\n"
+"PO-Revision-Date: 2020-06-09 15:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -51,10 +51,6 @@ msgstr "Het bestelformulier is verlopen."
 msgid "There were some errors with your order, please try again."
 msgstr "Er ging iets mis met uw bestelling, probeer het opnieuw."
 
-#: src/controller/Products.php:81
-msgid "Your order has been successfully placed!"
-msgstr "Uw bestelling is succesvol geplaatst!"
-
 #: src/controller/Products.php:84 src/model/Order.php:71
 #: src/register/Order_Type.php:328 src/register/Product_Type.php:77
 #: src/register/Product_Type.php:79
@@ -94,7 +90,7 @@ msgstr "Er is een nieuwe bestelling geplaatst voor de begrafenis van %s"
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr "U heeft mogelijk een veld leeg gelaten of te snel gepost"
 
-#: src/controller/Templates.php:76 src/settings/Admin_Options_Page.php:33
+#: src/controller/Templates.php:76 src/settings/Admin_Options_Page.php:53
 msgid "Thanks for your comment. We appreciate your response."
 msgstr "Bedankt voor uw bericht. Wij waarderen uw reactie."
 
@@ -717,50 +713,50 @@ msgctxt "Post Type Description"
 msgid "Products"
 msgstr "Producten"
 
-#: src/settings/Admin_Options_Page.php:19
+#: src/settings/Admin_Options_Page.php:22
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: src/settings/Admin_Options_Page.php:20
+#: src/settings/Admin_Options_Page.php:23
 msgid "Rename CPT"
 msgstr "CPR hernoemen"
 
-#: src/settings/Admin_Options_Page.php:40
-#: src/settings/Admin_Options_Page.php:41
-#: src/settings/Admin_Options_Page.php:135
+#: src/settings/Admin_Options_Page.php:61
+#: src/settings/Admin_Options_Page.php:62
+#: src/settings/Admin_Options_Page.php:156
 msgid "Condolence manager"
 msgstr "Condolatiemanager"
 
-#: src/settings/Admin_Options_Page.php:51
+#: src/settings/Admin_Options_Page.php:72
 msgid "Condolence manager options"
 msgstr "Condolatiemanager opties"
 
-#: src/settings/Admin_Options_Page.php:52
+#: src/settings/Admin_Options_Page.php:73
 msgid "Options"
 msgstr "Opties"
 
-#: src/settings/Admin_Options_Page.php:85
+#: src/settings/Admin_Options_Page.php:106
 #, php-format
 msgid "The new slug is not valid. %s"
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:91
+#: src/settings/Admin_Options_Page.php:112
 msgid "The new slug is identical to the old slug."
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:98
+#: src/settings/Admin_Options_Page.php:119
 msgid "The new slug already exists for another post type or page slug."
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:110
+#: src/settings/Admin_Options_Page.php:131
 msgid "The operation failed."
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:128
+#: src/settings/Admin_Options_Page.php:149
 msgid "The slug has been updated."
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:157
+#: src/settings/Admin_Options_Page.php:179
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
@@ -769,27 +765,27 @@ msgstr ""
 "rouwbetuiging. Dit kan een bedankbriefje zijn, of een pagina om naar om te "
 "leiden."
 
-#: src/settings/Admin_Options_Page.php:162
+#: src/settings/Admin_Options_Page.php:184
 msgid "Confirmation type"
 msgstr "Bevestigingstype"
 
-#: src/settings/Admin_Options_Page.php:168
+#: src/settings/Admin_Options_Page.php:190
 msgid "Page"
 msgstr "Pagina"
 
-#: src/settings/Admin_Options_Page.php:169
+#: src/settings/Admin_Options_Page.php:191
 msgid "Text"
 msgstr "Tekst"
 
-#: src/settings/Admin_Options_Page.php:171
+#: src/settings/Admin_Options_Page.php:193
 msgid "Choose what will happen after a user writes a condolence."
 msgstr "Kies wat er gebeurt nadat een gebruiker een rouwbetuiging schrijft."
 
-#: src/settings/Admin_Options_Page.php:177
+#: src/settings/Admin_Options_Page.php:199
 msgid "Confirmation page"
 msgstr "Bevestigingspagina"
 
-#: src/settings/Admin_Options_Page.php:182
+#: src/settings/Admin_Options_Page.php:204
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
@@ -798,15 +794,15 @@ msgstr ""
 "de pagina waarheen uw gebruikers worden doorgestuurd nadat ze een "
 "rouwbetuiging hebben geschreven."
 
-#: src/settings/Admin_Options_Page.php:188
+#: src/settings/Admin_Options_Page.php:210
 msgid "Confirmation text"
 msgstr "Bevestigingstekst"
 
-#: src/settings/Admin_Options_Page.php:191
+#: src/settings/Admin_Options_Page.php:213
 msgid "Thank you note"
 msgstr "bedankbriefje"
 
-#: src/settings/Admin_Options_Page.php:195
+#: src/settings/Admin_Options_Page.php:217
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
@@ -815,24 +811,28 @@ msgstr ""
 "bovenstaande veld weergegeven aan een gebruiker na het schrijven van een "
 "rouwbetuiging."
 
-#: src/settings/Admin_Options_Page.php:202
+#: src/settings/Admin_Options_Page.php:224
+msgid "Order confirmation message"
+msgstr "Bevestigingstekst voor bestellingen"
+
+#: src/settings/Admin_Options_Page.php:236
 #: templates/coffee_table_form_template.php:89
 msgid "Submit"
 msgstr "Verstuur"
 
-#: src/settings/Admin_Options_Page.php:217
+#: src/settings/Admin_Options_Page.php:250
 msgid "Please create a database backup before changing the slug."
 msgstr ""
 
-#: src/settings/Admin_Options_Page.php:220
+#: src/settings/Admin_Options_Page.php:253
 msgid "You can change the <b>custom post type slug</b>."
 msgstr "U kan de <b>slug van deze custom post</b> wijzigen."
 
-#: src/settings/Admin_Options_Page.php:222
+#: src/settings/Admin_Options_Page.php:255
 msgid "Slug name"
 msgstr "Slug naam"
 
-#: src/settings/Admin_Options_Page.php:225
+#: src/settings/Admin_Options_Page.php:258
 msgid "Change post type"
 msgstr "Verander post type"
 
@@ -1126,6 +1126,9 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "AppSaloon"
 msgstr "AppSaloon"
+
+#~ msgid "Your order has been successfully placed!"
+#~ msgstr "Uw bestelling is succesvol geplaatst!"
 
 #~ msgid "Description:"
 #~ msgstr "Beschrijving:"
