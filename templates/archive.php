@@ -151,15 +151,14 @@ get_header(); ?>
 
 						if ( is_array( $post_meta['coffee_table'] ) && isset( $post_meta['coffee_table'][0] ) && $post_meta['coffee_table'][0] == 'yes' ) { ?>
 							<input type="button" onclick="location.href='<?php the_permalink(); ?>?ct_form'" value="<?php echo esc_attr__( 'Coffee Table', 'cm_translate' ); ?>">
-								<?php
-							}
-
-							if ( is_array( $post_meta['masscard'] ) && isset( $post_meta['masscard'][0] ) && $post_meta['masscard'][0] ) { ?>
-								<input type="button" onclick="window.open('<?php echo esc_attr( $post_meta["masscard"][0] ); ?>', '_blank')" value="<?php echo esc_attr__( 'Mass card', 'cm_translate' ); ?>">
-
 							<?php
-							}
-							?>
+						}
+
+						if ( is_array( $post_meta['masscard'] ) && isset( $post_meta['masscard'][0] ) && $post_meta['masscard'][0] ) { ?>
+							<input type="button" onclick="window.open('<?php echo esc_attr( $post_meta["masscard"][0] ); ?>', '_blank')" value="<?php echo esc_attr__( 'Mass card', 'cm_translate' ); ?>">
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			</article>

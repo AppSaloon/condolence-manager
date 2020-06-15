@@ -151,36 +151,36 @@ $post_meta = get_post_meta( get_the_ID() );
 					if ($password == '') {
 						echo '<div class="cm-buttons-wrapper">';
 
-						echo '<a href="?comments" class="btn">';
-						_e('Condole', 'cm_translate');
-						echo '</a>';
-	
-						if ($post_meta['flowers'][0] === '1') {
-							$can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() );
-							$flower_link = ($can_order_flower) ? '?cm-products&cm-order-form&cm_order_product' : '#';
-							echo '<a href="'.esc_attr($flower_link).'>" class="btn'.($can_order_flower ? '': ' disabled').'">';
-							_e('Flowers', 'cm_translate');
-							echo '</a>';
+						echo '<input type="button" onclick="location.href=\''.get_the_permalink().'?comments\'" value="'.esc_attr__( 'Condole', 'cm_translate' ).'">';
+
+						if ( is_array( $post_meta['flowers'] ) && isset( $post_meta['flowers'][0] ) ) {
+							if ( $post_meta['flowers'][0] === '1' ) {
+								$can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date(get_the_ID() ); ?>
+								<input type="button" onclick="location.href='<?php the_permalink(); ?>?cm-products&cm-order-form'" value="<?php echo esc_attr__( 'Flowers', 'cm_translate' ); ?>" <?php echo ($can_order_flower) ? '': 'disabled'; ?>>
+							<?php 
+							}
 						}
 
-						if ($post_meta['coffee_table'][0] == 'yes') {
-							echo '<a href="?ct_form" class="btn">';
-							_e('Coffee Table', 'cm_translate');
-							echo '</a>';
+						if ( is_array( $post_meta['coffee_table'] ) && isset( $post_meta['coffee_table'][0] ) && $post_meta['coffee_table'][0] == 'yes' ) { ?>
+							<input type="button" onclick="location.href='<?php the_permalink(); ?>?ct_form'" value="<?php echo esc_attr__( 'Coffee Table', 'cm_translate' ); ?>">
+							<?php
 						}
 
-						if (isset($post_meta['masscard'][0])) {
-							echo '<a target="_blank" href="'.$post_meta['masscard'][0].'" class="btn" id="toggle_flowers">';
-							_e('Mass card', 'cm_translate');
-							echo '</a>';
+						if ( is_array( $post_meta['masscard'] ) && isset( $post_meta['masscard'][0] ) && $post_meta['masscard'][0] ) { ?>
+							<input type="button" onclick="window.open('<?php echo esc_attr( $post_meta["masscard"][0] ); ?>', '_blank')" value="<?php echo esc_attr__( 'Mass card', 'cm_translate' ); ?>">
+						<?php
 						}
 
-						if (isset($post_meta['live_stream'][0]) && $post_meta['live_stream'][0] && isset($post_meta['live_stream_url'][0]) && $post_meta['live_stream_url'][0]) {
+						if (isset($post_meta['live_stream'][0]) && $post_meta['live_stream'][0] && isset($post_meta['live_stream_url'][0]) && $post_meta['live_stream_url'][0]) { 
 							$is_embedded = isset($post_meta['live_stream_embed']) && $post_meta['live_stream_embed'][0];
 							$live_stream_url = $is_embedded ? '?livestream' : $post_meta['live_stream_url'][0];
-							echo '<a '.($is_embedded ? '': 'target="_blank"').' href="'.$live_stream_url.'" class="btn" id="live_stream_url">';
-							_e('Funeral live-stream', 'cm_translate');
-							echo '</a>';
+							if ( $is_embedded ) { ?>
+								<input type="button" onclick="location.href='<?php echo the_permalink().$live_stream_url; ?>'" value="<?php _e('Funeral live-stream', 'cm_translate');
+							?>">
+							<?php } else { ?>
+							<input type="button" onclick="window.open('<?php echo $live_stream_url; ?>', '_blank')" value="<?php _e('Funeral live-stream', 'cm_translate'); ?>">
+							<?php
+							}
 						}
 
 						echo '</div>';

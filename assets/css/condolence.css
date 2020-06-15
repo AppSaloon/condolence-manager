@@ -58,12 +58,10 @@
 	display: flex;
 	flex-direction: row;
 }
-#cm-content-wrapper .cm-buttons-wrapper input[type=button],
-#cm-content-wrapper a.btn {
+#cm-content-wrapper .cm-buttons-wrapper input[type=button] {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	margin: 0 10px 10px 20px;
-	background-color: buttonface;
-	color: #333;
+	color: #fff;
 	display: inline-block;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -84,17 +82,13 @@
 }
 #cm-content-wrapper .cm-buttons-wrapper input[type=button]:active,
 #cm-content-wrapper .cm-buttons-wrapper input[type=button]:hover,
-#cm-content-wrapper .cm-buttons-wrapper input[type=button]:focus,
-#cm-content-wrapper a.btn:active,
-#cm-content-wrapper a.btn:hover,
-#cm-content-wrapper a.btn:focus {
+#cm-content-wrapper .cm-buttons-wrapper input[type=button]:focus {
 	filter: brightness(85%);
 }
 #cm-content-wrapper input[type=button]:disabled {
 	background: lightgrey;
 }
-#cm-content-wrapper .cm-buttons-wrapper input[type=button]:first-of-type,
-#cm-content-wrapper a.btn:first-of-type {
+#cm-content-wrapper .cm-buttons-wrapper input[type=button]:first-of-type {
 	margin-left: 0;
 }
 #cm-content-wrapper .comments h3,
