@@ -129,8 +129,7 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 		<?= $order->render_details_form() ?>
 		<?php wp_nonce_field( 'cm_place_order', 'cm_order_nonce' ); ?>
         <div class="form-wrap form-wrap--submit">
-            <input type="submit" name="cm_order_submit" value="<?= esc_attr( $btn_text ) ?>"
-                   class="cm-order-form--button"/>
+            <input type="submit" name="cm_order_submit" value="<?= esc_attr( $btn_text ) ?>" class="cm-order-form--button">
         </div>
     </form>
 	<?php
@@ -140,11 +139,11 @@ function cm_get_display_value($id) {
     $query = array();
     parse_str($_SERVER['QUERY_STRING'], $query);
 
-    if (!is_single() || isset($query[$id])) {
-        return 'block';
+    if ( !is_single() || isset($query[$id]) ) {
+        return 'style="display:block;"';
     }
 
-    return 'none';
+    return 'style="display:none;"';
 }
 
 function cm_display_products( $title = '', $products_query_arguments = array(), $hide_order_buttons = false ) {
@@ -183,7 +182,7 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 
 	ob_start();
 	?>
-    <div id="cm-products" class="cm-products rouw" style="display: <?php echo cm_get_display_value('cm-products'); ?>;">
+    <div id="cm-products" class="cm-products rouw" <?php echo cm_get_display_value('cm-products'); ?>">
 		<?php if ( ! empty( $title ) ): ?>
             <h2 class="cm-products--title"><?= esc_html( $title ); ?></h2>
 		<?php endif; ?>
@@ -228,8 +227,8 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
             <form action="./" method="get" class="cm-products-pagination">
                 <?php
                 if($hide_order_buttons === false) { ?>
-                    <input type="hidden" name="cm-products"/>
-                    <input type="hidden" name="cm-order-form"/>
+                    <input type="hidden" name="cm-products">
+                    <input type="hidden" name="cm-order-form">
                     <?php
                 }
                 ?>
@@ -322,7 +321,7 @@ function cm_order_form_shortcode( $atts ) {
 
 	ob_start();
 	?>
-    <div id="cm-order-form" class="cm-order-form rouw" style="display: <?php echo cm_get_display_value('cm-order-form'); ?>;">
+    <div id="cm-order-form" class="cm-order-form rouw" <?php echo cm_get_display_value('cm-order-form'); ?>">
         <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
         <p>
 		<?php

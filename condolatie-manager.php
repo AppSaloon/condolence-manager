@@ -3,7 +3,7 @@
  * Plugin Name: Condolence Manager
  * Plugin URI: http://www.appsaloon.be
  * Description: This plugin allows visitors to condole the family of the deceased.
- * Version: 2.4.9
+ * Version: 2.5.1
  * Text Domain: cm_translate
  * Author: AppSaloon
  * Author URI: http://www.appsaloon.be
@@ -49,7 +49,7 @@ define( 'CM_BASE_DIR', dirname( CM_BASE_FILE ) );
 define( 'CM_URL', plugin_dir_url( __FILE__ ));
 define( 'CM_DIR', plugin_dir_path( __FILE__ ));
 define( 'CM_BASE_NAME', dirname( plugin_basename( __FILE__) ) );
-define( 'CM_VERSION', '2.4.9' );
+define( 'CM_VERSION', '2.5.1' );
 
 /**
  * Register autoloader to load files/classes dynamically
@@ -61,7 +61,6 @@ Class Condolatie_Manager{
     public function __construct()
     {
         $this->run();
-        add_action('wp_enqueue_scripts', array($this, 'assets'));
         $this->includes();
     }
 
@@ -98,11 +97,6 @@ Class Condolatie_Manager{
      */
     public function settings(){
         new Admin_Options_Page();
-    }
-
-    public function assets(){
-	    wp_register_style('cm/forms', CM_URL . 'assets/css/forms.css', null, CM_VERSION );
-	    wp_register_style('cm/products', CM_URL . 'assets/css/products.css', null, CM_VERSION );
     }
     private function includes(){
 	    require_once CM_BASE_DIR . '/src/controller/Products.php';

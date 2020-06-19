@@ -3,6 +3,14 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.1 2020/06/03
+- improvement: redudant js removed, not used js removed
+- improvement: single.php file links to buttons, to inherit css styling from theme
+
+## Version 2.5.0 2020/06/03
+- improvement: css cleaned for archive view
+- improvement: archive.php file cleanup redudant code & logic, overall better html output
+
 ## Version 2.4.9 2020/06/02
 - fix: added configurable order confirmation message
 - fix: made address fields required in order form

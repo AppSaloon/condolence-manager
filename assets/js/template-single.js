@@ -1,5 +1,5 @@
 /**
- * Created by miekenijs on 15/02/16.
+ * Created by ~miekenijs~ on 15/02/16.
  */
 
 (function($) {
@@ -10,35 +10,35 @@ $(document).ready(function(){
     var confirmation = cm.confirmation;
     var wait = cm.wait;
     var not_send = cm.not_send;
-    var scrollDuration = 200;
+    //var scrollDuration = 200;
 
     // Smooth scroll to form ( Coffee table )
-    $("#toggle_coffee_table").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#ct_form").offset().top
-        }, scrollDuration);
-    });
+    // $("#toggle_coffee_table").click(function () {
+    //     $('html, body').animate({
+    //         scrollTop: $("#ct_form").offset().top
+    //     }, scrollDuration);
+    // });
     // Smooth scroll to form ( condolences )
-    $("#toggle_comment").click(function () {
-        $('html, body').animate({
-            scrollTop: $(".comments").offset().top
-        }, scrollDuration);
-    });
+    // $("#toggle_comment").click(function () {
+    //     $('html, body').animate({
+    //         scrollTop: $(".comments").offset().top
+    //     }, scrollDuration);
+    // });
     // Smooth scroll to flowers list
-    $("#toggle_products").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#cm-products").offset().top
-        }, scrollDuration);
-    });
+    // $("#toggle_products").click(function () {
+    //     $('html, body').animate({
+    //         scrollTop: $("#cm-products").offset().top
+    //     }, scrollDuration);
+    // });
 
     // if exist error message from gform or succes message
     // than show div with that content and hide coffee_table_button
-     if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
-         $("##coffee-table-form").show();
-         $("#toggle_coffee_table").hide();
-     }else{
-         $("#toggle_coffee_table").show();
-     }
+     // if ($("#gform_confirmation_wrapper_1").length || $(".validation_error").length ){
+     //     $("##coffee-table-form").show();
+     //     $("#toggle_coffee_table").hide();
+     // }else{
+     //     $("#toggle_coffee_table").show();
+     // }
 
     if($(".comment-form-error-box").length > 0){
         $("div.comments").show();

@@ -19,8 +19,8 @@ class Templates{
         $post_id = get_the_ID();
 
         if( $post_id ) {
-	        if(has_shortcode( $post->post_content, 'condolence_overview' )){
-		        wp_enqueue_style('condolence-archive', CM_URL . 'assets/css/condolence-archive.css', null, CM_VERSION);
+	        if(has_shortcode( $post->post_content, 'condolence_overview' )) {
+                wp_enqueue_style('condolence-css', CM_URL . 'assets/css/condolence.css', null, CM_VERSION);
 	        }
 
 	        // For all other CPT
@@ -62,10 +62,12 @@ class Templates{
     }
 
     public function hook_css() {
+        // load 1 (one) css for archive & single view, because we have the same html
+        wp_enqueue_style('condolence-css', CM_URL . 'assets/css/condolence.css', null, CM_VERSION);
+
         if( is_singular(Custom_Post_Type::post_type()) ){
             wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
             wp_enqueue_script('jquery');
-            wp_enqueue_style('condolence-single', CM_URL . 'assets/css/template-single.css', null, CM_VERSION);
             wp_enqueue_script('condolence-single', CM_URL . 'assets/js/template-single.js', array('jquery'), CM_VERSION);
             // Add some parameters for the JS.
             wp_localize_script(
@@ -80,10 +82,5 @@ class Templates{
                 )
             );
         }
-
-        if( is_archive()){
-            wp_enqueue_style('condolence-archive', CM_URL . 'assets/css/condolence-archive.css', null, CM_VERSION);
-        }
-
     }
 }

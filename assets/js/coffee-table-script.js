@@ -1,8 +1,8 @@
 jQuery(function ($) {
 
-    $('#toggle_coffee_table').click(function(){
-        $('#ct_div').toggle();
-    });
+    // $('#toggle_coffee_table').click(function(){
+    //     $('#ct_div').toggle();
+    // });
 
     $('#ct_form').submit(function(e){
         e.preventDefault();

@@ -1,9 +1,9 @@
 === Condolence manager ===
-Contributors: Appsaloon, Aytaç Kokus, Mieke Nijs, Sebastiaan Kurzynowski
+Contributors: Appsaloon
 Tags: Condolence, deceased, comment, reply, private, coffee table
-Donate link: http://www.appsaloon.be/
+Donate link: http://www.appsaloon.be
 Requires at least: 3.0.1
-Tested up to: 5.1.1
+Tested up to: 5.4.1
 Stable tag: 1.5.1
 License: GPLv2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ The funeral director needs to approve the condolences before the family can read
 The family is informed by mail when a new condolence is approved and comments on this condolence are send to the mailadres of the person who gave his condolence.
 The plugin generates a unique url where only the family can view these condolences.
 
-To overwrite the frontend template just place a copy of single.php and archive.php in your theme taken into account our template Hierarchy (condolatie-manager-plugin/single.php)
+To overwrite the frontend template just place a copy of single.php and archive.php (from the templates directory) in your theme, taken into account our template Hierarchy (condolatie-manager-plugin/single.php)
 
 == Installation ==
 1. From the dashboard of your site, navigate to Plugins --> Add New.
