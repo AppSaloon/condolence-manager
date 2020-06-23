@@ -50,7 +50,7 @@ class Coffee_Table_Controller
             $result = $participant->save_as_metavalue_string();
         }
 
-        do_action( 'conman_handle_form', $_POST );
+        do_action( 'cm_handle_form', $_POST );
 
         ob_start();
         if(  $result  ){
