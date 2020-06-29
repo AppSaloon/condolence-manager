@@ -40,13 +40,10 @@ To overwrite the frontend template just place a copy of single.php and archive.p
 4. Condolence manager -  Determine which fields are displayed and in what order
 
 == Hooks and filters ==
-1. conman_render_metabox - use to add new field in backend on post site
-2. conman_backend_js - use to add javascript on backend post site
-3. conman_prerender_admin_page - use to add field in plugin menu page
-4. conman_archive_render - use to show extra content on archive page
-5. conman_single_render - use to show extra content on single page
-6. conman_form_field - use to add extra content/field in coffie table form
-7. conman_handle_form - use to handle submitted data on backend in controller
+1. cm_render_metabox - use to add new field in backend on post site
+2. cm_backend_js - use to add javascript on backend post site
+3. cm_form_field - use to add extra content/field in coffie table form
+4. cm_handle_form - use to handle submitted data on backend in controller
 
 
 == Shortcodes ==

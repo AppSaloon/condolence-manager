@@ -291,7 +291,7 @@ class Metabox {
 				/**
 				 *  action hook to render metabox on backend
 				 */
-				do_action( 'conman_render_metabox' );
+				do_action( 'cm_render_metabox' );
 				?>
 
       </table>
@@ -472,7 +472,7 @@ class Metabox {
 				/**
 				 * action hook to add js
 				 */
-				do_action( 'conman_backend_js' ); ?>
+				do_action( 'cm_backend_js' ); ?>
       </script>
 
 		<?php
