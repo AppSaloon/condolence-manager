@@ -30,7 +30,7 @@ $post_meta = get_post_meta( get_the_ID() );
 					}
 
 					$relations = unserialize( current( $post_meta["relations"] ) );
-					if ( ! empty( $relations ) &&  $relations['type'] != 'Single' ) {
+					if ( ! empty( $relations ) ) {
 						$gender = current( $post_meta['gender'] );
 						echo '<div class="deceased-partner">';
 						echo '<p>';
