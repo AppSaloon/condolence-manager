@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-06-09 15:16+0200\n"
-"PO-Revision-Date: 2020-06-09 15:16+0200\n"
+"POT-Creation-Date: 2020-07-08 17:18+0200\n"
+"PO-Revision-Date: 2020-07-08 17:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -43,21 +43,21 @@ msgstr "Nieuw antwoord van %s op jouw rouwbetuiging"
 msgid "New Comment"
 msgstr "Nieuwe reactie"
 
-#: src/controller/Products.php:54
+#: src/controller/Products.php:55
 msgid "The order form has expired."
 msgstr "Het bestelformulier is verlopen."
 
-#: src/controller/Products.php:62
+#: src/controller/Products.php:63
 msgid "There were some errors with your order, please try again."
 msgstr "Er ging iets mis met uw bestelling, probeer het opnieuw."
 
-#: src/controller/Products.php:84 src/model/Order.php:71
+#: src/controller/Products.php:85 src/model/Order.php:74
 #: src/register/Order_Type.php:328 src/register/Product_Type.php:77
 #: src/register/Product_Type.php:79
 msgid "Products"
 msgstr "Producten"
 
-#: src/controller/Products.php:86 src/form/Metabox.php:708
+#: src/controller/Products.php:87 src/form/Metabox.php:708
 #: src/register/Order_Type.php:330
 msgid "Total"
 msgstr "Totaal"
@@ -68,7 +68,7 @@ msgid "Order"
 msgstr "Bestel"
 
 #: src/controller/Products.php:265 src/form/Metabox.php:133
-#: templates/archive.php:163 templates/single.php:275
+#: templates/archive.php:147 templates/single.php:161
 msgid "Flowers"
 msgstr "Bloemen"
 
@@ -81,25 +81,25 @@ msgstr "Bestelling plaatsen"
 msgid "Ordering is possible up until the day before the funeral at %s."
 msgstr "Bestellen is mogelijk tot de dag voor de begrafenis voor %s."
 
-#: src/controller/Products_Email_Controller.php:34
+#: src/controller/Products_Email_Controller.php:35
 #, php-format
 msgid "A new order has been placed for the funeral of %s"
 msgstr "Er is een nieuwe bestelling geplaatst voor de begrafenis van %s"
 
-#: src/controller/Templates.php:75
+#: src/controller/Templates.php:77
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr "U heeft mogelijk een veld leeg gelaten of te snel gepost"
 
-#: src/controller/Templates.php:76 src/settings/Admin_Options_Page.php:53
+#: src/controller/Templates.php:78 src/settings/Admin_Options_Page.php:53
 msgid "Thanks for your comment. We appreciate your response."
 msgstr "Bedankt voor uw bericht. Wij waarderen uw reactie."
 
-#: src/controller/Templates.php:78
+#: src/controller/Templates.php:80
 msgid "Please wait a while before posting your next comment."
 msgstr ""
 "Gelieve een tijdje te wachten voor het versturen van uw volgende reactie."
 
-#: src/controller/Templates.php:79
+#: src/controller/Templates.php:81
 msgid "Your message is not send. You might have left one of the fields blank."
 msgstr ""
 "Uw bericht is niet verzonden. Controleer of alle velden correct zijn "
@@ -178,11 +178,11 @@ msgstr "Plaats van overlijden"
 msgid "Date of death"
 msgstr "Datum van overlijden"
 
-#: src/form/Metabox.php:95 templates/archive.php:107 templates/single.php:134
+#: src/form/Metabox.php:95 templates/archive.php:89 templates/single.php:95
 msgid "Funeral date"
 msgstr "Datum van begrafenis"
 
-#: src/form/Metabox.php:101 templates/archive.php:133 templates/single.php:153
+#: src/form/Metabox.php:101 templates/archive.php:115 templates/single.php:121
 msgid "Funeral information"
 msgstr "Begrafenis informatie"
 
@@ -190,7 +190,7 @@ msgstr "Begrafenis informatie"
 msgid "Prayer Vigil information"
 msgstr "Gebedswake informatie"
 
-#: src/form/Metabox.php:112 templates/archive.php:145 templates/single.php:167
+#: src/form/Metabox.php:112 templates/archive.php:133 templates/single.php:139
 msgid "Greeting information"
 msgstr "Begroeting informatie"
 
@@ -198,7 +198,7 @@ msgstr "Begroeting informatie"
 msgid "Residence"
 msgstr "Woonplaats"
 
-#: src/form/Metabox.php:124 templates/archive.php:181 templates/single.php:290
+#: src/form/Metabox.php:124 templates/archive.php:158 templates/single.php:172
 msgid "Mass card"
 msgstr "Rouwbrief"
 
@@ -360,96 +360,100 @@ msgstr "Besteld op"
 msgid "Condolences"
 msgstr "Overlijdens"
 
-#: src/model/Order.php:75 templates/new_order_email_to_site_admin.php:14
+#: src/model/Order.php:78 templates/new_order_email_to_site_admin.php:14
 msgid "Ribbon text"
 msgstr "Tekst op het lint"
 
-#: src/model/Order.php:78 src/register/Order_Type.php:256
+#: src/model/Order.php:81 src/register/Order_Type.php:256
 msgid "Linked condolence"
 msgstr "Gelinkte condolatie"
 
-#: src/model/Order.php:79
+#: src/model/Order.php:82
 #, fuzzy
 msgid "Select the person linked to this order in the select box."
 msgstr ""
 "Selecteer de persoon die aan deze volgorde is gekoppeld in het selectievak."
 
-#: src/model/Order.php:80
+#: src/model/Order.php:83
 #, fuzzy
 #| msgid "Parent Condolence"
 msgid "Please pick a condolence"
 msgstr "Hoofd overlijden"
 
-#: src/model/Order.php:98
+#: src/model/Order.php:101
 msgid "Email Address"
 msgstr "Emailadres"
 
-#: src/model/Order.php:101
+#: src/model/Order.php:104
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-#: src/model/Order.php:104
+#: src/model/Order.php:107
 msgid "First name"
 msgstr "Voornaam"
 
-#: src/model/Order.php:107
+#: src/model/Order.php:110
 msgid "Last name"
 msgstr "Achternaam"
 
-#: src/model/Order.php:110 src/register/Location_Type.php:101
+#: src/model/Order.php:113 src/register/Location_Type.php:101
 msgid "Address line"
 msgstr "Adresregel"
 
-#: src/model/Order.php:113 src/register/Location_Type.php:112
+#: src/model/Order.php:116
+msgid "House number"
+msgstr "Huisnummer"
+
+#: src/model/Order.php:119 src/register/Location_Type.php:112
 #: src/register/Location_Type.php:115
 msgid "Postal code"
 msgstr "Postcode"
 
-#: src/model/Order.php:116 src/register/Location_Type.php:123
+#: src/model/Order.php:122 src/register/Location_Type.php:123
 #: src/register/Location_Type.php:126
 #: templates/coffee_table_form_template.php:36
 #: templates/coffee_table_form_template.php:38
 msgid "City"
 msgstr "Plaatsnaam"
 
-#: src/model/Order.php:119 templates/new_order_email_to_site_admin.php:33
+#: src/model/Order.php:125 templates/new_order_email_to_site_admin.php:34
 msgid "Company name"
 msgstr "Bedrijfsnaam"
 
-#: src/model/Order.php:120
+#: src/model/Order.php:126
 msgid "Enter the company name if applicable."
 msgstr "Voer indien van toepassing de bedrijfsnaam in."
 
-#: src/model/Order.php:123 templates/new_order_email_to_site_admin.php:35
+#: src/model/Order.php:129 templates/new_order_email_to_site_admin.php:36
 msgid "Company Vat"
 msgstr "Btw nummer van het bedrijf"
 
-#: src/model/Order.php:124
+#: src/model/Order.php:130
 msgid "Enter the company vat number if applicable."
 msgstr "Voer indien van toepassing het btw-nummer van het bedrijf in."
 
-#: src/model/Order.php:128 templates/new_order_email_to_site_admin.php:37
+#: src/model/Order.php:134 templates/new_order_email_to_site_admin.php:38
 msgid "Remarks"
 msgstr "Opmerkingen"
 
-#: src/model/Order.php:450
+#: src/model/Order.php:476
 msgid "No products selected."
 msgstr "Geen producten geselecteerd."
 
-#: src/model/Order.php:454
+#: src/model/Order.php:480
 msgid "No product selected."
 msgstr "Geen product geselecteerd."
 
-#: src/model/Order.php:459
+#: src/model/Order.php:485
 msgid "Invalid product quantity."
 msgstr "Ongeldig productaantal."
 
-#: src/model/Order.php:472
+#: src/model/Order.php:498
 #, php-format
 msgid "Field \"%s\" is required."
 msgstr "Veld \"%s\" is vereist."
 
-#: src/model/Order.php:478
+#: src/model/Order.php:504
 msgid "Please enter a valid email."
 msgstr "Gelieve een geldig e-mailadres in te vullen."
 
@@ -597,7 +601,7 @@ msgstr "Adresgegevens"
 msgid "Street name"
 msgstr "Straatnaam"
 
-#: src/register/Order_Type.php:149 templates/single.php:367
+#: src/register/Order_Type.php:149 templates/single.php:252
 msgid "Condolence"
 msgstr "Condoleer"
 
@@ -836,61 +840,61 @@ msgstr "Slug naam"
 msgid "Change post type"
 msgstr "Verander post type"
 
-#: templates/archive.php:32 templates/single.php:146
+#: templates/archive.php:24 templates/single.php:30
 msgid "Resident of"
 msgstr "Woonplaats"
 
-#: templates/archive.php:48 templates/single.php:178
+#: templates/archive.php:35 templates/single.php:41
 msgid "Beloved husband of"
 msgstr "Echtgenoot van"
 
-#: templates/archive.php:54 templates/single.php:184
+#: templates/archive.php:39 templates/single.php:45
 msgid "Beloved wife of"
 msgstr "Echtgenote van"
 
-#: templates/archive.php:60 templates/single.php:190
+#: templates/archive.php:43 templates/single.php:49
 msgid "Beloved husband of the late"
 msgstr "Weduwnaar van"
 
-#: templates/archive.php:66 templates/single.php:196
+#: templates/archive.php:47 templates/single.php:53
 msgid "Beloved wife of the late"
 msgstr "Weduwe van"
 
-#: templates/archive.php:83 templates/single.php:88 templates/single.php:101
+#: templates/archive.php:63 templates/single.php:69
 msgid "Born"
 msgstr "Geboren"
 
-#: templates/archive.php:84 templates/archive.php:95 templates/single.php:104
-#: templates/single.php:128
+#: templates/archive.php:63 templates/archive.php:75 templates/single.php:69
+#: templates/single.php:81
 msgid "in"
 msgstr "te"
 
-#: templates/archive.php:86 templates/archive.php:97 templates/archive.php:108
-#: templates/single.php:91 templates/single.php:115 templates/single.php:136
+#: templates/archive.php:66 templates/archive.php:78 templates/archive.php:89
+#: templates/single.php:72 templates/single.php:84 templates/single.php:95
 msgid "on"
 msgstr "op"
 
-#: templates/archive.php:94 templates/single.php:112 templates/single.php:125
+#: templates/archive.php:75 templates/single.php:81
 msgid "Passed away"
 msgstr "Overleden"
 
-#: templates/archive.php:123 templates/single.php:236
+#: templates/archive.php:104 templates/single.php:110
 msgid "Laid out at"
 msgstr "Uitvaartcentrum"
 
-#: templates/archive.php:139 templates/single.php:160
+#: templates/archive.php:124 templates/single.php:130
 msgid "Prayer vigil information"
 msgstr "Gebedswake"
 
-#: templates/archive.php:151 templates/single.php:265
+#: templates/archive.php:140 templates/single.php:156
 msgid "Condole"
 msgstr "Condoleer"
 
-#: templates/archive.php:173 templates/single.php:283
+#: templates/archive.php:153 templates/single.php:167
 msgid "Coffee Table"
 msgstr "Koffietafel"
 
-#: templates/archive.php:190
+#: templates/archive.php:166
 msgid "Edit"
 msgstr "Aanpassen"
 
@@ -911,12 +915,12 @@ msgid "Address"
 msgstr "Adres"
 
 #: templates/coffee_table_email.php:8
-#: templates/new_order_email_to_site_admin.php:29
+#: templates/new_order_email_to_site_admin.php:30
 msgid "email"
 msgstr "Emailadres"
 
 #: templates/coffee_table_email.php:9
-#: templates/new_order_email_to_site_admin.php:31
+#: templates/new_order_email_to_site_admin.php:32
 msgid "telephone"
 msgstr "Telefoonnummer"
 
@@ -948,7 +952,7 @@ msgid "Zipcode"
 msgstr "Postcode"
 
 #: templates/coffee_table_form_template.php:42
-#: templates/coffee_table_form_template.php:45 templates/single.php:357
+#: templates/coffee_table_form_template.php:45 templates/single.php:242
 msgid "Email"
 msgstr "Email"
 
@@ -1015,97 +1019,49 @@ msgstr "Totaal bedrag"
 msgid "This order has been placed by"
 msgstr "Deze bestelling werd geplaatst door"
 
-#: templates/new_order_email_to_site_admin.php:42
+#: templates/new_order_email_to_site_admin.php:43
 msgid "You can view the order here"
 msgstr "U de bestelling hier bekijken"
 
-#: templates/single.php:30
-msgid "January"
-msgstr "Januari"
-
-#: templates/single.php:31
-msgid "February"
-msgstr "Februari"
-
-#: templates/single.php:32
-msgid "March"
-msgstr "Maart"
-
-#: templates/single.php:33
-msgid "April"
-msgstr "April"
-
-#: templates/single.php:34
-msgid "May"
-msgstr "Mei"
-
-#: templates/single.php:35
-msgid "June"
-msgstr "Juni"
-
-#: templates/single.php:36
-msgid "July"
-msgstr "Juli"
-
-#: templates/single.php:37
-msgid "August"
-msgstr "Augustus"
-
-#: templates/single.php:38
-msgid "September"
-msgstr "September"
-
-#: templates/single.php:39
-msgid "October"
-msgstr "Oktober"
-
-#: templates/single.php:40
-msgid "November"
-msgstr "November"
-
-#: templates/single.php:41
-msgid "December"
-msgstr "December"
-
-#: templates/single.php:248
+#: templates/single.php:148
 msgid "Live-stream information"
 msgstr "Livestream informatie"
 
-#: templates/single.php:301
+#: templates/single.php:180 templates/single.php:183
 msgid "Funeral live-stream"
 msgstr "Begrafenis livestream"
 
-#: templates/single.php:316
+#: templates/single.php:199
 msgid "Condolences for the family"
 msgstr "Condolaties voor de familie"
 
-#: templates/single.php:318
+#: templates/single.php:201
 msgid "Reply to this condolence"
 msgstr "Reageer op deze rouwbetuiging"
 
-#: templates/single.php:318
+#: templates/single.php:202
 msgid "This message will be send by mail to the author of the condolence."
 msgstr ""
 "Dit bericht zal verzonden worden per email naar de schrijver van deze "
 "rouwbetuiging."
 
-#: templates/single.php:318
+#: templates/single.php:203
 msgid "Reply"
 msgstr "Beantwoorden"
 
-#: templates/single.php:344
+#: templates/single.php:229
 msgid "Comment Error"
 msgstr "Er is een fout opgetreden"
 
-#: templates/single.php:352
+#: templates/single.php:237
 msgid "Naam"
 msgstr "Naam"
 
-#: templates/single.php:365
+#: templates/single.php:250
 msgid "Leave your condolences for the family"
 msgstr "Laat een rouwbetuiging achter voor de familie"
 
-#: templates/single.php:366
+#: templates/single.php:251
 msgid "This message is only visible for the family"
 msgstr "Dit bericht is enkel zichtbaar voor de familie"
 
@@ -1118,14 +1074,50 @@ msgstr "Condolatiemanager"
 msgid "http://www.appsaloon.be"
 msgstr "http://www.appsaloon.be"
 
-#. Description of the plugin/theme
-msgid "This plugin allows visitors to condole the family of the deceased."
-msgstr ""
-"Deze plugin laat bezoekers toe om de familie van overledenen te condoleren."
-
 #. Author of the plugin/theme
 msgid "AppSaloon"
 msgstr "AppSaloon"
+
+#~ msgid "January"
+#~ msgstr "Januari"
+
+#~ msgid "February"
+#~ msgstr "Februari"
+
+#~ msgid "March"
+#~ msgstr "Maart"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "May"
+#~ msgstr "Mei"
+
+#~ msgid "June"
+#~ msgstr "Juni"
+
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#~ msgid "August"
+#~ msgstr "Augustus"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "October"
+#~ msgstr "Oktober"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "This plugin allows visitors to condole the family of the deceased."
+#~ msgstr ""
+#~ "Deze plugin laat bezoekers toe om de familie van overledenen te "
+#~ "condoleren."
 
 #~ msgid "Your order has been successfully placed!"
 #~ msgstr "Uw bestelling is succesvol geplaatst!"

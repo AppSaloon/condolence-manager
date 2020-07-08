@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Condolence Manager\n"
-"POT-Creation-Date: 2020-05-08 14:58+0200\n"
+"POT-Creation-Date: 2020-07-08 17:21+0200\n"
 "PO-Revision-Date: 2020-05-04 13:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: condolatie-manager.php\n"
@@ -21,311 +21,189 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: includes/coffee-table/coffee-table-form/templates/email.php:1
-#: includes/form/metabox.php:29 includes/form/metabox.php:556
-msgid "Coffee table"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:3
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:54
-msgid "Presence coffee table"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:5
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:5
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:7
-#: includes/form/metabox.php:54 includes/form/metabox.php:222
-#: includes/form/metabox.php:268 includes/form/metabox.php:376
-msgid "Name"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:6
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:10
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:13
-msgid "Surname"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:7
-msgid "Address"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:8
-msgid "email"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:9
-msgid "telephone"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:11
-msgid "I won't be able to make it to the coffee table"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/email.php:13
-msgid "I will be present with"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/failure-submission.php:2
-msgid "Failure"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/failure-submission.php:3
-msgid "Sorry we couldn't save your data. Refresh and try one more time."
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:13
-msgid "required"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:17
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:20
-msgid "Street"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:22
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:25
-msgid "Number"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:29
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:32
-msgid "Zipcode"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:35
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:37
-#: includes/model/order.php:97 includes/register/location-type.php:123
-#: includes/register/location-type.php:126
-msgid "City"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:41
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:44
-#: includes/templates/single.php:330
-msgid "Email"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:46
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:48
-msgid "Phone"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:61
-msgid "Will be present"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:64
-msgid "Will not be present"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:76
-msgid "How many people will attend"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:79
-msgid "min 1"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:88
-#: includes/settings/select-fields-to-show.php:214
-msgid "Submit"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:98
-msgid "Please fill out this field"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/form-template.php:101
-msgid "This email address is incorrect"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/success-submission.php:2
-msgid "Success"
-msgstr ""
-
-#: includes/coffee-table/coffee-table-form/templates/success-submission.php:3
-msgid "We send your info to the family. Thank You."
-msgstr ""
-
-#: includes/comments/inline-comment-error.php:450
-#, php-format
-msgid "%1$sPlease correct the following problems:%2$s"
-msgstr ""
-
-#: includes/controller/comment-email.php:41
+#: src/controller/Comment_Email.php:41
 #, php-format
 msgid "New condolence from %s"
 msgstr ""
 
-#: includes/controller/comment-email.php:43
+#: src/controller/Comment_Email.php:43
 msgid "click here to view the condolence"
 msgstr ""
 
-#: includes/controller/comment-email.php:52
+#: src/controller/Comment_Email.php:52
 msgid "New Condolence"
 msgstr ""
 
-#: includes/controller/comment-email.php:70
+#: src/controller/Comment_Email.php:70
 #, php-format
 msgid "New reply on your condolence from %s"
 msgstr ""
 
-#: includes/controller/comment-email.php:79
+#: src/controller/Comment_Email.php:79
 msgid "New Comment"
 msgstr ""
 
-#: includes/controller/products.php:54
+#: src/controller/Products.php:55
 msgid "The order form has expired."
 msgstr ""
 
-#: includes/controller/products.php:62
+#: src/controller/Products.php:63
 msgid "There were some errors with your order, please try again."
 msgstr ""
 
-#: includes/controller/products.php:81
-msgid "Your order has been successfully placed!"
-msgstr ""
-
-#: includes/controller/products.php:84 includes/model/order.php:71
-#: includes/register/order-type.php:295 includes/register/product-type.php:77
-#: includes/register/product-type.php:79
+#: src/controller/Products.php:85 src/model/Order.php:74
+#: src/register/Order_Type.php:328 src/register/Product_Type.php:77
+#: src/register/Product_Type.php:79
 msgid "Products"
 msgstr ""
 
-#: includes/controller/products.php:86 includes/form/metabox.php:694
-#: includes/register/order-type.php:297
+#: src/controller/Products.php:87 src/form/Metabox.php:708
+#: src/register/Order_Type.php:330
 msgid "Total"
 msgstr ""
 
-#: includes/controller/products.php:213 includes/controller/products.php:310
-#: includes/register/order-type.php:132 includes/register/order-type.php:226
+#: src/controller/Products.php:214 src/controller/Products.php:311
+#: src/register/Order_Type.php:148 src/register/Order_Type.php:242
 msgid "Order"
 msgstr ""
 
-#: includes/controller/products.php:264 includes/form/metabox.php:133
-#: includes/templates/archive.php:171 includes/templates/single.php:255
+#: src/controller/Products.php:265 src/form/Metabox.php:133
+#: templates/archive.php:147 templates/single.php:161
 msgid "Flowers"
 msgstr ""
 
-#: includes/controller/products.php:311
+#: src/controller/Products.php:312
 msgid "Place Order"
 msgstr ""
 
-#: includes/controller/products.php:330
+#: src/controller/Products.php:331
 #, php-format
 msgid "Ordering is possible up until the day before the funeral at %s."
 msgstr ""
 
-#: includes/controller/templates.php:76
+#: src/controller/Products_Email_Controller.php:35
+#, php-format
+msgid "A new order has been placed for the funeral of %s"
+msgstr ""
+
+#: src/controller/Templates.php:77
 msgid "You might have left one of the fields blank, or be posting too quickly"
 msgstr ""
 
-#: includes/controller/templates.php:77
-#: includes/settings/select-fields-to-show.php:29
+#: src/controller/Templates.php:78 src/settings/Admin_Options_Page.php:53
 msgid "Thanks for your comment. We appreciate your response."
 msgstr ""
 
-#: includes/controller/templates.php:79
+#: src/controller/Templates.php:80
 msgid "Please wait a while before posting your next comment."
 msgstr ""
 
-#: includes/controller/templates.php:80
+#: src/controller/Templates.php:81
 msgid "Your message is not send. You might have left one of the fields blank."
 msgstr ""
 
-#: includes/form/metabox.php:25
+#: src/form/Metabox.php:25
 msgid "Information about deceased"
 msgstr ""
 
-#: includes/form/metabox.php:26 includes/form/metabox.php:658
+#: src/form/Metabox.php:26 src/form/Metabox.php:672
 msgid "Location"
 msgstr ""
 
-#: includes/form/metabox.php:27 includes/form/metabox.php:508
+#: src/form/Metabox.php:27 src/form/Metabox.php:512
 msgid "View comments"
 msgstr ""
 
-#: includes/form/metabox.php:28 includes/register/order-type.php:179
-#: includes/register/order-type.php:181
+#: src/form/Metabox.php:28 src/register/Order_Type.php:195
+#: src/register/Order_Type.php:197
 msgid "Orders"
 msgstr ""
 
-#: includes/form/metabox.php:44
+#: src/form/Metabox.php:29 src/form/Metabox.php:562
+#: templates/coffee_table_email.php:1
+msgid "Coffee table"
+msgstr ""
+
+#: src/form/Metabox.php:44
 msgid "Gender"
 msgstr ""
 
-#: includes/form/metabox.php:47 includes/form/metabox.php:276
+#: src/form/Metabox.php:47 src/form/Metabox.php:280
 msgid "Select gender"
 msgstr ""
 
-#: includes/form/metabox.php:48 includes/form/metabox.php:228
-#: includes/form/metabox.php:277 includes/form/metabox.php:401
+#: src/form/Metabox.php:48 src/form/Metabox.php:232 src/form/Metabox.php:281
+#: src/form/Metabox.php:405
 msgid "Male"
 msgstr ""
 
-#: includes/form/metabox.php:49 includes/form/metabox.php:229
-#: includes/form/metabox.php:278 includes/form/metabox.php:405
+#: src/form/Metabox.php:49 src/form/Metabox.php:233 src/form/Metabox.php:282
+#: src/form/Metabox.php:409
 msgid "Female"
 msgstr ""
 
-#: includes/form/metabox.php:59 includes/form/metabox.php:224
-#: includes/form/metabox.php:271 includes/form/metabox.php:383
+#: src/form/Metabox.php:54 src/form/Metabox.php:226 src/form/Metabox.php:272
+#: src/form/Metabox.php:380 templates/coffee_table_email.php:5
+#: templates/coffee_table_form_template.php:6
+#: templates/coffee_table_form_template.php:8
+#: templates/new_order_email_to_site_admin.php:22
+msgid "Name"
+msgstr ""
+
+#: src/form/Metabox.php:59 src/form/Metabox.php:228 src/form/Metabox.php:275
+#: src/form/Metabox.php:387
 msgid "Family name"
 msgstr ""
 
-#: includes/form/metabox.php:65
+#: src/form/Metabox.php:65
 msgid "Honorary title"
 msgstr ""
 
-#: includes/form/metabox.php:71 includes/settings/select-fields-to-show.php:74
+#: src/form/Metabox.php:71
 msgid "Birthplace"
 msgstr ""
 
-#: includes/form/metabox.php:77 includes/settings/select-fields-to-show.php:75
+#: src/form/Metabox.php:77
 msgid "Birthdate"
 msgstr ""
 
-#: includes/form/metabox.php:83 includes/settings/select-fields-to-show.php:76
+#: src/form/Metabox.php:83
 msgid "Place of death"
 msgstr ""
 
-#: includes/form/metabox.php:89 includes/settings/select-fields-to-show.php:77
+#: src/form/Metabox.php:89
 msgid "Date of death"
 msgstr ""
 
-#: includes/form/metabox.php:95
+#: src/form/Metabox.php:95 templates/archive.php:89 templates/single.php:95
 msgid "Funeral date"
 msgstr ""
 
-#: includes/form/metabox.php:101 includes/settings/select-fields-to-show.php:78
-#: includes/templates/archive.php:148 includes/templates/single.php:138
+#: src/form/Metabox.php:101 templates/archive.php:115 templates/single.php:121
 msgid "Funeral information"
 msgstr ""
 
-#: includes/form/metabox.php:106 includes/settings/select-fields-to-show.php:79
+#: src/form/Metabox.php:106
 msgid "Prayer Vigil information"
 msgstr ""
 
-#: includes/form/metabox.php:112 includes/settings/select-fields-to-show.php:80
-#: includes/templates/archive.php:160 includes/templates/single.php:152
+#: src/form/Metabox.php:112 templates/archive.php:133 templates/single.php:139
 msgid "Greeting information"
 msgstr ""
 
-#: includes/form/metabox.php:118 includes/settings/select-fields-to-show.php:81
+#: src/form/Metabox.php:118
 msgid "Residence"
 msgstr ""
 
-#: includes/form/metabox.php:124 includes/templates/archive.php:183
-#: includes/templates/single.php:268
+#: src/form/Metabox.php:124 templates/archive.php:158 templates/single.php:172
 msgid "Mass card"
 msgstr ""
 
-#: includes/form/metabox.php:129 includes/form/metabox.php:303
-#: includes/form/metabox.php:305
+#: src/form/Metabox.php:129 src/form/Metabox.php:307 src/form/Metabox.php:309
 msgid "Choose mass card"
 msgstr ""
 
-#: includes/form/metabox.php:145
+#: src/form/Metabox.php:145
 #, php-format
 msgid ""
 "If enabled, a list of products and an order form will appear below a "
@@ -333,764 +211,830 @@ msgid ""
 "these shortcodes: %s and %s."
 msgstr ""
 
-#: includes/form/metabox.php:155
+#: src/form/Metabox.php:155
 msgid "Live-stream"
 msgstr ""
 
-#: includes/form/metabox.php:165
+#: src/form/Metabox.php:165
 msgid ""
 "If enabled, a live-stream button for the funeral will appear. Please enter a "
 "link and a description for the livestream below."
 msgstr ""
 
-#: includes/form/metabox.php:178
+#: src/form/Metabox.php:176
+msgid "If enabled, the livestream video will be embedded within the page."
+msgstr ""
+
+#: src/form/Metabox.php:189
 msgid "Example: the live-stream will start at 08:00"
 msgstr ""
 
-#: includes/form/metabox.php:185
-msgid "Additional buttons"
-msgstr ""
-
-#: includes/form/metabox.php:198 includes/settings/select-fields-to-show.php:82
+#: src/form/Metabox.php:202
 msgid "Relations"
 msgstr ""
 
-#: includes/form/metabox.php:208
+#: src/form/Metabox.php:212
 msgid "Relation 1"
 msgstr ""
 
-#: includes/form/metabox.php:211 includes/form/metabox.php:244
-#: includes/form/metabox.php:342
+#: src/form/Metabox.php:215 src/form/Metabox.php:248 src/form/Metabox.php:346
 msgid "Select relation type"
 msgstr ""
 
-#: includes/form/metabox.php:212 includes/form/metabox.php:245
-#: includes/form/metabox.php:346
+#: src/form/Metabox.php:216 src/form/Metabox.php:249 src/form/Metabox.php:350
 msgid "Single"
 msgstr ""
 
-#: includes/form/metabox.php:213 includes/form/metabox.php:246
-#: includes/form/metabox.php:350
+#: src/form/Metabox.php:217 src/form/Metabox.php:250 src/form/Metabox.php:354
 msgid "Married"
 msgstr ""
 
-#: includes/form/metabox.php:214 includes/form/metabox.php:247
-#: includes/form/metabox.php:354
+#: src/form/Metabox.php:218 src/form/Metabox.php:251 src/form/Metabox.php:358
 msgid "Other"
 msgstr ""
 
-#: includes/form/metabox.php:217 includes/form/metabox.php:253
+#: src/form/Metabox.php:221 src/form/Metabox.php:257
 msgid "Add more relation"
 msgstr ""
 
-#: includes/form/metabox.php:221 includes/form/metabox.php:265
-#: includes/form/metabox.php:369
+#: src/form/Metabox.php:225 src/form/Metabox.php:269 src/form/Metabox.php:373
 msgid "Relation name"
 msgstr ""
 
-#: includes/form/metabox.php:225 includes/form/metabox.php:273
-#: includes/form/metabox.php:386
+#: src/form/Metabox.php:229 src/form/Metabox.php:277 src/form/Metabox.php:390
 msgid "Is alive?"
 msgstr ""
 
-#: includes/form/metabox.php:241 includes/form/metabox.php:331
+#: src/form/Metabox.php:245 src/form/Metabox.php:335
 msgid "Relation"
 msgstr ""
 
-#: includes/form/metabox.php:257 includes/form/metabox.php:359
+#: src/form/Metabox.php:261 src/form/Metabox.php:363
 msgid "Remove relation"
 msgstr ""
 
-#: includes/form/metabox.php:396
+#: src/form/Metabox.php:400
 msgid "Select a gender"
 msgstr ""
 
-#: includes/form/metabox.php:415
+#: src/form/Metabox.php:419
 msgid "Are you sure to delete this relation?"
 msgstr ""
 
-#: includes/form/metabox.php:503
+#: src/form/Metabox.php:507
 msgid "Password"
 msgstr ""
 
-#: includes/form/metabox.php:504
+#: src/form/Metabox.php:508
 msgid "Create token"
 msgstr ""
 
-#: includes/form/metabox.php:523
+#: src/form/Metabox.php:527
 msgid "Link to view comments"
 msgstr ""
 
-#: includes/form/metabox.php:528
+#: src/form/Metabox.php:532
 msgid "Send email to family when someone condoles"
 msgstr ""
 
-#: includes/form/metabox.php:529
+#: src/form/Metabox.php:533
 msgid "E-mail"
 msgstr ""
 
-#: includes/form/metabox.php:558
+#: src/form/Metabox.php:564
 msgid "No"
 msgstr ""
 
-#: includes/form/metabox.php:561
+#: src/form/Metabox.php:567
 msgid "Yes"
 msgstr ""
 
-#: includes/form/metabox.php:566
+#: src/form/Metabox.php:572
 msgid "Email address"
 msgstr ""
 
-#: includes/form/metabox.php:572
-msgid "Download CSV list"
-msgstr ""
-
-#: includes/form/metabox.php:573
+#: src/form/Metabox.php:578
 msgid "Emails: "
 msgstr ""
 
-#: includes/form/metabox.php:574
+#: src/form/Metabox.php:579
 msgid "Participants: "
 msgstr ""
 
-#: includes/form/metabox.php:661
+#: src/form/Metabox.php:584
+msgid "Download CSV list"
+msgstr ""
+
+#: src/form/Metabox.php:675
 msgid "Choose a location"
 msgstr ""
 
-#: includes/form/metabox.php:687
+#: src/form/Metabox.php:701
 msgid "No orders have been placed for this person."
 msgstr ""
 
-#: includes/form/metabox.php:692
+#: src/form/Metabox.php:706
 msgid "Customer"
 msgstr ""
 
-#: includes/form/metabox.php:693
+#: src/form/Metabox.php:707
 msgid "Summary"
 msgstr ""
 
-#: includes/form/metabox.php:695
+#: src/form/Metabox.php:709
 msgid "Placed at"
 msgstr ""
 
-#: includes/form/metabox.php:875 includes/register/custom-post-type.php:37
-#: includes/register/custom-post-type.php:39
+#: src/form/Metabox.php:886 src/register/Custom_Post_Type.php:35
+#: src/register/Custom_Post_Type.php:37
 msgid "Condolences"
 msgstr ""
 
-#: includes/model/order-line.php:40 includes/register/product-type.php:52
-msgid "Product"
-msgstr ""
-
-#: includes/model/order-line.php:41
-msgid "Please select the product you wish to order from the list."
-msgstr ""
-
-#: includes/model/order-line.php:63
-msgid "Description"
-msgstr ""
-
-#: includes/model/order-line.php:69
-msgid "Quantity"
-msgstr ""
-
-#: includes/model/order-line.php:76 includes/model/product.php:31
-#: includes/register/product-type.php:120
-msgid "Product price"
-msgstr ""
-
-#: includes/model/order.php:75
+#: src/model/Order.php:78 templates/new_order_email_to_site_admin.php:14
 msgid "Ribbon text"
 msgstr ""
 
-#: includes/model/order.php:79
+#: src/model/Order.php:81 src/register/Order_Type.php:256
+msgid "Linked condolence"
+msgstr ""
+
+#: src/model/Order.php:82
+msgid "Select the person linked to this order in the select box."
+msgstr ""
+
+#: src/model/Order.php:83
+msgid "Please pick a condolence"
+msgstr ""
+
+#: src/model/Order.php:101
 msgid "Email Address"
 msgstr ""
 
-#: includes/model/order.php:82
+#: src/model/Order.php:104
 msgid "Phone number"
 msgstr ""
 
-#: includes/model/order.php:85
+#: src/model/Order.php:107
 msgid "First name"
 msgstr ""
 
-#: includes/model/order.php:88
+#: src/model/Order.php:110
 msgid "Last name"
 msgstr ""
 
-#: includes/model/order.php:91 includes/register/location-type.php:101
+#: src/model/Order.php:113 src/register/Location_Type.php:101
 msgid "Address line"
 msgstr ""
 
-#: includes/model/order.php:94 includes/register/location-type.php:112
-#: includes/register/location-type.php:115
+#: src/model/Order.php:116
+msgid "House number"
+msgstr ""
+
+#: src/model/Order.php:119 src/register/Location_Type.php:112
+#: src/register/Location_Type.php:115
 msgid "Postal code"
 msgstr ""
 
-#: includes/model/order.php:100
+#: src/model/Order.php:122 src/register/Location_Type.php:123
+#: src/register/Location_Type.php:126
+#: templates/coffee_table_form_template.php:36
+#: templates/coffee_table_form_template.php:38
+msgid "City"
+msgstr ""
+
+#: src/model/Order.php:125 templates/new_order_email_to_site_admin.php:34
 msgid "Company name"
 msgstr ""
 
-#: includes/model/order.php:101
+#: src/model/Order.php:126
 msgid "Enter the company name if applicable."
 msgstr ""
 
-#: includes/model/order.php:104
+#: src/model/Order.php:129 templates/new_order_email_to_site_admin.php:36
 msgid "Company Vat"
 msgstr ""
 
-#: includes/model/order.php:105
+#: src/model/Order.php:130
 msgid "Enter the company vat number if applicable."
 msgstr ""
 
-#: includes/model/order.php:109
+#: src/model/Order.php:134 templates/new_order_email_to_site_admin.php:38
 msgid "Remarks"
 msgstr ""
 
-#: includes/model/order.php:431
+#: src/model/Order.php:476
 msgid "No products selected."
 msgstr ""
 
-#: includes/model/order.php:435
+#: src/model/Order.php:480
 msgid "No product selected."
 msgstr ""
 
-#: includes/model/order.php:440
+#: src/model/Order.php:485
 msgid "Invalid product quantity."
 msgstr ""
 
-#: includes/model/order.php:453
+#: src/model/Order.php:498
 #, php-format
 msgid "Field \"%s\" is required."
 msgstr ""
 
-#: includes/model/order.php:459
+#: src/model/Order.php:504
 msgid "Please enter a valid email."
 msgstr ""
 
-#: includes/model/price.php:176
+#: src/model/Order_Line.php:40 src/register/Product_Type.php:52
+msgid "Product"
+msgstr ""
+
+#: src/model/Order_Line.php:41
+msgid "Please select the product you wish to order from the list."
+msgstr ""
+
+#: src/model/Order_Line.php:63 templates/new_order_email_to_site_admin.php:6
+msgid "Description"
+msgstr ""
+
+#: src/model/Order_Line.php:69 templates/new_order_email_to_site_admin.php:8
+msgid "Quantity"
+msgstr ""
+
+#: src/model/Order_Line.php:76 src/model/Product.php:31
+#: src/register/Product_Type.php:120
+msgid "Product price"
+msgstr ""
+
+#: src/model/Price.php:176
 msgid "Amount"
 msgstr ""
 
-#: includes/model/price.php:185
+#: src/model/Price.php:185
 msgid "Currency"
 msgstr ""
 
-#: includes/register/custom-post-type.php:35
+#: src/register/Custom_Post_Type.php:33
 msgctxt "Post Type General Name"
 msgid "Condolences"
 msgstr ""
 
-#: includes/register/custom-post-type.php:36
+#: src/register/Custom_Post_Type.php:34
 msgctxt "Post Type Singular Name"
 msgid "Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:38
+#: src/register/Custom_Post_Type.php:36
 msgid "Parent Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:40
+#: src/register/Custom_Post_Type.php:38
 msgid "View Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:41
+#: src/register/Custom_Post_Type.php:39
 msgid "Add New Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:42
-#: includes/register/location-type.php:26 includes/register/order-type.php:184
-#: includes/register/product-type.php:82
+#: src/register/Custom_Post_Type.php:40 src/register/Location_Type.php:26
+#: src/register/Order_Type.php:200 src/register/Product_Type.php:82
 msgid "Add New"
 msgstr ""
 
-#: includes/register/custom-post-type.php:43
+#: src/register/Custom_Post_Type.php:41
 msgid "Edit Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:44
+#: src/register/Custom_Post_Type.php:42
 msgid "Update Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:45
+#: src/register/Custom_Post_Type.php:43
 msgid "Search Condolence"
 msgstr ""
 
-#: includes/register/custom-post-type.php:46
-#: includes/register/location-type.php:30 includes/register/order-type.php:188
-#: includes/register/product-type.php:86
+#: src/register/Custom_Post_Type.php:44 src/register/Location_Type.php:30
+#: src/register/Order_Type.php:204 src/register/Product_Type.php:86
 msgid "Not Found"
 msgstr ""
 
-#: includes/register/custom-post-type.php:47
-#: includes/register/location-type.php:31 includes/register/order-type.php:189
-#: includes/register/product-type.php:87
+#: src/register/Custom_Post_Type.php:45 src/register/Location_Type.php:31
+#: src/register/Order_Type.php:205 src/register/Product_Type.php:87
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/register/custom-post-type.php:52
+#: src/register/Custom_Post_Type.php:50
 msgctxt "Post Type Label Name"
 msgid "Condolences"
 msgstr ""
 
-#: includes/register/custom-post-type.php:53
+#: src/register/Custom_Post_Type.php:51
 msgctxt "Post Type Description"
 msgid "Condolences"
 msgstr ""
 
-#: includes/register/location-type.php:19
+#: src/register/Location_Type.php:19
 msgctxt "Post Type General Name"
 msgid "Locations"
 msgstr ""
 
-#: includes/register/location-type.php:20
+#: src/register/Location_Type.php:20
 msgctxt "Post Type Singular Name"
 msgid "Location"
 msgstr ""
 
-#: includes/register/location-type.php:21
-#: includes/register/location-type.php:23
+#: src/register/Location_Type.php:21 src/register/Location_Type.php:23
 msgid "Locations"
 msgstr ""
 
-#: includes/register/location-type.php:22
+#: src/register/Location_Type.php:22
 msgid "Parent Location"
 msgstr ""
 
-#: includes/register/location-type.php:24
+#: src/register/Location_Type.php:24
 msgid "View Location"
 msgstr ""
 
-#: includes/register/location-type.php:25
+#: src/register/Location_Type.php:25
 msgid "Add New Location"
 msgstr ""
 
-#: includes/register/location-type.php:27
+#: src/register/Location_Type.php:27
 msgid "Edit Location"
 msgstr ""
 
-#: includes/register/location-type.php:28
+#: src/register/Location_Type.php:28
 msgid "Update Location"
 msgstr ""
 
-#: includes/register/location-type.php:29
+#: src/register/Location_Type.php:29
 msgid "Search Location"
 msgstr ""
 
-#: includes/register/location-type.php:36
+#: src/register/Location_Type.php:36
 msgctxt "Post Type Label Name"
 msgid "Locations"
 msgstr ""
 
-#: includes/register/location-type.php:37
+#: src/register/Location_Type.php:37
 msgctxt "Post Type Description"
 msgid "Locations"
 msgstr ""
 
-#: includes/register/location-type.php:67
+#: src/register/Location_Type.php:67
 msgid "Address details"
 msgstr ""
 
-#: includes/register/location-type.php:104
+#: src/register/Location_Type.php:104
 msgid "Street name"
 msgstr ""
 
-#: includes/register/order-type.php:133 includes/templates/single.php:340
+#: src/register/Order_Type.php:149 templates/single.php:252
 msgid "Condolence"
 msgstr ""
 
-#: includes/register/order-type.php:134
+#: src/register/Order_Type.php:150
 msgid "Order summary"
 msgstr ""
 
-#: includes/register/order-type.php:135
+#: src/register/Order_Type.php:151
 msgid "Order total"
 msgstr ""
 
-#: includes/register/order-type.php:136 includes/register/product-type.php:54
+#: src/register/Order_Type.php:152 src/register/Product_Type.php:54
 msgid "Date"
 msgstr ""
 
-#: includes/register/order-type.php:177
+#: src/register/Order_Type.php:193
 msgctxt "Post Type General Name"
 msgid "Orders"
 msgstr ""
 
-#: includes/register/order-type.php:178
+#: src/register/Order_Type.php:194
 msgctxt "Post Type Singular Name"
 msgid "Order"
 msgstr ""
 
-#: includes/register/order-type.php:180
+#: src/register/Order_Type.php:196
 msgid "Parent Order"
 msgstr ""
 
-#: includes/register/order-type.php:182
+#: src/register/Order_Type.php:198
 msgid "View Order"
 msgstr ""
 
-#: includes/register/order-type.php:183
+#: src/register/Order_Type.php:199
 msgid "Add New Order"
 msgstr ""
 
-#: includes/register/order-type.php:185
+#: src/register/Order_Type.php:201
 msgid "Edit Order"
 msgstr ""
 
-#: includes/register/order-type.php:186
+#: src/register/Order_Type.php:202
 msgid "Update Order"
 msgstr ""
 
-#: includes/register/order-type.php:187
+#: src/register/Order_Type.php:203
 msgid "Search Order"
 msgstr ""
 
-#: includes/register/order-type.php:194
+#: src/register/Order_Type.php:210
 msgctxt "Post Type Label Name"
 msgid "Orders"
 msgstr ""
 
-#: includes/register/order-type.php:195
+#: src/register/Order_Type.php:211
 msgctxt "Post Type Description"
 msgid "Orders"
 msgstr ""
 
-#: includes/register/order-type.php:233
+#: src/register/Order_Type.php:249
 msgid "Order details"
 msgstr ""
 
-#: includes/register/order-type.php:240
-msgid "Linked condolence"
-msgstr ""
-
-#: includes/register/product-type.php:51
+#: src/register/Product_Type.php:51
 msgid "Image"
 msgstr ""
 
-#: includes/register/product-type.php:53
+#: src/register/Product_Type.php:53
 msgid "Price"
 msgstr ""
 
-#: includes/register/product-type.php:75
+#: src/register/Product_Type.php:75
 msgctxt "Post Type General Name"
 msgid "Products"
 msgstr ""
 
-#: includes/register/product-type.php:76
+#: src/register/Product_Type.php:76
 msgctxt "Post Type Singular Name"
 msgid "Product"
 msgstr ""
 
-#: includes/register/product-type.php:78
+#: src/register/Product_Type.php:78
 msgid "Parent Product"
 msgstr ""
 
-#: includes/register/product-type.php:80
+#: src/register/Product_Type.php:80
 msgid "View Product"
 msgstr ""
 
-#: includes/register/product-type.php:81
+#: src/register/Product_Type.php:81
 msgid "Add New Product"
 msgstr ""
 
-#: includes/register/product-type.php:83
+#: src/register/Product_Type.php:83
 msgid "Edit Product"
 msgstr ""
 
-#: includes/register/product-type.php:84
+#: src/register/Product_Type.php:84
 msgid "Update Product"
 msgstr ""
 
-#: includes/register/product-type.php:85
+#: src/register/Product_Type.php:85
 msgid "Search Product"
 msgstr ""
 
-#: includes/register/product-type.php:92
+#: src/register/Product_Type.php:92
 msgctxt "Post Type Label Name"
 msgid "Products"
 msgstr ""
 
-#: includes/register/product-type.php:93
+#: src/register/Product_Type.php:93
 msgctxt "Post Type Description"
 msgid "Products"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:37
-#: includes/settings/select-fields-to-show.php:38
-#: includes/settings/select-fields-to-show.php:107
-msgid "Condolence manager"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:48
-msgid "Condolence manager options"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:49
-msgid "Options"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:73
-msgid "Honorary title + full name"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:83
-msgid "Funeral home"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:84
-msgid "Live-stream description"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:111
-msgid "Field Mapping"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:112
+#: src/settings/Admin_Options_Page.php:22
 msgid "Confirmation"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:113
+#: src/settings/Admin_Options_Page.php:23
 msgid "Rename CPT"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:114
-msgid "Update"
+#: src/settings/Admin_Options_Page.php:61
+#: src/settings/Admin_Options_Page.php:62
+#: src/settings/Admin_Options_Page.php:156
+msgid "Condolence manager"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:121
-msgid ""
-"Change the layout of the condolence post by reordering the items listed "
-"below."
+#: src/settings/Admin_Options_Page.php:72
+msgid "Condolence manager options"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:123
-msgid ""
-"Drag and drop the items to your desired order or delete and add items to the "
-"list. If the order is as you wish submit the changes."
+#: src/settings/Admin_Options_Page.php:73
+msgid "Options"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:153
-msgid "Submit changes"
+#: src/settings/Admin_Options_Page.php:106
+#, php-format
+msgid "The new slug is not valid. %s"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:169
+#: src/settings/Admin_Options_Page.php:112
+msgid "The new slug is identical to the old slug."
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:119
+msgid "The new slug already exists for another post type or page slug."
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:131
+msgid "The operation failed."
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:149
+msgid "The slug has been updated."
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:179
 msgid ""
 "Manage the condolence confirmation. This can be a thank you text, or a page "
 "to redirect to."
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:174
+#: src/settings/Admin_Options_Page.php:184
 msgid "Confirmation type"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:180
+#: src/settings/Admin_Options_Page.php:190
 msgid "Page"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:181
+#: src/settings/Admin_Options_Page.php:191
 msgid "Text"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:183
+#: src/settings/Admin_Options_Page.php:193
 msgid "Choose what will happen after a user writes a condolence."
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:189
+#: src/settings/Admin_Options_Page.php:199
 msgid "Confirmation page"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:194
+#: src/settings/Admin_Options_Page.php:204
 msgid ""
 "If you selected \"page\" as the confirmation type, please enter the URL to "
 "the page your users will be redirected to after writing a condolence."
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:200
+#: src/settings/Admin_Options_Page.php:210
 msgid "Confirmation text"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:203
+#: src/settings/Admin_Options_Page.php:213
 msgid "Thank you note"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:207
+#: src/settings/Admin_Options_Page.php:217
 msgid ""
 "If you selected \"text\" as the confirmation type, the text in the field "
 "above will be displayed to a user after writing a condolence."
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:230
+#: src/settings/Admin_Options_Page.php:224
+msgid "Order confirmation message"
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:236
+#: templates/coffee_table_form_template.php:89
+msgid "Submit"
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:250
+msgid "Please create a database backup before changing the slug."
+msgstr ""
+
+#: src/settings/Admin_Options_Page.php:253
 msgid "You can change the <b>custom post type slug</b>."
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:232
+#: src/settings/Admin_Options_Page.php:255
 msgid "Slug name"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:236
+#: src/settings/Admin_Options_Page.php:258
 msgid "Change post type"
 msgstr ""
 
-#: includes/settings/select-fields-to-show.php:262
-msgid ""
-"Before starting to migrate, be sure that <b>custom post type slug</b> is "
-"correct! Because the changes made in this step can't be reversed."
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:291
-msgid "Add your license key"
-msgstr ""
-
-#: includes/settings/select-fields-to-show.php:295
-msgid "Add license key"
-msgstr ""
-
-#: includes/templates/archive.php:15 includes/templates/single.php:29
-msgid "January"
-msgstr ""
-
-#: includes/templates/archive.php:16 includes/templates/single.php:30
-msgid "February"
-msgstr ""
-
-#: includes/templates/archive.php:17 includes/templates/single.php:31
-msgid "March"
-msgstr ""
-
-#: includes/templates/archive.php:18 includes/templates/single.php:32
-msgid "April"
-msgstr ""
-
-#: includes/templates/archive.php:19 includes/templates/single.php:33
-msgid "May"
-msgstr ""
-
-#: includes/templates/archive.php:20 includes/templates/single.php:34
-msgid "June"
-msgstr ""
-
-#: includes/templates/archive.php:21 includes/templates/single.php:35
-msgid "July"
-msgstr ""
-
-#: includes/templates/archive.php:22 includes/templates/single.php:36
-msgid "August"
-msgstr ""
-
-#: includes/templates/archive.php:23 includes/templates/single.php:37
-msgid "September"
-msgstr ""
-
-#: includes/templates/archive.php:24 includes/templates/single.php:38
-msgid "October"
-msgstr ""
-
-#: includes/templates/archive.php:25 includes/templates/single.php:39
-msgid "November"
-msgstr ""
-
-#: includes/templates/archive.php:26 includes/templates/single.php:40
-msgid "December"
-msgstr ""
-
-#: includes/templates/archive.php:46 includes/templates/single.php:131
+#: templates/archive.php:24 templates/single.php:30
 msgid "Resident of"
 msgstr ""
 
-#: includes/templates/archive.php:61 includes/templates/single.php:163
+#: templates/archive.php:35 templates/single.php:41
 msgid "Beloved husband of"
 msgstr ""
 
-#: includes/templates/archive.php:67 includes/templates/single.php:169
+#: templates/archive.php:39 templates/single.php:45
 msgid "Beloved wife of"
 msgstr ""
 
-#: includes/templates/archive.php:73 includes/templates/single.php:175
+#: templates/archive.php:43 templates/single.php:49
 msgid "Beloved husband of the late"
 msgstr ""
 
-#: includes/templates/archive.php:79 includes/templates/single.php:181
+#: templates/archive.php:47 templates/single.php:53
 msgid "Beloved wife of the late"
 msgstr ""
 
-#: includes/templates/archive.php:104 includes/templates/single.php:91
-#: includes/templates/single.php:101
+#: templates/archive.php:63 templates/single.php:69
 msgid "Born"
 msgstr ""
 
-#: includes/templates/archive.php:105 includes/templates/archive.php:120
-#: includes/templates/single.php:104 includes/templates/single.php:125
+#: templates/archive.php:63 templates/archive.php:75 templates/single.php:69
+#: templates/single.php:81
 msgid "in"
 msgstr ""
 
-#: includes/templates/archive.php:108 includes/templates/archive.php:123
-#: includes/templates/single.php:94 includes/templates/single.php:115
+#: templates/archive.php:66 templates/archive.php:78 templates/archive.php:89
+#: templates/single.php:72 templates/single.php:84 templates/single.php:95
 msgid "on"
 msgstr ""
 
-#: includes/templates/archive.php:119 includes/templates/single.php:112
-#: includes/templates/single.php:122
+#: templates/archive.php:75 templates/single.php:81
 msgid "Passed away"
 msgstr ""
 
-#: includes/templates/archive.php:138 includes/templates/single.php:221
+#: templates/archive.php:104 templates/single.php:110
 msgid "Laid out at"
 msgstr ""
 
-#: includes/templates/archive.php:154 includes/templates/single.php:145
+#: templates/archive.php:124 templates/single.php:130
 msgid "Prayer vigil information"
 msgstr ""
 
-#: includes/templates/archive.php:164 includes/templates/single.php:250
+#: templates/archive.php:140 templates/single.php:156
 msgid "Condole"
 msgstr ""
 
-#: includes/templates/archive.php:177 includes/templates/single.php:262
+#: templates/archive.php:153 templates/single.php:167
 msgid "Coffee Table"
 msgstr ""
 
-#: includes/templates/archive.php:201
+#: templates/archive.php:166
 msgid "Edit"
 msgstr ""
 
-#: includes/templates/single.php:233
+#: templates/coffee_table_email.php:3
+#: templates/coffee_table_form_template.php:55
+msgid "Presence coffee table"
+msgstr ""
+
+#: templates/coffee_table_email.php:6
+#: templates/coffee_table_form_template.php:11
+#: templates/coffee_table_form_template.php:14
+msgid "Surname"
+msgstr ""
+
+#: templates/coffee_table_email.php:7
+#: templates/new_order_email_to_site_admin.php:24
+msgid "Address"
+msgstr ""
+
+#: templates/coffee_table_email.php:8
+#: templates/new_order_email_to_site_admin.php:30
+msgid "email"
+msgstr ""
+
+#: templates/coffee_table_email.php:9
+#: templates/new_order_email_to_site_admin.php:32
+msgid "telephone"
+msgstr ""
+
+#: templates/coffee_table_email.php:11
+msgid "I won't be able to make it to the coffee table"
+msgstr ""
+
+#: templates/coffee_table_email.php:13
+msgid "I will be present with"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:14
+msgid "required"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:18
+#: templates/coffee_table_form_template.php:21
+msgid "Street"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:23
+#: templates/coffee_table_form_template.php:26
+msgid "Number"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:30
+#: templates/coffee_table_form_template.php:33
+msgid "Zipcode"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:42
+#: templates/coffee_table_form_template.php:45 templates/single.php:242
+msgid "Email"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:47
+#: templates/coffee_table_form_template.php:49
+msgid "Phone"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:62
+msgid "Will be present"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:65
+msgid "Will not be present"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:77
+msgid "How many people will attend"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:80
+msgid "min 1"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:98
+msgid "Please fill out this field"
+msgstr ""
+
+#: templates/coffee_table_form_template.php:101
+msgid "This email address is incorrect"
+msgstr ""
+
+#: templates/coffee_table_submit_failed.php:2
+msgid "Failure"
+msgstr ""
+
+#: templates/coffee_table_submit_failed.php:3
+msgid "Sorry we couldn't save your data. Refresh and try one more time."
+msgstr ""
+
+#: templates/coffee_table_submit_success.php:2
+msgid "Success"
+msgstr ""
+
+#: templates/coffee_table_submit_success.php:3
+msgid "We send your info to the family. Thank You."
+msgstr ""
+
+#: templates/new_order_email_to_site_admin.php:3
+msgid "The following products were ordered"
+msgstr ""
+
+#: templates/new_order_email_to_site_admin.php:10
+msgid "Price per unit"
+msgstr ""
+
+#: templates/new_order_email_to_site_admin.php:12
+msgid "Total price"
+msgstr ""
+
+#: templates/new_order_email_to_site_admin.php:19
+msgid "This order has been placed by"
+msgstr ""
+
+#: templates/new_order_email_to_site_admin.php:43
+msgid "You can view the order here"
+msgstr ""
+
+#: templates/single.php:148
 msgid "Live-stream information"
 msgstr ""
 
-#: includes/templates/single.php:274
+#: templates/single.php:180 templates/single.php:183
 msgid "Funeral live-stream"
 msgstr ""
 
-#: includes/templates/single.php:289
+#: templates/single.php:199
 msgid "Condolences for the family"
 msgstr ""
 
-#: includes/templates/single.php:291
+#: templates/single.php:201
 msgid "Reply to this condolence"
 msgstr ""
 
-#: includes/templates/single.php:291
+#: templates/single.php:202
 msgid "This message will be send by mail to the author of the condolence."
 msgstr ""
 
-#: includes/templates/single.php:291
+#: templates/single.php:203
 msgid "Reply"
 msgstr ""
 
-#: includes/templates/single.php:317
+#: templates/single.php:229
 msgid "Comment Error"
 msgstr ""
 
-#: includes/templates/single.php:325
+#: templates/single.php:237
 msgid "Naam"
 msgstr ""
 
-#: includes/templates/single.php:338
+#: templates/single.php:250
 msgid "Leave your condolences for the family"
 msgstr ""
 
-#: includes/templates/single.php:339
+#: templates/single.php:251
 msgid "This message is only visible for the family"
 msgstr ""
 
@@ -1101,10 +1045,6 @@ msgstr ""
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "http://www.appsaloon.be"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid "This plugin allows visitors to condole the family of the deceased."
 msgstr ""
 
 #. Author of the plugin/theme

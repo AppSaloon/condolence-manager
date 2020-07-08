@@ -29,6 +29,9 @@ class Order extends Custom_Post {
 	private $contact_last_name;
 
 	/** @var string */
+	private $address_house_number;
+
+	/** @var string */
 	private $address_line;
 
 	/** @var string */
@@ -108,6 +111,9 @@ class Order extends Custom_Post {
 				) ),
 				'address_line'        => new Field( 'address_line', true, array(
 						'label' => __( 'Address line', 'cm_translate' ),
+				) ),
+				'address_house_number' => new Field( 'address_house_number', true, array(
+						'label' => __( 'House number', 'cm_translate' ),
 				) ),
 				'address_postal_code' => new Field( 'address_postal_code', true, array(
 						'label' => __( 'Postal code', 'cm_translate' ),
@@ -252,6 +258,23 @@ class Order extends Custom_Post {
 	/**
 	 * @return string
 	 */
+	public function get_address_house_number() {
+		return $this->address_house_number;
+	}
+
+	/**
+	 * @param string $address_house_number
+	 *
+	 * @return Order
+	 */
+	public function set_address_house_number( $address_house_number ) {
+		$this->address_house_number = $address_house_number;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function get_address_line() {
 		return $this->address_line;
 	}
@@ -384,7 +407,10 @@ class Order extends Custom_Post {
 				<?= $this->get_property_html( 'address_city' ) ?>
 				<?= $this->get_property_html( 'address_postal_code' ) ?>
             </div>
-			<?= $this->get_property_html( 'address_line' ) ?>
+			<div class="cm-form-grid">
+			    <?= $this->get_property_html( 'address_line' ) ?>
+			    <?= $this->get_property_html( 'address_house_number' ) ?>
+            </div>
         </div>
 		<?= $this->get_property_html( 'remarks' ) ?>
     </div>

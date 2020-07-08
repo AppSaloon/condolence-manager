@@ -23,7 +23,8 @@
     <dd><?php echo esc_html( $order_contact_name ); ?></dd>
     <dt><?php echo esc_html__( 'Address', 'cm_translate' ); ?></dt>
     <dd>
-		<?php echo esc_html( $order_address_line ); ?><br/>
+	    <?php echo esc_html( $order_address_line ); ?>
+	    <?php echo esc_html( $order_address_house_number ); ?><br/>
 		<?php echo esc_html( $order_address_postal_code ); ?>, <?php echo esc_html( $order_address_city ); ?>
     </dd>
     <dt><?php echo esc_html__( 'email', 'cm_translate' ); ?></dt>
