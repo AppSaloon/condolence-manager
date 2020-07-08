@@ -4,7 +4,9 @@ if ( ! is_admin() ) {
 }
 $password = isset($_GET['code']) ? $_GET['code'] : '';
 $born = $deseased = false;
-//ob_start();
+
+// we use the output buffer because some code inside do_shortcode('[cm_products]') requires headers not to be sent yet
+ob_start();
 
 get_header();
 
@@ -278,5 +280,6 @@ $post_meta = get_post_meta( get_the_ID() );
 <?php
 get_footer();
 
-//echo ob_get_clean();
+// we use the output buffer because some code inside do_shortcode('[cm_products]') requires headers not to be sent yet
+echo ob_get_clean();
 ?>
