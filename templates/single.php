@@ -42,7 +42,7 @@ $post_meta = get_post_meta( get_the_ID() );
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female' ) {
-								echo '<strong>'.esc_html__( 'Beloved wife of', 'cm_translate' );':</strong> ';
+								echo '<strong>'.esc_html__( 'Beloved wife of', 'cm_translate' ).':</strong> ';
 								echo esc_html( $relation['name'] ) . ' ' . esc_html( $relation['familyname'] );
 							} 
 							elseif ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male' ) {
