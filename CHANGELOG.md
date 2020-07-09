@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.4 2020/07/09
+- fixed plugin description
+
 ## Version 2.5.3 2020/07/09
 - renamed conman_ hooks to cm_
 - fixed error notices instead of showing relations in single and archive
