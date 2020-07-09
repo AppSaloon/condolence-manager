@@ -3,6 +3,16 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.3 2020/07/09
+- renamed conman_ hooks to cm_
+- fixed error notices instead of showing relations in single and archive
+- fixed crash on showing coffee table form
+- added house number field for order form
+- fixed html rendering bug 
+
+## Version 2.5.2 2020/06/19
+- merged 2.4.9 and 2.5.1 versions
+
 ## Version 2.5.1 2020/06/03
 - improvement: redudant js removed, not used js removed
 - improvement: single.php file links to buttons, to inherit css styling from theme
