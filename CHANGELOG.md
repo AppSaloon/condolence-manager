@@ -3,6 +3,11 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.5 2020/07/10
+- single and archive share new "deceased" template
+- birth place / date on a single line
+- death place / date on a single line
+
 ## Version 2.5.4 2020/07/09
 - fixed plugin description
 
