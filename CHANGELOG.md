@@ -3,6 +3,10 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.6 2020/07/13
+- fixed conditional for determining the relation type of the deceased.
+
+
 ## Version 2.5.5 2020/07/10
 - single and archive share new "deceased" template
 - birth place / date on a single line
