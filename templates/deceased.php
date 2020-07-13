@@ -38,15 +38,16 @@ $gender            = current( $post_meta['gender'] );
                     <p>
 						<?php foreach ( $relations as $relation ): ?>
 							<?php
-							$relation_type = ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male' )
-								? esc_html__( 'Beloved husband of', 'cm_translate' )
-								: ( $relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female' )
-									? esc_html__( 'Beloved wife of', 'cm_translate' )
-									: ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male' )
-										? esc_html__( 'Beloved husband of the late', 'cm_translate' )
-										: ( $relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female' )
-											? esc_html__( 'Beloved wife of the late', 'cm_translate' )
-											: false
+							$relation_type = false;
+							if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Male') {
+								 $relation_type = esc_html__( 'Beloved husband of', 'cm_translate' );
+                            } else if ($relation['type'] == 'Married' && $relation['alive'] == '1' && $gender == 'Female') {
+								 $relation_type = esc_html__( 'Beloved wife of', 'cm_translate' );
+                            } else if ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Male') {
+								 $relation_type = esc_html__( 'Beloved husband of the late', 'cm_translate' );
+                            } else if ($relation['type'] == 'Married' && $relation['alive'] == '0' && $gender == 'Female') {
+								 $relation_type = esc_html__( 'Beloved wife of the late', 'cm_translate' );
+                            }
 							?>
 							<?php if ( $relation_type !== false ): ?>
                                 <strong><?php echo $relation_type ?>:</strong>
