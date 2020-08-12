@@ -1,4 +1,7 @@
 <?php
+
+use appsaloon\cm\register\Order_Type;
+
 $decased_full_name = ( isset( $post_meta['honoraryitle'] ) && ! empty( $post_meta['honoraryitle'][0] ) ? $post_meta['honoraryitle'][0] . ' ' : '' ) . esc_html( $post_meta['name'][0] ) . ' ' . esc_html( $post_meta['familyname'][0] );
 $relations         = unserialize( current( $post_meta["relations"] ) );
 $gender            = current( $post_meta['gender'] );
@@ -167,12 +170,13 @@ $gender            = current( $post_meta['gender'] );
 			<?php if ( ! $is_single || ( isset( $password ) && $password === '' ) ) : /* Do not show buttons when page is single AND password is empty */ ?>
                 <div class="cm-buttons-wrapper">
                     <input type="button" onclick="location.href='<?php the_permalink(); ?>?comments'"
-                           value="<?php echo esc_attr__( 'Condole', 'cm_translate' ); ?>">
+                           value="<?php echo esc_attr__( 'Condole', 'cm_translate' ); ?>"
+	                        <?php echo ( comments_open() ) ? '' : 'disabled'; ?>>
 
 					<?php if ( is_array( $post_meta['flowers'] ) && isset( $post_meta['flowers'][0] ) ) : ?>
 						<?php $string = $post_meta["flowers"][0]; ?>
 						<?php if ( $string != '0' ) : ?>
-							<?php $can_order_flower = \appsaloon\cm\register\Order_Type::verify_order_funeral_date( get_the_ID() ); ?>
+							<?php $can_order_flower = Order_Type::verify_order_funeral_date( get_the_ID() ); ?>
                             <input type="button"
                                    onclick="location.href='<?php the_permalink(); ?>?cm-products&cm-order-form'"
                                    value="<?php echo esc_attr__( 'Flowers', 'cm_translate' ); ?>"
