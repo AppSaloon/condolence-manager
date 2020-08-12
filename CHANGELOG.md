@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.7 2020/08/12
+- Added "disabled" state for condole button when post does not allow comments.
+
 ## Version 2.5.6 2020/07/13
 - fixed conditional for determining the relation type of the deceased.
 
