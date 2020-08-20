@@ -10,6 +10,11 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+#cm-content-wrapper .cm-content nav {
+	display: flex;
+	justify-content: space-between;
+	margin: 8px 0;
+}
 #cm-content-wrapper .cm-content .cm-entry-content > article {
 	background: #eee;
 	margin-bottom: 20px;
