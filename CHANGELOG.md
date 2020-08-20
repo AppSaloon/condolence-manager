@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.8 2020/08/20
+- Added pagination to the archive.
+
 ## Version 2.5.7 2020/08/12
 - Added "disabled" state for condole button when post does not allow comments.
 
