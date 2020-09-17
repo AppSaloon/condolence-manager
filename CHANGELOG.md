@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.5.9 2020/09/20
+- Changed HTML structure of deceased template
+
 ## Version 2.5.8 2020/08/20
 - Added pagination to the archive.
 
