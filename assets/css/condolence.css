@@ -45,6 +45,12 @@
 	margin: 2% 0;
 	width: 68%;
 }
+#cm-content-wrapper .deceased-info-header {
+	font-weight: bold;
+}
+#cm-content-wrapper .deceased-info-header::after {
+	content: ":";
+}
 #cm-content-wrapper .deceased-name {
 	font-size: 2.8rem;
 	margin: 0 0 20px 0;
