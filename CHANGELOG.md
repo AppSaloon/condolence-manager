@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.6.1 2020/09/21
+- more compatability with older PHP versions in Products_Email_Controller
+
 ## Version 2.6.0 2020/09/21
 - added order confirmation email to customer
 
