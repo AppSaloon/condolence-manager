@@ -78,11 +78,8 @@ class Products_Email_Controller {
 					'cm_translate' ),
 					$post->post_title
 				);
-				list(
-					'message' => $message,
-					'headers' => $headers
-					) = $this->get_email_content( $post_ID, $template, $subject );
-				wp_mail( $to, $subject, $message, $headers );
+				$email_content = $this->get_email_content( $post_ID, $template, $subject );
+				wp_mail( $to, $subject, $email_content['message'], $email_content['headers'] );
 			} catch ( Exception $exception ) {
 			}
 		}
@@ -102,11 +99,8 @@ class Products_Email_Controller {
 				$to              = $order->get_contact_email();
 				$subject         = esc_html__( 'Your order confirmation', 'cm_translate' );
 				$order->get_post()->post_title;
-				list(
-					'message' => $message,
-					'headers' => $headers
-					) = $this->get_email_content( $post_ID, $template, $subject );
-				wp_mail( $to, $subject, $message, $headers );
+				$email_content = $this->get_email_content( $post_ID, $template, $subject );
+				wp_mail( $to, $subject, $email_content['message'], $email_content['headers'] );
 			} catch ( Exception $exception ) {
 			}
 		}
