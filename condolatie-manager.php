@@ -58,6 +58,11 @@ include_once CM_BASE_DIR . '/vendor/autoload.php';
 
 Class Condolatie_Manager{
 
+    /**
+     * @var Templates
+     */
+    private $templates;
+
     public function __construct()
     {
         $this->run();
@@ -68,12 +73,12 @@ Class Condolatie_Manager{
      * Run the plugin
      */
     public function run(){
+        $this->templates = new Templates();
+        new Comment_Email();
+        new Coffee_Table_Controller();
+
         $this->register();
         $this->settings();
-
-        new Templates();
-        new Comment_Email();
-	    new Coffee_Table_Controller();
     }
 
     /**
@@ -88,7 +93,9 @@ Class Condolatie_Manager{
 	        new Order_Type();
             new Translation();
             new Form_Filter_Controller();
-            new Products_Email_Controller();
+            new Products_Email_Controller(
+                $this->templates
+            );
             new Comment_Sanitizer();
     }
 

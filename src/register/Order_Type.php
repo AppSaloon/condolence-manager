@@ -292,8 +292,7 @@ class Order_Type {
 		$errors = $order->validate();
 		if ( empty ( $errors ) ) {
 			$order->update();
-			error_log(var_export(["save_order_metadata should trigger action after_save_order_metadata ..."], 1));
-			do_action('after_save_order_metadata', $order, $post_id, $post, $update);
+			do_action('cm_after_save_order_metadata', $order, $post_id, $post, $update);
 		} else {
 			error_log( var_export( [
 				"save_order_metadata errors is not empty" => array(

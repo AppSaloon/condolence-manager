@@ -1,3 +1,20 @@
+<?php
+/* @var $subject string */
+/* @var $order_lines object */
+/* @var $ribbon_text string */
+/* @var $order_contact_name string */
+/* @var $order_address_line string */
+/* @var $order_address_house_number string */
+/* @var $order_address_postal_code string */
+/* @var $order_address_city string */
+/* @var $order_contact_email string */
+/* @var $order_contact_phone string */
+/* @var $order_company_name string */
+/* @var $order_company_vat string */
+/* @var $order_remarks string */
+/* @var $order_href string */
+
+?>
 <h3><?php echo $subject; ?></h3>
 <p>
     <strong><?php echo esc_html__( 'The following products were ordered', 'cm_translate' ) ?>:</strong>

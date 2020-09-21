@@ -52,7 +52,11 @@ class Admin_Options_Page {
 	            'type' => esc_html__(get_option('cm_option_confirmation_type', 'text')),
 	            'text' => esc_html__(get_option('cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate'))),
 	            'page' => esc_html__(get_option('cm_option_confirmation_page')),
-	            'order_text' => esc_html__(get_option('cm_option_confirmation_order_text'))
+	            'order_text' => esc_html__(get_option('cm_option_confirmation_order_text')),
+	            'cm_option_order_confirmation_email_to_customer' => get_option(
+	                    'cm_option_order_confirmation_email_to_customer',
+	                    false
+	            ),
 	    );
 	}
 
@@ -174,7 +178,9 @@ class Admin_Options_Page {
             update_option('cm_option_confirmation_text', sanitize_textarea_field($_POST['cm_option_confirmation_text']));
             update_option('cm_option_confirmation_page', esc_url($_POST['cm_option_confirmation_page']));
             update_option('cm_option_confirmation_order_text', sanitize_textarea_field($_POST['cm_option_confirmation_order_text']));
+            update_option('cm_option_order_confirmation_email_to_customer', isset($_POST['cm_option_order_confirmation_email_to_customer']));
         }
+        $settings = static::get_confirmation_settings();
         ?>
         <p class="info"><?php _e('Manage the condolence confirmation. This can be a thank you text, or a page to redirect to.', 'cm_translate'); ?></p>
         <form method="post" action="">
@@ -185,7 +191,7 @@ class Admin_Options_Page {
                 </th>
                 <td>
                     <?php
-                    $confirmation_type = static::get_confirmation_settings()['type'];
+                    $confirmation_type = $settings['type'];
  ?>
                     <p><label><input type="radio" name="cm_option_confirmation_type" value="page" <?php checked('page', $confirmation_type);?>><?php _e('Page','cm_translate'); ?></label></p>
                     <p><label><input type="radio" name="cm_option_confirmation_type" value="text" <?php checked('text', $confirmation_type);?>><?php _e('Text','cm_translate'); ?></label></p>
@@ -199,7 +205,7 @@ class Admin_Options_Page {
                     <label for="cm_option_confirmation_page"><?php _e('Confirmation page','cm_translate'); ?></label>
                 </th>
                 <td>
-                   <input type="url" value="<?php echo esc_attr(static::get_confirmation_settings()['page'])?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="https://www.example.com/thank-you">
+                   <input type="url" value="<?php echo esc_attr($settings['page'])?>" name="cm_option_confirmation_page" class="regular-text" id="cm_option_confirmation_page" placeholder="https://www.example.com/thank-you">
                     <p class="description">
                     <?php _e('If you selected "page" as the confirmation type, please enter the URL to the page your users will be redirected to after writing a condolence.','cm_translate'); ?>
                     </p>
@@ -211,7 +217,7 @@ class Admin_Options_Page {
                 </th>
                 <td>
                     <textarea name="cm_option_confirmation_text" class="regular-text" id="cm_option_confirmation_text" placeholder="<?php _e('Thank you note', 'cm_translate'); ?>"><?php
-                    echo esc_textarea(static::get_confirmation_settings()['text']);
+                    echo esc_textarea($settings['text']);
                     ?></textarea>
                     <p class="description">
                     <?php _e('If you selected "text" as the confirmation type, the text in the field above will be displayed to a user after writing a condolence.','cm_translate'); ?>
@@ -226,8 +232,25 @@ class Admin_Options_Page {
                 </th>
                 <td>
                    <textarea name="cm_option_confirmation_order_text" class="regular-text" id="cm_option_confirmation_order_text" placeholder="Thank you for your order."><?php
-                    echo esc_attr(static::get_confirmation_settings()['order_text'])
+                    echo esc_attr($settings['order_text'])
                     ?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="cm_option_order_confirmation_email_to_customer">
+                    <?php _e('Order confirmation email to customer', 'cm_translate'); ?>
+                    </label>
+                </th>
+                <td>
+                    <label>
+                   <input type="checkbox"
+                          name="cm_option_order_confirmation_email_to_customer"
+                          id="cm_option_order_confirmation_email_to_customer"
+                          <?php echo $settings['cm_option_order_confirmation_email_to_customer'] ? 'checked' : ''; ?>
+                    />
+                    <span><?php echo __('Enabled', 'cm_translate'); ?></span>
+                    </label>
                 </td>
             </tr>
             <tr>

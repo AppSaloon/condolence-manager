@@ -1,18 +1,32 @@
 <?php namespace appsaloon\cm\controller;
 
 use appsaloon\cm\model\Order;
+use Exception;
 use WP_Post;
 
 class Products_Email_Controller {
-	public function __construct() {
-		add_action( 'after_save_order_metadata', array( $this, 'send_email_notification_to_wp_admin' ), 10, 4 );
+	/**
+	 * @var Templates
+	 */
+	private $templates;
+
+	public function __construct( Templates $templates ) {
+		$this->templates = $templates;
+		add_action( 'cm_after_save_order_metadata', array( $this, 'send_email_notification_to_wp_admin' ), 10, 4 );
+		add_action( 'cm_after_save_order_metadata', array( $this, 'send_email_notification_to_customer' ), 10, 4 );
 	}
 
-
-	public function send_email_notification_to_wp_admin( Order $order, int $post_ID, WP_Post $post, bool $update ) {
-		if ( $update == false ) { // only send email for new orders
-			$post_meta = get_post_meta( $post_ID );
-			error_log( var_export( [ "post_meta" => $post_meta ], 1 ) );
+	/**
+	 * @param int $post_ID
+	 * @param string $template
+	 * @param string $subject
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	private function get_email_content( int $post_ID, string $template, string $subject ) {
+		if ( file_exists( $template ) ) {
+			$post_meta          = get_post_meta( $post_ID );
 			$condolence_exists  = isset( $post_meta['cm_order_deceased_id'][0] ) && $post_meta['cm_order_deceased_id'][0];
 			$order_lines_exists = isset( $post_meta['cm_order_order_lines'][0] ) && $post_meta['cm_order_order_lines'][0];
 			if ( $condolence_exists && $order_lines_exists ) {
@@ -31,14 +45,69 @@ class Products_Email_Controller {
 				$order_company_vat          = $post_meta['cm_order_company_vat'][0];
 				$order_remarks              = $post_meta['cm_order_remarks'][0];
 				$order_href                 = htmlspecialchars_decode( get_edit_post_link( $post_ID ) );
-				$to                         = get_option( 'admin_email' );
-				$subject                    = sprintf( esc_html__( 'A new order has been placed for the funeral of %s', 'cm_translate' ), $condolence_post->post_title );
+				ob_clean();
 				ob_start();
-				include CM_BASE_DIR . "/templates/new_order_email_to_site_admin.php";
+				include $template;
 				$message = ob_get_clean();
-				$headers = 'MIME-Version: 1.0' . "\r\n";
-				$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+
+				return array(
+					'message' => $message,
+					'headers' => array(
+						'MIME-Version: 1.0' . "\r\n",
+						'Content-Type: text/html; charset=UTF-8',
+					),
+				);
+			}
+		}
+		throw new Exception( 'Could not get email content' );
+	}
+
+	/**
+	 * @param Order $order
+	 * @param int $post_ID
+	 * @param WP_Post $post
+	 * @param bool $update
+	 */
+	public function send_email_notification_to_wp_admin( Order $order, int $post_ID, WP_Post $post, bool $update ) {
+		if ( $update == false ) {
+			try {
+				$template        = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_site_admin' );
+				$to              = get_option( 'admin_email' );
+				$subject         = sprintf( esc_html__(
+					'A new order has been placed for the funeral of %s',
+					'cm_translate' ),
+					$post->post_title
+				);
+				list(
+					'message' => $message,
+					'headers' => $headers
+					) = $this->get_email_content( $post_ID, $template, $subject );
 				wp_mail( $to, $subject, $message, $headers );
+			} catch ( Exception $exception ) {
+			}
+		}
+	}
+
+	/**
+	 * @param Order $order
+	 * @param int $post_ID
+	 * @param WP_Post $post
+	 * @param bool $update
+	 */
+	public function send_email_notification_to_customer( Order $order, int $post_ID, WP_Post $post, bool $update ) {
+		$should_send_email_to_customer = get_option( 'cm_option_order_confirmation_email_to_customer', false );
+		if ( $update == false && $should_send_email_to_customer ) {
+			try {
+				$template        = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_customer' );
+				$to              = $order->get_contact_email();
+				$subject         = esc_html__( 'Your order confirmation', 'cm_translate' );
+				$order->get_post()->post_title;
+				list(
+					'message' => $message,
+					'headers' => $headers
+					) = $this->get_email_content( $post_ID, $template, $subject );
+				wp_mail( $to, $subject, $message, $headers );
+			} catch ( Exception $exception ) {
 			}
 		}
 	}
