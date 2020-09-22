@@ -100,7 +100,9 @@ $gender = current($post_meta['gender']);
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($post_meta["funeraldate"][0]) && $post_meta["funeraldate"][0] != ''): ?>
+            <?php
+            $show_funeraldate = ! isset($post_meta["show_funeraldate"][0]) || $post_meta["show_funeraldate"][0] != 0;
+            if ( $show_funeraldate && isset($post_meta["funeraldate"][0]) && $post_meta["funeraldate"][0] != ''): ?>
                 <?php
                 $date_of_funeral = DateTime::createFromFormat('Y-m-d', $post_meta["funeraldate"][0])->getTimestamp();
                 $translated_date_of_funeral = date_i18n(get_option('date_format'), $date_of_funeral);

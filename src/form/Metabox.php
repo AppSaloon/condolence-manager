@@ -98,6 +98,16 @@ class Metabox {
               </td>
           </tr>
           <tr>
+              <td><label for="show_funeraldate"><?php _e( 'Show funeral date', 'cm_translate' ); ?></label></td>
+              <td class="form-field">
+                  <input type="checkbox"
+                         name="show_funeraldate"
+                         id="show_funeraldate"
+                         <?php if( $this->get_field_value( 'show_funeraldate', $post->ID ) != 0 ) echo "checked" ?>
+                  />
+              </td>
+          </tr>
+          <tr>
               <td><?php _e( 'Funeral information' ); ?></td>
               <td class="form-field"><textarea rows="3" name="funeralinformation"
                   ><?php echo $this->get_field_value( 'funeralinformation', $post->ID ); ?></textarea></td>
@@ -810,11 +820,20 @@ class Metabox {
 		 */
 		update_post_meta( $post_id, Location_Type::META_KEY, (int) $post_data[Location_Type::META_KEY] );
 
+        /**
+         * update funeral date checkbox
+         */
+        if ( isset( $post_data['show_funeraldate'] ) ) {
+            update_post_meta( $post_id, 'show_funeraldate', 1);
+        } else {
+            update_post_meta( $post_id, 'show_funeraldate', 0 );
+        }
+
 		/**
 		 * update flowers button
 		 */
 		if ( isset( $post_data['flowers'] ) ) {
-			update_post_meta( $post_id, 'flowers', $post_data['flowers'] );
+			update_post_meta( $post_id, 'flowers', 1 );
 		} else {
 			update_post_meta( $post_id, 'flowers', 0 );
 		}
@@ -822,12 +841,12 @@ class Metabox {
 		 * update live-stream button
 		 */
 		if ( isset( $post_data['live_stream'] ) ) {
-			update_post_meta( $post_id, 'live_stream', $post_data['live_stream'] );
+			update_post_meta( $post_id, 'live_stream', 1 );
 		} else {
 			update_post_meta( $post_id, 'live_stream', 0 );
 		}
 		if ( isset( $post_data['live_stream_embed'] ) ) {
-			update_post_meta( $post_id, 'live_stream_embed', $post_data['live_stream_embed'] );
+			update_post_meta( $post_id, 'live_stream_embed', 1 );
 		} else {
 			update_post_meta( $post_id, 'live_stream_embed', 0 );
 		}
