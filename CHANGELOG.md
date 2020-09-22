@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.7.0 2020/09/22
+- Added checkbox show funeraldate
+
 ## Version 2.6.2 2020/09/22
 - fixed email subject & title in Products_Email_Controller
 
