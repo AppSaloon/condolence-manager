@@ -1,6 +1,8 @@
 <?php namespace appsaloon\cm\controller;
 
+use appsaloon\cm\model\Custom_Post;
 use appsaloon\cm\model\Order;
+use appsaloon\cm\register\Custom_Post_Type;
 use Exception;
 use WP_Post;
 
@@ -71,12 +73,16 @@ class Products_Email_Controller {
 	public function send_email_notification_to_wp_admin( Order $order, int $post_ID, WP_Post $post, bool $update ) {
 		if ( $update == false ) {
 			try {
-				$template        = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_site_admin' );
-				$to              = get_option( 'admin_email' );
-				$subject         = sprintf( esc_html__(
-					'A new order has been placed for the funeral of %s',
-					'cm_translate' ),
-					$post->post_title
+				$template      = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_site_admin' );
+				$to            = get_option( 'admin_email' );
+				$deceased_id   = $order->get_deceased_id();
+				$deceased      = get_post( $deceased_id );
+				$subject       = sprintf(
+					esc_html__(
+						'A new order has been placed for the funeral of %s',
+						'cm_translate'
+					),
+					$deceased->post_title
 				);
 				$email_content = $this->get_email_content( $post_ID, $template, $subject );
 				wp_mail( $to, $subject, $email_content['message'], $email_content['headers'] );
@@ -95,9 +101,9 @@ class Products_Email_Controller {
 		$should_send_email_to_customer = get_option( 'cm_option_order_confirmation_email_to_customer', false );
 		if ( $update == false && $should_send_email_to_customer ) {
 			try {
-				$template        = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_customer' );
-				$to              = $order->get_contact_email();
-				$subject         = esc_html__( 'Your order confirmation', 'cm_translate' );
+				$template = $this->templates->cm_get_template_hierarchy( 'new_order_email_to_customer' );
+				$to       = $order->get_contact_email();
+				$subject  = esc_html__( 'Your order confirmation', 'cm_translate' );
 				$order->get_post()->post_title;
 				$email_content = $this->get_email_content( $post_ID, $template, $subject );
 				wp_mail( $to, $subject, $email_content['message'], $email_content['headers'] );
