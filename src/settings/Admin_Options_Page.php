@@ -33,12 +33,10 @@ class Admin_Options_Page {
 	public static function get_current_or_default_option(string $option)
 	{
 	    $value = get_option($option);
-	    error_log(var_export(["value" => $value], 1));
 	    if($value) {
 	       return $value;
 	    } else {
 	        if(isset(static::DEFAULT_OPTIONS[$option])) {
-	            error_log(var_export(["value" => static::DEFAULT_OPTIONS[$option]], 1));
 	            return static::DEFAULT_OPTIONS[$option];
 	        } else {
 	            error_log(var_export(["null" => null], 1));
