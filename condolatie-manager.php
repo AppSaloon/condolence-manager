@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Condolence Manager
- * Plugin URI: http://www.appsaloon.be
+ * Plugin URI: https://appsaloon.be/?product=condolence-manager-plugin
  * Description: This plugin allows visitors to condole the family of the deceased.
  * Version: 2.8.0
  * Text Domain: cm_translate
  * Author: AppSaloon
- * Author URI: http://www.appsaloon.be
+ * Author URI: https://appsaloon.be
  * Translators: fr - Jean François Dejonghe
  * License: GPLv2 or later
  */
