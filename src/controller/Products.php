@@ -41,54 +41,54 @@ function cm_place_order( Order $order, WP_Post $deceased, $order_data ) {
 
 	if ( count( $errors ) === 0 ) {
 		$order_id = $order->update();
-		header("Location:./?cm-order-form&cm-products&order_id=$order_id#cm-order-form");
+		header( "Location:./?cm-order-form&cm-products&order_id=$order_id#cm-order-form" );
 		die();
 	}
 
 	return $errors;
 }
 
-function cm_submit_order_form(Order $order, WP_Post $deceased) {
-    $errors = null;
+function cm_submit_order_form( Order $order, WP_Post $deceased ) {
+	$errors = null;
 
-    if (!wp_verify_nonce($_POST['cm_order_nonce'], 'cm_place_order')) {
-        $errors[] = __('The order form has expired.', 'cm_translate');
-    } else {
-        $errors = cm_place_order($order, $deceased, $_POST);
-    }
+	if ( ! wp_verify_nonce( $_POST['cm_order_nonce'], 'cm_place_order' ) ) {
+		$errors[] = __( 'The order form has expired.', 'cm_translate' );
+	} else {
+		$errors = cm_place_order( $order, $deceased, $_POST );
+	}
 
-    if (is_array($errors) && count($errors) > 0) {
-        ?>
+	if ( is_array( $errors ) && count( $errors ) > 0 ) {
+		?>
         <div class="cm-order-error">
-            <?php _e('There were some errors with your order, please try again.', 'cm_translate'); ?>
+			<?php _e( 'There were some errors with your order, please try again.', 'cm_translate' ); ?>
             <ul class="cm-order-error--list">
-                <?php foreach ($errors as $key => $value): ?>
+				<?php foreach ( $errors as $key => $value ): ?>
                     <li><?= $value ?></li>
-                <?php endforeach; ?>
+				<?php endforeach; ?>
             </ul>
         </div>
-        <?php
-    }
+		<?php
+	}
 }
 
 /**
  * @param string $order_id
  */
-function cm_display_order_form_submitted (string $order_id) {
-    $order = new Order($order_id);
-    $order->load_fields();
-    ?>
+function cm_display_order_form_submitted( string $order_id ) {
+	$order = new Order( $order_id );
+	$order->load_fields();
+	?>
     <div class="cm-order-success" style="white-space: pre;"><?php
-        echo Admin_Options_Page::get_current_or_default_option('cm_option_confirmation_order_text');
-    ?></div>
+		echo Admin_Options_Page::get_current_or_default_option( 'cm_option_confirmation_order_text' );
+		?></div>
     <div class="cm-order-summary">
         <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
-        <?= strip_tags( $order->get_summary(), 'li ul' ) ?>
+		<?= strip_tags( $order->get_summary(), 'li ul' ) ?>
         <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
-        <?= $order->get_total()->display( true ) ?>
+		<?= $order->get_total()->display( true ) ?>
     </div>
-    <?php
-    return;
+	<?php
+	return;
 }
 
 /**
@@ -104,14 +104,15 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 
 	$order = Order::create_new();
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        cm_submit_order_form($order, $deceased);
-    }
+	if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+		cm_submit_order_form( $order, $deceased );
+	}
 
 	if ( isset( $_GET['order_id'] ) ) {
-	    cm_display_order_form_submitted($_GET['order_id']);
-	    return;
-    }
+		cm_display_order_form_submitted( $_GET['order_id'] );
+
+		return;
+	}
 
 	if ( isset( $_GET['cm_order_product'] ) ) {
 		$product = get_post( $_GET['cm_order_product'] );
@@ -129,35 +130,67 @@ function cm_display_order_form( $btn_text, $deceased = null ) {
 		<?= $order->render_details_form() ?>
 		<?php wp_nonce_field( 'cm_place_order', 'cm_order_nonce' ); ?>
         <div class="form-wrap form-wrap--submit">
-            <input type="submit" name="cm_order_submit" value="<?= esc_attr( $btn_text ) ?>" class="cm-order-form--button">
+            <input type="submit" name="cm_order_submit" value="<?= esc_attr( $btn_text ) ?>"
+                   class="cm-order-form--button">
         </div>
     </form>
 	<?php
 }
 
-function cm_get_display_value($id) {
-    $query = array();
-    parse_str($_SERVER['QUERY_STRING'], $query);
+function cm_get_display_value( $id ) {
+	$query = array();
+	parse_str( $_SERVER['QUERY_STRING'], $query );
 
-    if ( !is_single() || isset($query[$id]) ) {
-        return 'style="display:block;"';
-    }
+	if ( ! is_single() || isset( $query[ $id ] ) ) {
+		return 'style="display:block;"';
+	}
 
-    return 'style="display:none;"';
+	return 'style="display:none;"';
+}
+
+function fix_product_price_meta_value() {
+	$product_query = new WP_Query( array(
+		'post_type'  => Product_Type::POST_TYPE,
+		'meta_query' => array(
+			array(
+				'key'     => 'cm_product_price_amount',
+				'compare' => 'NOT EXISTS'
+			)
+		)
+	) );
+	$posts         = $product_query->get_posts();
+	foreach ( $posts as $post ) {
+		$price = json_decode( get_post_meta( $post->ID, 'cm_product_price', true ) );
+		if ( isset( $price->amount ) ) {
+			add_post_meta( $post->ID, 'cm_product_price_amount', (int) $price->amount );
+		}
+	}
 }
 
 function cm_display_products( $title = '', $products_query_arguments = array(), $hide_order_buttons = false ) {
-    $current_page_number = (int) (isset($_GET['cm-products-page']) ? $_GET['cm-products-page'] : 1);
+	fix_product_price_meta_value();
 
-    $products_query_arguments = wp_parse_args(
+	$current_page_number = (int) ( isset( $_GET['cm-products-page'] ) ? $_GET['cm-products-page'] : 1 );
+
+	$cm_option_product_sort_orderby   = Admin_Options_Page::get_current_or_default_option( 'cm_option_product_sort_orderby' );
+	$cm_option_product_sort_direction = Admin_Options_Page::get_current_or_default_option( 'cm_option_product_sort_direction' );
+	$default_products_query_arguments = array(
+		'post_type'      => Product_Type::POST_TYPE,
+		'posts_per_page' => 15,
+		'offset'         => ( $current_page_number - 1 ) * 15,
+		'orderby'        => 'post_title',
+		'order'          => strtolower( $cm_option_product_sort_direction ),
+		'test'           => 'test',
+	);
+
+	if ( $cm_option_product_sort_orderby !== 'post_title' ) {
+		$default_products_query_arguments['orderby']  = 'meta_value_num';
+		$default_products_query_arguments['meta_key'] = 'cm_product_price_amount';
+	}
+
+	$products_query_arguments = wp_parse_args(
 		$products_query_arguments,
-		array(
-			'post_type'      => Product_Type::POST_TYPE,
-			'orderby'        => 'post_title',
-			'order'          => 'asc',
-            'posts_per_page' => 15,
-            'offset'         => ($current_page_number - 1) * 15
-		)
+		$default_products_query_arguments
 	);
 
 	/**
@@ -167,11 +200,11 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 	 */
 	$products_query_arguments = apply_filters( 'cm/products_query_args', $products_query_arguments );
 	$products_query           = new WP_Query( $products_query_arguments );
-    $max_num_pages = (int) $products_query->max_num_pages;
-    if($current_page_number < 1 || $current_page_number > $max_num_pages) {
-        $products_query_arguments['offset'] = 0;
-        $products_query = new WP_Query( $products_query_arguments );
-    }
+	$max_num_pages            = (int) $products_query->max_num_pages;
+	if ( $current_page_number < 1 || $current_page_number > $max_num_pages ) {
+		$products_query_arguments['offset'] = 0;
+		$products_query                     = new WP_Query( $products_query_arguments );
+	}
 
 	if ( ! $products_query->have_posts() ) {
 		return '';
@@ -182,68 +215,70 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
 
 	ob_start();
 	?>
-    <div id="cm-products" class="cm-products rouw" <?php echo cm_get_display_value('cm-products'); ?>">
-		<?php if ( ! empty( $title ) ): ?>
-            <h2 class="cm-products--title"><?= esc_html( $title ); ?></h2>
-		<?php endif; ?>
-        <div class="cm-products--list">
-			<?php while ( $products_query->have_posts() ): $products_query->the_post();
-				$product = Product::from_id( get_the_id() ); ?>
-                <div class="cm-product--wrapper">
-                    <div class="cm-product">
-	                    <?php if ( has_post_thumbnail() ): ?>
-	                    <figure class="cm-product--image-wrapper">
-		                    <?php the_post_thumbnail( 'medium', array(
-			                    'class' => 'cm-product--image',
-		                    ) ); ?>
-	                    </figure>
-	                    <?php endif; ?>
-                        <header class="cm-product--header">
-                            <h3 class="cm-product--title"><?php the_title(); ?></h3>
-                            <span class="cm-product--price"><?= $product->get_price()->display( true ) ?></span>
-                        </header>
-                        <main class="cm-product--content">
-                            <p class="cm-product-excerpt"><?php the_excerpt(); ?></p>
-                        </main>
-                        <?php
-                        if (! $hide_order_buttons) {
-                           ?>
-                            <footer class="cm-product--footer">
-                                <a href="?cm-products&cm-order-form&cm_order_product=<?php the_ID(); ?>#cm-order-form" class="cm-product--order-link"
-                                   data-product="<?php the_ID(); ?>">
-                                    <?php _e( 'Order', 'cm_translate' ); ?>
-                                </a>
-                            </footer>
-                            <?php
-                        }
-                        ?>
-                    </div>
+    <div id="cm-products" class="cm-products rouw" <?php echo cm_get_display_value( 'cm-products' ); ?>">
+	<?php if ( ! empty( $title ) ): ?>
+        <h2 class="cm-products--title"><?= esc_html( $title ); ?></h2>
+	<?php endif; ?>
+    <div class="cm-products--list">
+		<?php while ( $products_query->have_posts() ): $products_query->the_post();
+			$product = Product::from_id( get_the_id() ); ?>
+            <div class="cm-product--wrapper">
+                <div class="cm-product">
+					<?php if ( has_post_thumbnail() ): ?>
+                        <figure class="cm-product--image-wrapper">
+							<?php the_post_thumbnail( 'medium', array(
+								'class' => 'cm-product--image',
+							) ); ?>
+                        </figure>
+					<?php endif; ?>
+                    <header class="cm-product--header">
+                        <h3 class="cm-product--title"><?php the_title(); ?></h3>
+                        <span class="cm-product--price"><?= $product->get_price()->display( true ) ?></span>
+                    </header>
+                    <main class="cm-product--content">
+                        <p class="cm-product-excerpt"><?php the_excerpt(); ?></p>
+                    </main>
+					<?php
+					if ( ! $hide_order_buttons ) {
+						?>
+                        <footer class="cm-product--footer">
+                            <a href="?cm-products&cm-order-form&cm_order_product=<?php the_ID(); ?>#cm-order-form"
+                               class="cm-product--order-link"
+                               data-product="<?php the_ID(); ?>">
+								<?php _e( 'Order', 'cm_translate' ); ?>
+                            </a>
+                        </footer>
+						<?php
+					}
+					?>
                 </div>
-			<?php endwhile;
-			wp_reset_postdata(); ?>
-        </div>
-        <?php
-        if($max_num_pages > 1) { ?>
-            <form action="./" method="get" class="cm-products-pagination">
-                <?php
-                if($hide_order_buttons === false) { ?>
-                    <input type="hidden" name="cm-products">
-                    <input type="hidden" name="cm-order-form">
-                    <?php
-                }
-                ?>
-                <?php
-                for ($page_number = 1; $page_number <= $max_num_pages; $page_number++) {
-                    $style = ($current_page_number === $page_number) ? "background: #f5f5f5; border-color: #bbb #bbb #aaa #" : "";
-                    ?>
-                    <button name="cm-products-page" value="<?=$page_number?>" style="<?=$style?>"><?= $page_number; ?></button>
-                    <?php
-                }
-                ?>
-            </form>
-            <?php
-        }
-        ?>
+            </div>
+		<?php endwhile;
+		wp_reset_postdata(); ?>
+    </div>
+	<?php
+	if ( $max_num_pages > 1 ) { ?>
+        <form action="./" method="get" class="cm-products-pagination">
+			<?php
+			if ( $hide_order_buttons === false ) { ?>
+                <input type="hidden" name="cm-products">
+                <input type="hidden" name="cm-order-form">
+				<?php
+			}
+			?>
+			<?php
+			for ( $page_number = 1; $page_number <= $max_num_pages; $page_number ++ ) {
+				$style = ( $current_page_number === $page_number ) ? "background: #f5f5f5; border-color: #bbb #bbb #aaa #" : "";
+				?>
+                <button name="cm-products-page" value="<?= $page_number ?>"
+                        style="<?= $style ?>"><?= $page_number; ?></button>
+				<?php
+			}
+			?>
+        </form>
+		<?php
+	}
+	?>
     </div>
 	<?php
 	return ob_get_clean();
@@ -262,26 +297,26 @@ function cm_display_products( $title = '', $products_query_arguments = array(), 
  */
 function cm_products_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
-		'title'    => __( 'Flowers', 'cm_translate' ),
-		'deceased' => get_the_ID(),
-        'hide_order_buttons' => false
+		'title'              => __( 'Flowers', 'cm_translate' ),
+		'deceased'           => get_the_ID(),
+		'hide_order_buttons' => false
 	), $atts );
 
-	$deceased = get_post( $atts['deceased'] );
-    $hide_order_buttons = $atts['hide_order_buttons'] === 'true';
+	$deceased           = get_post( $atts['deceased'] );
+	$hide_order_buttons = $atts['hide_order_buttons'] === 'true';
 
-    //ignore deceased and orders if hide_order_buttons is true
-    if ( ! $hide_order_buttons) {
-        if ( ! $deceased instanceof WP_Post ) {
-            // No deceased linked.
-            return '';
-        }
+	//ignore deceased and orders if hide_order_buttons is true
+	if ( ! $hide_order_buttons ) {
+		if ( ! $deceased instanceof WP_Post ) {
+			// No deceased linked.
+			return '';
+		}
 
-        if ( ! cm_orders_allowed( $deceased ) ) {
-            // Placing orders is not allowed.
-            return '';
-        }
-    }
+		if ( ! cm_orders_allowed( $deceased ) ) {
+			// Placing orders is not allowed.
+			return '';
+		}
+	}
 
 	/**
 	 * Filter to adjust the product query arguments.
@@ -289,9 +324,7 @@ function cm_products_shortcode( $atts ) {
 	 * @since 1.5.0
 	 */
 	$products_query_arguments = apply_filters( 'cm/products_shortcode_query', array(
-		'post_type'      => Product_Type::POST_TYPE,
-		'orderby'        => 'post_title',
-		'order'          => 'asc',
+		'post_type' => Product_Type::POST_TYPE,
 	) );
 
 	return cm_display_products( $atts['title'], $products_query_arguments, $hide_order_buttons );
@@ -321,9 +354,9 @@ function cm_order_form_shortcode( $atts ) {
 
 	ob_start();
 	?>
-    <div id="cm-order-form" class="cm-order-form rouw" <?php echo cm_get_display_value('cm-order-form'); ?>">
-        <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
-        <p>
+    <div id="cm-order-form" class="cm-order-form rouw" <?php echo cm_get_display_value( 'cm-order-form' ); ?>">
+    <h2 class="cm-order-form--title"><?= $atts['title']; ?></h2>
+    <p>
 		<?php
 		$dummy_date = ( new DateTime() )->setTime( 0, 0, 0 );
 		$order_time = $dummy_date->modify( Order_Type::get_close_offset() )->format( 'H:i' );
@@ -332,8 +365,8 @@ function cm_order_form_shortcode( $atts ) {
 			$order_time
 		);
 		?>
-        </p>
-        <?php cm_display_order_form( $atts['button'], $atts['deceased'] );?>
+    </p>
+	<?php cm_display_order_form( $atts['button'], $atts['deceased'] ); ?>
     </div>
 	<?php
 	return ob_get_clean();
