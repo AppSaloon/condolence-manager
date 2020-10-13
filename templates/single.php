@@ -49,7 +49,7 @@ $post_meta = get_post_meta( get_the_ID() );
 			</div>
 
 		<?php } else { ?>
-			<div class="comments" <?=cm_get_display_value('comments')?>">
+			<div class="comments" <?=cm_get_display_value('comments')?>>
 				<?php
 				$errors = apply_filters('wpice_get_comment_form_errors_as_list', ''); // call template tag to print the error list
 				if ($errors) {
