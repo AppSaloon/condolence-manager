@@ -6,7 +6,7 @@
 #cm-content-wrapper.alignwide,
 #ct_div {
 	max-width: 120rem;
-	width: 120rem;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
