@@ -3,6 +3,9 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.8.1 2020/10/16
+- Update responsive styling
+
 ## Version 2.7.0 2020/09/22
 - Added checkbox show funeraldate
 
