@@ -872,17 +872,11 @@ class Metabox {
 		}
 
 		if ( isset( $post_data['dateofdeath'] ) && isset( $post_data['name'] ) && isset( $post_data['familyname'] ) ) {
-			$arraymaand = static::get_months();
-
-			$date       = $post_data['dateofdeath'];
-			$pieces     = explode( "-", $date );
-			$num        = intval( $pieces[1] );
-			$month      = $arraymaand[$num - 1];
-			$post_title = $pieces[2] . ' ' . $month . ' ' . $pieces[0] . ' - ' . $post_data['name'] . ' ' . $post_data['familyname'];
+            $date_of_death = date_i18n(get_option('date_format'), strtotime($post_data['dateofdeath']));
+			$post_title = $date_of_death . ' - ' . $post_data['name'] . ' ' . $post_data['familyname'];
 
 			$post_title_sanitize = sanitize_title( $post_title );
-
-			$query = "UPDATE " . $wpdb->posts . " SET post_title='" . $post_title . "', post_name='" . $post_title_sanitize . "' WHERE ID=" . $post_id;
+            $query = "UPDATE " . $wpdb->posts . " SET post_title='" . $post_title . "', post_name='" . $post_title_sanitize . "' WHERE ID=" . $post_id;
 
 			$wpdb->query( $query );
 
