@@ -4,6 +4,9 @@ jQuery(document).ready(function ($) {
         var password = makeid();
         $('#password').val(password);
     });
+    $('.jquery-datepicker').datepicker({
+        dateFormat : "yy-mm-dd"
+    });
 });
 
 function makeid()

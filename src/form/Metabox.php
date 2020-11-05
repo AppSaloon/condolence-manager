@@ -75,7 +75,7 @@ class Metabox {
           </tr>
           <tr>
               <td><?php _e( 'Birthdate', 'cm_translate' ); ?></td>
-              <td class="form-field"><input type="date" name="birthdate"
+              <td class="form-field"><input type="text" class="jquery-datepicker" name="birthdate"
                                             value="<?php echo self::normalize_date($this->get_field_value( 'birthdate', $post->ID )); ?>">
               </td>
           </tr>
@@ -87,14 +87,14 @@ class Metabox {
           </tr>
           <tr>
               <td><?php _e( 'Date of death', 'cm_translate' ); ?></td>
-              <td class="form-field"><input type="date" name="dateofdeath"
+              <td class="form-field"><input type="text" class="jquery-datepicker" name="dateofdeath"
                                             value="<?php echo self::normalize_date($this->get_field_value( 'dateofdeath', $post->ID )); ?>">
               </td>
           </tr>
           <tr>
               <td><label for="funeraldate"><?php _e( 'Funeral date', 'cm_translate' ); ?></label></td>
               <td class="form-field">
-                  <input type="date" name="funeraldate" id="funeraldate" value="<?php echo self::normalize_date($this->get_field_value( 'funeraldate', $post->ID )); ?>" />
+                  <input type="text" class="jquery-datepicker" name="funeraldate" id="funeraldate" value="<?php echo self::normalize_date($this->get_field_value( 'funeraldate', $post->ID )); ?>" />
               </td>
           </tr>
           <tr>
@@ -914,19 +914,18 @@ class Metabox {
 		global $post;
 		if ( is_object( $post ) ) {
 			if ( $post->post_type == Custom_Post_Type::post_type() ) {
+				wp_enqueue_media();
 				wp_register_style( 'metabox_css', CM_URL . 'assets/css/metabox.css', false, CM_VERSION );
 				wp_enqueue_style( 'metabox_css' );
 
-				wp_register_script( 'metabox_js', CM_URL . 'assets/js/metabox.js', array(), CM_VERSION, true );
-				wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
-				wp_enqueue_script( 'metabox_js' );
-				wp_enqueue_media();
-
-				// TODO: actually use datepicker somewhere
 				// Load the datepicker script (pre-registered in WordPress).
 				wp_enqueue_script( 'jquery-ui-datepicker' );
 				wp_register_style( 'jquery-ui', 'https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css' );
 				wp_enqueue_style( 'jquery-ui' );
+
+                wp_register_script( 'metabox_js', CM_URL . 'assets/js/metabox.js', array('jquery-ui-datepicker'), CM_VERSION, true );
+                wp_localize_script( 'metabox_js', 'metabox', array( 'ajaxUrl' => get_admin_url() . 'admin-ajax.php' ) );
+                wp_enqueue_script( 'metabox_js' );
 			}
 		}
 	}
