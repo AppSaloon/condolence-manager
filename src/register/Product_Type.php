@@ -154,6 +154,16 @@ class Product_Type {
 		}
 	}
 
+    /**
+     * @param int $post_id
+     */
+    public static function set_sortable_price_metadata(int $post_id)
+    {
+        $price = json_decode(get_post_meta($post_id, 'cm_product_price', true));
+        $amount = isset($price->amount) ? (float) $price->amount : 0;
+        update_post_meta($post_id, 'cm_product_price_amount', $amount);
+    }
+
 	/**
 	 * Price metabox
 	 */

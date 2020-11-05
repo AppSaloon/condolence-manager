@@ -160,10 +160,7 @@ function fix_product_price_meta_value() {
 	) );
 	$posts         = $product_query->get_posts();
 	foreach ( $posts as $post ) {
-		$price = json_decode( get_post_meta( $post->ID, 'cm_product_price', true ) );
-		if ( isset( $price->amount ) ) {
-			add_post_meta( $post->ID, 'cm_product_price_amount', (int) $price->amount );
-		}
+	    Product_Type::set_sortable_price_metadata($post->ID);
 	}
 }
 
