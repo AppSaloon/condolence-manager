@@ -3,6 +3,14 @@
 requires: 4.6
 tested: 5.4.1
 
+## Version 2.8.2 2020/11/06
+- Update responsive styling
+- Fixed auto-generated title localization
+- Replaced date inputs with jQuery datepickers
+- added SASS
+- Selector nesting in condolences.scss
+- Fixed flower sort by price bug after updating a product's price
+
 ## Version 2.8.1 2020/10/16
 - Update responsive styling
 
