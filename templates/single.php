@@ -22,7 +22,7 @@ $post_meta = get_post_meta( get_the_ID() );
 
 		<?php
 		$check_password = get_post_meta(get_the_ID(), 'password', true);
-		if ( !empty($password) && $password == $check_password) { ?>
+		if ( !empty($password) && $password == $check_password): ?>
 
 			<div class="comments-list family_page">
 				<h3><?php _e('Condolences for the family', 'cm_translate'); ?></h3>
@@ -48,19 +48,9 @@ $post_meta = get_post_meta( get_the_ID() );
 				?>
 			</div>
 
-		<?php } else { ?>
+		<?php else: ?>
 			<div class="comments" <?=cm_get_display_value('comments')?>>
 				<?php
-				$errors = apply_filters('wpice_get_comment_form_errors_as_list', ''); // call template tag to print the error list
-				if ($errors) {
-					echo '<div class="error_box">';
-					echo '<h3 class="secondarypage">';
-					_e("Comment Error", "cm_translate");
-					echo '</h3>';
-					echo $errors;
-					echo '</div>';
-				}
-
 				$comment_form_fields = array(
 					'author' =>
 						'<p class="comment-form-author"><label for="author">' . __('Naam', 'cm_translate') . ' ' .
@@ -84,7 +74,7 @@ $post_meta = get_post_meta( get_the_ID() );
 				);
 				?>
 			</div>
-		<?php } ?>
+		<?php endif; ?>
 	</div>
 
 	<?php
