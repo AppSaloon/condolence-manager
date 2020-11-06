@@ -1,0 +1,29 @@
+{
+  "name": "condolatie-manager",
+  "version": "1.0.0",
+  "config": {
+    "css_src_folder": "assets/scss",
+    "css_dist_folder": "assets/css"
+  },
+  "devDependencies": {
+    "onchange": "6.1.0",
+    "sass": "1.23.7"
+  },
+  "scripts": {
+    "sass": "sass --style=compressed --no-source-map $npm_package_config_css_src_folder:$npm_package_config_css_dist_folder",
+    "dev": "npm run sass && onchange $npm_package_config_css_src_folder'/**.scss' -- npm run sass"
+  },
+  "browserslist": [
+    ">= 1%",
+    "last 1 major version",
+    "not dead",
+    "Chrome >= 45",
+    "Firefox >= 38",
+    "Edge >= 12",
+    "Explorer >= 10",
+    "iOS >= 9",
+    "Safari >= 9",
+    "Android >= 4.4",
+    "Opera >= 30"
+  ]
+}
