@@ -31,7 +31,8 @@
         margin-bottom: 20px;
         display: flex;
         flex-direction: row;
-
+        flex-wrap: wrap;
+        padding: 12px;
 
         .deceased-img {
           padding: 2% 3% 2% 2%;
@@ -79,10 +80,12 @@
           .cm-buttons-wrapper {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+            margin: -10px;
 
             input[type=button] {
               font-family: Arial, Verdana, Helvetica, sans-serif;
-              margin: 0 10px 10px 20px;
+              margin: 10px;
               color: #fff;
               display: inline-block;
               padding: 6px 12px;
@@ -365,5 +368,21 @@
 
   #ct_div .col-sm-offset-2 {
     margin-left: 16.66666667%;
+  }
+}
+
+
+@media (max-width: 980px) {
+  #cm-content-wrapper {
+    .cm-content {
+      .cm-entry-content {
+        & > article {
+          .deceased-img,
+          .deceased-info {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
