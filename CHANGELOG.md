@@ -3,6 +3,10 @@
 requires: 4.6
 tested: 5.4.1
 
+## Unreleased
+### Fixed
+- Fix pagination for comments
+
 ## Version 2.8.2 2020/11/06
 - Update responsive styling
 - Fixed auto-generated title localization

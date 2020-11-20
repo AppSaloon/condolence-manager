@@ -45,6 +45,13 @@ $post_meta = get_post_meta( get_the_ID() );
 					'reverse_top_level' => false //Show the latest comments at the top of the list
 				), $comments);
 				echo '</ol>';
+
+				$args = array(
+					'base' => add_query_arg( 'cpage', '%#%' ),
+					'total' => ceil( count( $comments ) / 100 ),
+					'add_fragment' => ''
+				);
+				paginate_comments_links( $args );
 				?>
 			</div>
 
