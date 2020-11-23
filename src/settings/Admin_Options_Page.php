@@ -3,9 +3,9 @@
 namespace appsaloon\cm\settings;
 
 class Admin_Options_Page {
-	const MENU_SLUG = 'condolence-manager';
+	const MENU_SLUG         = 'condolence-manager';
 	const MENU_OPTIONS_SLUG = 'condolence-manager_options';
-	const DEFAULT_OPTIONS = array(
+	const DEFAULT_OPTIONS   = array(
 		'cm_option_confirmation_order_text' => 'Thank you for your order.',
 		'cm_option_product_sort_orderby'    => 'post_title',
 		'cm_option_product_sort_direction'  => 'DESC',
@@ -21,9 +21,9 @@ class Admin_Options_Page {
 
 	private function set_current_tab() {
 		$this->tabs        = array(
-			"confirmation" => __( 'Confirmation', 'cm_translate' ),
-			"rename_cpt"   => __( 'Rename CPT', 'cm_translate' ),
-			"products"     => __( 'Products', 'cm_translate' ),
+			'confirmation' => __( 'Confirmation', 'cm_translate' ),
+			'rename_cpt'   => __( 'Rename CPT', 'cm_translate' ),
+			'products'     => __( 'Products', 'cm_translate' ),
 		);
 		$current_tab       = isset( $_GET['tab'] )
 			? sanitize_text_field( $_GET['tab'] )
@@ -48,10 +48,10 @@ class Admin_Options_Page {
 
 	public static function get_confirmation_settings() {
 		return array(
-			'type'                                           => esc_html__( get_option( 'cm_option_confirmation_type', 'text' ) ),
-			'text'                                           => esc_html__( get_option( 'cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate' ) ) ),
-			'page'                                           => esc_html__( get_option( 'cm_option_confirmation_page' ) ),
-			'order_text'                                     => esc_html__( get_option( 'cm_option_confirmation_order_text' ) ),
+			'type'       => esc_html__( get_option( 'cm_option_confirmation_type', 'text' ) ),
+			'text'       => esc_html__( get_option( 'cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate' ) ) ),
+			'page'       => esc_html__( get_option( 'cm_option_confirmation_page' ) ),
+			'order_text' => esc_html__( get_option( 'cm_option_confirmation_order_text' ) ),
 			'cm_option_order_confirmation_email_to_customer' => get_option(
 				'cm_option_order_confirmation_email_to_customer',
 				false
@@ -144,32 +144,33 @@ class Admin_Options_Page {
 			$result   = self::rename_CPT( $new_slug );
 			if ( is_wp_error( $result ) ) {
 				?>
-                <div class="error notice">
-                    <p><?php echo $result->get_error_message(); ?></p>
-                </div>
+				<div class="error notice">
+					<p><?php echo $result->get_error_message(); ?></p>
+				</div>
 				<?php
 			} else {
 				?>
-                <div class="updated notice">
-                    <p><?php echo esc_html__( 'The slug has been updated.', 'cm_translate' ); ?></p>
-                </div>
+				<div class="updated notice">
+					<p><?php echo esc_html__( 'The slug has been updated.', 'cm_translate' ); ?></p>
+				</div>
 				<?php
 			}
 		}
 		?>
 
-        <h2><?php _e( 'Condolence manager', 'cm_translate' ); ?></h2>
+		<h2><?php _e( 'Condolence manager', 'cm_translate' ); ?></h2>
 
-        <h3 class="nav-tab-wrapper">
+		<h3 class="nav-tab-wrapper">
 			<?php
 			foreach ( $this->tabs as $tab_id => $tab_name ) {
 				$this->generate_tab( $tab_id, $tab_name );
 			}
 			?>
-        </h3>
+		</h3>
 
-        <div class="wrap">
-			<?php if ( $this->current_tab == 'confirmation' ):
+		<div class="wrap">
+			<?php
+			if ( $this->current_tab == 'confirmation' ) :
 
 				if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['btn_confirmation'] ) ) {
 					update_option(
@@ -183,122 +184,136 @@ class Admin_Options_Page {
 				}
 				$settings = static::get_confirmation_settings();
 				?>
-                <p class="info"><?php _e( 'Manage the condolence confirmation. This can be a thank you text, or a page to redirect to.', 'cm_translate' ); ?></p>
-                <form method="post" action="">
-                    <table class="form-table">
-                        <tr>
-                            <th>
-                                <label for="cm_option_confirmation_type"><?php _e( 'Confirmation type', 'cm_translate' ); ?></label>
-                            </th>
-                            <td>
+				<p class="info"><?php _e( 'Manage the condolence confirmation. This can be a thank you text, or a page to redirect to.', 'cm_translate' ); ?></p>
+				<form method="post" action="">
+					<table class="form-table">
+						<tr>
+							<th>
+								<label
+									for="cm_option_confirmation_type"><?php _e( 'Confirmation type', 'cm_translate' ); ?></label>
+							</th>
+							<td>
 								<?php
 								$confirmation_type = $settings['type'];
 								?>
-                                <p><label><input type="radio" name="cm_option_confirmation_type"
-                                                 value="page" <?php checked( 'page', $confirmation_type ); ?>><?php _e( 'Page', 'cm_translate' ); ?>
-                                    </label></p>
-                                <p><label><input type="radio" name="cm_option_confirmation_type"
-                                                 value="text" <?php checked( 'text', $confirmation_type ); ?>><?php _e( 'Text', 'cm_translate' ); ?>
-                                    </label></p>
-                                <p class="description">
+								<p><label><input type="radio" name="cm_option_confirmation_type"
+												 value="page" <?php checked( 'page', $confirmation_type ); ?>><?php _e( 'Page', 'cm_translate' ); ?>
+									</label></p>
+								<p><label><input type="radio" name="cm_option_confirmation_type"
+												 value="text" <?php checked( 'text', $confirmation_type ); ?>><?php _e( 'Text', 'cm_translate' ); ?>
+									</label></p>
+								<p class="description">
 									<?php _e( 'Choose what will happen after a user writes a condolence.', 'cm_translate' ); ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="cm_option_confirmation_page"><?php _e( 'Confirmation page', 'cm_translate' ); ?></label>
-                            </th>
-                            <td>
-                                <input type="url" value="<?php echo esc_attr( $settings['page'] ) ?>"
-                                       name="cm_option_confirmation_page" class="regular-text"
-                                       id="cm_option_confirmation_page" placeholder="https://www.example.com/thank-you">
-                                <p class="description">
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label
+									for="cm_option_confirmation_page"><?php _e( 'Confirmation page', 'cm_translate' ); ?></label>
+							</th>
+							<td>
+								<input type="url" value="<?php echo esc_attr( $settings['page'] ); ?>"
+									   name="cm_option_confirmation_page" class="regular-text"
+									   id="cm_option_confirmation_page" placeholder="https://www.example.com/thank-you">
+								<p class="description">
 									<?php _e( 'If you selected "page" as the confirmation type, please enter the URL to the page your users will be redirected to after writing a condolence.', 'cm_translate' ); ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="cm_option_confirmation_text"><?php _e( 'Confirmation text', 'cm_translate' ); ?></label>
-                            </th>
-                            <td>
-                    <textarea name="cm_option_confirmation_text" class="regular-text" id="cm_option_confirmation_text"
-                              placeholder="<?php _e( 'Thank you note', 'cm_translate' ); ?>"><?php
-	                    echo esc_textarea( $settings['text'] );
-	                    ?></textarea>
-                                <p class="description">
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label
+									for="cm_option_confirmation_text"><?php _e( 'Confirmation text', 'cm_translate' ); ?></label>
+							</th>
+							<td>
+					<textarea name="cm_option_confirmation_text" class="regular-text" id="cm_option_confirmation_text"
+							  placeholder="<?php _e( 'Thank you note', 'cm_translate' ); ?>">
+													 <?php
+														echo esc_textarea( $settings['text'] );
+														?>
+						</textarea>
+								<p class="description">
 									<?php _e( 'If you selected "text" as the confirmation type, the text in the field above will be displayed to a user after writing a condolence.', 'cm_translate' ); ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="cm_option_confirmation_order_text">
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="cm_option_confirmation_order_text">
 									<?php _e( 'Order confirmation message', 'cm_translate' ); ?>
-                                </label>
-                            </th>
-                            <td>
-                   <textarea name="cm_option_confirmation_order_text" class="regular-text"
-                             id="cm_option_confirmation_order_text" placeholder="Thank you for your order."><?php
-	                   echo esc_attr( $settings['order_text'] )
-	                   ?></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="cm_option_order_confirmation_email_to_customer">
+								</label>
+							</th>
+							<td>
+				   <textarea name="cm_option_confirmation_order_text" class="regular-text"
+							 id="cm_option_confirmation_order_text" placeholder="Thank you for your order.">
+							 <?php
+								echo esc_attr( $settings['order_text'] )
+								?>
+					   </textarea>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="cm_option_order_confirmation_email_to_customer">
 									<?php _e( 'Order confirmation email to customer', 'cm_translate' ); ?>
-                                </label>
-                            </th>
-                            <td>
-                                <label>
-                                    <input type="checkbox"
-                                           name="cm_option_order_confirmation_email_to_customer"
-                                           id="cm_option_order_confirmation_email_to_customer"
+								</label>
+							</th>
+							<td>
+								<label>
+									<input type="checkbox"
+										   name="cm_option_order_confirmation_email_to_customer"
+										   id="cm_option_order_confirmation_email_to_customer"
 										<?php echo $settings['cm_option_order_confirmation_email_to_customer'] ? 'checked' : ''; ?>
-                                    />
-                                    <span><?php echo __( 'Enabled', 'cm_translate' ); ?></span>
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td>
-                                <input type="submit" class="button-primary" value="<?php _e( 'Submit' ) ?>"
-                                       name="btn_confirmation">
-                            </td>
-                        </tr>
-                    </table>
+									/>
+									<span><?php echo __( 'Enabled', 'cm_translate' ); ?></span>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<input type="submit" class="button-primary" value="<?php _e( 'Submit' ); ?>"
+									   name="btn_confirmation">
+							</td>
+						</tr>
+					</table>
 
-                </form>
+				</form>
 			<?php endif; ?>
 
-			<?php if ( $this->current_tab == 'rename_cpt' ): ?>
-                <div class="change_post_type">
+			<?php if ( $this->current_tab == 'rename_cpt' ) : ?>
+				<div class="change_post_type">
 					<?php
 					$post_type = get_option( 'condolence_cpt_base' );
 					?>
-                    <div class="notice-warning notice">
-                        <p><?php echo esc_html__( 'Please create a database backup before changing the slug.', 'cm_translate' ); ?></p>
-                    </div>
-                    <form method="post">
-                        <p class="info"><?php _e( 'You can change the <b>custom post type slug</b>.',
-								'cm_translate' ) ?></p>
-                        <label for="post_type"><?php _e( 'Slug name', 'cm_translate' ); ?></label>
-                        <input id="post_type" type='text' name='new-slug' value="<?php echo $post_type; ?>"
-                               maxlength="20" required>
-                        <input id="btn-posttype" type="submit" class="button" name="rename_CPT_submit"
-                               value="<?php _e( 'Change post type', 'cm_translate' ); ?>">
-                    </form>
-                </div>
-			<?php
-			endif; ?>
+					<div class="notice-warning notice">
+						<p><?php echo esc_html__( 'Please create a database backup before changing the slug.', 'cm_translate' ); ?></p>
+					</div>
+					<form method="post">
+						<p class="info">
+						<?php
+						_e(
+							'You can change the <b>custom post type slug</b>.',
+							'cm_translate'
+						)
+						?>
+								</p>
+						<label for="post_type"><?php _e( 'Slug name', 'cm_translate' ); ?></label>
+						<input id="post_type" type='text' name='new-slug' value="<?php echo $post_type; ?>"
+							   maxlength="20" required>
+						<input id="btn-posttype" type="submit" class="button" name="rename_CPT_submit"
+							   value="<?php _e( 'Change post type', 'cm_translate' ); ?>">
+					</form>
+				</div>
+				<?php
+			endif;
+			?>
 
-			<?php if ( $this->current_tab == 'products' ): ?>
+			<?php if ( $this->current_tab == 'products' ) : ?>
 				<?php
 				if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['btn_products'] ) ) {
-					error_log( var_export( [ "test should update products options" => $_POST ], 1 ) );
+					error_log( var_export( array( 'test should update products options' => $_POST ), 1 ) );
 					update_option(
 						'cm_option_product_sort_orderby',
 						$_POST['cm_option_product_sort_orderby'] === 'post_title' ? 'post_title' : 'price'
@@ -308,85 +323,87 @@ class Admin_Options_Page {
 						$_POST['cm_option_product_sort_direction'] === 'DESC' ? 'DESC' : 'ASC'
 					);
 				}
-				error_log( var_export( [ "orderby" => self::get_current_or_default_option( 'cm_option_product_sort_orderby' ) ], 1 ) );
-				error_log( var_export( [ "direction" => self::get_current_or_default_option( 'cm_option_product_sort_direction' ) ], 1 ) );
-				$cm_option_product_sort_orderby = self::get_current_or_default_option('cm_option_product_sort_orderby');
-				$cm_option_product_sort_direction = self::get_current_or_default_option('cm_option_product_sort_direction');
+				error_log( var_export( array( 'orderby' => self::get_current_or_default_option( 'cm_option_product_sort_orderby' ) ), 1 ) );
+				error_log( var_export( array( 'direction' => self::get_current_or_default_option( 'cm_option_product_sort_direction' ) ), 1 ) );
+				$cm_option_product_sort_orderby   = self::get_current_or_default_option( 'cm_option_product_sort_orderby' );
+				$cm_option_product_sort_direction = self::get_current_or_default_option( 'cm_option_product_sort_direction' );
 				?>
 
-                <form method="post">
-                    <table class="form-table">
-                        <tr>
-                            <th>
-                                <label for="cm_option_product_sort_orderby"><?php _e( 'Sort products by', 'cm_translate' ); ?></label>
-                            </th>
-                            <td>
-                                <select
-                                        name="cm_option_product_sort_orderby"
-                                        id="cm_option_product_sort_orderby"
-                                >
-                                    <option
-                                            value="post_title"
-                                            <?php echo $cm_option_product_sort_orderby === 'post_title' ? 'selected' : ''; ?>
-                                    >
-                                        Post title
-                                    </option>
-                                    <option
-                                            value="price"
-                                            <?php echo $cm_option_product_sort_orderby === 'price' ? 'selected' : ''; ?>
-                                    >
-                                        Price
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label for="cm_option_product_sort_direction"><?php _e( 'Sort direction', 'cm_translate' ); ?></label>
-                            </th>
-                            <td>
-                                <select
-                                        name="cm_option_product_sort_direction"
-                                        id="cm_option_product_sort_direction"
-                                >
-                                    <option
-                                            value="DESC"
-                                            <?php echo $cm_option_product_sort_direction === 'DESC' ? 'selected' : ''; ?>
-                                    >
-                                        Descending
-                                    </option>
-                                    <option
-                                            value="ASC"
-                                            <?php echo $cm_option_product_sort_direction === 'ASC' ? 'selected' : ''; ?>
-                                    >
-                                        Ascending
-                                    </option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td>
-                                <input type="submit" class="button-primary" value="<?php _e( 'Submit' ) ?>"
-                                       name="btn_products">
-                            </td>
-                        </tr>
-                    </table>
+				<form method="post">
+					<table class="form-table">
+						<tr>
+							<th>
+								<label
+									for="cm_option_product_sort_orderby"><?php _e( 'Sort products by', 'cm_translate' ); ?></label>
+							</th>
+							<td>
+								<select
+									name="cm_option_product_sort_orderby"
+									id="cm_option_product_sort_orderby"
+								>
+									<option
+										value="post_title"
+										<?php echo $cm_option_product_sort_orderby === 'post_title' ? 'selected' : ''; ?>
+									>
+										Post title
+									</option>
+									<option
+										value="price"
+										<?php echo $cm_option_product_sort_orderby === 'price' ? 'selected' : ''; ?>
+									>
+										Price
+									</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<label
+									for="cm_option_product_sort_direction"><?php _e( 'Sort direction', 'cm_translate' ); ?></label>
+							</th>
+							<td>
+								<select
+									name="cm_option_product_sort_direction"
+									id="cm_option_product_sort_direction"
+								>
+									<option
+										value="DESC"
+										<?php echo $cm_option_product_sort_direction === 'DESC' ? 'selected' : ''; ?>
+									>
+										Descending
+									</option>
+									<option
+										value="ASC"
+										<?php echo $cm_option_product_sort_direction === 'ASC' ? 'selected' : ''; ?>
+									>
+										Ascending
+									</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<input type="submit" class="button-primary" value="<?php _e( 'Submit' ); ?>"
+									   name="btn_products">
+							</td>
+						</tr>
+					</table>
 
-                </form>
+				</form>
 			<?php endif; ?>
 
-        </div>
+		</div>
 		<?php
 	}
 
 	private function generate_tab( $tab_id, $tab_name ) {
 		$class = ( $this->current_tab == $tab_id ) ? 'nav-tab-active' : '';
 		?>
-        <a href="admin.php?page=<?= static::MENU_OPTIONS_SLUG ?>&tab=<?php echo $tab_id; ?>"
-           class="nav-tab <?php echo $class; ?>">
+		<a href="admin.php?page=<?php echo static::MENU_OPTIONS_SLUG; ?>&tab=<?php echo $tab_id; ?>"
+		   class="nav-tab <?php echo $class; ?>">
 			<?php echo $tab_name; ?>
-        </a>
+		</a>
 		<?php
 	}
 }
