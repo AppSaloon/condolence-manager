@@ -6,9 +6,10 @@ class Admin_Options_Page {
 	const MENU_SLUG         = 'condolence-manager';
 	const MENU_OPTIONS_SLUG = 'condolence-manager_options';
 	const DEFAULT_OPTIONS   = array(
-		'cm_option_confirmation_order_text' => 'Thank you for your order.',
-		'cm_option_product_sort_orderby'    => 'post_title',
-		'cm_option_product_sort_direction'  => 'DESC',
+		'cm_option_confirmation_order_text'         => 'Thank you for your order.',
+		'cm_option_product_sort_orderby'            => 'post_title',
+		'cm_option_product_sort_direction'          => 'DESC',
+		'cm_option_settings_show_search_in_archive' => false,
 	);
 
 	private $tabs;
@@ -24,6 +25,7 @@ class Admin_Options_Page {
 			'confirmation' => __( 'Confirmation', 'cm_translate' ),
 			'rename_cpt'   => __( 'Rename CPT', 'cm_translate' ),
 			'products'     => __( 'Products', 'cm_translate' ),
+			'settings'     => __( 'Settings', 'cm_translate' ),
 		);
 		$current_tab       = isset( $_GET['tab'] )
 			? sanitize_text_field( $_GET['tab'] )
@@ -170,7 +172,7 @@ class Admin_Options_Page {
 
 		<div class="wrap">
 			<?php
-			if ( $this->current_tab == 'confirmation' ) :
+			if ( $this->current_tab === 'confirmation' ) :
 
 				if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['btn_confirmation'] ) ) {
 					update_option(
@@ -282,7 +284,7 @@ class Admin_Options_Page {
 				</form>
 			<?php endif; ?>
 
-			<?php if ( $this->current_tab == 'rename_cpt' ) : ?>
+			<?php if ( $this->current_tab === 'rename_cpt' ) : ?>
 				<div class="change_post_type">
 					<?php
 					$post_type = get_option( 'condolence_cpt_base' );
@@ -292,13 +294,13 @@ class Admin_Options_Page {
 					</div>
 					<form method="post">
 						<p class="info">
-						<?php
-						_e(
-							'You can change the <b>custom post type slug</b>.',
-							'cm_translate'
-						)
-						?>
-								</p>
+							<?php
+							_e(
+								'You can change the <b>custom post type slug</b>.',
+								'cm_translate'
+							)
+							?>
+						</p>
 						<label for="post_type"><?php _e( 'Slug name', 'cm_translate' ); ?></label>
 						<input id="post_type" type='text' name='new-slug' value="<?php echo $post_type; ?>"
 							   maxlength="20" required>
@@ -310,10 +312,9 @@ class Admin_Options_Page {
 			endif;
 			?>
 
-			<?php if ( $this->current_tab == 'products' ) : ?>
+			<?php if ( $this->current_tab === 'products' ) : ?>
 				<?php
 				if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['btn_products'] ) ) {
-					error_log( var_export( array( 'test should update products options' => $_POST ), 1 ) );
 					update_option(
 						'cm_option_product_sort_orderby',
 						$_POST['cm_option_product_sort_orderby'] === 'post_title' ? 'post_title' : 'price'
@@ -323,8 +324,6 @@ class Admin_Options_Page {
 						$_POST['cm_option_product_sort_direction'] === 'DESC' ? 'DESC' : 'ASC'
 					);
 				}
-				error_log( var_export( array( 'orderby' => self::get_current_or_default_option( 'cm_option_product_sort_orderby' ) ), 1 ) );
-				error_log( var_export( array( 'direction' => self::get_current_or_default_option( 'cm_option_product_sort_direction' ) ), 1 ) );
 				$cm_option_product_sort_orderby   = self::get_current_or_default_option( 'cm_option_product_sort_orderby' );
 				$cm_option_product_sort_direction = self::get_current_or_default_option( 'cm_option_product_sort_direction' );
 				?>
@@ -386,6 +385,51 @@ class Admin_Options_Page {
 							<td>
 								<input type="submit" class="button-primary" value="<?php _e( 'Submit' ); ?>"
 									   name="btn_products">
+							</td>
+						</tr>
+					</table>
+
+				</form>
+			<?php endif; ?>
+
+
+
+			<?php if ( $this->current_tab === 'settings' ) : ?>
+				<?php
+				if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['btn_settings'] ) ) {
+					update_option(
+						'cm_option_settings_show_search_in_archive',
+						isset( $_POST['cm_option_settings_show_search_in_archive'] )
+					);
+				}
+				$cm_option_settings_show_search_in_archive = self::get_current_or_default_option(
+					'cm_option_settings_show_search_in_archive'
+				);
+				?>
+
+				<form method="post">
+					<table class="form-table">
+						<tr>
+							<th>
+								<label
+									for="cm_option_settings_show_search_in_archive">
+									<?php _e( 'Show search bar in condolences archive', 'cm_translate' ); ?>
+								</label>
+							</th>
+							<td>
+								<input
+									type="checkbox"
+									id="cm_option_settings_show_search_in_archive"
+									name="cm_option_settings_show_search_in_archive"
+									<?php echo $cm_option_settings_show_search_in_archive ? 'checked="checked"' : ''; ?>"
+								/>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<input type="submit" class="button-primary" value="<?php _e( 'Submit' ); ?>"
+									   name="btn_settings">
 							</td>
 						</tr>
 					</table>

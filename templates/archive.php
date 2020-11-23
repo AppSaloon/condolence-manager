@@ -3,10 +3,22 @@
  * The template for displaying Archive pages.
  */
 
+use appsaloon\cm\settings\Admin_Options_Page;
+
 get_header(); ?>
 
 <div id="cm-content-wrapper" class="alignwide">
 	<div class="cm-content">
+
+		<?php
+		$show_search_in_archive = Admin_Options_Page::get_current_or_default_option(
+			'cm_option_settings_show_search_in_archive'
+		);
+
+		if ( $show_search_in_archive ) {
+			echo do_shortcode( '[cm_search]' );
+		}
+		?>
 
 		<?php
 		global $wp_query;
@@ -42,6 +54,8 @@ get_header(); ?>
 				$is_single = false;
 				require 'deceased.php';
 			endwhile;
+		else :
+			echo esc_html__( 'No results found.' );
 		endif;
 		?>
 		<nav>

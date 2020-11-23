@@ -32,6 +32,7 @@ namespace appsaloon\cm;
 use appsaloon\cm\controller\Comment_Sanitizer;
 use appsaloon\cm\controller\Comment_Email;
 use appsaloon\cm\controller\Products_Email_Controller;
+use appsaloon\cm\controller\Search;
 use appsaloon\cm\controller\Templates;
 use appsaloon\cm\register\Custom_Post_Type;
 use appsaloon\cm\register\Location_Type;
@@ -95,6 +96,7 @@ class Condolatie_Manager {
 			$this->templates
 		);
 		new Comment_Sanitizer();
+		( new Search() )->register_hooks();
 	}
 
 	/**

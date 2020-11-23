@@ -1,3 +1,33 @@
+.cm_search_form {
+  display: flex;
+  width: 100%;
+
+  > div {
+    position: relative;
+    width: 100%;
+    input {
+      height: 100%;
+      width: 100%;
+    }
+    .cm_search_clear {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+
+      &+ input{
+        padding-right: 100px;
+      }
+    }
+  }
+
+  button {
+    word-break: normal;
+  }
+}
+
 #cm-content-wrapper,
 #ct_div {
   background-color: #fff;
