@@ -4,6 +4,8 @@ requires: 4.6
 tested: 5.4.1
 
 ## Unreleased
+
+## Version 2.8.3 2020/11/23
 ### Fixed
 - Fix pagination for comments
 
