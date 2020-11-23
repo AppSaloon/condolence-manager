@@ -33,18 +33,34 @@ $post_meta = get_post_meta( get_the_ID() );
 				));
 
 				//Gather comments for a specific page/post
-				$comments = get_comments(array(
-					'post_id' => get_the_ID(),
-					'status' => 'approve' //Change this to the type of comments to be displayed
+                $current_page = (get_query_var('cpage')) ? get_query_var('cpage') : 1;
+                $current_page = is_numeric($current_page) ? $current_page : 1;
+                $per_page = 100;
+                $offset = ( ($current_page -1) * $per_page);
+
+                $total_comments = get_comments(array(
+                    'post_id' => get_the_ID(),
+					'status' => 'approve',
+                    'count' => true
+                ));
+				$comments_on_current_page = get_comments(array(
+                    'post_id' => get_the_ID(),
+					'status' => 'approve',
+                    'number' => $per_page,
+                    'offset' => $offset
 				));
 
-				//Display the list of comments
 				echo '<ol class="commentlist">';
 				wp_list_comments(array(
-					'per_page' => 100, //Allow comment pagination
-					'reverse_top_level' => false //Show the latest comments at the top of the list
-				), $comments);
+					'reverse_top_level' => false
+				), $comments_on_current_page);
 				echo '</ol>';
+
+				$args = array(
+					'base' => add_query_arg( 'cpage', '%#%' ),
+					'total' => ceil( $total_comments / $per_page ),
+				);
+				paginate_comments_links( $args );
 				?>
 			</div>
 
