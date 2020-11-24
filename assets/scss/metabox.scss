@@ -1,3 +1,10 @@
+.cm_file_picker {
+    display: flex;
+    input[type="text"] {
+        flex: 1;
+    }
+}
+
 .form-table td:first-child{
     width: 25%;
 }
