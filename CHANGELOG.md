@@ -5,6 +5,11 @@ tested: 5.4.1
 
 ## Unreleased
 
+## Version 2.9.0 2020/11/24
+### Added
+- added optional search bar and search bar shortcode [cm_search]
+- added prayer card media field
+
 ## Version 2.8.3 2020/11/23
 ### Fixed
 - Fix pagination for comments
