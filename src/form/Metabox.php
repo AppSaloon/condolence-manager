@@ -103,6 +103,7 @@ class Metabox {
 		$greeting_information     = $this->get_field_value( 'greetinginformation', $post->ID );
 		$residence                = $this->get_field_value( 'residence', $post->ID );
 		$mass_card                = $this->get_field_value( 'masscard', $post->ID );
+		$prayer_card              = $this->get_field_value( 'prayer_card', $post->ID );
 		$flowers                  = $this->get_field_value( 'flowers', $post->ID );
 		$live_stream              = $this->get_field_value( 'live_stream', $post->ID );
 		$live_stream_embed        = $this->get_field_value( 'live_stream_embed', $post->ID );
@@ -282,6 +283,23 @@ class Metabox {
 							class="button"
 							type="button"
 							value="<?php echo esc_attr__( 'Choose mass card', 'cm_translate' ); ?>"
+						/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><?php echo esc_html__( 'Prayer card', 'cm_translate' ); ?></td>
+				<td class="form-field">
+					<div class="cm_file_picker">
+						<input
+							type="text"
+							name="prayer_card"
+							value="<?php echo esc_html( $prayer_card ); ?>"
+						>
+						<input
+							class="button"
+							type="button"
+							value="<?php echo esc_attr__( 'Select a prayer card', 'cm_translate' ); ?>"
 						/>
 					</div>
 				</td>
@@ -1020,6 +1038,7 @@ class Metabox {
 			'residence',
 			'gender',
 			'masscard',
+			'prayer_card',
 			'password',
 			'email',
 			'honoraryitle',

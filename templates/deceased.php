@@ -244,6 +244,14 @@ $relations      = unserialize( current( $post_meta['relations'] ) );
 						>
 					<?php endif; ?>
 
+					<?php if ( ! empty( $post_meta['prayer_card'][0] ) ) : ?>
+						<input
+							type="button"
+							onclick="window.open('<?php echo esc_attr( $post_meta['prayer_card'][0] ); ?>', '_blank')"
+							value="<?php echo esc_attr__( 'Prayer card', 'cm_translate' ); ?>"
+						>
+					<?php endif; ?>
+
 					<?php if ( $is_single ) : /* Only show livestream button in single */ ?>
 						<?php if ( ! empty( $post_meta['live_stream'][0] ) && ! empty( $post_meta['live_stream_url'][0] ) ) : ?>
 							<?php
