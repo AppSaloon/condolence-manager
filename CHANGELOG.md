@@ -4,6 +4,8 @@ requires: 4.6
 tested: 5.4.1
 
 ## Unreleased
+### Fixed
+- fixed possible undefined index notice
 
 ## Version 2.9.0 2020/11/24
 ### Added

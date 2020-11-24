@@ -111,7 +111,7 @@ $relations      = unserialize( current( $post_meta['relations'] ) );
 			<?php endif; ?>
 
 			<?php
-			$show_funeraldate = isset( $post_meta['show_funeraldate'][0] ) & $post_meta['show_funeraldate'][0] === '1';
+			$show_funeraldate = isset( $post_meta['show_funeraldate'][0] ) && $post_meta['show_funeraldate'][0] === '1';
 			$has_funeraldate  = ! empty( $post_meta['funeraldate'][0] );
 			if ( $show_funeraldate && $has_funeraldate ) :
 				?>
