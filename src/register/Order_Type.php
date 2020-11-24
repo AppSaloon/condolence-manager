@@ -11,27 +11,30 @@ use Exception;
 use WP_Post;
 
 class Order_Type {
-	const POST_TYPE = 'cm_order';
+	const POST_TYPE        = 'cm_order';
 	const ORDER_CLOSE_TIME = '-13 hour';
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_order_metaboxes' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
-		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_order_metadata' ), 10, 3);
+		add_action( 'save_post_' . self::POST_TYPE, array( $this, 'save_order_metadata' ), 10, 3 );
 		add_filter( 'cm/allow_orders', array( $this, 'can_order_products' ), 10, 2 );
 
 		$post_type = static::POST_TYPE;
 		add_filter( "manage_{$post_type}_posts_columns", array( $this, 'add_columns' ) );
 		add_action( "manage_{$post_type}_posts_custom_column", array( $this, 'column_content' ), 10, 2 );
 
-		add_action( 'admin_head', function () use ( $post_type ) {
-			$current_screen = get_current_screen();
+		add_action(
+			'admin_head',
+			function () use ( $post_type ) {
+				$current_screen = get_current_screen();
 
-			if ( null !== $current_screen && $current_screen->id === "edit-$post_type" ) {
-				$this->add_styling();
+				if ( null !== $current_screen && $current_screen->id === "edit-$post_type" ) {
+					$this->add_styling();
+				}
 			}
-		} );
+		);
 
 	}
 
@@ -66,12 +69,18 @@ class Order_Type {
 		$funeral_date_string = get_post_meta( $deceased_id, 'funeraldate', true );
 
 		if ( ! empty( $funeral_date_string ) ) {
-			$funeral_date = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$funeral_date_string} 00:00:00",
-				static::get_timezone() );
+			$funeral_date = DateTime::createFromFormat(
+				'Y-m-d H:i:s',
+				"{$funeral_date_string} 00:00:00",
+				static::get_timezone()
+			);
 		} else {
 			$date_of_death = Metabox::normalize_date( get_post_meta( $deceased_id, 'dateofdeath', true ) );
-			$funeral_date  = DateTime::createFromFormat( 'Y-m-d H:i:s', "{$date_of_death} 00:00:00",
-				static::get_timezone() );
+			$funeral_date  = DateTime::createFromFormat(
+				'Y-m-d H:i:s',
+				"{$date_of_death} 00:00:00",
+				static::get_timezone()
+			);
 			if ( $funeral_date ) {
 				$funeral_date->modify( '+2 week' );
 			}
@@ -116,29 +125,32 @@ class Order_Type {
 	}
 
 	/**
-     * Verifies if the order date is valid for the given deceased
-     *
+	 * Verifies if the order date is valid for the given deceased
+	 *
 	 * @param $deceased_id
 	 *
 	 * @return bool
-	 * @throws Exception
 	 */
 	public static function verify_order_funeral_date( $deceased_id ) {
 		$order_before = static::get_order_before_date( $deceased_id );
-		$current_date = new DateTime( 'now', static::get_timezone() );
+		try {
+			$current_date = new DateTime( 'now', static::get_timezone() );
+		} catch ( Exception $e ) {
+			return false;
+		}
 
 		return $current_date < $order_before;
 	}
 
 	public function add_styling() {
 		?>
-        <style type="text/css">
-            th#cm_price,
-            td.column-cm_price {
-                width: 100px;
-                text-align: right;
-            }
-        </style>
+		<style type="text/css">
+			th#cm_price,
+			td.column-cm_price {
+				width: 100px;
+				text-align: right;
+			}
+		</style>
 		<?php
 	}
 
@@ -261,13 +273,13 @@ class Order_Type {
 		}
 	}
 
-	public function save_order_metadata( int $post_id, WP_Post $post, bool $update) {
+	public function save_order_metadata( int $post_id, WP_Post $post, bool $update ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 
-		if($post->post_status !== 'publish') {
-		    return;
+		if ( $post->post_status !== 'publish' ) {
+			return;
 		}
 
 		if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
@@ -277,31 +289,41 @@ class Order_Type {
 		if ( is_wp_error( $post ) ) {
 			return;
 		} else {
-			error_log( var_export( [
-				"save_order_metadata post is WP_Error" => array(
-					"post_id" => $post_id,
-					"post"    => $post,
-					"update"  => $update,
+			error_log(
+				var_export(
+					array(
+						'save_order_metadata post is WP_Error' => array(
+							'post_id' => $post_id,
+							'post'    => $post,
+							'update'  => $update,
+						),
+					),
+					1
 				)
-			], 1 ) );
+			);
 		}
 
 		$order = Order::from_id( $post_id );
 		$order->set_fields_from_input( $_POST );
 
 		$errors = $order->validate();
-		if ( empty ( $errors ) ) {
+		if ( empty( $errors ) ) {
 			$order->update();
-			do_action('cm_after_save_order_metadata', $order, $post_id, $post, $update);
+			do_action( 'cm_after_save_order_metadata', $order, $post_id, $post, $update );
 		} else {
-			error_log( var_export( [
-				"save_order_metadata errors is not empty" => array(
-					"post_id" => $post_id,
-					"post"    => $post,
-					"update"  => $update,
-					"errors"  => $errors,
+			error_log(
+				var_export(
+					array(
+						'save_order_metadata errors is not empty' => array(
+							'post_id' => $post_id,
+							'post'    => $post,
+							'update'  => $update,
+							'errors'  => $errors,
+						),
+					),
+					1
 				)
-			], 1 ) );
+			);
 		}
 	}
 
@@ -323,12 +345,12 @@ class Order_Type {
 		}
 
 		?>
-        <div>
-            <h3><?= __( 'Products', 'cm_translate' ) ?></h3>
-			<?= $order->get_summary() ?>
-            <h3><?= __( 'Total', 'cm_translate' ) ?></h3>
-			<?= $order->get_total()->display( true ) ?>
-        </div>
+		<div>
+			<h3><?php echo __( 'Products', 'cm_translate' ); ?></h3>
+			<?php echo $order->get_summary(); ?>
+			<h3><?php echo __( 'Total', 'cm_translate' ); ?></h3>
+			<?php echo $order->get_total()->display( true ); ?>
+		</div>
 		<?php
 	}
 
