@@ -160,7 +160,7 @@ class Metabox {
 						type="text"
 						name="honoraryitle"
 						value="<?php echo esc_attr( $honorary_title ); ?>"
-					>
+					/>
 				</td>
 			</tr>
 			<tr>
@@ -170,7 +170,7 @@ class Metabox {
 						type="text"
 						name="birthplace"
 						value="<?php echo esc_attr( $place_of_birth ); ?>"
-					>
+					/>
 				</td>
 			</tr>
 			<tr>
@@ -181,7 +181,8 @@ class Metabox {
 						class="jquery-datepicker"
 						name="birthdate"
 						value="<?php echo esc_attr( $date_of_birth ); ?>"
-					>
+						readonly
+					/>
 				</td>
 			</tr>
 			<tr>
@@ -191,7 +192,7 @@ class Metabox {
 						type="text"
 						name="placeofdeath"
 						value="<?php echo esc_attr( $place_of_death ); ?>"
-					>
+					/>
 				</td>
 			</tr>
 			<tr>
@@ -201,7 +202,9 @@ class Metabox {
 						type="text"
 						class="jquery-datepicker"
 						name="dateofdeath"
-						value="<?php echo esc_attr( $date_of_death ); ?>">
+						value="<?php echo esc_attr( $date_of_death ); ?>"
+						readonly
+					/>
 				</td>
 			</tr>
 			<tr>
@@ -216,7 +219,9 @@ class Metabox {
 						class="jquery-datepicker"
 						name="funeraldate"
 						id="funeraldate"
-						value="<?php echo esc_attr( $date_of_funeral ); ?>"/>
+						value="<?php echo esc_attr( $date_of_funeral ); ?>"
+						readonly
+					/>
 				</td>
 			</tr>
 			<tr>
