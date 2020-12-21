@@ -6,6 +6,10 @@ and this project adheres to [SOP#63 - Project / website versioning](https://docs
 
 ## [Unreleased]
 
+## [2.9.2] 2020-12-21
+### Changed
+- easier navigation through the decades with the backend's datepickers
+
 ## [2.9.1] 2020-12-21
 ### Changed
 - added "readonly" to ".jquery-datepicker" fields to prevent invalid input
