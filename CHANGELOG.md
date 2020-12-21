@@ -1,9 +1,14 @@
-# CHANGELOG
+# Changelog
+All notable changes to this project will be documented in this file.
 
-requires: 4.6
-tested: 5.4.1
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [SOP#63 - Project / website versioning](https://docs.google.com/document/d/1hPaXZNC2uuGUYHrAVfIuIbtz2bLkU7_5-TO0Vphy1l0/edit).
 
-## Unreleased
+## [Unreleased]
+
+## [2.9.1] 2020-12-21
+### Changed
+- added "readonly" to ".jquery-datepicker" fields to prevent invalid input
 ### Fixed
 - fixed possible undefined index notice
 
