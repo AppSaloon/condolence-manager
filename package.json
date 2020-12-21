@@ -1,6 +1,5 @@
 {
   "name": "condolatie-manager",
-  "version": "1.0.0",
   "config": {
     "css_src_folder": "assets/scss",
     "css_dist_folder": "assets/css"
