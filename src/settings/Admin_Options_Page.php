@@ -49,7 +49,7 @@ class Admin_Options_Page {
 	}
 
 	public static function get_confirmation_settings() {
-		return array(
+		return array( /* TODO: don't translate the result of a call to get_option */
 			'type'       => esc_html__( get_option( 'cm_option_confirmation_type', 'text' ) ),
 			'text'       => esc_html__( get_option( 'cm_option_confirmation_text', __( 'Thanks for your comment. We appreciate your response.', 'cm_translate' ) ) ),
 			'page'       => esc_html__( get_option( 'cm_option_confirmation_page' ) ),

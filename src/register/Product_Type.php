@@ -48,7 +48,7 @@ class Product_Type {
 	public function add_columns( $columns ) {
 		return array(
 				'cb'             => '<input type="checkbox" />',
-				'featured_image' => __( 'Image', 'cm_featured' ),
+				'featured_image' => __( 'Image', 'cm_translate' ),
 				'title'          => __( 'Product', 'cm_translate' ),
 				'cm_price'       => __( 'Price', 'cm_translate' ),
 				'date'           => __( 'Date' )

@@ -277,7 +277,7 @@ $relations      = unserialize( current( $post_meta['relations'] ) );
 			<?php endif; ?>
 		</div>
 		<footer class="entry-meta">
-			<?php edit_post_link( esc_html__( 'Edit', 'cm-translation' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( esc_html__( 'Edit', 'cm_translate' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer>
 	</article>
 </div>

@@ -240,7 +240,7 @@ class Metabox {
 				</td>
 			</tr>
 			<tr>
-				<td><?php echo esc_html__( 'Funeral information' ); ?></td>
+				<td><?php echo esc_html__( 'Funeral information', 'cm_translate' ); ?></td>
 				<td class="form-field">
 					<textarea
 						name="funeralinformation"
@@ -611,7 +611,7 @@ class Metabox {
 						  .attr('placeholder', '<?php _e( 'Family name', 'cm_translate' ); ?>')
 						//.attr('style', 'display:none')
 					  )
-					  .append('<?php _e( 'Is alive?' ); ?> ')
+					  .append('<?php _e( 'Is alive?', 'cm_translate ); ?> ')
 					  .append($('<input>')
 						.attr('type', 'checkbox')
 						.attr('class', 'relation' + nummer + '_alive')
