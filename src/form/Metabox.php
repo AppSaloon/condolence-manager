@@ -611,7 +611,7 @@ class Metabox {
 						  .attr('placeholder', '<?php _e( 'Family name', 'cm_translate' ); ?>')
 						//.attr('style', 'display:none')
 					  )
-					  .append('<?php _e( 'Is alive?', 'cm_translate ); ?> ')
+					  .append('<?php _e( 'Is alive?', 'cm_translate' ); ?> ')
 					  .append($('<input>')
 						.attr('type', 'checkbox')
 						.attr('class', 'relation' + nummer + '_alive')
