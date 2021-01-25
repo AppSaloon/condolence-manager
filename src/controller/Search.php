@@ -3,7 +3,6 @@
 namespace appsaloon\cm\controller;
 
 use appsaloon\cm\register\Custom_Post_Type;
-use appsaloon\cm\settings\Admin_Options_Page;
 use WP_Query;
 
 class Search {
@@ -14,7 +13,9 @@ class Search {
 	}
 
 	public function shortcode_callback( $arguments ) {
-		$cm_search_action           = get_post_type_archive_link( Custom_Post_Type::post_type() );
+		$cm_search_action           = ! empty( $arguments['page_id'] )
+			? get_page_link( $arguments['page_id'] )
+			: get_post_type_archive_link( Custom_Post_Type::post_type() );
 		$cm_search_placeholder_text = apply_filters( 'cm_search_label_text', __( 'Search' ) );
 		$cm_search_button_text      = apply_filters( 'cm_search_button_text', __( 'Search' ) );
 		$cm_search_value            = isset( $_GET['q'] ) ? $_GET['q'] : '';

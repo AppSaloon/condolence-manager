@@ -17,7 +17,12 @@ get_header(); ?>
 		);
 
 		if ( $show_search_in_archive ) {
-			echo do_shortcode( '[cm_search]' );
+			if ( is_post_type_archive( Custom_Post_Type::post_type() ) ) {
+				echo do_shortcode( '[cm_search]' );
+			} else {
+				$page_id = get_the_ID();
+				echo do_shortcode( '[cm_search page_id=' . $page_id . ']' );
+			}
 		}
 		?>
 
