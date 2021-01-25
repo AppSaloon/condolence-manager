@@ -38,7 +38,6 @@ get_header(); ?>
 		$total_page        = ceil( $total_found_posts / $posts_per_page );
 
 		$big = 999999999; // need an unlikely integer
-		var_dump( $paged );
 		$pagination = paginate_links(
 			array(
 				'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
