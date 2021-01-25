@@ -6,6 +6,14 @@ and this project adheres to [SOP#63 - Project / website versioning](https://docs
 
 ## [Unreleased]
 
+## [2.10.0] 2021-01-25
+### Fixed
+- added missing text-domain arguments to translations
+- added missing quote on Metabox.php
+- fixed templating
+- fixed pagination when condolence_overview is used as a shortcode
+- fixed search functionality when condolence_overview is used as a shortcode
+
 ## [2.9.2] 2020-12-21
 ### Changed
 - easier navigation through the decades with the backend's datepickers
