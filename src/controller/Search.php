@@ -27,11 +27,17 @@ class Search {
 	}
 
 	public function filter_posts( WP_Query $wp_query ) {
+		global $post;
+		$has_shortcode = ! empty($post) && has_shortcode( $post->post_content, 'condolence_overview' );
+		$is_archive = is_post_type_archive( Custom_Post_Type::post_type() );
+		if( ! ( $has_shortcode || $is_archive ) ) {
+			return;
+		}
 		$q = isset( $_GET['q'] ) ? $_GET['q'] : '';
 		if ( empty( $q ) ) {
 			return;
 		}
-		if ( $wp_query->get( 'post_type' !== Custom_Post_Type::post_type() ) ) {
+		if ( $wp_query->get( 'post_type')  !== Custom_Post_Type::post_type() )  {
 			return;
 		}
 		$wp_query->set(
