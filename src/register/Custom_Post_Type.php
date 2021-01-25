@@ -2,6 +2,7 @@
 
 namespace appsaloon\cm\register;
 
+use appsaloon\cm\controller\Templates;
 use appsaloon\cm\form\Metabox;
 use appsaloon\cm\settings\Admin_Options_Page;
 
@@ -82,51 +83,10 @@ class Custom_Post_Type {
 
 	public function condolence_shortcode( $atts ) {
 		if ( ! is_admin() ) {
-			$permalink = get_permalink();
-			$paged     = 1;
-			$page      = '';
-			$arg       = shortcode_atts(
-				array(
-					'posts_per_page' => get_option( 'posts_per_page' ),
-					'location'       => 'all',
-					'pagination'     => false,
-				),
-				$atts
-			);
-
-			$args = array(
-				'post_type'      => static::post_type(),
-				'posts_per_page' => $arg['posts_per_page'],
-			);
-
-			if ( $arg['location'] !== 'all' ) {
-				$args['meta_key']   = Location_Type::META_KEY;
-				$args['meta_value'] = $arg['location'];
+			$archive_template = ( new Templates() )->cm_get_template_hierarchy( 'archive', true );
+			if ( file_exists( $archive_template ) ) {
+				include $archive_template;
 			}
-
-			// todo wut?
-			if ( $arg['pagination'] === 'true' ) {
-				$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-				if ( substr( $url, - 1 ) === '/' ) {
-					$url = substr( $url, 0, - 1 );
-				}
-
-				$end = explode( '/', $url );
-
-				if ( is_numeric( end( $end ) ) ) {
-					$paged         = end( $end );
-					$args['paged'] = $end;
-				}
-			}
-
-			$posts = query_posts( $args );
-			ob_start();
-			include CM_BASE_DIR . '/templates/archive.php';
-			$content = ob_get_clean();
-			wp_reset_query();
-			$result = preg_replace( '!\s+!smi', ' ', $content );
-
-			return $result;
 		}
 	}
 

@@ -3,11 +3,11 @@
  * The template for displaying Archive pages.
  */
 
+use appsaloon\cm\controller\Templates;
 use appsaloon\cm\register\Custom_Post_Type;
 use appsaloon\cm\settings\Admin_Options_Page;
 
 get_header(); ?>
-
 <div id="cm-content-wrapper" class="alignwide">
 	<div class="cm-content">
 
@@ -37,7 +37,7 @@ get_header(); ?>
 		$total_found_posts = $post_query->found_posts;
 		$total_page        = ceil( $total_found_posts / $posts_per_page );
 
-		$big = 999999999; // need an unlikely integer
+		$big        = 999999999; // need an unlikely integer
 		$pagination = paginate_links(
 			array(
 				'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
@@ -66,7 +66,8 @@ get_header(); ?>
 				$post_query->the_post();
 				$post_meta = get_post_meta( get_the_ID() );
 				$is_single = false;
-				require 'deceased.php';
+				$deceased_template = ( new Templates() )->cm_get_template_hierarchy( 'deceased', true );
+				require $deceased_template;
 			endwhile;
 		else :
 			echo esc_html__( 'No results found.' );
