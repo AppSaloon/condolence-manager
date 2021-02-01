@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [SOP#63 - Project / website versioning](https://docs.google.com/document/d/1hPaXZNC2uuGUYHrAVfIuIbtz2bLkU7_5-TO0Vphy1l0/edit).
 
-## [Unreleased]
+## [2.10.0] 2021-02-01 Mark
+### Update
+- update German de-DE translation
+- update Belgium nl-BE translation
 
 ## [2.10.0] 2021-01-25
 ### Fixed
