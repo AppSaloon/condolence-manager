@@ -75,7 +75,7 @@ $post_meta = get_post_meta( get_the_ID() );
 			</div>
 
 		<?php else : ?>
-			<div class="comments" <?php echo esc_attr( cm_get_display_value( 'comments' ) ); ?>>
+			<div class="comments" <?php echo cm_get_display_value( 'comments' ); ?>>
 				<?php
 				$comment_form_fields = array(
 					'author' =>
