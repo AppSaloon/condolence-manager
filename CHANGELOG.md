@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [SOP#63 - Project / website versioning](https://docs.google.com/document/d/1hPaXZNC2uuGUYHrAVfIuIbtz2bLkU7_5-TO0Vphy1l0/edit).
 
-## [Unreleased - fix/TR73-broken-quotes-around-inline-style]
+## [2.10.1]
 ### Fixed
 - fixed escaped style attribute in single.php template
 
